@@ -23,3 +23,7 @@ Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
 Route::get('/', function(){
    return view ('index');
 });
+
+Route::get('/admin', function () {
+    return view('admin');
+});
