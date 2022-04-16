@@ -93,7 +93,24 @@
                     </nav>
                 </div>
 
-                
+                 {{-- House Plan --}}
+                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseHousePlan" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    House Plan
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseHousePlan" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link collapsed" href="{{ url('admin/add-houseplan') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
+                            Create New House Plan
+                        </a>
+                        <a class="nav-link" href="{{ url('admin/houseplan') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                            List of House Plans
+                        </a>
+                    </nav>
+                </div>
                 
 
                
