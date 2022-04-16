@@ -1,0 +1,147 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\Admin\CategoryFormRequest;
+
+#class extends class
+#CONTROLLER extends MODEL
+class CategoryController extends Controller
+{
+    public function index(){
+        #VIEW category page of index.blade.php in admin/category
+        #get all categories
+        $category = Category::all();
+        return view('users.admin.category.index', compact('category'));
+    }
+
+    public function create(){
+        #VIEW category create form
+        return view('users.admin.category.create');
+    }
+
+    public function store(CategoryFormRequest $request){
+        #BACKEND PART...CONTROLLER COMMUNICATING WITH MODEL
+        #CategoryFormRequest=FormValidation before inserting data...
+        $data = $request->validated();
+        $category = new Category;
+        $category->name = $data['name'];
+        $category->slug = $data['slug'];
+        $category->description = $data['description'];
+        
+        #image condition...
+        #if data has image file...
+        if ($request->hasfile('image')) {
+            #store image file from data in to $file
+            $file = $request->file('image');
+            #then get extension of image file 
+            #together with the timestamp uploaded 
+            #and store it in $filename
+            $filename = time().'.'. $file->getClientOriginalExtension();
+            #move the $filename in directory
+            $file->move('uploads/category/', $filename);
+            #store filename as data for image field in db 
+            #then in to $category
+            $category->image = $filename;
+        }
+
+        #SEO Tags
+        $category->meta_title = $data['meta_title'];
+        $category->meta_description = $data['meta_description'];
+        $category->meta_keyword = $data['meta_keyword'];
+
+        $category->navbar_status = $request->navbar_status == true ? '1':'0';        
+        $category->status = $request->status == true ? '1':'0';
+        $category->feature = $request->feature == true ? '1':'0';
+
+        #get id of authenticated user who posted the category
+        $category->created_by = Auth::user()->id;
+        #after everything....
+        #save the category
+        $category->save();
+        #redirect with message;see in index.blade.php
+        return redirect('admin/category')->with('msg','Successfully Added New Category. Thanks!');
+    }
+    
+    #VIEW specific category
+    public function edit($category_id){
+        $category = Category::find($category_id);
+        return view('users.admin.category.edit', compact('category'));
+    }
+    #UPDATE specific category
+    public function update(CategoryFormRequest $request, $category_id){
+        $data = $request->validated();
+
+        $category = Category::find($category_id);
+        $category->name = $data['name'];
+        $category->slug = $data['slug'];
+        $category->description = $data['description'];
+        
+        #image condition...
+        #if data has image file...
+        if ($request->hasfile('image')) {
+            #delete first the current image
+            #before inserting new image
+            #check the path if it is right
+            $destination = 'uploads/category/'.$category->image;
+            if (File::exists($destination)) {
+                # code...
+                #if the path exists, delete it
+                File::delete($destination);
+            }
+
+            #store image file from data in to $file
+            $file = $request->file('image');
+            #then get extension of image file 
+            #together with the timestamp uploaded 
+            #and store it in $filename
+            $filename = time().'.'. $file->getClientOriginalExtension();
+            #move the $filename in directory
+            $file->move('uploads/category/', $filename);
+            #store filename as data for image field in db 
+            #then in to $category
+            $category->image = $filename;
+        }
+
+        #SEO Tags
+        $category->meta_title = $data['meta_title'];
+        $category->meta_description = $data['meta_description'];
+        $category->meta_keyword = $data['meta_keyword'];
+
+        $category->navbar_status = $request->navbar_status == true ? '1':'0';        
+        $category->status = $request->status == true ? '1':'0';
+        $category->feature = $request->feature == true ? '1':'0';
+        
+        #get id of authenticated user who posted the category
+        $category->created_by = Auth::user()->id;
+        #after everything....
+        #save the category
+        $category->update();
+        #redirect with message;see in index.blade.php
+        return redirect('admin/category')->with('msg','Successfully Updated Category. Thanks! :D');
+    }
+
+    public function destroy($category_id){
+        $category = Category::find($category_id);
+        if ($category) {
+            # code...
+        
+            #write condiiton to delete image
+            $destination = 'uploads/category/'.$category->image;
+            if (File::exists($destination)) {
+                # code...
+                File::delete($destination);
+            }
+            #then delete all data based from id
+            $category->delete();
+            return redirect('admin/category')->with('msg','Successfully Deleted Category');
+        }else {
+            return redirect('admin/category')->with('msg','No Category ID found');
+        }
+    }
+}
