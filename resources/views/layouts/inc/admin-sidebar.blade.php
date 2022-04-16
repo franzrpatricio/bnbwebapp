@@ -112,7 +112,25 @@
                     </nav>
                 </div>
                 
-
+                
+                 {{-- Inquiry List --}}
+                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInquiryList" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Inquiry List
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseInquiryList" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link collapsed" href="{{ url('admin/add-inquirylist') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
+                            Create New Inquiry List
+                        </a>
+                        <a class="nav-link" href="{{ url('admin/inquirylist') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                            List of Inquiry List
+                        </a>
+                    </nav>
+                </div>
                
                 
               
