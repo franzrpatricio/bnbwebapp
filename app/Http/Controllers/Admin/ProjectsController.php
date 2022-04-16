@@ -14,12 +14,17 @@ class ProjectsController extends Controller
 {
     #VIEW
     public function index(ProjectFormRequest $request){
-        $projects = Projects::all();
-        if ($request->has('view_deleted')) {
-            # code...
-            $projects = Projects::onlyTrashed()->get();
+        if(Auth::check()){
+            $projects = Projects::all();
+            if ($request->has('view_deleted')) {
+                # code...
+                $projects = Projects::onlyTrashed()->get();
+            }
+            return view('users.admin.project.index', compact('projects'));
+        }else {
+            #if not authenticated
+            return redirect('/login')->with('status','Log In First!');
         }
-        return view('users.admin.project.index', compact('projects'));
     }
     #CREATE
     public function create(){
