@@ -3,7 +3,7 @@
         <div class="sb-sidenav-menu text-white">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link link-light" href="index.html">
+                <a class="nav-link link-light" href="{{ url('/admin/dashboard') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
