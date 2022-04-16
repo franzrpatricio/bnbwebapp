@@ -83,6 +83,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
     #USERS CRUD
     #READ
+    
     Route::get('users', [App\Http\Controllers\Admin\UsersController::class, 'index']);
     // #CREATE
     // Route::get('add-user', [App\Http\Controllers\Admin\UsersController::class, 'create']);

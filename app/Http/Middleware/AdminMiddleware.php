@@ -18,7 +18,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(Auth::check()){
-            if (Auth::user()->role_as=='0') {
+            if (Auth::user()->role_as=='0' ||Auth::user()->role_as=='1'  ) {
                 #role_as == 1 = staff
                 #role_as == 0 = admin
                 # code... 
