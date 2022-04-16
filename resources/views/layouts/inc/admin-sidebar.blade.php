@@ -14,7 +14,7 @@
                     
                 {{-- USER --}}
                 <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUser" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                     Users
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -38,7 +38,7 @@
 
                 {{-- CATEGORIES --}}
                 <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
                     Categories
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -57,7 +57,7 @@
 
                 {{-- PROJECTS --}}
                 <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProject" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
                     Projects
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -76,7 +76,7 @@
 
                  {{-- FAQS --}}
                  <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFaqs" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-circle-question"></i></div>
                     FAQS
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -95,7 +95,7 @@
 
                  {{-- House Plan --}}
                  <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseHousePlan" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-house-chimney"></i></div>
                     House Plan
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -115,7 +115,7 @@
                 
                  {{-- Inquiry List --}}
                  <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInquiryList" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-message"></i></div>
                     Inquiry List
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -136,7 +136,7 @@
               
                
                 <a class="nav-link link-light" href="tables.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
                     Comment Review
                 </a>
             </div>
