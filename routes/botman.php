@@ -3,11 +3,13 @@
 use BotMan\BotMan\BotMan;
 use App\Http\Conversations\FAQConversation;
 use BotMan\BotMan\Messages\Attachments\File;
+use App\Http\Conversations\ConfirmEstimation;
 use BotMan\BotMan\Messages\Attachments\Image;
 use BotMan\BotMan\Messages\Attachments\Video;
 use App\Http\Conversations\EstimationConversation;
 use App\Http\Conversations\OnboardingConversation;
 use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
+use App\Http\Conversations\SelectHousePlanConversation;
 
 #DEFINE ALL BOTMAN COMMANDS
 
@@ -96,10 +98,11 @@ $botman->hears('information',function($bot){
 
 
 #simple inline convo && CONVERSATION class
-// $botman->hears('!askMe', function($bot){
-//     $bot->typesAndWaits(2);
-//     $bot->startConversation(new OnboardingConversation);
-// });
+$botman->hears('!askMe', function($bot){
+    $bot->typesAndWaits(2);
+    $bot->startConversation(new SelectHousePlanConversation());
+    
+});
 
 $botman->hears('!faq', function($bot){
     $bot->typesAndWaits(2);
@@ -108,7 +111,8 @@ $botman->hears('!faq', function($bot){
 
 $botman->hears('!estimate', function($bot){
     $bot->typesAndWaits(2);
-    $bot->startConversation(new OnboardingConversation());
+    $bot->startConversation(new OnboardingConversation());   
+   
 });
 
 // $botman->hears('!skip', function($bot){

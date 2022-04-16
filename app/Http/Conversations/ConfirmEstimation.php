@@ -12,28 +12,57 @@ class ConfirmEstimation extends Conversation
     }
 
     public function confirm(){
-        $release = $this->getData();
+        $this->say('details of estimation');
         $user = $this->bot->userStorage()->find();
+        $type = $user->get('house');
         $area = $user->get('sqm');
+        // $release = $this->getData();
 
-        if ($user->get('type')=='bare') {
-            # code...
-            $cost = collect($release[0][1]);
-            $details = collect($release[0][2]);
-            $total = $cost * $area;
-        }elseif ($user->get('type')=='standard') {
-            # code...
-            $cost = collect($release[1][1]);
-            $details = collect($release[1][2]);
-            $total = $cost * $area;
-        }elseif ($user->get('type')=='luxury') {
-            # code...
-            $cost = collect($release[2][1]);
-            $details = collect($release[2][2]);
-            $total = $cost * $area;
-        }
+        $details=0;
+        $total=0;
+        
+        // switch ($type) {
+        //     case 'bare':
+        //         # code...
+        //         $cost = collect($release[0][1]);
+        //         $details = collect($release[0][2]);
+        //         $total = $cost * $area;
+        //         break;
+        //     case 'standard':
+        //         # code...
+        //         $cost = collect($release[1][1]);
+        //         $details = collect($release[1][2]);
+        //         $total = $cost * $area;
+        //         break;
+        //     case 'luxury':
+        //         # code...
+        //         $cost = collect($release[2][1]);
+        //         $details = collect($release[2][2]);
+        //         $total = $cost * $area;
+        //         break;
+        //     default:
+        //         # code...
+        //         $this->return;
+        //         break;
+        // }
 
-        $user = $this->bot->userStorage()->find();
+        // if ($type == 'bare') {
+        //     # code...
+        //     $cost = collect($release[0][1]);
+        //     $details = collect($release[0][2]);
+        //     $total = $cost * $area;
+        // }elseif ($type == 'standard') {
+        //     # code...
+        //     $cost = collect($release[1][1]);
+        //     $details = collect($release[1][2]);
+        //     $total = $cost * $area;
+        // }elseif ($type == 'luxury') {
+        //     # code...
+        //     $cost = collect($release[2][1]);
+        //     $details = collect($release[2][2]);
+        //     $total = $cost * $area;
+        // }
+        // $user = $this->bot->userStorage()->find();
 
         $message = '-------------------------------------- <br>';
         $message .= 'Name : ' . $user->get('name') . '<br>';
@@ -42,7 +71,7 @@ class ConfirmEstimation extends Conversation
         $message .= 'House Area : ' . $user->get('sqm') . '<br>';
         $message .= 'House Plan Type : ' . $user->get('house') . '<br>';
         $message .= 'Materials : ' .$details.'<br>';
-        $message .= '---------------------------------------';
+        $message .= '---------------------------------------<br>';
         $message .= 'Total Estimated Price : ' . $total . '<br>';
 
         $this->say('Great. Your booking has been confirmed. Here is your booking details. <br><br>' . $message);

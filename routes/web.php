@@ -22,8 +22,8 @@ Route::get('/welcome', function () {
 // Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
 Route::get('/', function(){
     return view ('index');
- });
- #when request hits server, pull out botman instance; listen to any incoming commands
- Route::post('/botman',function(){
-     app('botman')->listen();
- });
+});
+#when request hits server, pull out botman instance; listen to any incoming commands
+Route::post('/botman',function(){
+    app('botman')->listen();
+});

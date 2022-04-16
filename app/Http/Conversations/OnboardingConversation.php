@@ -59,7 +59,25 @@ class OnboardingConversation extends Conversation
                 'mobile' => $answer->getText(),
             ]);
             # Trigger the estimate conversation
-            $this->bot->startConversation(new EstimationConversation());
+            // $this->bot->startConversation(new EstimationConversation());
+            $this->askLot();
+        });
+    }
+
+    public function askLot(){
+        $this->ask('What is your House sqm?', function(Answer $answer){
+            $value = $answer->getText();
+            #validate real-time age
+            if (!preg_match ("/^[0-9]*$/", $value) ){  
+                return $this->repeat("Please put a valid square meters.");
+            } else {
+                # code...
+                $this->bot->userStorage()->save([
+                    'sqm' => $value,
+                ]);
+                $this->say('You have '.$value.' square meter');
+                $this->bot->startConversation(new SelectHousePlanConversation());
+            }
         });
     }
 

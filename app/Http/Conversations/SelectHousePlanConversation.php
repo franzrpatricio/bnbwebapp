@@ -16,26 +16,41 @@ class SelectHousePlanConversation extends Conversation
     }
 
     public function askHousePlanType(){
-        $type = Question::create('Choose what type of House Plan you want for your house.')
-            ->addButtons([
-                Button::create('BARE')->value('bare'),
-                Button::create('STANDARD')->value('standard'),
-                Button::create('LUXURY')->value('luxury'),
-        ]);
 
-        $this->ask($type, function(Answer $answer){
+        $question = Question::create('Do you need a database?')
+        ->addButtons([
+            Button::create('Bare')->value('bare'),
+            Button::create('Standard')->value('standard'),
+            Button::create('Luxury')->value('luxury'),
+        ]);
+        // $type = Question::create('Choose what type of House Plan you want for your house.')
+        //     ->addButtons([
+        //         Button::create('BARE')->value('bare'),
+        //         Button::create('STANDARD')->value('standard'),
+        //         Button::create('LUXURY')->value('luxury'),
+        // ]);
+
+        $this->ask($question, function(Answer $answer){
+            $this->say('hey');
+           // Log::debug( $answer)
             if ($answer->isInteractiveMessageReply()) {
                 # code...
+                $selectedValue = $answer->getValue();
+                $this->say('hey'.$selectedValue);
+               
                 $this->bot->userStorage()->save([
-                    'house' => $answer->getValue(),
+                    'house' => $selectedValue,
                 ]);
-                $this->bot->startConversation(new ConfirmEstimation());
+                $user = $this->bot->userStorage()->find();
+                
+                $this->say( $user->get('house') );
             }
-            // else {
-            //     # code...
-            //     $this->say('Please choose from the options below.');
-            //     $this->repeat();
-            // }
+            else {
+                # code...
+                $this->say('asda');
+                $this->repeat();
+            }
+            $this->bot->startConversation(new ConfirmEstimation());
         });
     }
 }
