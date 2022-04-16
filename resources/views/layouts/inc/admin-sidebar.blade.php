@@ -1,9 +1,9 @@
 <div id="layoutSidenav_nav">
-    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-        <div class="sb-sidenav-menu">
+    <nav class="sb-sidenav accordion " id="sidenavAccordion" style="background: #4CA5D7">
+        <div class="sb-sidenav-menu text-white">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link link-light" href="index.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
@@ -13,18 +13,18 @@
                     {{-- ADMIN --}}
                     
                 {{-- USER --}}
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUser" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUser" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Users
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseUser" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link collapsed" href="{{ url('admin/add-user') }}">
+                        <a class="nav-link collapsed link-light" href="{{ url('admin/add-user') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
                             Create New Users
                         </a>
-                        <a class="nav-link" href="{{ url('admin/user') }}">
+                        <a class="nav-link link-light" href="{{ url('admin/user') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                             List of Users
                         </a>
@@ -37,18 +37,18 @@
                 
 
                 {{-- CATEGORIES --}}
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Categories
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseCategory" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link collapsed" href="{{ url('admin/add-category') }}">
+                        <a class="nav-link collapsed link-light" href="{{ url('admin/add-category') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
                             Create New Category
                         </a>
-                        <a class="nav-link" href="{{ url('admin/category') }}">
+                        <a class="nav-link link-light" href="{{ url('admin/category') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                             List of Categories
                         </a>
@@ -56,18 +56,18 @@
                 </div>
 
                 {{-- PROJECTS --}}
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProject" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProject" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Projects
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseProject" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link collapsed" href="{{ url('admin/add-project') }}">
+                        <a class="nav-link collapsed link-light" href="{{ url('admin/add-project') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
                             Create New Project
                         </a>
-                        <a class="nav-link" href="{{ url('admin/projects') }}">
+                        <a class="nav-link link-light" href="{{ url('admin/projects') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                             List of Projects
                         </a>
@@ -75,18 +75,18 @@
                 </div>
 
                  {{-- FAQS --}}
-                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFaqs" aria-expanded="false" aria-controls="collapseLayouts">
+                 <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFaqs" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     FAQS
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseFaqs" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link collapsed" href="{{ url('admin/add-faqs') }}">
+                        <a class="nav-link collapsed link-light" href="{{ url('admin/add-faqs') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
                             Create New FAQ
                         </a>
-                        <a class="nav-link" href="{{ url('admin/faqs') }}">
+                        <a class="nav-link link-light" href="{{ url('admin/faqs') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                             List of FAQ
                         </a>
@@ -94,18 +94,18 @@
                 </div>
 
                  {{-- House Plan --}}
-                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseHousePlan" aria-expanded="false" aria-controls="collapseLayouts">
+                 <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseHousePlan" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     House Plan
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseHousePlan" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link collapsed" href="{{ url('admin/add-houseplan') }}">
+                        <a class="nav-link collapsed link-light" href="{{ url('admin/add-houseplan') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
                             Create New House Plan
                         </a>
-                        <a class="nav-link" href="{{ url('admin/houseplan') }}">
+                        <a class="nav-link link-light" href="{{ url('admin/houseplan') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                             List of House Plans
                         </a>
@@ -114,18 +114,18 @@
                 
                 
                  {{-- Inquiry List --}}
-                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInquiryList" aria-expanded="false" aria-controls="collapseLayouts">
+                 <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInquiryList" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Inquiry List
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseInquiryList" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link collapsed" href="{{ url('admin/add-inquirylist') }}">
+                        <a class="nav-link collapsed link-light" href="{{ url('admin/add-inquirylist') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
                             Create New Inquiry List
                         </a>
-                        <a class="nav-link" href="{{ url('admin/inquirylist') }}">
+                        <a class="nav-link link-light" href="{{ url('admin/inquirylist') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                             List of Inquiry List
                         </a>
@@ -135,7 +135,7 @@
                 
               
                
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link link-light" href="tables.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Comment Review
                 </a>
