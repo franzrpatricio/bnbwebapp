@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
+
+
+#for client/prospect/visitor
+// Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
+Route::get('/', function(){
+    return view ('index');
+ });
+ #when request hits server, pull out botman instance; listen to any incoming commands
+ Route::post('/botman',function(){
+     app('botman')->listen();
+ });
