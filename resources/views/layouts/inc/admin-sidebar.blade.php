@@ -141,9 +141,6 @@
                 </a>
             </div>
         </div>
-        <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            <a class="nav-link" href="{{ url('staff/dashboard') }}">Visit Staff Dashboard</a>
-        </div>
+       
     </nav>
 </div>
