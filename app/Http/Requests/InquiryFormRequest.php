@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryFormRequest extends FormRequest
+class InquiryFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,43 +29,21 @@ class CategoryFormRequest extends FormRequest
                 'string',
                 'max:200'
             ],
-            'slug' => [
+            'email' => [
                 'required',
                 'string',
                 'max:200'
             ],
-            'description' => [
-                'required'
-            ],
-            'image' => [
-                // 'required',
-                'nullable',
-                'mimes:jpeg,jpg,png'
-                #mimes limit to only these types of image
-            ],
-            'meta_title' => [
+            'contact' => [
                 'required',
                 'string',
                 'max:200'
             ],
-            'meta_description' => [
+            'address' => [
                 'required',
-                'string'
+                'string',
+                'max:200'
             ],
-            'meta_keyword' => [
-                'required',
-                'string'
-            ],
-            'navbar_status' => [
-                'nullable',
-            ],
-            'status' => [
-                'nullable',
-            ],
-            'feature' => [
-                'required',
-                'string'
-            ]
         ];
         return $rules;
     }
