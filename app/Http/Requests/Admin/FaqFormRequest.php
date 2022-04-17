@@ -25,14 +25,10 @@ class FaqFormRequest extends FormRequest
     {
         $rules = [
             'question' => [
-                'required',
-                'string',
-                'max:200'
+                'required'
             ],
             'answewr' => [
-                'required',
-                'string',
-                'max:200'
+                'required'
             ],
         ];
         return $rules;

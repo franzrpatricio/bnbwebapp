@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\FaqsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProjectsController;
@@ -127,18 +128,18 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
     #FAQS CRUD 
     #READ
-    Route::get('faqs', [App\Http\Controllers\FaqsController::class, 'index']);
+    Route::get('faqs', [App\Http\Controllers\Admin\FaqsController::class, 'index']);
     #CREATE
-    Route::get('add-faq', [App\Http\Controllers\FaqsController::class, 'create']);
-    Route::post('add-faq', [App\Http\Controllers\FaqsController::class, 'store']);
+    Route::get('add-faq', [App\Http\Controllers\Admin\FaqsController::class, 'create']);
+    Route::post('add-faq', [App\Http\Controllers\Admin\FaqsController::class, 'store']);
     #UPDATE
-    Route::get('edit-faq/{faq_id}', [App\Http\Controllers\FaqsController::class, 'edit']);
-    Route::put('update-faq/{faq_id}',[App\Http\Controllers\FaqsController::class, 'update']);
+    Route::get('edit-faq/{faq_id}', [App\Http\Controllers\Admin\FaqsController::class, 'edit']);
+    Route::put('update-faq/{faq_id}',[App\Http\Controllers\Admin\FaqsController::class, 'update']);
     #DELETE
-    Route::get('delete-faq/{faq_id}',[App\Http\Controllers\FaqsController::class, 'destroy']);
+    Route::get('delete-faq/{faq_id}',[App\Http\Controllers\Admin\FaqsController::class, 'destroy']);
     #RESTORE
-    Route::get('restore-faq/{faq_id}',[App\Http\Controllers\FaqsController::class, 'restore']);
-    Route::get('restore-faqs/{faq_id}',[App\Http\Controllers\FaqsController::class, 'restore_all']);
+    Route::get('restore-faq/{faq_id}',[App\Http\Controllers\Admin\FaqsController::class, 'restore']);
+    Route::get('restore-faqs/{faq_id}',[App\Http\Controllers\Admin\FaqsController::class, 'restore_all']);
 
     #INQUIRY CRUD
     #READ

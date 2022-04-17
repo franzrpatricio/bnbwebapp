@@ -17,7 +17,7 @@ class AddFieldsToFaqsTable extends Migration
             //
             $table->longText('question');
             $table->longText('answewr');
-            $table->integer('posted_by')->default('0'); #user
+            $table->integer('posted_by'); #user
             $table->softDeletes();
         });
     }
