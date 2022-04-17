@@ -52,8 +52,8 @@
                             </td>
                             <td>
                                 {{-- pass the ID of specific category --}}
-                                <a href="{{ url('admin/edit-category/'.$item->id) }}" class="btn btn-success">Edit</a>
-                                <a href="{{url('admin/delete-category/'.$item->id)}}" class="btn btn-danger">Delete</a>
+                                <a href="{{ url('admin/edit-category/'.$item->id) }}" class="fa-solid fa-pen" style="color:#26B4FF"></a>
+                                <a href="{{url('admin/delete-category/'.$item->id)}}" class="fa-solid fa-trash"style="color:red"></a>
                             </td>
                         </tr>
                     @endforeach

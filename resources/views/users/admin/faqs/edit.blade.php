@@ -3,10 +3,8 @@
 @section('content')
 
 <div class="container-fluid px-4">
+    <h1 class="mt-5">Edit FAQs</h1>
     <div class="card mt-4">
-        <div class="card-header">
-            <h4><div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New FAQs</div></h4>
-        </div>
         
         <div class="card-body">
 
@@ -33,10 +31,10 @@
                         <input type="text" name="slug"class="form-control">
                     </div>
                     
-                        <div class="d-flex justify-content-lg-end alig px-5 py-4">
-                          <button type="submit" class="btn btn-primary">Save FAQs</button>
-                        </div>
-            
+                    <div class="d-flex justify-content-lg-end alig px-5 py-4">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                      </div>
+          
             </form>
         </div>
     </div>
