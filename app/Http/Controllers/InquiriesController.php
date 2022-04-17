@@ -10,12 +10,9 @@ use App\Http\Requests\Admin\InquiryFormRequest;
 class InquiriesController extends Controller
 {
     #VIEW
-    public function index(InquiryFormRequest $request){
+    public function index(){
         $inquiries = Inquiry::all();
-        if ($request->has('view_deleted')) {
-            # code...
-            $inquiries = Inquiry::onlyTrashed()->get();
-        }
+        
         return view('users.admin.inquiry.index', compact('inquiries'));
     }
     #CREATE
