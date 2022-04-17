@@ -10,18 +10,15 @@ use App\Http\Requests\Admin\FaqFormRequest;
 class FaqsController extends Controller
 {
     #VIEW
-    public function index(FaqFormRequest $request){
+    public function index( ){
         $faqs = Faq::all();
-        if ($request->has('view_deleted')) {
-            # code...
-            $faqs = Faq::onlyTrashed()->get();
-        }
-        return view('users.admin.faq.index', compact('faqs'));
+        
+        return view('users.admin.faqs.index', compact('faqs'));
     }
     #CREATE
     public function create(){
         #FORM
-        return view('users.admin.faq.create');
+        return view('users.admin.faqs.create');
     }
     public function store(FaqFormRequest $request){
         #SAVING
