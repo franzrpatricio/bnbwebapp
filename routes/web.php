@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HousePlanController;
+use App\Http\Controllers\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +94,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     // #DELETE
     // Route::get('delete-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'destroy']);
 
+    Route::get('profile_settings', [App\Http\Controllers\Admin\ProfileController::class, 'profile_settings']);
+
+    Route::get('/changePassword', [App\Http\Controllers\Admin\ProfileController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+    Route::post('/changePassword', [App\Http\Controllers\Admin\ProfileController::class, 'changePasswordPost'])->name('changePasswordPost');
 
 
     #The fundamental difference between the POST and PUT requests is reflected in the different meaning of the Request-URI. The URI in a POST request identifies the resource that will handle the enclosed entity... In contrast, the URI in a PUT request identifies the entity enclosed with the request.
