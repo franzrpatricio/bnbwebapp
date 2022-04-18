@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Faq;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\FaqFormRequest;
+
 
 class FaqsController extends Controller
 {
@@ -33,7 +34,7 @@ class FaqsController extends Controller
     #VIEW specific project
     public function edit($faq_id){
         $faq = Faq::find($faq_id);
-        return view('users.admin.faq.edit', compact('faq'));
+        return view('users.admin.faqs.edit', compact('faq'));
     }
     #UPDATE specific project
     public function update(FaqFormRequest $request, $faq_id){

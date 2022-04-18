@@ -16,25 +16,27 @@
                 </div>
             @endif
 
-            <form action="{{ url('admin/add-category') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('admin/update-faq/'.$faq->id) }}" method="post" enctype="multipart/form-data">
                 {{-- Laravel provides protection with the CSRF attacks 
                     by generating a CSRF token. 
                     This CSRF token is generated 
                     automatically for each user. --}}
                 @csrf
+                {{-- for updating the record --}}
+                @method('PUT')
+
                     <div class="mb-3">
                         <label>Question</label>
-                        <input type="text" name="name"class="form-control">
+                        <textarea name="question" rows="5" class="form-control">{{$faq->question}}</textarea>
                     </div>
                     <div class="mb-3">
                         <label>Answer</label>
-                        <input type="text" name="slug"class="form-control">
+                        <textarea name="answewr" rows="5" class="form-control">{{$faq->answewr}}</textarea>
                     </div>
                     
                     <div class="d-flex justify-content-lg-end alig px-5 py-4">
                         <button type="submit" class="btn btn-primary">Save Changes</button>
-                      </div>
-          
+                    </div>
             </form>
         </div>
     </div>

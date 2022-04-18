@@ -9,7 +9,6 @@
         </div>
         
         <div class="card-body">
-
             @if ($errors->any())
                 <div class="alert alert-danger">
                     @foreach ($errors->all() as $error)
@@ -18,7 +17,7 @@
                 </div>
             @endif
 
-            <form action="{{ url('admin/add-category') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('admin/add-faq') }}" method="post" enctype="multipart/form-data">
                 {{-- Laravel provides protection with the CSRF attacks 
                     by generating a CSRF token. 
                     This CSRF token is generated 
@@ -26,17 +25,16 @@
                 @csrf
                     <div class="mb-3">
                         <label>Question</label>
-                        <input type="text" name="name"class="form-control">
+                        <textarea name="question" rows="5" class="form-control"></textarea>
                     </div>
                     <div class="mb-3">
                         <label>Answer</label>
-                        <input type="text" name="slug"class="form-control">
+                        <textarea name="answewr" rows="5" class="form-control"></textarea>
                     </div>
                     
-                        <div class="d-flex justify-content-lg-end alig px-5 py-4">
-                          <button type="submit" class="btn btn-primary">Save FAQs</button>
-                        </div>
-            
+                    <div class="d-flex justify-content-lg-end alig px-5 py-4">
+                        <button type="submit" class="btn btn-primary">Save FAQs</button>
+                    </div>
             </form>
         </div>
     </div>

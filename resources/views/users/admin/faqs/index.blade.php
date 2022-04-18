@@ -9,7 +9,7 @@
         <div class="card-header">
             <h4>
                 <div class="sb-nav-link-icon"><i class="fas fa-list"></i>List of FAQs</div>
-                <a href="{{ url('admin/add-category') }}" class="btn btn-primary btn-sm float-end">
+                <a href="{{ url('admin/add-faq') }}" class="btn btn-primary btn-sm float-end">
                     <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New FAQs</div>
                 </a>
             </h4>
@@ -24,22 +24,23 @@
             <table class="table table-bordered">
                 <thead>
                     <tr class="text-center">
-                        <th>SN</th>
+                        <th>ID</th>
                         <th>Question</th>
                         <th>Answer</th>
-                        <th>Actions</th>{{-- edit --}}
+                        <th>Action</th> {{-- edit --}}
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($faqs as $item)
                         <tr class="text-center">
-                            <td data-title="SN">2</td>
-                            <td data-title="Question">Pwede bang panlakad yung pantalon</td>
-                            <td data-title="Answer">pwidipirudipindi</td>
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->question}}</td>
+                            <td>{{$item->answewr}}</td>
+
                             <td>
-                                {{-- pass the ID of specific category --}}
-                                <a href="{{ url('admin/edit-category/'.$item->id) }}" class="fa-solid fa-pen" style="color:#26B4FF"></a>
-                                <a href="{{url('admin/delete-category/'.$item->id)}}" class="fa-solid fa-trash"style="color:red"></a>
+                                {{-- pass the ID of specific faq --}}
+                                <a href="{{ url('admin/edit-faq/'.$item->id) }}" class="btn btn-success">Edit</a>
+                                <a href="{{url('admin/delete-faq/'.$item->id)}}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     @endforeach
