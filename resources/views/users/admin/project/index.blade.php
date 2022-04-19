@@ -82,7 +82,7 @@
                                         </form>
                                         {{-- pass the ID of specific category --}}
                                         <a href="{{ url('admin/edit-project/'.$item->id) }}" class="btn btn-success">Edit</a>
-                                        {{-- <a href="{{url('admin/delete-project/'.$item->id)}}" class="btn btn-danger">Delete</a> --}}
+                                        <a href="{{url('admin/delete-project/'.$item->id)}}" class="btn btn-danger">Delete</a>
                                     @endif
                                 </td>
                             </tr>

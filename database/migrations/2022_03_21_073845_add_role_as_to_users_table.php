@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             #set role_as column to 0/staff as default value whenever a new user is created
-            $table->integer('role_as')->default('1');
-            // $table->integer('role_as')->default('1'); #admin = 1
+            // $table->integer('role_as')->default('0'); #admin = 0
+            $table->integer('role_as')->default('1'); #staff = 1
         });
     }
 

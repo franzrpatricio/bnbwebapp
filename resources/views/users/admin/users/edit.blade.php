@@ -5,8 +5,8 @@
 <div class="container-fluid px-4">
     <div class="card mt-4">
         <div class="card-header">
-            <h4 class="mt-4">Edit Project
-                <a href="{{url('admin/projects')}}" class="btn btn-danger float-end">Back</a>
+            <h4 class="mt-4">Edit User
+                <a href="{{url('admin/users')}}" class="btn btn-danger float-end">Back</a>
             </h4>
         </div>
         <div class="card-body">
@@ -19,7 +19,7 @@
                 </div>
             @endif
 
-            <form action="{{ url('admin/update-project/'.$project->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('admin/update-user/'.$user->id) }}" method="post" enctype="multipart/form-data">
                 {{-- Laravel provides protection with the CSRF attacks 
                     by generating a CSRF token. 
                     This CSRF token is generated 
@@ -29,90 +29,39 @@
                 {{-- for updating the record --}}
                 @method('PUT')
 
-                    {{-- FETCH ALL RECORDS --}}
-                    {{-- REPLACE CATEGORY ID AND HOUSE PLAN ID WITH CAT && PLAN NAME --}}
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Category</label>
-                            <select name="category_id" required class="form-control">
-                                <option value="">-- Select Category --</option>
-                                @foreach ($category as $cat_item)
-                                    <option value="{{$cat_item->id}}" {{$project->category_id == $cat_item->id ? 'selected':''}}>
-                                        {{$cat_item->name}}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label>House Plan</label>
-                            <select name="houseplan_id" required class="form-control">
-                                <option value="">-- Select House Plan --</option>
-                                @foreach ($houseplan as $plan)
-                                    <option value="{{$plan->id}}" {{$project->houseplan_id == $plan->id ? 'selected':''}}>
-                                        {{$plan->type}}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label>Project Name</label>
-                            <input type="text" name="name" value="{{$project->name}}" class="form-control">
-                        </div>
-    
-                        {{-- no need to show the current image when updating
-                            you'll replace it anyway zzzz....  --}}
-                        <div class="col-md-6">
-                            <label>Image</label>
-                            <input type="file" name="image"class="form-control">
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Cost</label>
-                            <input type="text" name="cost" value="{{$project->cost}}" class="form-control">
-                        </div>
-    
-                        <div class="col-md-6">
-                            <label>Slug</label>
-                            <input type="text" name="slug" value="{{$project->slug}}" class="form-control">
-                        </div>    
+                {{-- FETCH ALL RECORDS --}}
+                {{-- REPLACE CATEGORY ID AND HOUSE PLAN ID WITH CAT && PLAN NAME --}}
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Name</label>
+                        <input type="text" name="name" value="{{$user->name}}" class="form-control">
                     </div>
 
-                    <div class="mb-3">
-                        <label>Description</label>
-                        <textarea name="description" id="summernoteDesc" rows="5" class="form-control">{{$project->description}}</textarea>
+                    <div class="col-md-6">
+                        <label>Email</label>
+                        <input type="text" name="email" value="{{$user->email}}" class="form-control">
                     </div>
 
-                    <h6>SEO Tags</h6>
-                    <div class="mb-3">
-                        <label>Meta Title</label>
-                        <input type="text" name="meta_title" value="{{$project->meta_title}}" class="form-control">
+                    {{-- THIS NEEDS ENCRYPTION --}}
+                    <div class="col-md-6">
+                        <label>Password</label>
+                        <input type="text" name="password" value="{{$user->password}}" class="form-control">
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Meta Description</label>
-                            <textarea type="text" name="meta_description" rows="3" class="form-control">{{$project->meta_description}}</textarea>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Meta Keywords</label>
-                            <textarea name="meta_keyword" rows="3" class="form-control">{{$project->meta_keyword}}</textarea>
-                        </div>
+                    <h6>User Status</h6>
+                    {{-- if role and status == 1, then display check on the box --}}
+                    <div class="col-md-3 mb-3">
+                        <label>Role</label>
+                        <input type="checkbox" name="role_as" {{$user->role_as == '1' ? 'checked':''}}/>
                     </div>
-                    
-                    <h6>Status</h6>
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label>Visible</label>
-                            <input type="checkbox" name="status" {{$project->status == '1' ? 'checked':''}}/>
-                        </div>
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary">Update Project</button>
-                        </div>
+                    <div class="col-md-3 mb-3">
+                        <label>Visible</label>
+                        <input type="checkbox" name="status" {{$user->status == '1' ? 'checked':''}}/>
                     </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Update User</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
