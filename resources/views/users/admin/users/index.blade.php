@@ -3,6 +3,8 @@
 @section('content')
 
 <div class="container-fluid px-4">
+<h1 class="mt-5">Manage Users</h1>
+
     <div class="card">
         <div class="card mt-4"></div>
         <div class="card-header">
@@ -42,8 +44,8 @@
                             {{-- <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td> --}}
                             <td>
                                 {{-- pass the ID of specific category --}}
-                                <a href="{{ url('admin/edit-user/'.$item->id) }}" class="btn btn-success">Edit</a>
-                                <a href="{{url('admin/delete-user/'.$item->id)}}" class="btn btn-danger">Delete</a>
+                                <a href="{{ url('admin/edit-user/'.$item->id) }}" class="fa-solid fa-pen p-2" style="color:#019ad2;"></a>
+                                <a href="{{url('admin/delete-user/'.$item->id)}}" class="fa-solid fa-trash p-2" style="color:red;"></a>
                             </td>
                         </tr>
                     @endforeach
