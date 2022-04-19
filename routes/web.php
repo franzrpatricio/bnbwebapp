@@ -86,7 +86,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('restore-project/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'restore']);
     Route::get('restore-projects/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'restore_all']);
 
-
     #HOUSE PLAN CRUD
     #READ
     Route::get('houseplan', [App\Http\Controllers\Admin\HousePlanController::class, 'index']);
@@ -107,8 +106,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #READ
     Route::get('users', [App\Http\Controllers\Admin\UsersController::class, 'index']);
     #CREATE
-    Route::get('add-user', [App\Http\Controllers\Admin\UsersController::class, 'create']);
-    Route::post('add-user', [App\Http\Controllers\Admin\UsersController::class, 'store']);
+    // Route::get('add-user', [App\Http\Controllers\Admin\UsersController::class, 'create']);
+    // Route::post('add-user', [App\Http\Controllers\Admin\UsersController::class, 'store']);
     #UPDATE
     Route::get('edit-user/{users_id}', [App\Http\Controllers\Admin\UsersController::class, 'edit']);
     Route::put('update-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'update']);
