@@ -39,8 +39,12 @@
 
                             <td>
                                 {{-- pass the ID of specific faq --}}
-                                <a href="{{ url('admin/edit-faq/'.$item->id) }}" class="fa-solid fa-pen" style="color:#019ad2;"></a>
-                                <a href="{{url('admin/delete-faq/'.$item->id)}}" class="fa-solid fa-trash" style="color:red;"></a>
+                                <a href="{{ url('admin/edit-faq/'.$item->id) }}">
+                                    <i class="fa-solid fa-pen" style="color:#019ad2;"></i>
+                                </a>
+                                <a href="{{ url('admin/delete-faq/'.$item->id) }}">
+                                    <i class="fa-solid fa-trash" style="color:red;"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
