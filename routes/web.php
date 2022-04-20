@@ -142,6 +142,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
 //     #USERS CRUD -> view & update his own account only
 // });
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
