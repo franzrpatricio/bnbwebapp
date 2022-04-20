@@ -16,25 +16,33 @@ class UsersController extends Controller
     }
     public function create(){
         #VIEW category create form
-        return view('users.admin.user.create');
+        return view('users.admin.users.create');
     }
-    public function store(UserFormRequest $request){
+    public function store(Request $request){
         #BACKEND PART...CONTROLLER COMMUNICATING WITH MODEL
         #CategoryFormRequest=FormValidation before inserting data...
-        $data = $request->validated();
-        $users = new User();
-        $users->name = $data['name'];
-        $users->email = $data['email'];
-        $users->password = $data['password'];
-
-        $users->status = $request->status == true ? '1':'0';
-        #get id of authenticated user who posted the category
-        $users->created_by = Auth::user()->id;
+        // $data = $request->validated();
+        // $users = new User();
+        // $users->name = $data['name'];
+        // $users->email = $data['email'];
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+        ]);
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt('STAFFpassword123')
+            #set this default password for every staff
+            #then they change it later
+        ]);
+        #get id of authenticated user who posted
+        // $users->created_by = Auth::user()->id;
         #after everything....
         #save the category
-        $users->save();
+        // $users->save();
         #redirect with message;see in index.blade.php
-        return redirect('admin/users')->with('msg','Successfully Added New House Plan. Thanks!');
+        return redirect('admin/users')->with('msg','Successfully Added New Staff. Thanks!');
     }
     #VIEW specific project
     public function edit($users_id){
