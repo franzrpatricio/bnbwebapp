@@ -42,12 +42,6 @@
                         <input type="text" name="email" value="{{$user->email}}" class="form-control">
                     </div>
 
-                    {{-- THIS NEEDS ENCRYPTION --}}
-                    <div class="col-md-6">
-                        <label>Password</label>
-                        <input type="text" name="password" value="{{$user->password}}" class="form-control">
-                    </div>
-
                     <h6>User Status</h6>
                     {{-- if role and status == 1, then display check on the box --}}
                     <div class="col-md-3 mb-3">
