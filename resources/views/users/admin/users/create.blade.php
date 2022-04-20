@@ -28,49 +28,17 @@
                     <input type="text" name="name" class="form-control"> 
                 </div>
                 <div class="mb-3">
-                    <label>Image</label>
-                    <input type="file" name="image"class="form-control">
+                    <label>Email</label>
+                    <input type="text" name="email" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label>Cost</label>
-                    <input type="number" required name="cost" min="0" value="0" step="0.01" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="">Slug</label>
-                    {{-- input name refers to db field --}}
-                    <input type="text" name="slug" class="form-control"> 
-                </div>
-                <div class="mb-3">
-                    <label>Description</label>
-                    <textarea name="description" id="summernoteDesc" rows="5" class="form-control"></textarea>
+                    <label>Password</label>
+                    <input type="password" required name="password" class="form-control">
                 </div>
 
-                <h6>SEO Tags</h6>
-                <div class="mb-3">
-                    <label>Meta Title</label>
-                    <input type="text" name="meta_title"class="form-control"/>
-                </div>
-                <div class="mb-3">
-                    <label>Meta Description</label>
-                    <textarea name="meta_description" rows="3" class="form-control"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label>Meta Keywords</label>
-                    <textarea name="meta_keyword" rows="3" class="form-control"></textarea>
-                </div>
-
-                <h6>Status</h6>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <label for="">Visible</label>
-                            <input type="checkbox" name="status"/>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary float-end">Save Project</button>
-                        </div>
+                <div class="col-md-8">
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary float-end">Save New User</button>
                     </div>
                 </div>
             </form>
