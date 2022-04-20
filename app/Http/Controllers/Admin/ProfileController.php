@@ -19,9 +19,9 @@ class ProfileController extends Controller
     //     return view('users.admin.profile.update_password');
     // }
 
-    public function profile_settings(Request $request){
-        return view('users.admin.profile.profile_settings');
-    }
+    // public function profile_settings(Request $request){
+    //     return view('users.admin.profile.profile_settings');
+    // }
 
     public function showChangePasswordGet() {
         return view('auth.passwords.change-password');
