@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HousePlanController;
+use App\Http\Controllers\Admin\InquiriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -143,12 +144,13 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
     #INQUIRY CRUD
     #READ
-    Route::get('inquiries', [App\Http\Controllers\InquiriesController::class, 'index']);
+    Route::get('inquiries', [App\Http\Controllers\Admin\InquiriesController::class, 'index'])->name('inquiries.index');
     #DELETE
-    Route::get('delete-inquiry/{inquiry_id}',[App\Http\Controllers\InquiriesController::class, 'destroy']);
+    Route::delete('delete-inquiry/{inquiry_id}', [App\Http\Controllers\Admin\InquiriesController::class, 'destroy'])->name('inquiries.destroy');
+    // Route::get('delete-inquiry/{inquiry_id}',[App\Http\Controllers\Admin\InquiriesController::class, 'destroy']);
     #RESTORE
-    Route::get('restore-inquiry/{inquiry_id}',[App\Http\Controllers\InquiriesController::class, 'restore']);
-    Route::get('restore-inquiries/{users_id}',[App\Http\Controllers\InquiriesController::class, 'restore_all']);
+    Route::get('restore-inquiry/{inquiry_id}',[App\Http\Controllers\Admin\InquiriesController::class, 'restore'])->name('inquiries.restore');
+    Route::get('restore-inquiries',[App\Http\Controllers\Admin\InquiriesController::class, 'restore_all'])->name('inquiries.restore_all');
 
     #The fundamental difference between the POST and PUT requests is reflected in the different meaning of the Request-URI. The URI in a POST request identifies the resource that will handle the enclosed entity... In contrast, the URI in a PUT request identifies the entity enclosed with the request.
 });
