@@ -63,8 +63,7 @@ class CategoryFormRequest extends FormRequest
                 'nullable',
             ],
             'feature' => [
-                'required',
-                'string'
+                'nullable',
             ]
         ];
         return $rules;

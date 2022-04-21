@@ -27,7 +27,7 @@
                         <th>ID</th>
                         <th>Category Name</th>
                         <th>Image</th>
-                        <th>Status</th>
+                        <th colspan="2">Status</th>
                         <th>Action</th> {{-- edit --}}
                     </tr>
                 </thead>
@@ -46,15 +46,16 @@
                             </td>
                             {{-- if status is true, show if not visible || visible --}}
                             {{-- to make the category visible just check the box for status --}}
-                            <td>
-                                {{$item->status == '1' ? 'Active':'Inactive'}}
-                                ||
-                                {{$item->feature == '1' ? 'Yes':'No'}}
-                            </td>
+                            <td >{{$item->status == '1' ? 'Active':'Inactive'}}</td>
+                            <td>{{$item->feature == '1' ? 'Yes':'No'}}</td>
                             <td>
                                 {{-- pass the ID of specific category --}}
-                                <a href="{{ url('admin/edit-category/'.$item->id) }}" class="fa-solid fa-pen p-2" style="color:#019ad2;"></a>
-                                <a href="{{url('admin/delete-category/'.$item->id)}}" class="fa-solid fa-trash p-2" style="color:red;"></a>
+                                <a href="{{ url('admin/edit-category/'.$item->id) }}">
+                                    <i class="fa-solid fa-pen p-2" style="color:#019ad2;"></i>
+                                </a>
+                                <a href="{{url('admin/delete-category/'.$item->id)}}">
+                                    <i class="fa-solid fa-trash p-2" style="color:red;"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
