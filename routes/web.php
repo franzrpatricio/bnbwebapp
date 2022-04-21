@@ -58,7 +58,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
     #CATEGORY CRUD
     #READ
-    Route::get('category', [App\Http\Controllers\Admin\CategoryController::class, 'index']);
+    Route::get('categories', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
     #CREATE
     Route::get('add-category', [App\Http\Controllers\Admin\CategoryController::class, 'create']);
     Route::post('add-category', [App\Http\Controllers\Admin\CategoryController::class, 'store']);
@@ -66,10 +66,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('edit-category/{category_id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit']);
     Route::put('update-category/{category_id}',[App\Http\Controllers\Admin\CategoryController::class, 'update']);
     #DELETE
-    Route::get('delete-category/{category_id}',[App\Http\Controllers\Admin\CategoryController::class, 'destroy']);
+    Route::delete('delete-category/{category_id}',[App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('categories.destroy');
     #RESTORE
-    Route::get('restore-category/{category_id}',[App\Http\Controllers\Admin\CategoryController::class, 'restore']);
-    Route::get('restore-category/{category_id}',[App\Http\Controllers\Admin\CategoryController::class, 'restore_all']);
+    Route::get('restore-category/{category_id}',[App\Http\Controllers\Admin\CategoryController::class, 'restore'])->name('categories.restore');
+    Route::get('categories/restore-all',[App\Http\Controllers\Admin\CategoryController::class, 'restore_all'])->name('categories.restore_all');
 
     #PROJECTS CRUD
     #READ
