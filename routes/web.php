@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HousePlanController;
+use App\Http\Controllers\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,7 +124,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #EDIT PROFILE
     Route::get('profile/edit-profile', [App\Http\Controllers\Admin\UsersController::class, 'editProfile']);
     Route::put('profile/update-profile',[App\Http\Controllers\Admin\UsersController::class, 'updateProfile']);
-
+    
+    Route::get('/changePassword', [App\Http\Controllers\Admin\ProfileController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+    Route::post('/changePassword', [App\Http\Controllers\Admin\ProfileController::class, 'changePasswordPost'])->name('changePasswordPost');
     #FAQS CRUD 
     #READ
     Route::get('faqs', [App\Http\Controllers\FaqsController::class, 'index']);
@@ -138,6 +141,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #RESTORE
     Route::get('restore-faq/{faq_id}',[App\Http\Controllers\FaqsController::class, 'restore']);
     Route::get('restore-faqs/{faq_id}',[App\Http\Controllers\FaqsController::class, 'restore_all']);
+    Route::get('profile_settings', [App\Http\Controllers\Admin\ProfileController::class, 'profile_settings']);
+
+    
 
     #INQUIRY CRUD
     #READ
