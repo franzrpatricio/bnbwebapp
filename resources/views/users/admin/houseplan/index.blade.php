@@ -33,10 +33,7 @@
                         <th>ID</th>
                         <th>House Plan</th>
                         <th>Rates</th> {{-- rates == cost --}}
-                        {{-- <th>Floor</th>
-                        <th>Wall</th>
-                        <th>Window</th>
-                        <th>Ceiling</th> --}}
+                        <th colspan="4">Materials</th>
                         <th>Status</th>
                         <th>Action</th> {{-- edit --}}
                     </tr>
@@ -47,18 +44,27 @@
                             <td>{{$item->id}}</td>
                             <td>{{$item->type}}</td>
                             <td>{{$item->cost}}</td>
-                            {{-- <td>{{$item->floor}}</td>
+
+                            {{-- <td>Floor</td>
+                            <td>Wall</td>
+                            <td>Window</td>
+                            <td>Ceiling</td> --}}
+                            <td>{{$item->floor}}</td>
                             <td>{{$item->wall}}</td>
-                            <td>{{$item->window}}</td>q
-                            <td>{{$item->ceiling}}</td> --}}
+                            <td>{{$item->window}}</td>
+                            <td>{{$item->ceiling}}</td>
 
                             {{-- if status is true, show if not visible || visible --}}
                             {{-- to make the category visible just check the box for status --}}
                             <td>{{$item->status == '1' ? 'Visible':'Not Visible'}}</td>
                             <td>
                                 {{-- pass the ID of specific category --}}
-                                <a href="{{ url('admin/edit-houseplan/'.$item->id) }}" class="fa-solid fa-pen p-2" style="color:#019ad2;"></a>
-                                <a href="{{url('admin/delete-houseplan/'.$item->id)}}" class="fa-solid fa-trash p-2" style="color:red;"></a>
+                                <a href="{{ url('admin/edit-houseplan/'.$item->id) }}">
+                                    <i class="fa-solid fa-pen p-2" style="color:#019ad2;"></i>
+                                </a>
+                                <a href="{{url('admin/delete-houseplan/'.$item->id)}}">
+                                    <i class="fa-solid fa-trash p-2" style="color:red;"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
