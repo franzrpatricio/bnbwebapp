@@ -82,7 +82,7 @@
                 </a>
                 <div class="collapse" id="collapseFaqs" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link collapsed link-light" href="{{ url('admin/add-faqs') }}">
+                        <a class="nav-link collapsed link-light" href="{{ url('admin/add-faq') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
                             Create New FAQ
                         </a>
