@@ -6,6 +6,7 @@
     <div class="card mt-4">
         <div class="card-header">
             <h4><div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New House Plan</div></h4>
+            <a href="{{url('admin/houseplan')}}" class="btn btn-danger float-end">Back</a>
         </div>
         
         <div class="card-body">

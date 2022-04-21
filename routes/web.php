@@ -90,7 +90,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
     #HOUSE PLAN CRUD
     #READ
-    Route::get('houseplan', [App\Http\Controllers\Admin\HousePlanController::class, 'index']);
+    Route::get('houseplan', [App\Http\Controllers\Admin\HousePlanController::class, 'index'])->name('houseplan.index');
     #CREATE
     Route::get('add-houseplan', [App\Http\Controllers\Admin\HousePlanController::class, 'create']);
     Route::post('add-houseplan', [App\Http\Controllers\Admin\HousePlanController::class, 'store']);
@@ -98,10 +98,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('edit-houseplan/{houseplan_id}', [App\Http\Controllers\Admin\HousePlanController::class, 'edit']);
     Route::put('update-houseplan/{houseplan_id}',[App\Http\Controllers\Admin\HousePlanController::class, 'update']);
     #DELETE
-    Route::get('delete-houseplan/{houseplan_id}',[App\Http\Controllers\Admin\HousePlanController::class, 'destroy']);
+    Route::delete('delete-houseplan/{houseplan_id}',[App\Http\Controllers\Admin\HousePlanController::class, 'destroy'])->name('houseplan.destroy');
     #RESTORE
-    Route::get('restore-houseplan/{houseplan_id}',[App\Http\Controllers\Admin\HousePlanController::class, 'restore']);
-    Route::get('restore-houseplans/{houseplan_id}',[App\Http\Controllers\Admin\HousePlanController::class, 'restore_all']);
+    Route::get('restore-houseplan/{houseplan_id}',[App\Http\Controllers\Admin\HousePlanController::class, 'restore'])->name('houseplan.restore');
+    Route::get('houseplan/restore-houseplans',[App\Http\Controllers\Admin\HousePlanController::class, 'restore_all'])->name('houseplan.restore_all');
 
     #USERS CRUD
     #USER ADMINISTRATOR
@@ -129,7 +129,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
     #FAQS CRUD 
     #READ
-    Route::get('faqs', [App\Http\Controllers\Admin\FaqsController::class, 'index']);
+    Route::get('faqs', [App\Http\Controllers\Admin\FaqsController::class, 'index'])->name('faqs.index');
     #CREATE
     Route::get('add-faq', [App\Http\Controllers\Admin\FaqsController::class, 'create']);
     Route::post('add-faq', [App\Http\Controllers\Admin\FaqsController::class, 'store']);
@@ -137,10 +137,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('edit-faq/{faq_id}', [App\Http\Controllers\Admin\FaqsController::class, 'edit']);
     Route::put('update-faq/{faq_id}',[App\Http\Controllers\Admin\FaqsController::class, 'update']);
     #DELETE
-    Route::get('delete-faq/{faq_id}',[App\Http\Controllers\Admin\FaqsController::class, 'destroy']);
+    Route::delete('delete-faq/{faq_id}', [App\Http\Controllers\Admin\FaqsController::class, 'destroy'])->name('faqs.destroy');
     #RESTORE
-    Route::get('restore-faq/{faq_id}',[App\Http\Controllers\Admin\FaqsController::class, 'restore']);
-    Route::get('restore-faqs/{faq_id}',[App\Http\Controllers\Admin\FaqsController::class, 'restore_all']);
+    Route::get('restore-faq/{faq_id}',[App\Http\Controllers\Admin\FaqsController::class, 'restore'])->name('faqs.restore');
+    Route::get('restore-faqs',[App\Http\Controllers\Admin\FaqsController::class, 'restore_all'])->name('faqs.restore_all');
 
     #INQUIRY CRUD
     #READ

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Faq;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\FaqFormRequest;
@@ -11,9 +12,12 @@ use App\Http\Requests\Admin\FaqFormRequest;
 class FaqsController extends Controller
 {
     #VIEW
-    public function index( ){
+    public function index(Request $request){
         $faqs = Faq::all();
-        
+        if ($request->has('trashed')) {
+            # code...
+            $faqs = Faq::onlyTrashed()->get();
+        }
         return view('users.admin.faqs.index', compact('faqs'));
     }
     #CREATE
@@ -59,15 +63,25 @@ class FaqsController extends Controller
         }
     }
 
-    #RESTORE SINGLE
-    public function restore($faq_id){
+    /**
+     * restore specific post
+     *
+     * @return void
+     */
+    public function restore($faq_id)
+    {
         Faq::withTrashed()->find($faq_id)->restore();
-        return back()->with('msg','FAQ Successfully Restored');
-    }
+        return redirect('admin/faqs')->with('msg', 'success');
+    }  
 
-    #RESTORE ALL
-    public function restore_all(){
+    /**
+     * restore all post
+     *
+     * @return response()
+     */
+    public function restore_all()
+    {
         Faq::onlyTrashed()->restore();
-        return back()->with('msg', 'All FAQS Successfuly Restored');
+        return redirect('admin/faqs')->with('msg', 'success');
     }
 }
