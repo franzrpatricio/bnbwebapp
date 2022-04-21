@@ -24,7 +24,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
                             Create New Users
                         </a>
-                        <a class="nav-link link-light" href="{{ url('admin/user') }}">
+                        <a class="nav-link link-light" href="{{ url('admin/users') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                             List of Users
                         </a>

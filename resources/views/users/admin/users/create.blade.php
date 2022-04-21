@@ -36,11 +36,11 @@
                     <input type="password" required name="password" class="form-control">
                 </div>
 
-                <div class="col-md-8">
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary float-end">Save New User</button>
+                
+                    <div class="mb-3 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Save New User</button>
                     </div>
-                </div>
+              
             </form>
         </div>
     </div>

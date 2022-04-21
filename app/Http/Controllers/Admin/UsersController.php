@@ -32,7 +32,7 @@ class UsersController extends Controller
     }
     public function create(){
         #VIEW category create form
-        return view('users.admin.user.create');
+        return view('users.admin.users.create');
     }
     public function store(UserFormRequest $request){
         #BACKEND PART...CONTROLLER COMMUNICATING WITH MODEL
