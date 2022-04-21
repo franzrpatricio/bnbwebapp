@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container-fluid px-4">
+<h1 class="mt-5">Add Category</h1>
     <div class="card mt-4">
         <div class="card-header">
             <h4><div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New Category</div></h4>
