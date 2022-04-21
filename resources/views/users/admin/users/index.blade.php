@@ -3,6 +3,8 @@
 @section('content')
 
 <div class="container-fluid px-4">
+<h1 class="mt-5">Manage Users</h1>
+
     <div class="card">
         <div class="card mt-4"></div>
         <div class="card-header">
@@ -25,6 +27,7 @@
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Role</th>
+                        <th>Status</th>
                         <th>Action</th> {{-- edit --}}
                     </tr>
                 </thead>
@@ -39,11 +42,16 @@
 
                             {{-- if status is true, show if not visible || visible --}}
                             {{-- to make the user visible just check the box for status --}}
-                            {{-- <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td> --}}
+                            {{-- if status = 1->active; else->inactive --}}
+                            <td>{{$item->status == '0' ? 'Active':'Inactive'}}</td> 
                             <td>
                                 {{-- pass the ID of specific category --}}
-                                <a href="{{ url('admin/edit-user/'.$item->id) }}" class="btn btn-success">Edit</a>
-                                <a href="{{url('admin/delete-user/'.$item->id)}}" class="btn btn-danger">Delete</a>
+                                <a href="{{ url('admin/edit-user/'.$item->id) }}">
+                                    <i class="fa-solid fa-pen p-2" style="color:#019ad2;"></i>
+                                </a>
+                                <a href="{{url('admin/delete-user/'.$item->id)}}">
+                                    <i class="fa-solid fa-trash p-2" style="color:red;"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

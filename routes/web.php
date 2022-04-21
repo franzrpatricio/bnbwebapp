@@ -87,7 +87,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('restore-project/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'restore']);
     Route::get('restore-projects/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'restore_all']);
 
-
     #HOUSE PLAN CRUD
     #READ
     Route::get('houseplan', [App\Http\Controllers\Admin\HousePlanController::class, 'index']);
