@@ -12,7 +12,7 @@ class HousePlanController extends Controller
 {
     public function index(){
         #VIEW category page of index.blade.php in admin/category
-        #get all categories
+        #get all houseplans
         $houseplan = HousePlan::all();
         return view('users.admin.houseplan.index', compact('houseplan'));
     }
