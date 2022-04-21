@@ -10,10 +10,17 @@ use App\Http\Requests\Admin\HousePlanFormRequest;
 
 class HousePlanController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         #VIEW category page of index.blade.php in admin/category
         #get all categories
-        $houseplan = HousePlan::all();
+        // $houseplan = HousePlan::all();
+        if ($request->has('trashed')) {
+            $houseplan = HousePlan::onlyTrashed()
+                ->get();
+        } else {
+            $houseplan = HousePlan::get();
+        }
+
         return view('users.admin.houseplan.index', compact('houseplan'));
     }
 
@@ -81,5 +88,29 @@ class HousePlanController extends Controller
         }else {
             return redirect('admin/houseplan')->with('msg','No House Plan ID found');
         }
+    }
+
+    /**
+     * restore specific post
+     *
+     * @return void
+     */
+    public function restore($houseplan_id)
+    {
+        HousePlan::withTrashed()->find($houseplan_id)->restore();
+  
+        return redirect('admin/houseplan')->with('msg','success');
+    }  
+  
+    /**
+     * restore all post
+     *
+     * @return response()
+     */
+    public function restore_all()
+    {
+        HousePlan::onlyTrashed()->restore();
+  
+        return redirect('admin/houseplan')->with('msg','success');
     }
 }
