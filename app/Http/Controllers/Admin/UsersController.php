@@ -11,8 +11,24 @@ use App\Http\Requests\Admin\UserFormRequest;
 class UsersController extends Controller
 {
     public function index(){
-        $users = User::all();
-        return view('users.admin.users.index', compact('users'));
+
+        if(Auth::check()){
+            if (Auth::user()->role_as=='0' ) {
+                #role_as == 1 = staff
+                #role_as == 0 = admin
+                # code... 
+                $users = User::all();
+                return view('users.admin.users.index', compact('users'));
+            }else {
+                # code...
+                return redirect('/home')->with('status','Access Denied! Not an Admin.');
+            }
+        }else {
+            #if not authenticated
+            return redirect('/login')->with('status','Log In First!');
+        }
+
+        
     }
     public function create(){
         #VIEW category create form
