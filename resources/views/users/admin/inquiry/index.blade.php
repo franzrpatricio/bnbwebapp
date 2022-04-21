@@ -3,15 +3,21 @@
 @section('content')
 
 <div class="container-fluid px-4">
-  
     <div class="card mt-4">
         <div class="card-header">
             <h4>
                 <div class="sb-nav-link-icon"><i class="fas fa-list"></i>List of Inquiries</div>
-                <a href="{{ url('admin/add-houseplan') }}" class="btn btn-primary btn-sm float-end">
-                    <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New Inquiries</div>
-                </a>
             </h4>
+
+            <div class="float-end">
+                @if(request()->has('trashed'))
+                    <a href="{{ route('inquiries.index') }}" class="btn btn-info">View All posts</a>
+                    <a href="{{ route('inquiries.restore_all') }}" class="btn btn-success">Restore All</a>
+                @else
+                    <a href="{{ route('inquiries.index', ['trashed' => 'post']) }}" class="btn btn-primary">View Deleted posts</a>
+                @endif
+            </div>
+        </div>
         </div>
 
         <div class="card-body">
@@ -22,57 +28,60 @@
 
             <table class="table table-bordered">
                 <thead>
-                   
                     <tr class="text-center">
                         <th>SN</th>
-                          <th>Name</th>
-                          <th>Contact Number</th>
-                          <th>Email</th>
-                          <th>Address</th>
-                          <th>Inqury Date</th>
-                          <th>Actions</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                        <th>Address</th>
+                        <th>Inqury Date</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                     <tbody>
-                          <tr>
-                              <td data-title="SN">1</td>
-                              <td data-title="Name">Arthur John Cotoner</td>
-                              <td data-title="Contact Number">1234345345</td>
-                              <td data-title="Email">adfssf@gmail.com</td>
-                              <td data-title="Address">Basta bahay</td>
-                              <td data-title="Inquiry Date">03-07-2000</td>
-                              <td data-title="Actions">
-                                  <label class="switch">
-                                  <input type="checkbox" checked>
-                                  <span class="slider round"></span>
-                                </label>
-                              </td>
-                         
-                      </tbody>
-                    @foreach ($inquiries as $item)
-                        <tr class="text-center">
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->type}}</td>
-                            <td>{{$item->cost}}</td>
-                            {{-- <td>{{$item->floor}}</td>
-                            <td>{{$item->wall}}</td>
-                            <td>{{$item->window}}</td>q
-                            <td>{{$item->ceiling}}</td> --}}
 
-                            {{-- if status is true, show if not visible || visible --}}
-                            {{-- to make the category visible just check the box for status --}}
-                            <td>{{$item->status == '1' ? 'Visible':'Not Visible'}}</td>
-                            <td>
-                                {{-- pass the ID of specific category --}}
-                                <a href="{{ url('admin/edit-houseplan/'.$item->id) }}" class="btn btn-success">Edit</a>
-                                <a href="{{url('admin/delete-houseplan/'.$item->id)}}" class="btn btn-danger">Delete</a>
-                            </td>
-                        </tr>
-                    @endforeach
+                <tbody>
+                    @if (count($inquiries)>0)
+                        @foreach ($inquiries as $item)
+                            <tr class="text-center">
+                                <td>{{$item->id}}</td>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->email}}</td>
+                                <td>{{$item->contact}}</td>
+                                <td>{{$item->address}}</td>
+                                <td>{{$item->created_at->format('m/d/Y')}}</td>
+                                <td>
+                                    {{-- pass the ID of specific category --}}
+                                    {{-- <a href="{{ url('admin/edit-houseplan/'.$item->id) }}" class="btn btn-success">Edit</a> --}}
+
+                                    @if(request()->has('trashed'))
+                                        <a href="{{ route('inquiries.restore', $item->id) }}" class="btn btn-success">Restore</a>
+                                    @else
+                                        <form method="POST" action="{{ route('inquiries.destroy', $item->id) }}">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <button type="submit" class="btn btn-danger delete" title='Delete'>Delete</button>
+                                        </form>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="4" class="text-center">No Inquiries Found.</td>
+                        </tr>                        
+                    @endif
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.delete').click(function(e) {
+            if(!confirm('Are you sure you want to delete this post?')) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
 @endsection
