@@ -8,23 +8,23 @@
         <div class="card mt-4"></div>
         <div class="card-header">
             @if (request()->has('view_deleted'))
-                <h4><div class="sb-nav-link-icon"><i class="fas fa-list"></i>List of Projects</div>
+                <h4><div class="sb-nav-link-icon"><i class="fas fa-list"></i>List of Deleted Projects</div>
                     
                     <a href="{{ url('admin/restore-projects') }}" class="btn btn-succss btn-sm">
                         Restore All
                     </a>
                 </h4>
-                {{-- <a href="{{ url('admin/projects') }}" class="btn btn-info btn-sm">
+                <a href="{{ url('admin/projects') }}" class="btn btn-info btn-sm">
                     View All Projects
-                </a> --}}
+                </a>
             @else
-                <div class="col col-md-6 text-right">
-                    <a href="{{ url('admin/add-project') }}" class="btn btn-primary btn-sm float-end">
+                <div class="col mb-3">
+                    <a href="{{ url('admin/add-project') }}" class="btn btn-primary btn-sm">
                         <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New Project</div>
                     </a>
 
-                    <a href="{{ url('admin/projects', ['view_deleted'=>'DeletedRecords']) }}" class="btn btn-primary btn=sm">
-                        View Deleted Projects
+                    <a href="{{ url('admin/projects', ['view_deleted'=>'DeletedRecords']) }}" class="btn btn-primary btn-sm float-end">
+                        <div class="sb-nav-link-icon"><i class="fas fa-trash"></i>View Deleted Projects</div>
                     </a>
                 </div>
             @endif
@@ -90,9 +90,9 @@
                         @endforeach
                     @else
                         <tr class="text-center">
-                            <td>
+                            {{-- <td> --}}
                                 No Projects Found.
-                            </td>
+                            {{-- </td> --}}
                         </tr>
                     @endif
                 </tbody>

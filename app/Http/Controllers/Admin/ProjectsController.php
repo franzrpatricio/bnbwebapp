@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Auth;
 class ProjectsController extends Controller
 {
     #VIEW
-    public function index(ProjectFormRequest $request){
+    public function index(){
         $projects = Projects::all();
-        if ($request->has('view_deleted')) {
-            # code...
-            $projects = Projects::onlyTrashed()->get();
-        }
+        // if ($request->has('view_deleted')) {
+        //     # code...
+        //     $projects = Projects::onlyTrashed()->get();
+        // }
         return view('users.admin.project.index', compact('projects'));
     }
     #CREATE
