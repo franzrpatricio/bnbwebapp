@@ -13,10 +13,16 @@ use App\Http\Requests\Admin\CategoryFormRequest;
 #CONTROLLER extends MODEL
 class CategoryController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         #VIEW category page of index.blade.php in admin/category
         #get all categories
-        $category = Category::all();
+        if ($request->has('trashed')) {
+            $category = Category::onlyTrashed()
+                ->get();
+        } else {
+            $category = Category::get();
+        }
+        // $category = Category::all();
         return view('users.admin.category.index', compact('category'));
     }
 
@@ -65,7 +71,7 @@ class CategoryController extends Controller
         #save the category
         $category->save();
         #redirect with message;see in index.blade.php
-        return redirect('admin/category')->with('msg','Successfully Added New Category. Thanks!');
+        return redirect('admin/categories')->with('msg','Successfully Added New Category. Thanks!');
     }
     
     #VIEW specific category
@@ -123,14 +129,13 @@ class CategoryController extends Controller
         #save the category
         $category->update();
         #redirect with message;see in index.blade.php
-        return redirect('admin/category')->with('msg','Successfully Updated Category. Thanks! :D');
+        return redirect('admin/categories')->with('msg','Successfully Updated Category. Thanks! :D');
     }
 
     public function destroy($category_id){
         $category = Category::find($category_id);
         if ($category) {
             # code...
-        
             #write condiiton to delete image
             $destination = 'uploads/category/'.$category->image;
             if (File::exists($destination)) {
@@ -139,9 +144,33 @@ class CategoryController extends Controller
             }
             #then delete all data based from id
             $category->delete();
-            return redirect('admin/category')->with('msg','Successfully Deleted Category');
+            return redirect('admin/categories')->with('msg','Successfully Deleted Category');
         }else {
-            return redirect('admin/category')->with('msg','No Category ID found');
+            return redirect('admin/categories')->with('msg','No Category ID found');
         }
+    }
+
+    /**
+     * restore specific post
+     *
+     * @return void
+     */
+    public function restore($category_id)
+    {
+        Category::withTrashed()->find($category_id)->restore();
+  
+        return redirect('admin/categories')->with('msg','success');
+    }  
+  
+    /**
+     * restore all post
+     *
+     * @return response()
+     */
+    public function restore_all()
+    {
+        Category::onlyTrashed()->restore();
+  
+        return redirect('admin/categories')->with('msg','success');
     }
 }
