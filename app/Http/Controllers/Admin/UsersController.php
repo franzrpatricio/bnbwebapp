@@ -50,23 +50,30 @@ class UsersController extends Controller
         return view('users.admin.users.edit', compact('user'));
     }
     #UPDATE specific category
-    public function update(UserFormRequest $request, $users_id){
-        $data = $request->validated();
+    public function update(Request $request, $users_id){
+        // $data = $request->validated();
 
-        $users = User::find($users_id);
-        $users->name = $data['name'];
-        $users->email = $data['email'];
-        $users->password = $data['password'];
+        $user = User::find($users_id);
+        // $users->name = $data['name'];
+        // $users->email = $data['email'];
+        // $users->password = $data['password'];
         #PASSWORD NEEDS TO ENCRYPT
-       
-        $users->status = $request->status == true ? '1':'0';
-        #get id of authenticated user who posted the category
-        $users->created_by = Auth::user()->id;
-        #after everything....
-        #save the category
-        $users->update();
-        #redirect with message;see in index.blade.php
-        return redirect('admin/users')->with('msg','Successfully Updated a User! :D');
+        if ($user) {
+            # code...
+            $user->role_as = $request->role_as == true ? '1':'0';
+            $user->status = $request->status == true ? '1':'0';
+            // $user->updated_at = $request->touch();
+            #get id of authenticated user who posted the category
+            // $user->created_by = Auth::user()->id;
+            #after everything....
+            #save the category
+            $user->update();
+            #redirect with message;see in index.blade.php
+            return redirect('admin/users')->with('msg','Successfully Updated a User! :D');
+        }else {
+            # code...
+            return redirect('admin/users')->with('msg','No user found.');
+        }
     }
     #DELETE
     public function destroy($users_id){
