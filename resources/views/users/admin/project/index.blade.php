@@ -7,27 +7,22 @@
     <div class="card">
         <div class="card mt-4"></div>
         <div class="card-header">
-            @if (request()->has('view_deleted'))
-                <h4><div class="sb-nav-link-icon"><i class="fas fa-list"></i>List of Projects</div>
-                    
-                    <a href="{{ url('admin/restore-projects') }}" class="btn btn-succss btn-sm">
-                        Restore All
-                    </a>
-                </h4>
-                {{-- <a href="{{ url('admin/projects') }}" class="btn btn-info btn-sm">
-                    View All Projects
-                </a> --}}
-            @else
-                <div class="col col-md-6 text-right">
-                    <a href="{{ url('admin/add-project') }}" class="btn btn-primary btn-sm float-end">
-                        <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New Project</div>
-                    </a>
+            <h4>
+                <div class="sb-nav-link-icon"><i class="fas fa-list"></i>List of Projects</div>
+            </h4>
 
-                    <a href="{{ url('admin/projects', ['view_deleted'=>'DeletedRecords']) }}" class="btn btn-primary btn=sm">
-                        View Deleted Projects
+            <div class="float-end">
+                @if(request()->has('trashed'))
+                    <a href="{{ route('projects.index') }}" class="btn btn-info">View All Projects</a>
+                    <a href="{{ route('projects.restore_all') }}" class="btn btn-success">Restore All</a>
+                @else
+                    <a href="{{ url('admin/add-houseplan')}}" class="btn btn-primary">
+                        <i class="fas fa-plus-circle"></i>
+                        Create New Projects
                     </a>
-                </div>
-            @endif
+                    <a href="{{ route('projects.index', ['trashed' => 'post']) }}" class="btn btn-primary">View Deleted Projects</a>
+                @endif
+            </div>
         </div>
         <div class="card-body">
             {{-- display msg after redirecting --}}
@@ -71,33 +66,38 @@
                                 {{-- to make the project visible just check the box for status --}}
                                 <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td>
                                 <td>
-                                    @if (request()->has('view_deleted'))
-                                        <a href="{{ url('admin/retore-project/'.$item->id) }}" class="btn btn-success btn-sm">
-                                            Restore
-                                        </a>
+                                    @if(request()->has('trashed'))
+                                        <a href="{{ route('projects.restore', $item->id) }}" class="btn btn-success">Restore</a>
                                     @else
-                                        <form action="{{ url('admin/delete-project/'.$item->id) }}" method="post">
+                                        <a href="{{ url('edit-project/'.$item->id) }}"><i class="fas fa-pen"></i></a>
+                                        <form method="POST" action="{{ route('projects.destroy', $item->id) }}">
                                             @csrf
-                                            <input type="hidden" name="_method" value="delet">
-                                            <button class="btn btn-danger">Delete</button>
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <button type="submit" class="btn delete" title='Delete'>
+                                                <i class="fa-solid fa-trash" style="color:red;"></i>
+                                            </button>
                                         </form>
-                                        {{-- pass the ID of specific category --}}
-                                        <a href="{{ url('admin/edit-project/'.$item->id) }}" class="fa-solid fa-pen p-2" style="color:#019ad2;"></a>
-                                        {{-- <a href="{{url('admin/delete-project/'.$item->id)}}" class="fa-solid fa-trash p-2" style="color:red;"></a> --}}
                                     @endif
                                 </td>
                             </tr>
                         @endforeach
                     @else
-                        <tr class="text-center">
-                            <td>
-                                No Projects Found.
-                            </td>
-                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-center">No Projects Found.</td>
+                        </tr>     
                     @endif
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.delete').click(function(e) {
+            if(!confirm('Are you sure you want to delete this post?')) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
 @endsection

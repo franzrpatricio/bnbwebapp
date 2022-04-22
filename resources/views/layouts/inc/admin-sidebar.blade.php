@@ -48,7 +48,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
                             Create New Category
                         </a>
-                        <a class="nav-link link-light" href="{{ url('admin/category') }}">
+                        <a class="nav-link link-light" href="{{ url('admin/categories') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                             List of Categories
                         </a>

@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Auth;
 class ProjectsController extends Controller
 {
     #VIEW
-    public function index(ProjectFormRequest $request){
-        $projects = Projects::all();
-        if ($request->has('view_deleted')) {
+    public function index(Request $request){
+        $projects = Projects::get();
+        if ($request->has('trashed')) {
             # code...
             $projects = Projects::onlyTrashed()->get();
         }
