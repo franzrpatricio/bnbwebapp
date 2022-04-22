@@ -14,7 +14,7 @@ class ProjectsController extends Controller
 {
     #VIEW
     public function index(Request $request){
-        // $projects = Projects::all();
+        $projects = Projects::get();
         if ($request->has('trashed')) {
             # code...
             $projects = Projects::onlyTrashed()->get();

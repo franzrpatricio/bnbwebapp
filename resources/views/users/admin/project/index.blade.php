@@ -66,27 +66,14 @@
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('projects.restore', $item->id) }}" class="btn btn-success">Restore</a>
                                     @else
-                                        {{-- pass the ID of specific faq --}}
-                                        <a href="{{ url('admin/edit-project/'.$item->id) }}">
-                                            <i class="fa-solid fa-pen" style="color:#019ad2;"></i>
-                                        </a>
+                                        <a href="{{ url('admin/edit-project/'.$item->id) }}"><i class="fas fa-pen"></i></a>
                                         <form method="POST" action="{{ route('projects.destroy', $item->id) }}">
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
-                                            <button type="submit" class="btn btn-danger delete" title='Delete'>
+                                            <button type="submit" class="btn delete" title='Delete'>
                                                 <i class="fa-solid fa-trash" style="color:red;"></i>
                                             </button>
                                         </form>
-
-                                        {{-- pass the ID of specific category --}}
-
-                                        {{-- <a href="{{ url('admin/edit-project/'.$item->id) }}" class="fa-solid fa-pen p-2" style="color:#019ad2;"></a>
-                                        {{-- <a href="{{url('admin/delete-project/'.$item->id)}}" class="fa-solid fa-trash p-2" style="color:red;"></a> --}}
-{{-- =======
-                                        <a href="{{ url('admin/edit-project/'.$item->id) }}" class="btn btn-success">Edit</a>
-                                        <a href="{{url('admin/delete-project/'.$item->id)}}" class="btn btn-danger">Delete</a> --}}
-
-
                                     @endif
                                 </td>
                             </tr>

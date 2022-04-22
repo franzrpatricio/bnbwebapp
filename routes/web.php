@@ -49,7 +49,7 @@ Route::post('/botman',function(){
 
 #USERS GATEWAY
 Route::get('/gateway', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 #middleware auth checks user authentication to prevent user to access admin panel w/o logging in
 #admin pages
@@ -86,7 +86,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::delete('delete-project/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'destroy'])->name('projects.destroy');
     #RESTORE
     Route::get('restore-project/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'restore'])->name('projects.restore');
-    Route::get('projects/restore-projects',[App\Http\Controllers\Admin\ProjectsController::class, 'restore_all'])->name('projects.restore_all');
+    Route::get('projetcs/restore-projects',[App\Http\Controllers\Admin\ProjectsController::class, 'restore_all'])->name('projects.restore_all');
 
     #HOUSE PLAN CRUD
     #READ
@@ -154,6 +154,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
     #The fundamental difference between the POST and PUT requests is reflected in the different meaning of the Request-URI. The URI in a POST request identifies the resource that will handle the enclosed entity... In contrast, the URI in a PUT request identifies the entity enclosed with the request.
 });
-Auth::routes();
+Auth::routes(['register'=>false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
