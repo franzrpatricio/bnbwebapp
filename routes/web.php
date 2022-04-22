@@ -74,7 +74,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
     #PROJECTS CRUD
     #READ
-    Route::get('projects', [App\Http\Controllers\Admin\ProjectsController::class, 'index']);
+    Route::get('projects', [App\Http\Controllers\Admin\ProjectsController::class, 'index'])->name('projects.index');
     #CREATE
     Route::get('add-project', [App\Http\Controllers\Admin\ProjectsController::class, 'create']);
     Route::post('add-project', [App\Http\Controllers\Admin\ProjectsController::class, 'store']);
@@ -82,10 +82,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('edit-project/{project_id}', [App\Http\Controllers\Admin\ProjectsController::class, 'edit']);
     Route::put('update-project/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'update']);
     #DELETE
-    Route::get('delete-project/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'destroy']);
+    Route::delete('delete-project/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'destroy'])->name('projects.destroy');
     #RESTORE
-    Route::get('restore-project/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'restore']);
-    Route::get('restore-projects/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'restore_all']);
+    Route::get('restore-project/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'restore'])->name('projects.restore');
+    Route::get('projects/restore-projects',[App\Http\Controllers\Admin\ProjectsController::class, 'restore_all'])->name('projects.restore_all');
 
     #HOUSE PLAN CRUD
     #READ

@@ -25,6 +25,7 @@ class ProjectFormRequest extends FormRequest
     {
         $rules = [
             'category_id' => [
+                // 'nullable',
                 'required',
                 'integer'
             ],
