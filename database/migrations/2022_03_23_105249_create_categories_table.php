@@ -26,8 +26,10 @@ return new class extends Migration
             
             $table->tinyInteger('navbar_status')->default(0);
             $table->tinyInteger('status')->default(0);
+            $table->tinyText('feature');
             $table->tinyInteger('created_by')->default(0); #user id kung sino nag gawa
             $table->timestamps(); #created_at
+            $table->softDeletes(); #deleted_at
         });
     }
 

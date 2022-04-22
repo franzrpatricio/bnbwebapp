@@ -3,12 +3,12 @@
 @section('content')
 
 <div class="container-fluid px-4">
-    <h1 class="mt-5">ADMINISTRATOR</h1>
+    <h1 class="mt-5">Update Category</h1>
 
     <div class="card mt-4">
         <div class="card-header">
             <h4 class="mt-4">Edit Category
-                <a href="{{url('admin/category')}}" class="btn btn-danger float-end">Back</a>
+                <a href="{{url('admin/categories')}}" class="btn btn-danger float-end">Back</a>
             </h4>
         </div>
         <div class="card-body">
