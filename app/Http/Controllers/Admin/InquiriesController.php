@@ -1,21 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Inquiry;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\InquiryFormRequest;
 
 class InquiriesController extends Controller
 {
     #VIEW
-    public function index(InquiryFormRequest $request){
-        $inquiries = Inquiry::all();
-        if ($request->has('view_deleted')) {
+    public function index(Request $request){
+        $inquiries = Inquiry::get();
+        if ($request->has('trashed')) {
             # code...
             $inquiries = Inquiry::onlyTrashed()->get();
         }
+        // $inquiries = Inquiry::all();
         return view('users.admin.inquiry.index', compact('inquiries'));
     }
     #CREATE
@@ -65,15 +67,26 @@ class InquiriesController extends Controller
         }
     }
 
-    #RESTORE SINGLE
-    public function restore($inquiry_id){
+    /**
+     * restore specific post
+     *
+     * @return void
+     */
+    public function restore($inquiry_id)
+    {
         Inquiry::withTrashed()->find($inquiry_id)->restore();
-        return back()->with('msg','Inquiry Successfully Restored');
-    }
+        return redirect()->back();
+    }  
 
-    #RESTORE ALL
-    public function restore_all(){
+    /**
+     * restore all post
+     *
+     * @return response()
+     */
+    public function restoreAll()
+    {
         Inquiry::onlyTrashed()->restore();
-        return back()->with('msg', 'All Deleted Inquiries Successfuly Restored');
+  
+        return redirect()->back();
     }
 }
