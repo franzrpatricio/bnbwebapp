@@ -47,15 +47,6 @@
                                 <td>{{$item->question}}</td>
                                 <td>{{$item->answewr}}</td>
 
-<<<<<<< HEAD
-                            <td>
-                                {{-- pass the ID of specific faq --}}
-                                <a href="{{ url('admin/edit-faq/'.$item->id) }}" class="fa-solid fa-pen p-2" style="color:#019ad2;"></a>
-                                <a href="{{url('admin/delete-faq/'.$item->id)}}" class="fa-solid fa-trash p-2" style="color:red;"></a>
-                            </td>
-                        </tr>
-                    @endforeach
-=======
                                 <td>
                                     {{-- pass the ID of specific faq --}}
                                     {{-- <a href="{{ url('admin/edit-faq/'.$item->id) }}">
@@ -88,7 +79,6 @@
                             <td colspan="4" class="text-center">No FAQs Found.</td>
                         </tr>                        
                     @endif
->>>>>>> faqs
                 </tbody>
             </table>
         </div>

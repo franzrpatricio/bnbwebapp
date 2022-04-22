@@ -35,12 +35,9 @@
                     <label>Password</label>
                     <input type="password" required name="password" class="form-control">
                 </div>
-
-                
-                    <div class="mb-3 d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">Save New User</button>
-                    </div>
-              
+                <div class="mb-3 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Save New User</button>
+                </div>
             </form>
         </div>
     </div>

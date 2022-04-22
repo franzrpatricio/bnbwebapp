@@ -121,11 +121,7 @@
                 </a>
                 <div class="collapse" id="collapseInquiryList" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link collapsed link-light" href="{{ url('admin/add-inquirylist') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
-                            Create New Inquiry List
-                        </a>
-                        <a class="nav-link link-light" href="{{ url('admin/inquirylist') }}">
+                        <a class="nav-link link-light" href="{{ url('admin/inquiries') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                             List of Inquiry List
                         </a>
