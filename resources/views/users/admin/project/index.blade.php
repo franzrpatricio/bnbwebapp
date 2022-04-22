@@ -77,17 +77,16 @@
                                                 <i class="fa-solid fa-trash" style="color:red;"></i>
                                             </button>
                                         </form>
-<<<<<<< HEAD
+
                                         {{-- pass the ID of specific category --}}
-<<<<<<< HEAD
-                                        <a href="{{ url('admin/edit-project/'.$item->id) }}" class="fa-solid fa-pen p-2" style="color:#019ad2;"></a>
+
+                                        {{-- <a href="{{ url('admin/edit-project/'.$item->id) }}" class="fa-solid fa-pen p-2" style="color:#019ad2;"></a>
                                         {{-- <a href="{{url('admin/delete-project/'.$item->id)}}" class="fa-solid fa-trash p-2" style="color:red;"></a> --}}
-=======
+{{-- =======
                                         <a href="{{ url('admin/edit-project/'.$item->id) }}" class="btn btn-success">Edit</a>
-                                        <a href="{{url('admin/delete-project/'.$item->id)}}" class="btn btn-danger">Delete</a>
-=======
->>>>>>> project
->>>>>>> modules
+                                        <a href="{{url('admin/delete-project/'.$item->id)}}" class="btn btn-danger">Delete</a> --}}
+
+
                                     @endif
                                 </td>
                             </tr>
