@@ -38,7 +38,7 @@
                             <td>{{$item->id}}</td>
                             <td>{{$item->name}}</td>
                             <td>{{$item->email}}</td>
-                            <td>{{$item->role_as == '1' ? 'Administrator':'Staff'}}</td>
+                            <td>{{$item->role_as == '0' ? 'Administrator':'Staff'}}</td>
 
                             {{-- if status is true, show if not visible || visible --}}
                             {{-- to make the user visible just check the box for status --}}
