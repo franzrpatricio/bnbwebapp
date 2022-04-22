@@ -5,25 +5,22 @@
 <div class="container-fluid px-4">
 <h1 class="mt-5">Manage Projects</h1>
     <div class="card">
-        <div class="card mt-4"></div>
         <div class="card-header">
-            <h4>
-                <div class="sb-nav-link-icon"><i class="fas fa-list"></i>List of Projects</div>
-            </h4>
+            <h4><div class="sb-nav-link-icon"><i class="fas fa-list"></i>List of Projects</div></h4>
 
             <div class="float-end">
                 @if(request()->has('trashed'))
-                    <a href="{{ route('projects.index') }}" class="btn btn-info">View All Projects</a>
-                    <a href="{{ route('projects.restore_all') }}" class="btn btn-success">Restore All</a>
+                    <a href="{{ route('projects.index') }}" class="btn btn-info btn-sm">View All Projects</a>
+                    <a href="{{ route('projects.restore_all') }}" class="btn btn-success btn-sm">Restore All Projects</a>
                 @else
-                    <a href="{{ url('admin/add-houseplan')}}" class="btn btn-primary">
-                        <i class="fas fa-plus-circle"></i>
-                        Create New Projects
-                    </a>
-                    <a href="{{ route('projects.index', ['trashed' => 'post']) }}" class="btn btn-primary">View Deleted Projects</a>
+                    <a href="{{ url('admin/add-project') }}" class="btn btn-primary btn-sm">
+                    <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New Project</div>
+                    <a href="{{ route('projects.index', ['trashed' => 'post']) }}" class="btn btn-primary btn-sm">View Deleted Projects</a>
+                </a>
                 @endif
             </div>
         </div>
+        
         <div class="card-body">
             {{-- display msg after redirecting --}}
             @if (session('msg'))
@@ -64,12 +61,12 @@
 
                                 {{-- if status is true, show if not visible || visible --}}
                                 {{-- to make the project visible just check the box for status --}}
-                                <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td>
+                                <td>{{$item->status == '0' ? 'Active':'Inactive'}}</td>
                                 <td>
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('projects.restore', $item->id) }}" class="btn btn-success">Restore</a>
                                     @else
-                                        <a href="{{ url('edit-project/'.$item->id) }}"><i class="fas fa-pen"></i></a>
+                                        <a href="{{ url('admin/edit-project/'.$item->id) }}"><i class="fas fa-pen"></i></a>
                                         <form method="POST" action="{{ route('projects.destroy', $item->id) }}">
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
@@ -83,8 +80,8 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="4" class="text-center">No Projects Found.</td>
-                        </tr>     
+                            <td colspan="4" class="text-center">No Projects Found. 🥺</td>
+                        </tr>
                     @endif
                 </tbody>
             </table>

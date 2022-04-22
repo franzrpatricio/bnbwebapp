@@ -18,6 +18,8 @@ class ProjectsController extends Controller
         if ($request->has('trashed')) {
             # code...
             $projects = Projects::onlyTrashed()->get();
+        }else {
+            $projects = Projects::get();
         }
         return view('users.admin.project.index', compact('projects'));
     }
@@ -127,12 +129,12 @@ class ProjectsController extends Controller
     #RESTORE SINGLE
     public function restore($project_id){
         Projects::withTrashed()->find($project_id)->restore();
-        return back()->with('msg','Post Successfully Restored');
+        return redirect('admin/projects')->with('msg','Post Successfully Restored');
     }
 
     #RESTORE ALL
     public function restore_all(){
         Projects::onlyTrashed()->restore();
-        return back()->with('msg', 'All Projects Successfuly Restored');
+        return redirect('admin/projects')->with('msg','Successfully Restored Projects');
     }
 }
