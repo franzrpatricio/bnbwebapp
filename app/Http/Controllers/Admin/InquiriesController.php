@@ -83,7 +83,7 @@ class InquiriesController extends Controller
      *
      * @return response()
      */
-    public function restoreAll()
+    public function restore_all()
     {
         Inquiry::onlyTrashed()->restore();
   

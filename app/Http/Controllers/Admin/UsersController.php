@@ -39,7 +39,7 @@ class UsersController extends Controller
         #VIEW category create form
         return view('users.admin.users.create');
     }
-    public function store(UserFormRequest $request){
+    public function store(Request $request){
         #BACKEND PART...CONTROLLER COMMUNICATING WITH MODEL
         #UserFormRequest=FormValidation before inserting data...
         $data = $request->validated();
@@ -51,7 +51,7 @@ class UsersController extends Controller
         $users->status = $request->status == true ? '1':'0';
 
         #save the category
-        $users->save();
+        // $users->save();
         #redirect with message;see in index.blade.php
         return redirect('admin/users')->with('msg','Successfully Added New Staff. Thanks!');
     }
@@ -101,7 +101,7 @@ class UsersController extends Controller
     #RESTORE SINGLE
     public function restore($users_id){
         User::withTrashed()->find($users_id)->restore();
-        return redirect('admin/projects')->with('msg','User Successfully Restored');
+        return redirect('admin/users')->with('msg','User Successfully Restored');
     }
 
     #RESTORE ALL
