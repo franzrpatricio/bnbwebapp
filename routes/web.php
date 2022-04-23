@@ -107,7 +107,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #USER ADMINISTRATOR
     #READ
     
-    Route::get('users', [App\Http\Controllers\Admin\UsersController::class, 'index']);
+    Route::get('users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('users.index');
     #CREATE
     Route::get('add-user', [App\Http\Controllers\Admin\UsersController::class, 'create']);
     Route::post('add-user', [App\Http\Controllers\Admin\UsersController::class, 'store']);
@@ -115,10 +115,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('edit-user/{users_id}', [App\Http\Controllers\Admin\UsersController::class, 'edit']);
     Route::put('update-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'update']);
     #DELETE
-    Route::get('delete-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'destroy']);
+    Route::delete('delete-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'destroy'])->name('users.destroy');
     #RESTORE
-    Route::get('restore-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'restore']);
-    Route::get('restore-users/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'restore_all']);
+    Route::get('restore-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'restore'])->name('users.restore');
+    Route::get('users/restore-users',[App\Http\Controllers\Admin\UsersController::class, 'restore_all'])->name('users.restore_all');
     
     #USER STAFF
     #VIEW PROFILE
