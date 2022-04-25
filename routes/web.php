@@ -37,7 +37,7 @@ Route::post('/botman',function(){
 #middleware auth checks user authentication to prevent user to access admin panel w/o logging in
 
 #admin pages
-Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
+Route::prefix('admin')->middleware(['auth','isAdmin','verified'])->group(function(){
     #PUT ALL YOUR ADMIN CONTROLLERS HERE
     #ADMIN DASHBOARD VIEW
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
@@ -100,7 +100,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
 
 // #staff pages
-// Route::prefix('staff')->middleware(['auth','isStaff'])->group(function(){
+// Route::prefix('staff')->middleware(['auth','isStaff','verified'])->group(function(){
 //     Route::get('/dashboard',[App\Http\Controllers\Staff\DashboardController::class, 'index']);
 
 //     #CATEGORY CRUD
