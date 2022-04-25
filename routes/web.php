@@ -141,16 +141,11 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #DELETE
     Route::delete('delete-faq/{faq_id}', [App\Http\Controllers\Admin\FaqsController::class, 'destroy'])->name('faqs.destroy');
     #RESTORE
-<<<<<<< HEAD
-    Route::get('restore-faq/{faq_id}',[App\Http\Controllers\Admin\FaqsController::class, 'restore'])->name('faqs.restore');
-    Route::get('restore-faqs',[App\Http\Controllers\Admin\FaqsController::class, 'restore_all'])->name('faqs.restore_all');
-=======
     Route::get('restore-faq/{faq_id}',[App\Http\Controllers\FaqsController::class, 'restore']);
     Route::get('restore-faqs/{faq_id}',[App\Http\Controllers\FaqsController::class, 'restore_all']);
     Route::get('profile_settings', [App\Http\Controllers\Admin\ProfileController::class, 'profile_settings']);
 
     
->>>>>>> users
 
     #INQUIRY CRUD
     #READ
