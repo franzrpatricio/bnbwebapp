@@ -21,6 +21,8 @@ class HousePlanController extends Controller
             $houseplan = HousePlan::get();
         }
 
+        #get all houseplans
+        $houseplan = HousePlan::all();
         return view('users.admin.houseplan.index', compact('houseplan'));
     }
 

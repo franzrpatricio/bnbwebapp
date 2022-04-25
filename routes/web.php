@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HousePlanController;
 use App\Http\Controllers\Admin\InquiriesController;
+use App\Http\Controllers\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -125,7 +126,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #EDIT PROFILE
     Route::get('profile/edit-profile', [App\Http\Controllers\Admin\UsersController::class, 'editProfile']);
     Route::put('profile/update-profile',[App\Http\Controllers\Admin\UsersController::class, 'updateProfile']);
-
+    
+    Route::get('/changePassword', [App\Http\Controllers\Admin\ProfileController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+    Route::post('/changePassword', [App\Http\Controllers\Admin\ProfileController::class, 'changePasswordPost'])->name('changePasswordPost');
     #FAQS CRUD 
     #READ
     Route::get('faqs', [App\Http\Controllers\Admin\FaqsController::class, 'index'])->name('faqs.index');
@@ -138,8 +141,16 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #DELETE
     Route::delete('delete-faq/{faq_id}', [App\Http\Controllers\Admin\FaqsController::class, 'destroy'])->name('faqs.destroy');
     #RESTORE
+<<<<<<< HEAD
     Route::get('restore-faq/{faq_id}',[App\Http\Controllers\Admin\FaqsController::class, 'restore'])->name('faqs.restore');
     Route::get('restore-faqs',[App\Http\Controllers\Admin\FaqsController::class, 'restore_all'])->name('faqs.restore_all');
+=======
+    Route::get('restore-faq/{faq_id}',[App\Http\Controllers\FaqsController::class, 'restore']);
+    Route::get('restore-faqs/{faq_id}',[App\Http\Controllers\FaqsController::class, 'restore_all']);
+    Route::get('profile_settings', [App\Http\Controllers\Admin\ProfileController::class, 'profile_settings']);
+
+    
+>>>>>>> users
 
     #INQUIRY CRUD
     #READ
@@ -153,6 +164,51 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
     #The fundamental difference between the POST and PUT requests is reflected in the different meaning of the Request-URI. The URI in a POST request identifies the resource that will handle the enclosed entity... In contrast, the URI in a PUT request identifies the entity enclosed with the request.
 });
-Auth::routes();
+
+
+// #staff pages
+// Route::prefix('staff')->middleware(['auth','isStaff'])->group(function(){
+//     Route::get('/dashboard',[App\Http\Controllers\Staff\DashboardController::class, 'index']);
+
+//     #CATEGORY CRUD
+//     #READ
+//     Route::get('category', [App\Http\Controllers\Staff\CategoryController::class, 'index']);
+//     #CREATE
+//     Route::get('add-category', [App\Http\Controllers\Staff\CategoryController::class, 'create']);
+//     Route::post('add-category', [App\Http\Controllers\Staff\CategoryController::class, 'store']);
+//     #UPDATE
+//     Route::get('edit-category/{category_id}', [App\Http\Controllers\Staff\CategoryController::class, 'edit']);
+//     Route::put('update-category/{category_id}',[App\Http\Controllers\Staff\CategoryController::class, 'update']);
+//     #DELETE
+//     Route::get('delete-category/{category_id}',[App\Http\Controllers\Staff\CategoryController::class, 'destroy']);
+
+//     #PROJECTS CRUD
+//     #READ
+//     Route::get('projects', [App\Http\Controllers\Staff\ProjectsController::class, 'index']);
+//     #CREATE
+//     Route::get('add-project', [App\Http\Controllers\Staff\ProjectsController::class, 'create']);
+//     Route::post('add-project', [App\Http\Controllers\Staff\ProjectsController::class, 'store']);
+//     #UPDATE
+//     Route::get('edit-project/{project_id}', [App\Http\Controllers\Staff\ProjectsController::class, 'edit']);
+//     Route::put('update-project/{project_id}',[App\Http\Controllers\Staff\ProjectsController::class, 'update']);
+//     #DELETE
+//     Route::get('delete-project/{project_id}',[App\Http\Controllers\Staff\ProjectsController::class, 'destroy']);
+
+
+//     #HOUSE PLAN CRUD
+//     #READ
+//     Route::get('houseplan', [App\Http\Controllers\Staff\HousePlanController::class, 'index']);
+//     #CREATE
+//     Route::get('add-houseplan', [App\Http\Controllers\Staff\HousePlanController::class, 'create']);
+//     Route::post('add-houseplan', [App\Http\Controllers\Staff\HousePlanController::class, 'store']);
+//     #UPDATE
+//     Route::get('edit-houseplan/{houseplan_id}', [App\Http\Controllers\Staff\HousePlanController::class, 'edit']);
+//     Route::put('update-houseplan/{houseplan_id}',[App\Http\Controllers\Staff\HousePlanController::class, 'update']);
+//     #DELETE
+//     Route::get('delete-houseplan/{houseplan_id}',[App\Http\Controllers\Staff\HousePlanController::class, 'destroy']);
+
+//     #USERS CRUD -> view & update his own account only
+// });
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

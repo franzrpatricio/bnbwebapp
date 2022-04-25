@@ -17,19 +17,12 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        #CHECK USER IF LOGGED IN
         if(Auth::check()){
-            if (Auth::user()->role_as=='0') {
-                #role_as == 1 = staff
-                #role_as == 0 = admin
-                # code... 
-                return $next($request);
-            }else {
-                # code...
-                return redirect('/home')->with('status','Access Denied! Not an Admin.');
-            }
+             return $next($request);
         }else {
             #if not authenticated
-            return redirect('/login')->with('status','Log In First!');
+            return redirect('/login')->with('msg','Log In First!');
         }
     }
 }

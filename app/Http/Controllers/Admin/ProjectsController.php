@@ -13,15 +13,18 @@ use Illuminate\Support\Facades\Auth;
 class ProjectsController extends Controller
 {
     #VIEW
-    public function index(Request $request){
-        // $projects = Projects::all();
-        if ($request->has('trashed')) {
-            # code...
-            $projects = Projects::onlyTrashed()->get();
+    public function index(ProjectFormRequest $request){
+        if(Auth::check()){
+            $projects = Projects::all();
+            if ($request->has('view_deleted')) {
+                # code...
+                $projects = Projects::onlyTrashed()->get();
+            }
+            return view('users.admin.project.index', compact('projects'));
         }else {
-            $projects = Projects::get();
+            #if not authenticated
+            return redirect('/login')->with('status','Log In First!');
         }
-        return view('users.admin.project.index', compact('projects'));
     }
     #CREATE
     public function create(){
