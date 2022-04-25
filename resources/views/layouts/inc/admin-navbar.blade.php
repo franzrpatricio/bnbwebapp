@@ -14,7 +14,7 @@
                 {{-- <i class="fas fa-user fa-fw"></i> --}}
                 {{-- <img src="assets/images/aj.jpg"> --}}
                 {{-- <img src="../assets/images/aj.jpg" class="rounded-circle" width="40px" height="40px"> --}}
-                <small>Franz Patricio</small></a>
+                <small>{{Auth::user()->name}}</small></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#!">Settings</a></li>
                 <li><a class="dropdown-item" href="#!">Activity Log</a></li>

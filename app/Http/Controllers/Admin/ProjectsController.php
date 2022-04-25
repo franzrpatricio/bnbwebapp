@@ -28,7 +28,7 @@ class ProjectsController extends Controller
         #FORM
         #1 means visible
         #show all categories and houseplans with status == 1
-        $category = Category::where('status', '1')->get(); 
+        $category = Category::where('status', '0')->get(); 
         $houseplan = HousePlan::where('status', '1')->get();
         return view('users.admin.project.create', compact('category','houseplan'));
         #if you want to get multiple conditions in where(), use array
@@ -72,7 +72,7 @@ class ProjectsController extends Controller
     }
     #VIEW specific project
     public function edit($project_id){
-        $category = Category::where('status', '1')->get(); 
+        $category = Category::where('status', '0')->get(); 
         $houseplan = HousePlan::where('status', '1')->get();
         $project = Projects::find($project_id);
         return view('users.admin.project.edit', compact('project', 'category','houseplan'));
@@ -108,7 +108,7 @@ class ProjectsController extends Controller
         $project->meta_description = $data['meta_description'];
         $project->meta_keyword = $data['meta_keyword'];
         
-        $project->status = $request->status ==true ? '1':'0';
+        $project->status = $request->status ==true ? '0':'1';
         $project->posted_by = Auth::user()->id;
         $project->update();
         return redirect('admin/projects')->with('msg','Successfully Updated Project');

@@ -137,11 +137,11 @@ class CategoryController extends Controller
         if ($category) {
             # code...
             #write condiiton to delete image
-            $destination = 'uploads/category/'.$category->image;
-            if (File::exists($destination)) {
-                # code...
-                File::delete($destination);
-            }
+            // $destination = 'uploads/category/'.$category->image;
+            // if (File::exists($destination)) {
+            //     # code...
+            //     File::delete($destination);
+            // }
             #then delete all data based from id
             $category->delete();
             return redirect('admin/categories')->with('msg','Successfully Deleted Category');
