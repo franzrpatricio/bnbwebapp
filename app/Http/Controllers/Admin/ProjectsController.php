@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Auth;
 class ProjectsController extends Controller
 {
     #VIEW
-    public function index(ProjectFormRequest $request){
+    public function index(Request $request){
         if(Auth::check()){
             $projects = Projects::all();
-            if ($request->has('view_deleted')) {
+            if ($request->has('trashed')) {
                 # code...
                 $projects = Projects::onlyTrashed()->get();
             }
@@ -31,7 +31,7 @@ class ProjectsController extends Controller
         #FORM
         #1 means visible
         #show all categories and houseplans with status == 1
-        $category = Category::where('status', '1')->get(); 
+        $category = Category::where('status', '0')->get(); 
         $houseplan = HousePlan::where('status', '1')->get();
         return view('users.admin.project.create', compact('category','houseplan'));
         #if you want to get multiple conditions in where(), use array
@@ -75,7 +75,7 @@ class ProjectsController extends Controller
     }
     #VIEW specific project
     public function edit($project_id){
-        $category = Category::where('status', '1')->get(); 
+        $category = Category::where('status', '0')->get(); 
         $houseplan = HousePlan::where('status', '1')->get();
         $project = Projects::find($project_id);
         return view('users.admin.project.edit', compact('project', 'category','houseplan'));

@@ -6,18 +6,25 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\UserFormRequest;
 
 class UsersController extends Controller
 {
-    public function index(){
-        #ONLY FOR ADMINISTRATOR, NOT STAFF
+    public function index(Request $request){
         if(Auth::check()){
             if (Auth::user()->role_as=='0' ) {
                 #role_as == 1 = staff
                 #role_as == 0 = admin
                 # code... 
-                $users = User::all();
+                $users = User::get();
+                if ($request->has('trashed')) {
+                    # code...
+                    $users = User::onlyTrashed()->get();
+                }else {
+                    $users = User::get();
+                }
+
                 return view('users.admin.users.index', compact('users'));
             }else {
                 # code...
@@ -26,39 +33,27 @@ class UsersController extends Controller
         }else {
             #if not authenticated
             return redirect('/login')->with('status','Log In First!');
-        }
-
-        
+        }        
     }
     public function create(){
         #VIEW category create form
         return view('users.admin.users.create');
     }
-    public function store(Request $request){
+    public function store(UserFormRequest $request){
         #BACKEND PART...CONTROLLER COMMUNICATING WITH MODEL
-        #CategoryFormRequest=FormValidation before inserting data...
-        // $data = $request->validated();
-        // $users = new User();
-        // $users->name = $data['name'];
-        // $users->email = $data['email'];
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email',
-        ]);
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt('STAFFpassword123')
-            #set this default password for every staff
-            #then they change it later
-        ]);
-        #get id of authenticated user who posted
-        // $users->created_by = Auth::user()->id;
-        #after everything....
+        #UserFormRequest=FormValidation before inserting data...
+        $data = $request->validated();
+        $users = new User();
+        $users->name = $data['name'];
+        $users->email = $data['email'];
+        $users->password = Hash::make($data['password']);
+        $users->role_as = $request->role_as == true ? '1':'0';
+        $users->status = $request->status == true ? '1':'0';
+
         #save the category
-        // $users->save();
+        $users->save();
         #redirect with message;see in index.blade.php
-        return redirect('admin/users')->with('msg','Successfully Added New Staff. Thanks!');
+        return redirect('admin/users')->with('msg','Successfully Added New User. Thanks!');
     }
     #VIEW specific project
     public function edit($users_id){
@@ -102,5 +97,16 @@ class UsersController extends Controller
         }else {
             return redirect('admin/users')->with('msg','No User ID found');
         }
+    }
+    #RESTORE SINGLE
+    public function restore($users_id){
+        User::withTrashed()->find($users_id)->restore();
+        return redirect('admin/users')->with('msg','User Successfully Restored');
+    }
+
+    #RESTORE ALL
+    public function restore_all(){
+        User::onlyTrashed()->restore();
+        return redirect('admin/projects')->with('msg','Successfully Restored Users');
     }
 }

@@ -87,7 +87,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::delete('delete-project/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'destroy'])->name('projects.destroy');
     #RESTORE
     Route::get('restore-project/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'restore'])->name('projects.restore');
-    Route::get('projetcs/restore-projects',[App\Http\Controllers\Admin\ProjectsController::class, 'restore_all'])->name('projects.restore_all');
+    Route::get('projects/restore-projects',[App\Http\Controllers\Admin\ProjectsController::class, 'restore_all'])->name('projects.restore_all');
 
     #HOUSE PLAN CRUD
     #READ
@@ -107,8 +107,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #USERS CRUD
     #USER ADMINISTRATOR
     #READ
-    
-    Route::get('users', [App\Http\Controllers\Admin\UsersController::class, 'index']);
+    Route::get('users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('users.index');
     #CREATE
     Route::get('add-user', [App\Http\Controllers\Admin\UsersController::class, 'create']);
     Route::post('add-user', [App\Http\Controllers\Admin\UsersController::class, 'store']);
@@ -116,10 +115,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('edit-user/{users_id}', [App\Http\Controllers\Admin\UsersController::class, 'edit']);
     Route::put('update-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'update']);
     #DELETE
-    Route::get('delete-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'destroy']);
+    Route::delete('delete-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'destroy'])->name('users.destroy');
     #RESTORE
-    Route::get('restore-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'restore']);
-    Route::get('restore-users/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'restore_all']);
+    Route::get('restore-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'restore'])->name('users.restore');
+    Route::get('users/restore-users',[App\Http\Controllers\Admin\UsersController::class, 'restore_all'])->name('users.restore_all');
     
     #USER STAFF
     #VIEW PROFILE
@@ -160,51 +159,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
     #The fundamental difference between the POST and PUT requests is reflected in the different meaning of the Request-URI. The URI in a POST request identifies the resource that will handle the enclosed entity... In contrast, the URI in a PUT request identifies the entity enclosed with the request.
 });
-
-
-// #staff pages
-// Route::prefix('staff')->middleware(['auth','isStaff'])->group(function(){
-//     Route::get('/dashboard',[App\Http\Controllers\Staff\DashboardController::class, 'index']);
-
-//     #CATEGORY CRUD
-//     #READ
-//     Route::get('category', [App\Http\Controllers\Staff\CategoryController::class, 'index']);
-//     #CREATE
-//     Route::get('add-category', [App\Http\Controllers\Staff\CategoryController::class, 'create']);
-//     Route::post('add-category', [App\Http\Controllers\Staff\CategoryController::class, 'store']);
-//     #UPDATE
-//     Route::get('edit-category/{category_id}', [App\Http\Controllers\Staff\CategoryController::class, 'edit']);
-//     Route::put('update-category/{category_id}',[App\Http\Controllers\Staff\CategoryController::class, 'update']);
-//     #DELETE
-//     Route::get('delete-category/{category_id}',[App\Http\Controllers\Staff\CategoryController::class, 'destroy']);
-
-//     #PROJECTS CRUD
-//     #READ
-//     Route::get('projects', [App\Http\Controllers\Staff\ProjectsController::class, 'index']);
-//     #CREATE
-//     Route::get('add-project', [App\Http\Controllers\Staff\ProjectsController::class, 'create']);
-//     Route::post('add-project', [App\Http\Controllers\Staff\ProjectsController::class, 'store']);
-//     #UPDATE
-//     Route::get('edit-project/{project_id}', [App\Http\Controllers\Staff\ProjectsController::class, 'edit']);
-//     Route::put('update-project/{project_id}',[App\Http\Controllers\Staff\ProjectsController::class, 'update']);
-//     #DELETE
-//     Route::get('delete-project/{project_id}',[App\Http\Controllers\Staff\ProjectsController::class, 'destroy']);
-
-
-//     #HOUSE PLAN CRUD
-//     #READ
-//     Route::get('houseplan', [App\Http\Controllers\Staff\HousePlanController::class, 'index']);
-//     #CREATE
-//     Route::get('add-houseplan', [App\Http\Controllers\Staff\HousePlanController::class, 'create']);
-//     Route::post('add-houseplan', [App\Http\Controllers\Staff\HousePlanController::class, 'store']);
-//     #UPDATE
-//     Route::get('edit-houseplan/{houseplan_id}', [App\Http\Controllers\Staff\HousePlanController::class, 'edit']);
-//     Route::put('update-houseplan/{houseplan_id}',[App\Http\Controllers\Staff\HousePlanController::class, 'update']);
-//     #DELETE
-//     Route::get('delete-houseplan/{houseplan_id}',[App\Http\Controllers\Staff\HousePlanController::class, 'destroy']);
-
-//     #USERS CRUD -> view & update his own account only
-// });
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
