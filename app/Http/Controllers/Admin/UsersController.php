@@ -11,11 +11,7 @@ use App\Http\Requests\Admin\UserFormRequest;
 class UsersController extends Controller
 {
     public function index(){
-<<<<<<< HEAD
-
-=======
         #ONLY FOR ADMINISTRATOR, NOT STAFF
->>>>>>> modules
         if(Auth::check()){
             if (Auth::user()->role_as=='0' ) {
                 #role_as == 1 = staff

@@ -59,7 +59,9 @@
                                         <form method="POST" action="{{ route('inquiries.destroy', $item->id) }}">
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
-                                            <button type="submit" class="btn btn-danger delete" title='Delete'>Delete</button>
+                                            <button type="submit" class="btn delete" title='Delete'>
+                                                <i class="fa-solid fa-trash" style="color:red;"></i>
+                                            </button>
                                         </form>
                                     @endif
                                 </td>
