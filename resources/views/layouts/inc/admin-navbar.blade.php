@@ -19,9 +19,8 @@
                 {{-- <img src="../assets/images/aj.jpg" class="rounded-circle" width="40px" height="40px"> --}}
                 <small>Franz Patricio</small></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#!">Settings</a></li>
-                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="{{ url('admin/profilesettings') }}">Settings</a></li>
+                
                 <li><a class="dropdown-item" href="#!">Logout</a></li>
             </ul>
         </li>

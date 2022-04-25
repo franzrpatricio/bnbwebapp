@@ -22,7 +22,7 @@
     <div class="tab-pane fade active show" id="account-general">
         <div class="text-center">
 
-        <img class="profile-pic" src="../images/aj.jpg" alt="" style="border-radius: 100px; width: 200px; height: 200px; align-items: center; padding: 10px;">
+        <img class="profile-pic" src="{{ asset('assets/images/aj.jpg') }}" alt="" style="border-radius: 100px; width: 200px; height: 200px; align-items: center; padding: 10px;">
 
         <div class="ml-4 sm-12">
           <label class="btn btn-outline-primary">
