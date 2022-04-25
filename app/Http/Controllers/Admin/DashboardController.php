@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+<<<<<<< HEAD
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\HousePlan;
 use App\Models\Projects;
+=======
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+>>>>>>> modules
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller

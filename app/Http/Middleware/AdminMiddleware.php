@@ -17,7 +17,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        #CHECK USER IF LOGGED IN
         if(Auth::check()){
+<<<<<<< HEAD
             if (Auth::user()->role_as=='0' ||Auth::user()->role_as=='1'  ) {
                 #role_as == 1 = staff
                 #role_as == 0 = admin
@@ -27,9 +29,12 @@ class AdminMiddleware
                 # code...
                 return redirect('/home')->with('status','Access Denied! Not an Admin.');
             }
+=======
+             return $next($request);
+>>>>>>> modules
         }else {
             #if not authenticated
-            return redirect('/login')->with('status','Log In First!');
+            return redirect('/login')->with('msg','Log In First!');
         }
     }
 }
