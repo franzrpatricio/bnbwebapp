@@ -6,7 +6,6 @@
 <h1 class="mt-5">Manage Users</h1>
 
     <div class="card">
-        <div class="card mt-4"></div>
         <div class="card-header">
             <h4><div class="sb-nav-link-icon"><i class="fas fa-list"></i>List of Users</div>
                 <a href="{{ url('admin/add-user') }}" class="btn btn-primary btn-sm float-end">
@@ -20,7 +19,7 @@
             <div class="alert alert-success">{{ session('msg') }}</div>
             @endif
 
-            <table class="table table-bordered">
+            <table id="example" class="table table-bordered">
                 <thead>
                     <tr class="text-center">
                         <th>ID</th>

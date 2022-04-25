@@ -28,7 +28,7 @@
                 <div class="alert alert-success">{{ session('msg') }}</div>
             @endif
 
-            <table class="table table-bordered">
+            <table id="example" class="table table-bordered">
                 <thead>
                     <tr class="text-center">
                         <th>ID</th>
