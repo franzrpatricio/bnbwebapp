@@ -27,7 +27,7 @@
                 <div class="ml-4 sm-12">
                   <label class="btn btn-outline-primary">
                     Upload new photo
-                    <input type="file" class="account-settings-fileinput">
+                    <input type="file" class="account-settings-fileinput" style="position: absolute; visibility: hidden; width: 1px;height: 1px; opacity: 0;">
                   </label> &nbsp;
               </div>
     </div>
