@@ -22,7 +22,7 @@
             <div class="tab-pane fade active show" id="account-general">
     <div class="text-center">
     
-                <img class="profile-pic" src="../images/aj.jpg" alt="" style="border-radius: 100px; width: 200px; height: 200px; align-items: center; padding: 10px;">
+                <img class="profile-pic" src="{{ asset('assets/images/aj.jpg') }}" alt="" style="border-radius: 100px; width: 200px; height: 200px; align-items: center; padding: 10px;">
     
                 <div class="ml-4 sm-12">
                   <label class="btn btn-outline-primary">
@@ -41,36 +41,69 @@
                 </div>
                 <div class="form-group">
                   <label class="form-label">Name</label>
-                  <input type="text" class="form-control" value="Enter your Name">
+                  <input type="text" class="form-control" value="{{ Auth::user()->name }}">
                 </div>
                 <div class="form-group">
                   <label class="form-label">E-mail</label>
-                  <input type="text" class="form-control mb-1" value="Enter your Email">
+                  <input type="text" class="form-control mb-1" value="{{ Auth::user()->email }}">
                   
                 </div>
                 
               </div>
+              
     
             </div>
             <div class="tab-pane fade" id="account-change-password">
               <div class="card-body pb-2">
+
+              @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if($errors)
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger">{{ $error }}</div>
+                        @endforeach
+                    @endif
+            <form class="form-horizontal" method="POST" action="{{ route('changePasswordPost') }}">
+                        {{ csrf_field() }}
     
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
                   <label class="form-label">Current password</label>
-                  <input type="password" class="form-control">
+                  <input id="current-password" type="password" class="form-control" name="current-password" required>
+                  @if ($errors->has('current-password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('current-password') }}</strong>
+                                    </span>
+                                @endif
                 </div>
     
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
                   <label class="form-label">New password</label>
-                  <input type="password" class="form-control">
+                  <input id="new-password" type="password" class="form-control" name="new-password" required>
+                  @if ($errors->has('new-password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('new-password') }}</strong>
+                                    </span>
+                                @endif
                 </div>
     
                 <div class="form-group">
                   <label class="form-label">Repeat new password</label>
-                  <input type="password" class="form-control">
+                  <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" required>
                 </div>
     
               </div>
+                <div class="text-right mt-3 p-3">
+                  <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
+                  <button type="button" class="btn btn-default">Cancel</button>
+                </div>
             </div>
 
             <div class="tab-pane fade" id="activity-logs">
@@ -108,10 +141,7 @@
     </div>
            
     
-    <div class="text-right mt-3 p-3">
-      <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
-      <button type="button" class="btn btn-default">Cancel</button>
-    </div>
+    
     
     </div>
 @endsection

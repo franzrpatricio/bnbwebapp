@@ -122,10 +122,14 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     
     #USER STAFF
     #VIEW PROFILE
-    Route::get('profile', [App\Http\Controllers\Admin\UsersController::class, 'profile']);
+    Route::get('profile', [App\Http\Controllers\Admin\ProfileController::class, 'profile']);
     #EDIT PROFILE
     Route::get('profile/edit-profile', [App\Http\Controllers\Admin\UsersController::class, 'editProfile']);
     Route::put('profile/update-profile',[App\Http\Controllers\Admin\UsersController::class, 'updateProfile']);
+    #CHANGEPASS
+    Route::get('profilesettings', [App\Http\Controllers\Admin\ProfileController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+    Route::post('profilesettings', [App\Http\Controllers\Admin\ProfileController::class, 'changePasswordPost'])->name('changePasswordPost');
+
 
     #FAQS CRUD 
     #READ
