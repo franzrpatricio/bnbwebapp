@@ -30,6 +30,10 @@ class UsersController extends Controller
 
         
     }
+    public function profile(){
+        $user = User::find(Auth::user()->id);
+        return view('users.profilesettings', compact('user'));
+    }
     public function create(){
         #VIEW category create form
         return view('users.admin.users.create');
