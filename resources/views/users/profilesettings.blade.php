@@ -14,7 +14,7 @@
           <div class="list-group list-group-flush account-settings-links">
             <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
-    
+            <a class="list-group-item list-group-item-action" data-toggle="list" href="#activity-logs">Activity Logs</a>
           </div>
         </div>
         <div class="col-md-9">
@@ -72,6 +72,40 @@
     
               </div>
             </div>
+
+            <div class="tab-pane fade" id="activity-logs">
+              <div class="card-body pb-2">
+    
+              <table class="table bg-white" >
+                <thead class="bg-dark text-light">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                    <th>Date</th>
+                </thead>
+                <tbody>
+                   
+                    <tr>
+                        <td data-title="ID">1</td>
+                        <td data-title="Name">Arthur John B. Cotoner</td>
+                        <td data-title="Action">Login</td>
+                        <td data-title="Date">3-27-2022</td>
+    
+                    </tr>
+                    <tr>
+                        <td data-title="ID">2</td>
+                        <td data-title="Name">Renz Bana</td>
+                        <td data-title="Action">Login</td>
+                        <td data-title="Date">3-22-2022</td>
+    
+                    </tr>
+                   
+                </tbody>
+            </table>
+    
+              </div>
+            </div>
+    </div>
            
     
     <div class="text-right mt-3 p-3">
