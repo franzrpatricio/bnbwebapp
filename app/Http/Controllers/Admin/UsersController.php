@@ -17,12 +17,12 @@ class UsersController extends Controller
                 #role_as == 1 = staff
                 #role_as == 0 = admin
                 # code... 
-                $users = User::get();
+                // $users = User::paginate(5);
                 if ($request->has('trashed')) {
                     # code...
-                    $users = User::onlyTrashed()->get();
+                    $users = User::onlyTrashed()->paginate(3);
                 }else {
-                    $users = User::get();
+                    $users = User::paginate(3);
                 }
 
                 return view('users.admin.users.index', compact('users'));
@@ -107,6 +107,23 @@ class UsersController extends Controller
     #RESTORE ALL
     public function restore_all(){
         User::onlyTrashed()->restore();
-        return redirect('admin/projects')->with('msg','Successfully Restored Users');
+        return redirect('admin/users')->with('msg','Successfully Restored Users');
+    }
+
+    #SEARCH
+    public function search(Request $request){
+        $find_this = $request->get('query');
+        $users = User::where('id', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('name', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('email', 'LIKE', '%'.$find_this.'%')
+            // ->orWhere('role_as', 'LIKE', '%'.$find_this.'%')
+            // ->orWhere('status', 'LIKE', '%'.$find_this.'%')
+            ->paginate(2);
+        if (count ($users) > 0) {
+            return view('users.admin.users.index', compact('users'));
+        } else {
+            # code...
+            return view ('users.admin.users.index', compact('users'))->with( 'No Users Found. 🥺' );
+        }
     }
 }

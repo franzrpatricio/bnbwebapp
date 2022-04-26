@@ -14,12 +14,12 @@ class ProjectsController extends Controller
 {
     #VIEW
     public function index(Request $request){
-        $projects = Projects::get();
+        // $projects = Projects::get();
         if ($request->has('trashed')) {
             # code...
-            $projects = Projects::onlyTrashed()->get();
+            $projects = Projects::onlyTrashed()->paginate(3);
         }else {
-            $projects = Projects::get();
+            $projects = Projects::paginate(3);
         }
         return view('users.admin.project.index', compact('projects'));
     }
@@ -136,5 +136,21 @@ class ProjectsController extends Controller
     public function restore_all(){
         Projects::onlyTrashed()->restore();
         return redirect('admin/projects')->with('msg','Successfully Restored Projects');
+    }
+
+    #SEARCH
+    public function search(Request $request){
+        $find_this = $request->get('query');
+        $projects = Projects::where('id', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('name', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('cost', 'LIKE', '%'.$find_this.'%')
+            ->with('category', 'houseplan')
+            ->paginate(2);
+        if (count ($projects) > 0) {
+            return view('users.admin.project.index', compact('projects'));
+        } else {
+            # code...
+            return view ('users.admin.project.index', compact('projects'))->with( 'No Projects Found. 🥺' );
+        }
     }
 }

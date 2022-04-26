@@ -8,7 +8,20 @@
     <div class="card">
         <div class="card mt-4"></div>
         <div class="card-header">
-            <h4><div class="sb-nav-link-icon"><i class="fas fa-list"></i>List of Users</div></h4>
+            <h4>
+                <div class="sb-nav-link-icon">
+                    <i class="fas fa-list"></i>List of Users
+                    
+                    <!-- Navbar Search-->
+                    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('admin/users/find')}}">
+                        @csrf
+                        <div class="input-group">
+                            <input class="form-control" name="query" type="search" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                            <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </h4>
             <div class="float-end">
                 @if(request()->has('trashed'))
                     <a href="{{ route('users.index') }}" class="btn btn-info btn-sm">View All Users</a>
@@ -20,6 +33,7 @@
                     </a>
                 @endif
             </div>
+
         </div>
         <div class="card-body">
             {{-- display msg after redirecting --}}
@@ -40,7 +54,7 @@
                 </thead>
 
                 <tbody>
-                    @if (count($users)>0)
+                    {{-- @if (count($users)>0) --}}
                         @foreach ($users as $item)    
                             <tr class="text-center">
                                 <td>{{$item->id}}</td>
@@ -68,13 +82,14 @@
                                 </td>
                             </tr>
                         @endforeach
-                    @else
+                    {{-- @else
                         <tr>
                             <td colspan="4" class="text-center">No Users Found. 🥺</td>
                         </tr>
-                    @endif
+                    @endif --}}
                 </tbody>
             </table>
+            {{ $users->links() }}
         </div>
     </div>
 </div>

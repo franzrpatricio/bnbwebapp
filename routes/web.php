@@ -72,6 +72,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #RESTORE
     Route::get('restore-category/{category_id}',[App\Http\Controllers\Admin\CategoryController::class, 'restore'])->name('categories.restore');
     Route::get('categories/restore-all',[App\Http\Controllers\Admin\CategoryController::class, 'restore_all'])->name('categories.restore_all');
+    #SEARCH
+    Route::get('categories/find', [App\Http\Controllers\Admin\CategoryController::class, 'search']);
 
     #PROJECTS CRUD
     #READ
@@ -87,6 +89,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #RESTORE
     Route::get('restore-project/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class, 'restore'])->name('projects.restore');
     Route::get('projetcs/restore-projects',[App\Http\Controllers\Admin\ProjectsController::class, 'restore_all'])->name('projects.restore_all');
+    #SEARCH
+    Route::get('projects/find', [App\Http\Controllers\Admin\ProjectsController::class, 'search']);
 
     #HOUSE PLAN CRUD
     #READ
@@ -102,11 +106,12 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #RESTORE
     Route::get('restore-houseplan/{houseplan_id}',[App\Http\Controllers\Admin\HousePlanController::class, 'restore'])->name('houseplan.restore');
     Route::get('houseplan/restore-houseplans',[App\Http\Controllers\Admin\HousePlanController::class, 'restore_all'])->name('houseplan.restore_all');
+    #SEARCH
+    Route::get('houseplan/find', [App\Http\Controllers\Admin\HousePlanController::class, 'search']);
 
     #USERS CRUD
     #USER ADMINISTRATOR
     #READ
-    
     Route::get('users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('users.index');
     #CREATE
     Route::get('add-user', [App\Http\Controllers\Admin\UsersController::class, 'create']);
@@ -119,7 +124,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #RESTORE
     Route::get('restore-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'restore'])->name('users.restore');
     Route::get('users/restore-users',[App\Http\Controllers\Admin\UsersController::class, 'restore_all'])->name('users.restore_all');
-    
+    #SEARCH
+    Route::get('users/find', [App\Http\Controllers\Admin\UsersController::class,'search']);
+
     #USER STAFF
     #VIEW PROFILE
     Route::get('profile', [App\Http\Controllers\Admin\UsersController::class, 'profile']);
@@ -141,6 +148,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #RESTORE
     Route::get('restore-faq/{faq_id}',[App\Http\Controllers\Admin\FaqsController::class, 'restore'])->name('faqs.restore');
     Route::get('restore-faqs',[App\Http\Controllers\Admin\FaqsController::class, 'restore_all'])->name('faqs.restore_all');
+    #SEARCH
+    Route::get('faqs/find', [App\Http\Controllers\Admin\FaqsController::class, 'search']);
 
     #INQUIRY CRUD
     #READ
@@ -151,6 +160,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #RESTORE
     Route::get('restore-inquiry/{inquiry_id}',[App\Http\Controllers\Admin\InquiriesController::class, 'restore'])->name('inquiries.restore');
     Route::get('restore-inquiries',[App\Http\Controllers\Admin\InquiriesController::class, 'restore_all'])->name('inquiries.restore_all');
+    #SEARCH
+    Route::get('inquiries/find', [App\Http\Controllers\Admin\InquiriesController::class, 'search']);
 
     #The fundamental difference between the POST and PUT requests is reflected in the different meaning of the Request-URI. The URI in a POST request identifies the resource that will handle the enclosed entity... In contrast, the URI in a PUT request identifies the entity enclosed with the request.
 });

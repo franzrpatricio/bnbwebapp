@@ -17,10 +17,9 @@ class CategoryController extends Controller
         #VIEW category page of index.blade.php in admin/category
         #get all categories
         if ($request->has('trashed')) {
-            $category = Category::onlyTrashed()
-                ->get();
+            $category = Category::onlyTrashed()->paginate(3);
         } else {
-            $category = Category::get();
+            $category = Category::paginate(3);
         }
         // $category = Category::all();
         return view('users.admin.category.index', compact('category'));
@@ -172,5 +171,22 @@ class CategoryController extends Controller
         Category::onlyTrashed()->restore();
   
         return redirect('admin/categories')->with('msg','success');
+    }
+
+    #SEARCH
+    public function search(Request $request){
+        $find_this = $request->get('query');
+        $category = Category::where('id', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('name', 'LIKE', '%'.$find_this.'%')
+            // ->orWhere('email', 'LIKE', '%'.$find_this.'%')
+            // ->orWhere('role_as', 'LIKE', '%'.$find_this.'%')
+            // ->orWhere('status', 'LIKE', '%'.$find_this.'%')
+            ->paginate(2);
+        if (count ($category) > 0) {
+            return view('users.admin.category.index', compact('category'));
+        } else {
+            # code...
+            return view ('users.admin.category.index', compact('category'))->with( 'No Category Found. 🥺' );
+        }
     }
 }

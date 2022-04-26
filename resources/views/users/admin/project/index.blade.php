@@ -6,7 +6,20 @@
 <h1 class="mt-5">Manage Projects</h1>
     <div class="card">
         <div class="card-header">
-            <h4><div class="sb-nav-link-icon"><i class="fas fa-list"></i>List of Projects</div></h4>
+            <h4>
+                <div class="sb-nav-link-icon">
+                    <i class="fas fa-list"></i>List of Projects
+
+                    <!-- Navbar Search-->
+                    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('admin/projects/find')}}">
+                        @csrf
+                        <div class="input-group">
+                            <input class="form-control" name="query" type="search" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                            <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </h4>
 
             <div class="float-end">
                 @if(request()->has('trashed'))
@@ -41,7 +54,7 @@
                 </thead>
 
                 <tbody>
-                    @if (count($projects)>0)
+                    {{-- @if (count($projects)>0) --}}
                         @foreach ($projects as $item)    
                             <tr class="text-center">
                                 <td>{{$item->id}}</td>
@@ -78,13 +91,14 @@
                                 </td>
                             </tr>
                         @endforeach
-                    @else
+                    {{-- @else
                         <tr>
                             <td colspan="4" class="text-center">No Projects Found. 🥺</td>
                         </tr>
-                    @endif
+                    @endif --}}
                 </tbody>
             </table>
+            {{ $projects->links() }}
         </div>
     </div>
 </div>
