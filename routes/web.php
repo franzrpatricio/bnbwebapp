@@ -78,6 +78,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #PROJECTS CRUD
     #READ
     Route::get('projects', [App\Http\Controllers\Admin\ProjectsController::class, 'index'])->name('projects.index');
+    Route::get('projects/sample', [App\Http\Controllers\Admin\ProjectsController::class, 'gallery'])->name('projects.gallery');
     #CREATE
     Route::get('add-project', [App\Http\Controllers\Admin\ProjectsController::class, 'create']);
     Route::post('add-project', [App\Http\Controllers\Admin\ProjectsController::class, 'store']);

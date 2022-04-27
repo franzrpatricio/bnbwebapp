@@ -23,6 +23,11 @@ class ProjectsController extends Controller
         }
         return view('users.admin.project.index', compact('projects'));
     }
+
+    public function gallery(){
+        return view('users.admin.project.sample');
+    }
+
     #CREATE
     public function create(){
         #FORM
