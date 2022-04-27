@@ -54,48 +54,42 @@
                 </thead>
 
                 <tbody>
-                    {{-- @if (count($projects)>0) --}}
-                        @foreach ($projects as $item)    
-                            <tr class="text-center">
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->category->name}}</td>
-                                <td>{{$item->houseplan->type}}</td>
-                                <td>{{$item->name}}</td>
+                    @foreach ($projects as $item)    
+                        <tr class="text-center">
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->category->name}}</td>
+                            <td>{{$item->houseplan->type}}</td>
+                            <td>{{$item->name}}</td>
 
-                                {{-- it should be multiple images and not visible sa index --}}
-                                <td>
-                                    @if ($item->image == true)
-                                        {{-- get the category image from folder --}}
-                                        <img src="{{ asset('uploads/project/'.$item->image) }}" width="50px" height="50px" alt="proj_img">
-                                    @else
-                                        <h5>No Image Found</h5>                                
-                                    @endif
-                                </td>
+                            {{-- it should be multiple images and not visible sa index --}}
+                            <td>
+                                @if ($item->image == true)
+                                    {{-- get the category image from folder --}}
+                                    <img src="{{ asset('uploads/project/'.$item->image) }}" width="50px" height="50px" alt="proj_img">
+                                @else
+                                    <h5>No Image Found</h5>                                
+                                @endif
+                            </td>
 
-                                {{-- if status is true, show if not visible || visible --}}
-                                {{-- to make the project visible just check the box for status --}}
-                                <td>{{$item->status == '0' ? 'Active':'Inactive'}}</td>
-                                <td>
-                                    @if(request()->has('trashed'))
-                                        <a href="{{ route('projects.restore', $item->id) }}" class="btn btn-success">Restore</a>
-                                    @else
-                                        <a href="{{ url('admin/edit-project/'.$item->id) }}"><i class="fas fa-pen"></i></a>
-                                        <form method="POST" action="{{ route('projects.destroy', $item->id) }}">
-                                            @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <button type="submit" class="btn delete" title='Delete'>
-                                                <i class="fa-solid fa-trash" style="color:red;"></i>
-                                            </button>
-                                        </form>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    {{-- @else
-                        <tr>
-                            <td colspan="4" class="text-center">No Projects Found. 🥺</td>
+                            {{-- if status is true, show if not visible || visible --}}
+                            {{-- to make the project visible just check the box for status --}}
+                            <td>{{$item->status == '0' ? 'Active':'Inactive'}}</td>
+                            <td>
+                                @if(request()->has('trashed'))
+                                    <a href="{{ route('projects.restore', $item->id) }}" class="btn btn-success">Restore</a>
+                                @else
+                                    <a href="{{ url('admin/edit-project/'.$item->id) }}"><i class="fas fa-pen"></i></a>
+                                    <form method="POST" action="{{ route('projects.destroy', $item->id) }}">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn delete" title='Delete'>
+                                            <i class="fa-solid fa-trash" style="color:red;"></i>
+                                        </button>
+                                    </form>
+                                @endif
+                            </td>
                         </tr>
-                    @endif --}}
+                    @endforeach
                 </tbody>
             </table>
             {{ $projects->links() }}

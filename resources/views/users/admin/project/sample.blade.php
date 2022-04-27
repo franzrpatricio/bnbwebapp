@@ -10,19 +10,25 @@ To open lightbox, this is added to the gallery element: {data-toggle="modal" dat
 To open carousel on correct image, this is added to each image element: {data-target="#carouselExample" data-slide-to="0"}.
 Replace '0' with corresponding slide number.
 -->
-
+<div>
+  <h1>
+    <STRONG>
+      THE PEOPLE BEHIND THE SCENE
+    </STRONG>
+  </h1>
+</div>
 <div class="row" id="gallery" data-toggle="modal" data-target="#exampleModal">
   <div class="col-12 col-sm-6 col-lg-3">
-    <img class="w-100" src="{{ asset('assets/images/logo.png')}}" alt="First slide" data-target="#carouselExample" data-slide-to="0">
+    <img class="w-100" src="{{ asset('assets/images/aj.jpg')}}" alt="First slide" data-target="#carouselExample" data-slide-to="0">
   </div>
   <div class="col-12 col-sm-6 col-lg-3">
-    <img class="w-100" src="{{ asset('assets/images/logo.png')}}" alt="Second slide" data-target="#carouselExample" data-slide-to="1">
+    <img class="w-100" src="{{ asset('assets/images/renz.jpg')}}" alt="Second slide" data-target="#carouselExample" data-slide-to="1">
   </div>
   <div class="col-12 col-sm-6 col-lg-3">
-    <img class="w-100" src="{{ asset('assets/images/logo.png')}}" alt="Third slide" data-target="#carouselExample" data-slide-to="2">
+    <img class="w-100" src="{{ asset('assets/images/3sha.jpg')}}" alt="Third slide" data-target="#carouselExample" data-slide-to="2">
   </div>
   <div class="col-12 col-sm-6 col-lg-3">
-    <img class="w-100" src="{{ asset('assets/images/logo.png')}}" alt="Fourth slide" data-target="#carouselExample" data-slide-to="3">
+    <img class="w-100" src="{{ asset('assets/images/franz.jpg')}}" alt="Fourth slide" data-target="#carouselExample" data-slide-to="3">
   </div>
 </div>
 
@@ -31,7 +37,7 @@ Replace '0' with corresponding slide number.
 This part is straight out of Bootstrap docs. Just a carousel inside a modal.
 -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -48,16 +54,16 @@ This part is straight out of Bootstrap docs. Just a carousel inside a modal.
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img class="d-block w-100" src="{{ asset('assets/images/logo.png')}}" alt="First slide">
+              <img class="d-block w-100" src="{{ asset('assets/images/aj.jpg')}}" alt="First slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="{{ asset('assets/images/logo.png')}}" alt="Second slide">
+              <img class="d-block w-100" src="{{ asset('assets/images/renz.jpg')}}" alt="Second slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="{{ asset('assets/images/logo.png')}}" alt="Third slide">
+              <img class="d-block w-100" src="{{ asset('assets/images/3sha.jpg')}}" alt="Third slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="{{ asset('assets/images/logo.png')}}" alt="Fourth slide">
+              <img class="d-block w-100" src="{{ asset('assets/images/franz.jpg')}}" alt="Fourth slide">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
@@ -70,21 +76,21 @@ This part is straight out of Bootstrap docs. Just a carousel inside a modal.
           </a>
         </div>
       </div>
-      <div class="modal-footer">
+      {{-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+      </div> --}}
     </div>
   </div>
 </div>
 
 
 <!-- Custom Styling Toggle. For demo purposes only. -->
-<div class="switch-wrap">
+{{-- <div class="switch-wrap">
   <label class="switch">
     <input type="checkbox" id="styleSwitch" onclick="switchStyle();">
     <span class="slider round"></span>
   </label>
   <span class="switch-text">Toggle between <em>Bootstrap defaults</em> and <em>custom styling</em>.</span>
-</div>
+</div> --}}
 @endsection
 
