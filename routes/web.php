@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FaqsController;
+use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProjectsController;
@@ -78,7 +79,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #PROJECTS CRUD
     #READ
     Route::get('projects', [App\Http\Controllers\Admin\ProjectsController::class, 'index'])->name('projects.index');
-    Route::get('projects/sample', [App\Http\Controllers\Admin\ProjectsController::class, 'gallery'])->name('projects.gallery');
     #CREATE
     Route::get('add-project', [App\Http\Controllers\Admin\ProjectsController::class, 'create']);
     Route::post('add-project', [App\Http\Controllers\Admin\ProjectsController::class, 'store']);
@@ -92,6 +92,12 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('projetcs/restore-projects',[App\Http\Controllers\Admin\ProjectsController::class, 'restore_all'])->name('projects.restore_all');
     #SEARCH
     Route::get('projects/find', [App\Http\Controllers\Admin\ProjectsController::class, 'search']);
+    #VIEW GALLERY
+    Route::get('projects/images', [App\Http\Controllers\Admin\ProjectsController::class, 'gallery'])->name('projects.gallery');
+    
+    #CREATE PROJECT IMAGES 
+    Route::get('add-images', [App\Http\Controllers\Admin\FilesController::class, 'create']);
+    Route::post('add-images', [App\Http\Controllers\Admin\FilesController::class, 'store']);
 
     #HOUSE PLAN CRUD
     #READ

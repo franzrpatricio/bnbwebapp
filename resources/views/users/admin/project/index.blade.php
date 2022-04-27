@@ -28,6 +28,10 @@
                 @else
                     <a href="{{ url('admin/add-project') }}" class="btn btn-primary btn-sm">
                     <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New Project</div>
+                    
+                    <a href="{{ url('admin/add-images') }}" class="btn btn-primary btn-sm">
+                    <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Add Images for Specific Project</div>
+
                     <a href="{{ route('projects.index', ['trashed' => 'post']) }}" class="btn btn-primary btn-sm">View Deleted Projects</a>
                 </a>
                 @endif
@@ -42,12 +46,16 @@
 
             <table class="table table-bordered">
                 <thead>
+                    <a href="{{route('projects.gallery')}}">
+                        <i class="fa-solid fa-eye"></i>
+                    </a>
                     <tr class="text-center">
                         <th>ID</th>
                         <th>Category</th>
                         <th>House Plan</th>
                         <th>Project Name</th>
                         <th>Image</th>
+                        {{-- <th>Images</th> --}}
                         <th>Status</th>
                         <th>Action</th> {{-- edit --}}
                     </tr>
@@ -70,6 +78,12 @@
                                     <h5>No Image Found</h5>                                
                                 @endif
                             </td>
+
+                            {{-- <td>
+                                <a href="{{route('projects.gallery')}}">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                            </td> --}}
 
                             {{-- if status is true, show if not visible || visible --}}
                             {{-- to make the project visible just check the box for status --}}

@@ -22,6 +22,11 @@
     {{-- SUMMERNOTE CSS link --}}
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
+    {{-- ANIMATION FOR MODAL-CAROUSEL ON TOP OF MASTER--}}
+    <link rel="stylesheet" href="{{ asset('assets/css/gallery.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body class="sb-nav-fixed">
     {{-- navbar --}}
@@ -59,6 +64,12 @@
             });
             $('.dropdown-toggle').dropdown();
         });
+    </script>
+
+    {{-- CAROUSEL SCRIPT ON BOTTOM OF MASTER --}}
+    <script>
+        document.getElementById('gallery').classList.add("custom");
+        document.getElementById('exampleModal').classList.add("custom");
     </script>
 </body>
 </html>

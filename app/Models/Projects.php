@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Files;
 use App\Models\Category;
 use App\Models\HousePlan;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Projects extends Model
 {
@@ -18,7 +19,7 @@ class Projects extends Model
         'category_id',
         'houseplan_id',
         'name',
-        'image',
+        // 'image',
         'cost',
         'slug',
         'description',
