@@ -92,12 +92,13 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('projetcs/restore-projects',[App\Http\Controllers\Admin\ProjectsController::class, 'restore_all'])->name('projects.restore_all');
     #SEARCH
     Route::get('projects/find', [App\Http\Controllers\Admin\ProjectsController::class, 'search']);
-    #VIEW GALLERY
-    Route::get('projects/images', [App\Http\Controllers\Admin\ProjectsController::class, 'gallery'])->name('projects.gallery');
     
+    #VIEW GALLERY
+    Route::get('project/gallery/{project_id}', [App\Http\Controllers\Admin\FilesController::class, 'gallery'])->name('projects.gallery');
+    // Route::get('projects/images/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class,'gallery']);
     #CREATE PROJECT IMAGES 
-    Route::get('add-images', [App\Http\Controllers\Admin\FilesController::class, 'create']);
-    Route::post('add-images', [App\Http\Controllers\Admin\FilesController::class, 'store']);
+    Route::get('projects/add-images', [App\Http\Controllers\Admin\FilesController::class, 'create']);
+    Route::post('projects/add-images', [App\Http\Controllers\Admin\FilesController::class, 'store']);
 
     #HOUSE PLAN CRUD
     #READ

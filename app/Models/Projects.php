@@ -19,7 +19,7 @@ class Projects extends Model
         'category_id',
         'houseplan_id',
         'name',
-        // 'image',
+        'image',
         'cost',
         'slug',
         'description',
@@ -41,5 +41,9 @@ class Projects extends Model
         #get category id
         return $this->belongsTo(HousePlan::class, 'houseplan_id', 'id');
         #it only says ('foreign key','primary key')
+    }
+    public function files() 
+    {
+        return $this->hasMany(Files::class,'project_id', 'id'); 
     }
 }

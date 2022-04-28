@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProjectFormRequest;
+use App\Models\Files;
 use App\Models\HousePlan;
 use App\Models\Projects;
 use Illuminate\Support\Facades\Auth;
@@ -17,15 +18,11 @@ class ProjectsController extends Controller
         // $projects = Projects::get();
         if ($request->has('trashed')) {
             # code...
-            $projects = Projects::onlyTrashed()->paginate(3);
+            $projects = Projects::onlyTrashed()->paginate(2);
         }else {
-            $projects = Projects::paginate(3);
+            $projects = Projects::paginate(2);
         }
         return view('users.admin.project.index', compact('projects'));
-    }
-
-    public function gallery(){
-        return view('users.admin.project.sample');
     }
 
     #CREATE
@@ -75,6 +72,7 @@ class ProjectsController extends Controller
         $project->save();
         return redirect('admin/projects')->with('msg','Successfully Created Project');
     }
+
     #VIEW specific project
     public function edit($project_id){
         $category = Category::where('status', '0')->get(); 
