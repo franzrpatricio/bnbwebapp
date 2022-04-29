@@ -134,7 +134,7 @@ class ProjectsController extends Controller
         Projects::withTrashed()->find($project_id)->restore();
         return redirect('admin/projects')->with('msg','Post Successfully Restored');
     }
-
+ 
     #RESTORE ALL
     public function restore_all(){
         Projects::onlyTrashed()->restore();

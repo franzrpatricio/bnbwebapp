@@ -2,15 +2,10 @@
 @section('title', 'Bana and Bana Architects')
 @section('content')
 <!-- Gallery -->
-<!-- 
-Gallery is linked to lightbox using data attributes.
-
+<!-- Gallery is linked to lightbox using data attributes.
 To open lightbox, this is added to the gallery element: {data-toggle="modal" data-target="#exampleModal"}.
-
 To open carousel on correct image, this is added to each image element: {data-target="#carouselExample" data-slide-to="0"}.
-Replace '0' with corresponding slide number.
--->
-<a href="{{url('admin/projects')}}" class="btn btn-danger float-end mt-auto">Back</a>
+Replace '0' with corresponding slide number. -->
 
 {{-- show any errors in saving the forms --}} 
 @if ($errors->any())
@@ -21,6 +16,12 @@ Replace '0' with corresponding slide number.
     </div>
 @endif  
 
+<div class="float-end">
+  <a href="{{ route('gallery.destroy', $image->id) }}" class="btn btn-danger mt-auto">Delete</a>
+  <a href="{{url('admin/projects')}}" class="btn btn-secondary mt-auto">Back</a>
+</div>
+
+
 {{-- DISPLAYING IMAGES --}}
 {{-- @foreach ($images as $item)
     <div>
@@ -30,13 +31,13 @@ Replace '0' with corresponding slide number.
 
 <div class="row" id="gallery" data-toggle="modal" data-target="#exampleModal">
   @foreach ($images as $item)
-      <div class="col-12 col-sm-6 col-lg-3">
-        <img src="{{ asset('uploads/project_images/'.$item) }}" 
-          class="w-100" 
-          data-slide-to="{{ $loop->index }}"
-          data-target="#carouselExample"
-        />
-      </div>
+    <div class="col-12 col-sm-6 col-lg-3">
+      <img src="{{ asset('uploads/project_images/'.$item) }}" 
+        class="w-100" 
+        data-slide-to="{{ $loop->index }}"
+        data-target="#carouselExample"
+      />
+    </div>
   @endforeach
 </div>
 
@@ -78,9 +79,9 @@ Replace '0' with corresponding slide number.
           </a>
         </div>
       </div>
-      <div class="modal-footer">
+      {{-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+      </div> --}}
     </div>
   </div>
 </div>

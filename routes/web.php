@@ -99,6 +99,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #CREATE PROJECT IMAGES 
     Route::get('projects/add-images', [App\Http\Controllers\Admin\FilesController::class, 'create']);
     Route::post('projects/add-images', [App\Http\Controllers\Admin\FilesController::class, 'store']);
+    #DELETE GALLERY
+    Route::get('delete-gallery/{files_id}', [App\Http\Controllers\Admin\FilesController::class,'destroy'])->name('gallery.destroy');
 
     #HOUSE PLAN CRUD
     #READ

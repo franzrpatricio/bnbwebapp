@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Files;
 use App\Models\Projects;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Admin\FilesFormRequest;
+use Illuminate\Support\Facades\Storage;
 use BotMan\BotMan\Messages\Attachments\File;
+use App\Http\Requests\Admin\FilesFormRequest;
 
 class FilesController extends Controller
 {
@@ -25,12 +27,19 @@ class FilesController extends Controller
             // }
             // $files = explode(',', $file->filenames);
             
-            $image = DB::table('files')->where('project_id', $project->id)->first();
-
+            // $image = DB::table('files')->where('project_id', $project->id)->first();
             // $image = DB::table('files')->select('filenames')->where('files.project_id', '=', $project->id)->value('id')->get();
-
-            $images = explode(',',$image->filenames);
-            return view('users.admin.project.sample', compact('project','images'));
+            $image = Files::select('id','filenames')->where('project_id', $project_id)->first();
+            # CHECK IF THERE ARE NO IMAGES FOR THIS PROJECT ID
+            if ($image == NULL) {
+                # code...
+                return back()->with('msg','No images found');
+            } else {
+                # code...
+                // $file = $image->id;
+                $images = explode(',',$image->filenames);
+                return view('users.admin.project.sample', compact('project','images', 'image'));
+            }
         } else {
             # code...
             return view('users.admin.project.sample')->with('msg','No images found');
@@ -90,7 +99,25 @@ class FilesController extends Controller
             'posted_by' => Auth::user()->id,
             'project_id' => $request->project_id,
             'filenames' => implode(',',$image),
+            'created_at' => Carbon::now(),
         ]);
         return redirect('admin/projects')->with('msg','Images are successfully uploaded');
+    }
+
+    public function destroy($files_id){
+        $files = Files::findOrFail($files_id);
+        if ($files) {
+            # code...
+            // $files = explode(',',$files->filenames);
+            // foreach ($files as $file) {
+            //     if (file_exists('public/uploads/project_images' . json_decode($file, true))) {
+            //         Storage::disk('public')->delete('uploads/project_images' . $file['filenames']);
+            //     }
+            // }
+            $files->delete();
+            return redirect('admin/projects')->with('msg','Gallery for this Project Successfully Deleted.');
+        } else {
+            return redirect('admin/projects')->with('msg','No Gallery found for this Project.');
+        }
     }
 }
