@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +37,7 @@ class CategoryController extends Controller
         $data = $request->validated();
         $category = new Category;
         $category->name = $data['name'];
-        $category->slug = $data['slug'];
+        $category->slug = Str::slug($data['slug']);
         $category->description = $data['description'];
         
         #image condition...
@@ -84,7 +85,7 @@ class CategoryController extends Controller
 
         $category = Category::find($category_id);
         $category->name = $data['name'];
-        $category->slug = $data['slug'];
+        $category->slug = Str::slug($data['slug']);
         $category->description = $data['description'];
         
         #image condition...

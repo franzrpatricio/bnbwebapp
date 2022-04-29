@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Files;
 use App\Models\Category;
+use App\Models\Projects;
+use App\Models\HousePlan;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ProjectFormRequest;
-use App\Models\Files;
-use App\Models\HousePlan;
-use App\Models\Projects;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Admin\ProjectFormRequest;
 
 class ProjectsController extends Controller
 {
@@ -61,7 +62,7 @@ class ProjectsController extends Controller
         }
 
         $project->cost = $data['cost'];
-        $project->slug = $data['slug'];
+        $project->slug = Str::slug($data['slug']);
         $project->description = $data['description'];
         $project->meta_title = $data['meta_title'];
         $project->meta_description = $data['meta_description'];
@@ -105,7 +106,7 @@ class ProjectsController extends Controller
         }
 
         $project->cost = $data['cost'];
-        $project->slug = $data['slug'];
+        $project->slug = Str::slug($data['slug']);
         $project->description = $data['description'];
         $project->meta_title = $data['meta_title'];
         $project->meta_description = $data['meta_description'];
