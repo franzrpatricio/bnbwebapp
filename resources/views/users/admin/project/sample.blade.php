@@ -21,52 +21,28 @@ Replace '0' with corresponding slide number.
     </div>
 @endif  
 
-{{-- @foreach (explode("|",$files) as $item) --}}
-{{-- @foreach ($files as $item)
-    <div class="mr-4">
-      <img src="{{ asset('uploads/project_images/'.$item) }}">
-      <img src="/uploads/project_images/'{{$item}}">
-    </div>
-@endforeach --}}
-
-@php
-    // $image = DB::table('files')->where('project_id', $image->project_id)->first();
-    // $images = explode(',',$image->filenames);
-@endphp
-@foreach ($images as $item)
+{{-- DISPLAYING IMAGES --}}
+{{-- @foreach ($images as $item)
     <div>
       <img src="{{ asset('uploads/project_images/'.$item) }}"  width="100px" height="100px" class="mt-4 ml-4"/>
     </div>
-@endforeach
+@endforeach --}}
 
-{{-- <div>
-  <h1>
-    <STRONG>
-      THE PEOPLE BEHIND THE SCENE
-    </STRONG>
-  </h1>
-
-</div> --}}
-{{-- <div class="row" id="gallery" data-toggle="modal" data-target="#exampleModal">
-  <div class="col-12 col-sm-6 col-lg-3">
-    <img class="w-100" src="{{ asset('assets/images/aj.jpg')}}" alt="First slide" data-target="#carouselExample" data-slide-to="0">
-  </div>
-  <div class="col-12 col-sm-6 col-lg-3">
-    <img class="w-100" src="{{ asset('assets/images/renz.jpg')}}" alt="Second slide" data-target="#carouselExample" data-slide-to="1">
-  </div>
-  <div class="col-12 col-sm-6 col-lg-3">
-    <img class="w-100" src="{{ asset('assets/images/3sha.jpg')}}" alt="Third slide" data-target="#carouselExample" data-slide-to="2">
-  </div>
-  <div class="col-12 col-sm-6 col-lg-3">
-    <img class="w-100" src="{{ asset('assets/images/franz.jpg')}}" alt="Fourth slide" data-target="#carouselExample" data-slide-to="3">
-  </div>
-</div> --}}
+<div class="row" id="gallery" data-toggle="modal" data-target="#exampleModal">
+  @foreach ($images as $item)
+      <div class="col-12 col-sm-6 col-lg-3">
+        <img src="{{ asset('uploads/project_images/'.$item) }}" 
+          class="w-100" 
+          data-slide-to="{{ $loop->index }}"
+          data-target="#carouselExample"
+        />
+      </div>
+  @endforeach
+</div>
 
 <!-- Modal -->
-<!-- 
-This part is straight out of Bootstrap docs. Just a carousel inside a modal.
--->
-{{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- This part is straight out of Bootstrap docs. Just a carousel inside a modal. -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -77,25 +53,21 @@ This part is straight out of Bootstrap docs. Just a carousel inside a modal.
       <div class="modal-body">
         <div id="carouselExample" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
-            <li data-target="#carouselExample" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExample" data-slide-to="1"></li>
-            <li data-target="#carouselExample" data-slide-to="2"></li>
-            <li data-target="#carouselExample" data-slide-to="3"></li>
+            @foreach ($images as $item)
+              <div>
+                <li data-target="#carouselExample" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+              </div>
+            @endforeach
           </ol>
+
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img class="d-block w-100" src="{{ asset('assets/images/aj.jpg')}}" alt="First slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="{{ asset('assets/images/renz.jpg')}}" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="{{ asset('assets/images/3sha.jpg')}}" alt="Third slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="{{ asset('assets/images/franz.jpg')}}" alt="Fourth slide">
-            </div>
+            @foreach ($images as $item)
+              <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                <img src="{{ asset('uploads/project_images/'.$item) }}" class="d-block w-100"/>
+              </div>
+            @endforeach
           </div>
+
           <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -111,7 +83,7 @@ This part is straight out of Bootstrap docs. Just a carousel inside a modal.
       </div>
     </div>
   </div>
-</div> --}}
+</div>
 
 
 <!-- Custom Styling Toggle. For demo purposes only. -->
