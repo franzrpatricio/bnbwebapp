@@ -26,7 +26,7 @@ use App\Http\Controllers\Admin\InquiriesController;
 #for client/prospect/visitor
 #BOT WIDGET
 // Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
-// Route::get('/', function(){
+// Route::get('/admin', function(){
 //     return view ('index');
 // });
 Route::get('/', [App\Http\Controllers\Client\ClientController::class, 'index']);

@@ -11,7 +11,6 @@
             <h4>
                 <div class="sb-nav-link-icon">
                     <i class="fas fa-list"></i>List of Users
-                    
                     <!-- Navbar Search-->
                     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('admin/users/find')}}">
                         @csrf
@@ -33,7 +32,6 @@
                     </a>
                 @endif
             </div>
-
         </div>
         <div class="card-body">
             {{-- display msg after redirecting --}}
