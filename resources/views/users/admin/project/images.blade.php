@@ -44,6 +44,17 @@
                     >
                 </div>
 
+                {{-- VIRTUAL TOUR --}}
+                <div class="mb-3">
+                    <label>Upload Virtual Tour</label>
+                    <span>kasdjdadja</span>
+                    <input type="file" 
+                            name="virtualTour"
+                            class="form-control"
+                            id="inputFiles"
+                    >
+                </div>
+
                 <div class="col-md-8">
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Save Project Images</button>

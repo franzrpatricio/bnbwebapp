@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Files;
 use App\Models\Category;
+use App\Models\Amenities;
 use App\Models\HousePlan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

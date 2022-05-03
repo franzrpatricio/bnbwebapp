@@ -74,6 +74,16 @@
                             <label>Cost</label>
                             <input type="text" name="cost" value="{{$project->cost}}" class="form-control">
                         </div>
+
+                        <div class="mb-3">
+                            <label>Stories</label>
+                            <input type="text" name="stories" value="{{$project->stories}}" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Rooms</label>
+                            <input type="number" name="rooms" value="{{$project->rooms}}" class="form-control">
+                        </div>
     
                         <div class="col-md-6">
                             <label>Slug</label>

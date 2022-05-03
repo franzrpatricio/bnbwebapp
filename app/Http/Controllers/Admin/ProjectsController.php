@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Files;
 use App\Models\Category;
 use App\Models\Projects;
+use App\Models\Amenities;
 use App\Models\HousePlan;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ProjectAmenities;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\ProjectFormRequest;
@@ -33,7 +37,8 @@ class ProjectsController extends Controller
         #show all categories and houseplans with status == 1
         $category = Category::where('status', '0')->get(); 
         $houseplan = HousePlan::where('status', '1')->get();
-        return view('users.admin.project.create', compact('category','houseplan'));
+        $amenities = Amenities::all();
+        return view('users.admin.project.create', compact('category','houseplan','amenities'));
         #if you want to get multiple conditions in where(), use array
         #$category = Category::where(['status', '1'],[])->get();
     }
@@ -62,15 +67,80 @@ class ProjectsController extends Controller
         }
 
         $project->cost = $data['cost'];
+        $project->stories = $data['stories'];
+        $project->rooms = $data['rooms'];
         $project->slug = Str::slug($data['slug']);
         $project->description = $data['description'];
         $project->meta_title = $data['meta_title'];
         $project->meta_description = $data['meta_description'];
         $project->meta_keyword = $data['meta_keyword'];
         
-        $project->status = $request->status ==true ? '1':'0';
+        $project->status = $request->status == true ? '1':'0';
         $project->posted_by = Auth::user()->id;
         $project->save();
+        
+        $projID = $project->id;
+        $data = $request->input('amenity');
+        foreach ($data as $key) {
+            // $amenity_id = Amenities::where('service',$key)->select('id')->get();
+            // $insert = [
+            //     'project_id' => $projID,
+            //     'amenity_id' => $key,
+            //     'posted_by' => Auth::user()->id,
+            //     'created_at' => Carbon::now(),
+            // ];
+            // ProjectAmenities::insert($insert);
+            DB::table('project_amenities')->insert(
+                array(
+                    'project_id' => $projID,
+                    'amenity_id' => $key,
+                    'posted_by' => Auth::user()->id,
+                    'created_at' => Carbon::now(),
+                )
+             );
+        }
+
+        // if ($data) {
+        //     # code...
+        //     $result = Amenities::where('service',$data)->get('id');
+        //     // $projs = $result->id;
+        //     ProjectAmenities::insert([
+        //         'project_id' => $projID,
+        //         'amenity_id' => $result,
+        //         'posted_by' => Auth::user()->id,
+        //         'created_at' => Carbon::now(),            
+        //     ]);    
+        // }
+
+        // $data = array();
+        // if ($amenities = $request->input('amenity')) {
+        //     # code...
+        //     foreach ($amenities as $amenity) {
+        //         # code...
+        //         $result_id = Amenities::where('service',$amenity)->get('id');
+        //         $data[] = $result_id; 
+        //     }
+        // }
+        // ProjectAmenities::insert([
+        //     'project_id' => $projID,
+        //     'amenity_id' => $result,
+        //     'posted_by' => Auth::user()->id,
+        //     'created_at' => Carbon::now(),    
+        // ]);
+        
+        // $data['amenity'] = $request->input('amenity');
+        // DB::table('project_amenities')->insert([
+        //     'project_id' => $projID,
+        //     'amenity_id' => $data,
+        //     'posted_by' => Auth::user()->id,
+        //     'created_at' => Carbon::now()
+        // ]);
+        // ProjectAmenities::insert([
+        //     'project_id' => $projID,
+        //     'amenity_id' => $data,
+        //     'posted_by' => Auth::user()->id,
+        //     'created_at' => Carbon::now()
+        // ]);
         return redirect('admin/projects')->with('msg','Successfully Created Project');
     }
 

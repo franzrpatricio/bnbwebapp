@@ -15,18 +15,15 @@
 
     <!-- Styles -->
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     
 </head>
-<body>
+<body style="background-image: url('{{asset('assets/client/view.jpg')}}')" style="background-repeat:no-repeat" style="background-size: 100%">
     <div id="app">
         @include('layouts.inc.client-navbar')
         <main class="py-4">
             @yield('content')
         </main>
-        <div class="links">
-            <a href="#" onclick="botmanChatWidget.open()">Open BnBot</a>
-            <a href="#" onclick="botmanChatWidget.close()">Close BnBot</a>
-        </div>
     </div>
 </body>
 </html>
@@ -41,16 +38,20 @@
         title:'BnBot 🤖',
         introMessage: 'Hi, I am the official chat bot of Bana and Bana Architects!✋',
         placeholderText:'Type something here...',
-        // mainColor:'#408590',
-        // bubbleBackground:'',
-        // bubbleAvatarUrl: '/assets/images/kay0.png',
-        // aboutLink:'https://botman.io',
         aboutText: '©️ Bana and Bana Architects 2022',
         displayMessageTime:'true',
-        // desktopWidth:'370',
-        // mobileHeight:'100%',
-        // mobileWidth:'300',
-        // videoHeight:'160',
     };
 </script>
 <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+
+<script>
+    /* Open when someone clicks on the span element */
+    function openNav() {
+    document.getElementById("myNav").style.width = "100%";
+    }
+
+    /* Close when someone clicks on the "x" symbol inside the overlay */
+    function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+    }
+</script>

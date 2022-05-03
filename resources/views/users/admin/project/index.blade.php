@@ -31,7 +31,7 @@
                     </a>
 
                     <a href="{{ url('admin/projects/add-images') }}" class="btn btn-primary btn-sm mr-2">
-                        <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Add Images for Specific Project</div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Add Gallery for Specific Project</div>
                     </a>
 
                     <a href="{{ route('projects.index', ['trashed' => 'post']) }}" class="btn btn-primary btn-sm mr-2">View Deleted Projects</a>

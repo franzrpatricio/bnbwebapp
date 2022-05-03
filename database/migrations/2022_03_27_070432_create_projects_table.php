@@ -20,12 +20,15 @@ return new class extends Migration
             $table->string('name'); #project name
             $table->string('image')->nullable(); #image
             $table->decimal('cost', 13, 2);
-            
+            $table->string('stories')->nullable();
+            $table->integer('rooms')->nullable();
+
             #$table->string('iframe')->nullable(); 
             #this applies only if there is iframe virtual tour
             
             #SEO Tags
             $table->string('slug'); 
+            $table->mediumText('description');
             $table->string('meta_title');
             $table->mediumText('meta_description')->nullable();
             $table->mediumText('meta_keyword')->nullable();
@@ -33,6 +36,7 @@ return new class extends Migration
             $table->tinyInteger('status')->default('0'); #visible or not
             $table->integer('posted_by')->default('0'); #user
             $table->timestamps(); #date created
+            $table->softDeletes();
         });
     }
 

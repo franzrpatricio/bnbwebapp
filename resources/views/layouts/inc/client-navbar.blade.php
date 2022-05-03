@@ -1,29 +1,23 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="index.html">Bana and Bana</a>
-    <!-- Sidebar Toggle-->
-    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-    <!-- Navbar Search-->
-    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-        <div class="input-group">
-            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-            <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+<!-- The overlay -->
+<div id="myNav" class="overlay">
+    <!-- Button to close the overlay navigation -->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  
+    <!-- Overlay content -->
+    <div class="overlay-content">
+      <a href="/">Home</a>
+      <a href="{{ url('/portfolio') }}">Portfolio</a>
+      <a href="{{ url('/profile') }}">Profile</a>
+      <a href="{{ url('/project') }}">Projects</a>
+      <a href="{{ url('/contact') }}">Contact Us</a>
+    </div>  
+</div>
+  
+<!-- Use any element to open/show the overlay navigation menu -->
+<span onclick="openNav()">
+    <nav class="navbar navbar-expand-md">
+        <div class="container">
+            <a href="#" class="navbar-brand" style="color: antiquewhite">BANA AND BANA</a>
         </div>
-    </form> 
-    <!-- Navbar-->
-    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{-- <i class="fas fa-user fa-fw"></i> --}}
-                {{-- <img src="assets/images/aj.jpg"> --}}
-                {{-- <img src="../assets/images/aj.jpg" class="rounded-circle" width="40px" height="40px"> --}}
-                <small>Franz Patricio</small></a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#!">Settings</a></li>
-                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="#!">Logout</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
+    </nav>
+</span>

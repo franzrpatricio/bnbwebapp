@@ -30,6 +30,11 @@ use App\Http\Controllers\Admin\InquiriesController;
 //     return view ('index');
 // });
 Route::get('/', [App\Http\Controllers\Client\ClientController::class, 'index']);
+Route::get('/portfolio', [App\Http\Controllers\Client\ClientController::class, 'portfolio']);
+Route::get('/profile', [App\Http\Controllers\Client\ClientController::class, 'profile']);
+Route::get('specialization/{category_id}', [App\Http\Controllers\Client\ClientController::class, 'specProject']);
+Route::get('/project', [App\Http\Controllers\Client\ClientController::class, 'project']);
+Route::get('/contact', [App\Http\Controllers\Client\ClientController::class, 'contact']);
 #when request hits server, pull out botman instance; listen to any incoming commands
 Route::post('/botman',function(){
     app('botman')->listen();

@@ -55,6 +55,14 @@
                     <input type="number" required name="cost" min="0" value="0" step="0.01" class="form-control">
                 </div>
                 <div class="mb-3">
+                    <label>Stories</label>
+                    <input type="text" name="stories" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Rooms</label>
+                    <input type="number" name="rooms" min="1" value="1" class="form-control">
+                </div>
+                <div class="mb-3">
                     <label for="">Slug</label>
                     {{-- input name refers to db field --}}
                     <input type="text" name="slug" class="form-control"> 
@@ -78,6 +86,14 @@
                     <textarea name="meta_keyword" rows="3" class="form-control"></textarea>
                 </div>
 
+                <div class="form-group">
+                    <label><strong>Amenities :</strong></label><br>
+                    @foreach ($amenities as $item)
+                        <label><input type="checkbox" value="{{$item->id}}" name="amenity[]">{{$item->service}}</label>
+                        {{-- <input hidden name="amenity_id" value="{{ $item->id }}"> --}}
+                    @endforeach
+                </div>  
+
                 <h6>Status</h6>
                 <div class="row">
                     <div class="col-md-4">
@@ -93,8 +109,6 @@
                     </div>
                 </div>
             </form>
-
-            <form action="{{  }}" method="post"></form>
         </div>
     </div>
 </div>

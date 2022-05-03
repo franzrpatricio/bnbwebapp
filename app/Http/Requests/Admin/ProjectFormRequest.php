@@ -49,6 +49,14 @@ class ProjectFormRequest extends FormRequest
                 'required',
                 'numeric' #para decimal
             ],
+            'stories' => [
+                // 'required',
+                'string'
+            ],
+            'rooms' => [
+                // 'required',
+                'numeric' #para decimal
+            ],
             'slug' => [
                 'required',
                 'string',
@@ -69,6 +77,9 @@ class ProjectFormRequest extends FormRequest
             'meta_keyword' => [
                 'required',
                 'string'
+            ],
+            'amenity' => [
+                'required',
             ],
             'status' => [
                 'nullable',
