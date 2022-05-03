@@ -32,9 +32,63 @@
               </div>
     </div>
               
-              <hr class="border-light m-0">
+    <div class="container">
+      <div class="card p-3">
+        <div>
+                   <div class="row text-start">
+                      <div class="col-6">
+                         Username
+                      </div>
+                    <div class="col-6">
+                         Arthur John Cotoner
+                        <a type="button" class="btn" data-toggle="collapse" data-target="#Name">
+                          <i class="fa-solid fa-pen" style="color:#4CA5D7;"></i> 
+                        </a>
+                      </div>
+              </div>
+  
+          <div id="Name" class="collapse">
+                <div class="card"> 
+                   <div class="form-group">
+                     <input type="password" class="form-control" placeholder="Enter New Name">
+                  </div>
+                <div class="d-flex justify-content-end mt-3 p-3">
+                    <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
+                </div>
+         </div>
+      
+        </div>
+  
+  
+        <div>
+          <div class="row text-start">
+                <div class="col-6">
+                  Email:
+                </div>
+                <div class="col-6">
+                  arthur@gmail.com
+                  <a type="button" class="btn" data-toggle="collapse" data-target="#Email">
+                  <i class="fa-solid fa-pen" style="color:#4CA5D7;"></i> 
+                  </a>
+                </div>
+          </div>
+  
+          <div id="Email" class="collapse">
+                <div class="card"> 
+                   <div class="form-group">
+                     <input type="password" class="form-control" placeholder="Enter New Name">
+                  </div>
+                <div class="d-flex justify-content-end mt-3 p-3">
+                    <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
+               </div>
+         </div>
+      
+        </div>
+      </div>
+  
+  </div>  
     
-              <div class="card-body">
+              {{-- <div class="card-body">
                 <div class="form-group">
                   <label class="form-label">Username</label>
                   <input type="text" class="form-control mb-1" value="Enter your Username">
@@ -49,7 +103,7 @@
                   
                 </div>
                 
-              </div>
+              </div> --}}
               
     
             </div>
