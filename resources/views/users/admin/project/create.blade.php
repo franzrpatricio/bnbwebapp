@@ -6,7 +6,10 @@
     <div class="card">
         <div class="card mt-4"></div>
         <div class="card-header">
-            <h4><div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New Project</div></h4>
+            <h4><div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>
+                Create New Project
+                <a href="{{url('admin/projects')}}" class="btn btn-danger float-end">Back</a>
+            </div></h4>
         </div>
 
         <div class="card-body">
@@ -93,6 +96,17 @@
                         {{-- <input hidden name="amenity_id" value="{{ $item->id }}"> --}}
                     @endforeach
                 </div>  
+
+                <div class="form-group">
+                    <label>Upload Project Files</label>
+                    <span>You can upload multiple images</span>
+                    <input type="file" 
+                            name="filenames[]"
+                            class="form-control"
+                            id="inputFiles"
+                            multiple
+                    >
+                </div>
 
                 <h6>Status</h6>
                 <div class="row">

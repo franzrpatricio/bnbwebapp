@@ -107,8 +107,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('project/gallery/{project_id}', [App\Http\Controllers\Admin\FilesController::class, 'gallery'])->name('projects.gallery');
     // Route::get('projects/images/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class,'gallery']);
     #CREATE PROJECT IMAGES 
-    Route::get('projects/add-images', [App\Http\Controllers\Admin\FilesController::class, 'create']);
-    Route::post('projects/add-images', [App\Http\Controllers\Admin\FilesController::class, 'store']);
+    // Route::get('projects/add-images', [App\Http\Controllers\Admin\FilesController::class, 'create']);
+    Route::post('update-image/{files_id}', [App\Http\Controllers\Admin\FilesController::class, 'update'])->name('gallery.update');
     #DELETE GALLERY
     Route::get('delete-gallery/{files_id}', [App\Http\Controllers\Admin\FilesController::class,'destroy'])->name('gallery.destroy');
 

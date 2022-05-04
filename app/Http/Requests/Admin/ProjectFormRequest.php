@@ -79,7 +79,13 @@ class ProjectFormRequest extends FormRequest
                 'string'
             ],
             'amenity' => [
-                'required',
+                'nullable',
+            ],
+            'filenames' => [
+                'nullable',
+            ],
+            'filenames.*' => [
+                'mimes:jpeg,jpg,png,gif',
             ],
             'status' => [
                 'nullable',

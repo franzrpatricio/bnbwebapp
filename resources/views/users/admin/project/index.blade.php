@@ -30,9 +30,9 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New Project</div>
                     </a>
 
-                    <a href="{{ url('admin/projects/add-images') }}" class="btn btn-primary btn-sm mr-2">
+                    {{-- <a href="{{ url('admin/projects/add-images') }}" class="btn btn-primary btn-sm mr-2">
                         <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Add Gallery for Specific Project</div>
-                    </a>
+                    </a> --}}
 
                     <a href="{{ route('projects.index', ['trashed' => 'post']) }}" class="btn btn-primary btn-sm mr-2">View Deleted Projects</a>
                 @endif
@@ -49,8 +49,6 @@
                 <thead>
                     <tr class="text-center">
                         <th>ID</th>
-                        <th>Category</th>
-                        <th>House Plan</th>
                         <th>Project Name</th>
                         <th>Thumbnail</th>
                         <th>Gallery</th>
@@ -63,8 +61,6 @@
                     @foreach ($projects as $item)    
                         <tr class="text-center">
                             <td>{{$item->id}}</td>
-                            <td>{{$item->category->name}}</td>
-                            <td>{{$item->houseplan->type}}</td>
                             <td>{{$item->name}}</td>
 
                             {{-- it should be multiple images and not visible sa index --}}
@@ -89,7 +85,7 @@
                             
                             {{-- if status is true, show if not visible || visible --}}
                             {{-- to make the project visible just check the box for status --}}
-                            <td>{{$item->status == '0' ? 'Active':'Inactive'}}</td>
+                            <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td>
                             <td>
                                 @if(request()->has('trashed'))
                                     <a href="{{ route('projects.restore', $item->id) }}" class="btn btn-success">Restore</a>

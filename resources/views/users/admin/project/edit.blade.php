@@ -112,12 +112,12 @@
                             <textarea name="meta_keyword" rows="3" class="form-control">{{$project->meta_keyword}}</textarea>
                         </div>
                     </div>
-                    
+
                     <h6>Status</h6>
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label>Visible</label>
-                            <input type="checkbox" name="status" {{$project->status == '0' ? 'checked':''}}/>
+                            <input type="checkbox" name="status" {{$project->status == '1' ? 'checked':''}}/>
                         </div>
                         <div class="col-md-6">
                             <button type="submit" class="btn btn-primary">Update Project</button>

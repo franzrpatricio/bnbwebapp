@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use BotMan\BotMan\Messages\Attachments\File;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\Admin\FilesFormRequest;
 
 class FilesController extends Controller
@@ -20,25 +20,14 @@ class FilesController extends Controller
         $project = Projects::find($project_id);
         if ($project) {
             # code...
-            // $image = Files::select('filenames')->where('project_id',$project)->get();
-            // foreach ($files as $file) {
-            //     # code...
-            //     $images = explode(',', $file);
-            // }
-            // $files = explode(',', $file->filenames);
-            
-            // $image = DB::table('files')->where('project_id', $project->id)->first();
-            // $image = DB::table('files')->select('filenames')->where('files.project_id', '=', $project->id)->value('id')->get();
-            $image = Files::select('id','filenames')->where('project_id', $project_id)->first();
+            $image = Files::select('id','filenames')->where('project_id', $project_id)->get();
             # CHECK IF THERE ARE NO IMAGES FOR THIS PROJECT ID
             if ($image == NULL) {
                 # code...
                 return back()->with('msg','No images found');
             } else {
                 # code...
-                // $file = $image->id;
-                $images = explode(',',$image->filenames);
-                return view('users.admin.project.gallery', compact('project','images', 'image'));
+                return view('users.admin.project.gallery', compact('image'));
             }
         } else {
             # code...
@@ -79,18 +68,39 @@ class FilesController extends Controller
         return redirect('admin/projects')->with('msg','Images are successfully uploaded');
     }
 
+    public function update(Request $request, $files_id){
+        $files = Files::find($files_id);
+        $this->validate($request, [
+            'filenames' => 'nullable|mimes:jpeg,jpg,png,gif',
+        ]);
+        #image condition...
+        #if data has image file...
+        if ($request->hasfile('image')) {
+            #store image file from data in to $file
+            $file = $request->file('image');
+            #then get extension of image file 
+            #together with the timestamp uploaded 
+            #and store it in $filename
+            $filename = time().'.'. $file->getClientOriginalExtension();
+            #move the $filename in directory
+            $file->move('uploads/project_images/', $filename);
+            #store filename as data for image field in db 
+            #then in to $category
+            $files->filenames = $filename;
+        }
+
+        $files->posted_by = Auth::user()->id;
+        $files->update();
+        return back()->with('msg','Successfully Updated Image');
+    }
+
     public function destroy($files_id){
         $files = Files::findOrFail($files_id);
         if ($files) {
             # code...
-            // $files = explode(',',$files->filenames);
-            // foreach ($files as $file) {
-            //     if (file_exists('public/uploads/project_images' . json_decode($file, true))) {
-            //         Storage::disk('public')->delete('uploads/project_images' . $file['filenames']);
-            //     }
-            // }
-            $files->delete();
-            return redirect('admin/projects')->with('msg','Gallery for this Project Successfully Deleted.');
+            #write condiiton to delete image
+            $files->delete();    
+            return redirect('admin/projects')->with('msg','Successfully Deleted image from Gallery.');
         } else {
             return redirect('admin/projects')->with('msg','No Gallery found for this Project.');
         }

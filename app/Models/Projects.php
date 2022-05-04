@@ -21,6 +21,7 @@ class Projects extends Model
         'houseplan_id',
         'name',
         'image',
+        'vtour',
         'cost',
         'slug',
         'description',

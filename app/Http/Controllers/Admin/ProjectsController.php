@@ -82,14 +82,6 @@ class ProjectsController extends Controller
         $projID = $project->id;
         $data = $request->input('amenity');
         foreach ($data as $key) {
-            // $amenity_id = Amenities::where('service',$key)->select('id')->get();
-            // $insert = [
-            //     'project_id' => $projID,
-            //     'amenity_id' => $key,
-            //     'posted_by' => Auth::user()->id,
-            //     'created_at' => Carbon::now(),
-            // ];
-            // ProjectAmenities::insert($insert);
             DB::table('project_amenities')->insert(
                 array(
                     'project_id' => $projID,
@@ -100,47 +92,24 @@ class ProjectsController extends Controller
              );
         }
 
-        // if ($data) {
-        //     # code...
-        //     $result = Amenities::where('service',$data)->get('id');
-        //     // $projs = $result->id;
-        //     ProjectAmenities::insert([
-        //         'project_id' => $projID,
-        //         'amenity_id' => $result,
-        //         'posted_by' => Auth::user()->id,
-        //         'created_at' => Carbon::now(),            
-        //     ]);    
-        // }
+        if ($request->hasfile('filenames')) {
+            # code...
+            $files = $request->file('filenames');
+            foreach ($files as $image) {
+                # code...
+                $image_name = time().rand(1,50).'.'.$image->getClientOriginalExtension();
+                $image->move('uploads/project_images/', $image_name);
 
-        // $data = array();
-        // if ($amenities = $request->input('amenity')) {
-        //     # code...
-        //     foreach ($amenities as $amenity) {
-        //         # code...
-        //         $result_id = Amenities::where('service',$amenity)->get('id');
-        //         $data[] = $result_id; 
-        //     }
-        // }
-        // ProjectAmenities::insert([
-        //     'project_id' => $projID,
-        //     'amenity_id' => $result,
-        //     'posted_by' => Auth::user()->id,
-        //     'created_at' => Carbon::now(),    
-        // ]);
-        
-        // $data['amenity'] = $request->input('amenity');
-        // DB::table('project_amenities')->insert([
-        //     'project_id' => $projID,
-        //     'amenity_id' => $data,
-        //     'posted_by' => Auth::user()->id,
-        //     'created_at' => Carbon::now()
-        // ]);
-        // ProjectAmenities::insert([
-        //     'project_id' => $projID,
-        //     'amenity_id' => $data,
-        //     'posted_by' => Auth::user()->id,
-        //     'created_at' => Carbon::now()
-        // ]);
+                DB::table('files')->insert(
+                    array(
+                        'posted_by' => Auth::user()->id,
+                        'project_id' => $projID,
+                        'filenames' => $image_name,
+                        'created_at' => Carbon::now(),
+                    )
+                 );
+            }
+        }
         return redirect('admin/projects')->with('msg','Successfully Created Project');
     }
 
