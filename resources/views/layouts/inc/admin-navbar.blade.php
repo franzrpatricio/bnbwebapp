@@ -13,8 +13,8 @@
             <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{-- <i class="fas fa-user fa-fw"></i> --}}
                 {{-- <img src="assets/images/aj.jpg"> --}}
-                {{-- <img src="../assets/images/aj.jpg" class="rounded-circle" width="40px" height="40px"> --}}
-                <small>Franz Patricio</small></a>
+                {{-- <img src=".{{ asset('assets/images/aj.jpg') }}" class="rounded-circle" width="40px" height="40px"> --}}
+                <small>{{ Auth::user()->name }}</small></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{{ url('admin/profile') }}">Settings</a></li>
                 <li><a class="dropdown-item" href="#!">Activity Log</a></li>

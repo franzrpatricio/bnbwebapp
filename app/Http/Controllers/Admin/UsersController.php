@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\UserFormRequest;
+use Carbon\Carbon;
 
 class UsersController extends Controller
 {
@@ -49,6 +50,21 @@ class UsersController extends Controller
         #after everything....
         #save the category
         $users->save();
+
+        #insert to activity logs
+        $name = Auth::user()->name;
+                $description = "Created User";
+                $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+
+            $data = [
+
+                'name'          => $name,
+                'description'   => $description,
+                'date_time'     => $date_time,
+            ];
+                
+                DB::table('user_activity_logs')->insert($data);
+
         #redirect with message;see in index.blade.php
         return redirect('admin/users')->with('msg','Successfully Added New House Plan. Thanks!');
     }
@@ -73,6 +89,20 @@ class UsersController extends Controller
         #after everything....
         #save the category
         $users->update();
+
+        #insert to activity logs
+        $name = Auth::user()->name;
+                $description = "Update a User's Info";
+                $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+
+            $data = [
+
+                'name'          => $name,
+                'description'   => $description,
+                'date_time'     => $date_time,
+            ];
+                
+                DB::table('user_activity_logs')->insert($data);
         #redirect with message;see in index.blade.php
         return redirect('admin/users')->with('msg','Successfully Updated a User! :D');
     }
