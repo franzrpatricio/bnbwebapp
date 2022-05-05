@@ -45,6 +45,10 @@ class ProjectFormRequest extends FormRequest
                 'mimes:jpeg,jpg,png'
                 #mimes limit to only these types of image
             ],
+            'vtour' => [
+                'required|file|size:10240|mimetypes:video/mp4',
+                #file size = 10240 = 10MB
+            ],
             'cost' => [
                 'required',
                 'numeric' #para decimal
@@ -79,6 +83,9 @@ class ProjectFormRequest extends FormRequest
                 'string'
             ],
             'amenity' => [
+                'nullable',
+            ],
+            'design' => [
                 'nullable',
             ],
             'filenames' => [

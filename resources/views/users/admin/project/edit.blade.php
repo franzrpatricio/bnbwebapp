@@ -67,6 +67,12 @@
                             <label>Image</label>
                             <input type="file" name="image"class="form-control">
                         </div>
+
+                        <div class="col-md-6">
+                            <label>Virtual Tour</label>
+                            <span><h5>Upload your Project Virutal Tour</h5></span>
+                            <input type="file" name="vtour" class="form-control">
+                        </div>
                     </div>
                     
                     <div class="row">

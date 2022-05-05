@@ -19,7 +19,7 @@ class Files extends Model
         return $this->belongsTo(Projects::class, 'project_id', 'id');
     }
 
-    public function setFilenamesAttribute($value){
-        $this->attributes['filenames'] = json_encode($value);
-    }
+    // public function setFilenamesAttribute($value){
+    //     $this->attributes['filenames'] = json_encode($value);
+    // }
 }

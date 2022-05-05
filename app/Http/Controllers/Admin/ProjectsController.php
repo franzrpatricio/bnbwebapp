@@ -38,6 +38,8 @@ class ProjectsController extends Controller
         $category = Category::where('status', '0')->get(); 
         $houseplan = HousePlan::where('status', '1')->get();
         $amenities = Amenities::all();
+        // $architectural = Designs::all();
+        // architectural
         return view('users.admin.project.create', compact('category','houseplan','amenities'));
         #if you want to get multiple conditions in where(), use array
         #$category = Category::where(['status', '1'],[])->get();
@@ -65,6 +67,21 @@ class ProjectsController extends Controller
             #then in to $category
             $project->image = $filename;
         }
+        #vtour condition...
+        #if data has file...
+        if ($request->hasfile('vtour')) {
+            #store image file from data in to $file
+            $vtour = $request->file('vtour');
+            #then get extension of image file 
+            #together with the timestamp uploaded 
+            #and store it in $filename
+            $vidname = time().'.'. $vtour->getClientOriginalExtension();
+            #move the $filename in directory
+            $vtour->move('uploads/virtual_tour/', $vidname);
+            #store filename as data for image field in db 
+            #then in to $category
+            $project->vtour = $vidname;
+        }
 
         $project->cost = $data['cost'];
         $project->stories = $data['stories'];
@@ -91,6 +108,18 @@ class ProjectsController extends Controller
                 )
              );
         }
+
+        // $data = $request->input('designs');
+        // foreach ($data as $key) {
+        //     DB::table('Project_design')->insert(
+        //         array(
+        //             'project_id' => $projID,
+        //             'design_id' => $key,
+        //             'posted_by' => Auth::user()->id,
+        //             'created_at' => Carbon::now(),
+        //         )
+        //      );
+        // }
 
         if ($request->hasfile('filenames')) {
             # code...
@@ -144,6 +173,22 @@ class ProjectsController extends Controller
             $project->image = $filename;
         }
 
+        #vtour condition...
+        #if data has file...
+        if ($request->hasfile('vtour')) {
+            #store image file from data in to $file
+            $vtour = $request->file('vtour');
+            #then get extension of image file 
+            #together with the timestamp uploaded 
+            #and store it in $filename
+            $vidname = time().'.'. $vtour->getClientOriginalExtension();
+            #move the $filename in directory
+            $vtour->move('uploads/virtual_tour/', $vidname);
+            #store filename as data for image field in db 
+            #then in to $category
+            $project->vtour = $vidname;
+        }
+
         $project->cost = $data['cost'];
         $project->slug = Str::slug($data['slug']);
         $project->description = $data['description'];
@@ -156,6 +201,7 @@ class ProjectsController extends Controller
         $project->update();
         return redirect('admin/projects')->with('msg','Successfully Updated Project');
     }
+
     #DELETE
     public function destroy($project_id){
         $project = Projects::find($project_id);

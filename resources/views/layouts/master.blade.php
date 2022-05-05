@@ -14,6 +14,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
+
+    {{-- CHOSEN.JS NEEDS --}}
+    <link href="{{ asset('assets/chosen/chosen.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('assets/chosen/jquery-3.3.1.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/chose/chosen.jquery.min.js') }}" type="text/javascript"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" crossorigin="anonymous"></script>
 
     {{-- BOOTSTRAP ICONS --}}
@@ -27,6 +33,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/gallery.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    {{-- CHOSEN.JS JQUERY SCRIPTS --}}
+
 </head>
 <body class="sb-nav-fixed">
     {{-- navbar --}}
@@ -70,6 +79,13 @@
     <script>
         document.getElementById('gallery').classList.add("custom");
         document.getElementById('exampleModal').classList.add("custom");
+    </script>
+
+    {{-- CHOSEN.JS MULTIPLE SELECT SCRIPT --}}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#cars').chosen();
+        });
     </script>
 </body>
 </html>

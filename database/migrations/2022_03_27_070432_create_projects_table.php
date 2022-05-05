@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('houseplan_id'); #house plan
             $table->string('name'); #project name
             $table->string('image')->nullable(); #image
+            $table->string('vtour');
             $table->decimal('cost', 13, 2);
             $table->string('stories')->nullable();
             $table->integer('rooms')->nullable();

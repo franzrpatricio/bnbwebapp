@@ -24,6 +24,13 @@
 
             <form action="{{url('admin/add-project')}}" method="post" enctype="multipart/form-data">
                 @csrf
+
+                <select name="cars" id="cars" multiple="" class="chosen-select" style="width: 300px">
+                    @foreach ($category as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                </select>
+
                 <div class="mb-3">
                     <label for="">Category</label>
                     {{-- select what category --}}
@@ -52,6 +59,11 @@
                 <div class="mb-3">
                     <label>Image</label>
                     <input type="file" name="image"class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Virtual Tour</label>
+                    <span><h5>Upload your Project Virutal Tour</h5></span>
+                    <input type="file" name="vtour" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label>Cost</label>
@@ -96,6 +108,13 @@
                         {{-- <input hidden name="amenity_id" value="{{ $item->id }}"> --}}
                     @endforeach
                 </div>  
+
+                {{-- <div class="form-group">
+                    <label><strong>Architectural Design :</strong></label><br>
+                    @foreach ($architectural as $designs)
+                        <label><input type="checkbox" value="{{$designs->id}}" name="designs[]">{{$designs->design}}</label>
+                    @endforeach
+                </div>   --}}
 
                 <div class="form-group">
                     <label>Upload Project Files</label>
