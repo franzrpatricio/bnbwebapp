@@ -102,6 +102,39 @@
                         <textarea name="description" id="summernoteDesc" rows="5" class="form-control">{{$project->description}}</textarea>
                     </div>
 
+                    <div class="mb-3">
+                        <label><strong>Architectural Designs :</strong></label><br>
+                        <select name="designs[]" id="desgins" multiple class="filter-multi-select">
+                            @foreach ($architectural as $item)
+                                <option value="{{ $item->design }}">{{$item->design}}</option>
+                            @endforeach
+                        </select>    
+                    </div>
+
+                    <div class="mb-3">
+                        <label><strong>Amenities :</strong></label><br>
+                        <select name="amenities[]" id="amenities" multiple class="filter-multi-select">
+                            @foreach ($amenities as $item)
+                                <option value="{{ $item->service }}">{{$item->service}}</option>
+                            @endforeach
+                        </select>    
+                    </div>
+
+                    {{-- <div class="form-group">
+                        <label><strong>Amenities :</strong></label><br>
+                        <select name="amenities[]" id="amenities" multiple class="filter-multi-select">
+                            @foreach ($amenities as $item)
+                                <option
+                                    @if (json_decode($project->amenities) == $item->service) selected
+                                    @endif
+                                    value="{{ $item->service }}"
+                                >
+                                    {{$item->service}}
+                                </option>
+                            @endforeach
+                        </select>    
+                    </div>  --}}
+
                     <h6>SEO Tags</h6>
                     <div class="mb-3">
                         <label>Meta Title</label>

@@ -22,12 +22,12 @@ class FilesController extends Controller
             # code...
             $image = Files::select('id','filenames')->where('project_id', $project_id)->get();
             # CHECK IF THERE ARE NO IMAGES FOR THIS PROJECT ID
-            if ($image == NULL) {
-                # code...
-                return back()->with('msg','No images found');
-            } else {
+            if (Files::where('project_id', $project_id)->exists()) {
                 # code...
                 return view('users.admin.project.gallery', compact('image'));
+            } else {
+                # code...
+                return back()->with('msg','No images found');
             }
         } else {
             # code...
@@ -100,7 +100,7 @@ class FilesController extends Controller
             # code...
             #write condiiton to delete image
             $files->delete();    
-            return redirect('admin/projects')->with('msg','Successfully Deleted image from Gallery.');
+            return back()->with('msg','Successfully Deleted image from Gallery.');
         } else {
             return redirect('admin/projects')->with('msg','No Gallery found for this Project.');
         }

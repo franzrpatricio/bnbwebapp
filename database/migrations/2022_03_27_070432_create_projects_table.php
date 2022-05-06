@@ -30,6 +30,8 @@ return new class extends Migration
             #SEO Tags
             $table->string('slug'); 
             $table->mediumText('description');
+            $table->string('designs');
+            $table->string('amenities');
             $table->string('meta_title');
             $table->mediumText('meta_description')->nullable();
             $table->mediumText('meta_keyword')->nullable();

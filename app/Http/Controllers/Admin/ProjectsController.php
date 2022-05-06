@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
 use App\Models\Files;
+use App\Models\Designs;
 use App\Models\Category;
 use App\Models\Projects;
 use App\Models\Amenities;
@@ -38,9 +39,8 @@ class ProjectsController extends Controller
         $category = Category::where('status', '0')->get(); 
         $houseplan = HousePlan::where('status', '1')->get();
         $amenities = Amenities::all();
-        // $architectural = Designs::all();
-        // architectural
-        return view('users.admin.project.create', compact('category','houseplan','amenities'));
+        $architectural = Designs::all();
+        return view('users.admin.project.create', compact('category','houseplan','amenities','architectural'));
         #if you want to get multiple conditions in where(), use array
         #$category = Category::where(['status', '1'],[])->get();
     }
@@ -88,6 +88,12 @@ class ProjectsController extends Controller
         $project->rooms = $data['rooms'];
         $project->slug = Str::slug($data['slug']);
         $project->description = $data['description'];
+
+        $designs = $request->input('designs');
+        $project->designs = json_encode($designs);
+        $amenities = $request->input('amenities');
+        $project->amenities = json_encode($amenities);
+        
         $project->meta_title = $data['meta_title'];
         $project->meta_description = $data['meta_description'];
         $project->meta_keyword = $data['meta_keyword'];
@@ -97,17 +103,17 @@ class ProjectsController extends Controller
         $project->save();
         
         $projID = $project->id;
-        $data = $request->input('amenity');
-        foreach ($data as $key) {
-            DB::table('project_amenities')->insert(
-                array(
-                    'project_id' => $projID,
-                    'amenity_id' => $key,
-                    'posted_by' => Auth::user()->id,
-                    'created_at' => Carbon::now(),
-                )
-             );
-        }
+        // $data = $request->input('amenity');
+        // foreach ($data as $key) {
+        //     DB::table('project_amenities')->insert(
+        //         array(
+        //             'project_id' => $projID,
+        //             'amenity_id' => $key,
+        //             'posted_by' => Auth::user()->id,
+        //             'created_at' => Carbon::now(),
+        //         )
+        //      );
+        // }
 
         // $data = $request->input('designs');
         // foreach ($data as $key) {
@@ -120,7 +126,6 @@ class ProjectsController extends Controller
         //         )
         //      );
         // }
-
         if ($request->hasfile('filenames')) {
             # code...
             $files = $request->file('filenames');
@@ -146,8 +151,10 @@ class ProjectsController extends Controller
     public function edit($project_id){
         $category = Category::where('status', '0')->get(); 
         $houseplan = HousePlan::where('status', '1')->get();
+        $amenities = Amenities::all();
+        $architectural = Designs::all();
         $project = Projects::find($project_id);
-        return view('users.admin.project.edit', compact('project', 'category','houseplan'));
+        return view('users.admin.project.edit', compact('project', 'category','houseplan','amenities','architectural'));
     }
     #UPDATE specific project
     public function update(ProjectFormRequest $request, $project_id){
@@ -192,6 +199,12 @@ class ProjectsController extends Controller
         $project->cost = $data['cost'];
         $project->slug = Str::slug($data['slug']);
         $project->description = $data['description'];
+
+        $designs = $request->input('designs');
+        $project->designs = json_encode($designs);
+        $amenities = $request->input('amenities');
+        $project->amenities = json_encode($amenities);
+
         $project->meta_title = $data['meta_title'];
         $project->meta_description = $data['meta_description'];
         $project->meta_keyword = $data['meta_keyword'];
