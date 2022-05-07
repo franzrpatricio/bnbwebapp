@@ -46,7 +46,7 @@ class ProjectFormRequest extends FormRequest
                 #mimes limit to only these types of image
             ],
             'vtour' => [
-                'required',
+                'nullable',
                 'file',
                 // 'size:5000',
                 'mimetypes:video/mp4'
@@ -73,10 +73,10 @@ class ProjectFormRequest extends FormRequest
                 'required'
             ],
             'designs' => [
-                'required'
+                'nullable'
             ],
             'amenities' => [
-                'required'
+                'nullable'
             ],
             'meta_title' => [
                 'required',

@@ -8,7 +8,7 @@
       <a href="/">Home</a>
       <a href="{{ url('/portfolio') }}">Portfolio</a>
       <a href="{{ url('/profile') }}">Profile</a>
-      <a href="{{ url('/project') }}">Projects</a>
+      <a href="{{ url('/projects') }}">Projects</a>
       <a href="{{ url('/contact') }}">Contact Us</a>
     </div>  
 </div>

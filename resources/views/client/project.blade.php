@@ -1,268 +1,110 @@
 @extends('layouts.client')
 @section('content')
-    <div class="container-fluid bg-light h-100">
-      <div class="row min-vh-100">
-        <div class="col-lg-3 col-md-3 col-sm-12 p-3 navbar-expand-lg navbar-expand-md navbar-light bg-light">
-            <div>
-              <form class="d-flex">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-primary" type="submit">Search</button>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="fa-solid fa-filter"></span>
-                  </button>
-                </form>
-            
-             
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              
-              
+<div class="container-fluid bg-light h-100">
+  <div class="row min-vh-100">
+    <div class="col-lg-3 col-md-3 col-sm-12 p-3 navbar-expand-lg navbar-expand-md navbar-light bg-light">
+      {{-- SEARCH BAR --}}
+      <div>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('projects')}}">
+          @csrf
+          <div class="input-group">
+              <input class="form-control" name="query" type="search" placeholder="Search Project here..." aria-label="Search Project" aria-describedby="btnNavbarSearch"/>
+              <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+          </div>
+        </form>
 
-
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div>
+            {{-- CATEGORIES --}}
+            <div class="container  border-bottom p-3" >
               <div>
-               
-                <div class="container  border-bottom p-3" >
-                 <div>
-                   <h3>Category</h3>
-                 </div> 
+                <h3>Category</h3>
+              </div> 
+                @foreach ($categories as $category)
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Residencial
-                    </label>
+                    <label class="form-check-label" for="flexCheckDefault">{{$category->name}}</label>
                   </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                    <label class="form-check-label" for="flexCheckChecked">
-                      Condo Interior
-                    </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                      <label class="form-check-label" for="flexCheckChecked">
-                        Roofing
-                      </label>
-                  </div>
+                @endforeach
+            </div>
 
-              </div>
-
-              
-
-              <div class="container  border-bottom  p-3">
-                  <h3>Architectural Design</h3>
+            {{-- ARCHITECTURAL DESIGNS --}}
+            <div class="container border-bottom p-3">
+              <h3>Architectural Design</h3>
+                @foreach ($architectural as $design)
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Modern
-                    </label>
+                    <label class="form-check-label" for="flexCheckDefault">{{$design->design}}</label>
                   </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                    <label class="form-check-label" for="flexCheckChecked">
-                      Basic
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                    <label class="form-check-label" for="flexCheckChecked">
-                      Baroque
-                    </label>
-                  </div>
+                @endforeach
+            </div>
 
-              </div>
-
-              <div class="container border-bottom  p-3 ">
-                <h3>No. Stories</h3>
+            {{-- STORIES --}}
+            <div class="container border-bottom p-3">
+              <h3>No. Stories</h3>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Bungalow
-                  </label>
+                  <label class="form-check-label" for="flexCheckDefault">Bungalow</label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                  <label class="form-check-label" for="flexCheckChecked">
-                    1-stories
-                  </label>
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">1</label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                  <label class="form-check-label" for="flexCheckChecked">
-                    2-stories
-                  </label>
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">2</label>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                  <label class="form-check-label" for="flexCheckChecked">
-                    3-stories
-                  </label>
-                </div>
+            </div>
 
-                </div>
-                <div class="container  border-bottom  p-3">
-                    <h3>Amenities</h3>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">
-                        Swimming Pool
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label class="form-check-label" for="flexCheckChecked">
-                        Game Room
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label class="form-check-label" for="flexCheckChecked">
-                        Home Theater
-                      </label>
-                    </div>
-  
-                </div>
-              </div>
+            {{-- AMENITIES --}}
+            <div class="container  border-bottom  p-3">
+              <h3>Amenities</h3>
+                @foreach ($amenities as $amenity)
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">{{$amenity->service}}</label>
+                  </div>
+                @endforeach
             </div>
           </div>
         </div>
-       
-       
-        <div  class="col-lg-9 col-md-9 col-sm-12 p-3 ">
-            <div class="">
-              Showing Results of "Mansion House"                  
-            </div>
-            <div class="row ">
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
-                <div>
-                <div class="card" style="height: 300px; width: 200px; "  >
-                    <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
-                    </div>
-                    <div class="card-body">
-                      <h6 class="card-title text-center">Quezon City Project</h6>
-                      <div class="text-center">
-                        <a href="sampleproject.html">
-                      <button  class="btn btn-primary text " >View  </button>
-                      </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
-                <div>
-                <div class="card" style="height: 300px; width: 200px; "  >
-                    <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
-                    </div>
-                    <div class="card-body">
-                      <h6 class="card-title text-center">Tanza Cavite Project</h6>
-       
-                      <div class="text-center">
-                        <button  class="btn btn-primary text " >View  </button>
-                        </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
-                <div>
-                <div class="card" style="height: 300px; width: 200px; "  >
-                    <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
-                    </div>
-                    <div class="card-body">
-                      <h6 class="card-title text-center">Manila Project</h6>
-       
-                      <div class="text-center">
-                        <button  class="btn btn-primary text " >View  </button>
-                        </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
-                <div>
-                <div class="card" style="height: 300px; width: 200px; "  >
-                    <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
-                    </div>
-                    <div class="card-body">
-                      <h6 class="card-title text-center">Lancaster Project</h6>
-       
-                      <div class="text-center">
-                        <button  class="btn btn-primary text " >View  </button>
-                        </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
-                <div>
-                <div class="card" style="height: 300px; width: 200px; "  >
-                    <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
-                    </div>
-                    <div class="card-body">
-                      <h6 class="card-title text-center">Zobel Project</h6>
-       
-                      <div class="text-center">
-                        <button  class="btn btn-primary text " >View  </button>
-                        </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
-                <div>
-                <div class="card" style="height: 300px; width: 200px; "  >
-                    <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
-                    </div>
-                    <div class="card-body">
-                      <h6 class="card-title text-center">Laguna Project</h6>
-       
-                      <div class="text-center">
-                        <button  class="btn btn-primary text " >View  </button>
-                        </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
-                <div>
-                <div class="card" style="height: 300px; width: 200px; "  >
-                    <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
-                    </div>
-                    <div class="card-body">
-                      <h6 class="card-title text-center">Batangas Project</h6>
-       
-                      <div class="text-center">
-                        <button  class="btn btn-primary text " >View </button>
-                        </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
-                <div>
-                <div class="card" style="height: 300px; width: 200px; "  >
-                    <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
-                    </div>
-                    <div class="card-body">
-                      <h6 class="card-title text-center">San Pedro Project</h6>
-       
-                      <div class="text-center">
-                        <button  class="btn btn-primary text " >View </button>
-                        </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-               
-        </div>
-
       </div>
     </div>
+    
+    <div class="col-lg-9 col-md-9 col-sm-12 p-3 ">
+        {{-- display msg after redirecting --}}
+        @if (isset($msg))
+          <div class="alert alert-danger">
+            <div class="">Showing Results of "{{Request::input('query')}}"</div>
+            {{ $msg }}
+            <a href="{{url('projects')}}" class="close float-end" data-dismiss="alert" aria-label="close">&times;</a>
+          </div>
+        @endif
+        
+        @foreach ($projects as $project)
+          <div class="row ">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
+              <div>
+                <div class="card" style="height: 300px; width: 200px; ">
+                  <div class="img-fluid border-bottom">
+                    <img src="{{asset('uploads/project/'.$project->image)}}" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-title text-center">{{$project->name}}</h6>
+                    <div class="text-center">
+                      <a href="sampleproject.html">
+                        <button class="btn btn-primary text ">View</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>  
+              </div>
+            </div>
+          </div>
+        @endforeach
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

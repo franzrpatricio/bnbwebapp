@@ -1,7 +1,5 @@
   <?php include('partials/navbar.php') ?>
   <main>
-
-
       <!-- Homepage Codes -->
       <section class="home">
         <img src="./images/bghome.jpg" class="fitBg">

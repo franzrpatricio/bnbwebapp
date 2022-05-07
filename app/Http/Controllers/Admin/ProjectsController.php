@@ -209,7 +209,7 @@ class ProjectsController extends Controller
         $project->meta_description = $data['meta_description'];
         $project->meta_keyword = $data['meta_keyword'];
         
-        $project->status = $request->status ==true ? '0':'1';
+        $project->status = $request->status ==true ? '1':'0';
         $project->posted_by = Auth::user()->id;
         $project->update();
         return redirect('admin/projects')->with('msg','Successfully Updated Project');
@@ -252,7 +252,7 @@ class ProjectsController extends Controller
             return view('users.admin.project.index', compact('projects'));
         } else {
             # code...
-            return view ('users.admin.project.index', compact('projects'))->with( 'No Projects Found. 🥺' );
+            return view ('users.admin.project.index', compact('projects'))->with('msg','No Projects Found.🥺' );
         }
     }
 }
