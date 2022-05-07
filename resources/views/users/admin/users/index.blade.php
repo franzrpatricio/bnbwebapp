@@ -58,12 +58,12 @@
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->email}}</td>
-                                <td>{{$item->role_as == '0' ? 'Administrator':'Staff'}}</td>
+                                <td>{{$item->role_as == '1' ? 'Administrator':'Staff'}}</td>
 
                                 {{-- if status is true, show if not visible || visible --}}
                                 {{-- to make the user visible just check the box for status --}}
                                 {{-- if status = 1->active; else->inactive --}}
-                                <td>{{$item->status == '0' ? 'Active':'Inactive'}}</td> 
+                                <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td> 
                                 <td>
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('users.restore', $item->id) }}" class="btn btn-success">Restore</a>

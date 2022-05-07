@@ -56,8 +56,8 @@
                         <label>Role</label>
                         {{-- <input type="checkbox" name="role_as" {{$user->role_as == '1' ? 'checked':''}}/> --}}
                         <select name="role_as" class="form-control">
-                            <option value="0" {{$user->role_as=='0' ? 'selected':''}}>Administrator</option>
-                            <option value="1" {{$user->role_as=='1' ? 'selected':''}}>Staff</option>
+                            <option value="0" {{$user->role_as=='1' ? 'selected':''}}>Administrator</option>
+                            <option value="1" {{$user->role_as=='0' ? 'selected':''}}>Staff</option>
                         </select>
                     </div>
 

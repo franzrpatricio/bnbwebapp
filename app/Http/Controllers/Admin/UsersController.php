@@ -13,9 +13,9 @@ class UsersController extends Controller
 {
     public function index(Request $request){
         if(Auth::check()){
-            if (Auth::user()->role_as=='0' ) {
-                #role_as == 1 = staff
-                #role_as == 0 = admin
+            if (Auth::user()->role_as=='1') {
+                #role_as == 0 = staff
+                #role_as == 1 = admin
                 # code... 
                 // $users = User::paginate(5);
                 if ($request->has('trashed')) {

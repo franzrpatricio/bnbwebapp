@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('status')->default('1');
             #set role_as column to 0/staff as default value whenever a new user is created
             // $table->integer('role_as')->default('0'); #admin = 0
-            $table->integer('role_as')->default('1'); #staff = 1
+            $table->integer('role_as')->default('0'); #staff = 1
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();

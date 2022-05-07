@@ -36,7 +36,7 @@ class ProjectsController extends Controller
         #FORM
         #1 means visible
         #show all categories and houseplans with status == 1
-        $category = Category::where('status', '0')->get(); 
+        $category = Category::where('status', '1')->get(); 
         $houseplan = HousePlan::where('status', '1')->get();
         $amenities = Amenities::all();
         $architectural = Designs::all();
@@ -149,7 +149,7 @@ class ProjectsController extends Controller
 
     #VIEW specific project
     public function edit($project_id){
-        $category = Category::where('status', '0')->get(); 
+        $category = Category::where('status', '1')->get(); 
         $houseplan = HousePlan::where('status', '1')->get();
         $amenities = Amenities::all();
         $architectural = Designs::all();
