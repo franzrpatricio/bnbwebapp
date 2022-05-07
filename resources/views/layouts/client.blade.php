@@ -16,14 +16,16 @@
     <!-- Styles -->
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/client.css') }}" rel="stylesheet">
     
 </head>
-<body style="background-image: url('{{asset('assets/client/view.jpg')}}')" style="background-repeat:no-repeat" style="background-size: 100%">
+<body>
     <div id="app">
         @include('layouts.inc.client-navbar')
         <main class="py-4">
             @yield('content')
         </main>
+        @include('layouts.inc.client-footer')
     </div>
 </body>
 </html>
