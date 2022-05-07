@@ -66,6 +66,19 @@ class ProjectsController extends Controller
         $project->status = $request->status ==true ? '1':'0';
         $project->posted_by = Auth::user()->id;
         $project->save();
+        //insert to activity logs
+        $name = Auth::user()->name;
+                $description = "Created Project";
+                $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+
+            $data = [
+
+                'name'          => $name,
+                'description'   => $description,
+                'date_time'     => $date_time,
+            ];
+                
+                DB::table('user_activity_logs')->insert($data);
         return redirect('admin/projects')->with('msg','Successfully Created Project');
     }
     #VIEW specific project
@@ -109,6 +122,19 @@ class ProjectsController extends Controller
         $project->status = $request->status ==true ? '1':'0';
         $project->posted_by = Auth::user()->id;
         $project->update();
+        //insert to activity logs
+        $name = Auth::user()->name;
+                $description = "Update a Project";
+                $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+
+            $data = [
+
+                'name'          => $name,
+                'description'   => $description,
+                'date_time'     => $date_time,
+            ];
+                
+                DB::table('user_activity_logs')->insert($data);
         return redirect('admin/projects')->with('msg','Successfully Updated Project');
     }
     #DELETE

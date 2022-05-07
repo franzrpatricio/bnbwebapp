@@ -129,7 +129,12 @@
     
                 <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
                   <label class="form-label">Current password</label>
-                  <input id="current-password" type="password" class="form-control" name="current-password" required>
+                  <input id="currentpwd" type="password" class="form-control" name="current-password" required>
+                  <span class="eye" style="position: absolute;" onclick="current()">
+                            <i id="hide1" style="display:none;" class="fa fa-eye"></i>
+                            <i id="hide2" class="fa fa-eye-slash"></i>
+                            
+                          </span>
                   @if ($errors->has('current-password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('current-password') }}</strong>
@@ -139,7 +144,12 @@
     
                 <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
                   <label class="form-label">New password</label>
-                  <input id="new-password" type="password" class="form-control" name="new-password" required>
+                  <input id="newpwd" type="password" class="form-control" name="new-password" required>
+                  <span class="eye" style="position: absolute;" onclick="newpass()">
+                            <i id="hide3" style="display:none;" class="fa fa-eye"></i>
+                            <i id="hide4" class="fa fa-eye-slash"></i>
+                            
+                          </span>
                   @if ($errors->has('new-password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('new-password') }}</strong>
@@ -149,7 +159,12 @@
     
                 <div class="form-group">
                   <label class="form-label">Repeat new password</label>
-                  <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" required>
+                  <input id="repeatpwd" type="password" class="form-control" name="new-password_confirmation" required>
+                  <span class="eye" style="position: absolute;" onclick="repeat()">
+                            <i id="hide5" style="display:none;" class="fa fa-eye"></i>
+                            <i id="hide6" class="fa fa-eye-slash"></i>
+                            
+                          </span>
                 </div>
     
               </div>
@@ -157,6 +172,25 @@
                   <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
                   <button type="button" class="btn btn-default">Cancel</button>
                 </div>
+                <!-- <script>
+
+                            function togglepass(){
+                              var input = document.getElementById("pwd");
+                              var hide = document.getElementById("hide1");
+                              var show = document.getElementById("hide2");
+
+                              if(input.type === 'password'){
+                                input.type = "text";
+                                hide.style.display = "block";
+                                show.style.display = "none";
+                              }
+                              else{
+                                input.type = "password";
+                                hide.style.display = "none";
+                                show.style.display = "block";
+                              }
+                            }
+                            </script> -->
             </div>
 
                   <div class="tab-pane fade" id="activity-logs">
@@ -182,6 +216,8 @@
                             
                           </tbody>
                       </table>
+                      <h5>Page</h5>
+                      {{ $logs->links() }}
           
                     </div>
                   </div>

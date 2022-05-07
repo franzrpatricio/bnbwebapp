@@ -42,8 +42,35 @@
                         </div>
       
                         <div class="form-outline mb-4">
+                          <div>
                           <label class="form-label" for="form2Example27">Password</label>
-                          <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                          <input id="pwd" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                          <span class="eye" style="position: absolute;" onclick="togglepass()">
+                            <i id="hide1" style="display:none;" class="fa fa-eye"></i>
+                            <i id="hide2" class="fa fa-eye-slash"></i>
+                            
+                          </span>
+                          </div>
+                          <script>
+
+                            function togglepass(){
+                              var input = document.getElementById("pwd");
+                              var hide = document.getElementById("hide1");
+                              var show = document.getElementById("hide2");
+
+                              if(input.type === 'password'){
+                                input.type = "text";
+                                hide.style.display = "block";
+                                show.style.display = "none";
+                              }
+                              else{
+                                input.type = "password";
+                                hide.style.display = "none";
+                                show.style.display = "block";
+                              }
+                            }
+                            </script>
+                          
   
                           @error('password')
                                     <span class="invalid-feedback" role="alert">

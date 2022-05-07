@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Logs;
 use App\Http\Requests\Admin\UserFormRequest;
 use Carbon\Carbon;
 use Hash;
@@ -15,7 +16,9 @@ class ProfileController extends Controller
 {
     public function profile(){
         $user = User::find(Auth::user()->id);
-        $logs = DB::select('select * from user_activity_logs');
+        $logs = Logs::paginate(10);
+        
+
         return view('users.profilesettings', compact(['user','logs']));
     }
 
