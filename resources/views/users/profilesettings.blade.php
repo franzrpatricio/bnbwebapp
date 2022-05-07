@@ -23,6 +23,8 @@
                       @if (session('msg'))
                       <div class="alert alert-success">{{ session('msg') }}</div>
                       @endif
+
+                      
                                 
                       <form class="form-horizontal" method="POST" action="{{ route('update-profile') }}">
                                 {{ csrf_field() }}
@@ -43,108 +45,65 @@
                                     </div>
                             </div>
               
-                      <hr class="border-light m-0"> 
+                              <hr class="border-light m-0"> 
+                            <div class="card p-3"><a type="button" class="btn" data-toggle="collapse" data-target="#Edit">
+                                              <i class="fa-solid fa-pen" style="color:#4CA5D7;"></i> 
+                                            </a>
+                              <div>
+                                  <div class="row text-start">
+                                          <div class="col-6">
+                                            Username:
+                                          </div>
+                                        <div class="col-6">
+                                            {{ Auth::user()->name }}
+                                            
+                                          </div>
+                                          <div class="col-6">
+                                          Email:
+                                        </div>
+                                        <div class="col-6">
+                                           {{ Auth::user()->email }}
+                                          
+                                        </div>
+                                      </div>
+
+                                          <div id="Edit" class="collapse">
+                                          
+                                              <div class="card"> 
+                                                
+                                                <div class="form-group">
+                                                
+                                                  <input type="text" name="name" class="form-control" placeholder="Enter New Name">
+                                                </div>
+                                                <div class="form-group">
+                                                  <input type="text" name="email" class="form-control" placeholder="Enter New Email">
+                                                </div>
+                                                                
+                                                  
+                                              
+                                               </div>
+                                        
+                                    
+                                          </div>
+                                  </div>
                       
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                          <label class="form-label">Name</label>
-                          <input type="text" name="name" class="form-control" required>
-                          @if ($errors->has('name'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('name') }}</strong>
-                                            </span>
-                                        @endif
-                        </div>
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                              <label class="form-label">E-mail</label>
-                              <input type="text" name="email" class="form-control mb-1" required>
-                              @if ($errors->has('email'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
-                              
+                                         
+                                <div>
+                                   
+
+                                    
+                                </div>
                             </div>
+
+                                 
               
-                      <div class="text-right mt-3 p-3">
-                        <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
-                        <button type="button" class="btn btn-default">Cancel</button>
-                      </div>
-</form>
+                        <div class="text-right mt-3 p-3">
+                          <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
+                          <button type="button" class="btn btn-default">Cancel</button>
+                        </div>
+                  </form>
                 
-    <div class="container">
-      <div class="card p-3">
-        <div>
-                   <div class="row text-start">
-                      <div class="col-6">
-                         Username
-                      </div>
-                    <div class="col-6">
-                         Arthur John Cotoner
-                        <a type="button" class="btn" data-toggle="collapse" data-target="#Name">
-                          <i class="fa-solid fa-pen" style="color:#4CA5D7;"></i> 
-                        </a>
-                      </div>
-              </div>
-  
-          <div id="Name" class="collapse">
-                <div class="card"> 
-                   <div class="form-group">
-                     <input type="password" class="form-control" placeholder="Enter New Name">
-                  </div>
-                <div class="d-flex justify-content-end mt-3 p-3">
-                    <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
-                </div>
-         </div>
-      
-        </div>
-  
-  
-        <div>
-          <div class="row text-start">
-                <div class="col-6">
-                  Email:
-                </div>
-                <div class="col-6">
-                  arthur@gmail.com
-                  <a type="button" class="btn" data-toggle="collapse" data-target="#Email">
-                  <i class="fa-solid fa-pen" style="color:#4CA5D7;"></i> 
-                  </a>
-                </div>
-          </div>
-  
-          <div id="Email" class="collapse">
-                <div class="card"> 
-                   <div class="form-group">
-                     <input type="password" class="form-control" placeholder="Enter New Name">
-                  </div>
-                <div class="d-flex justify-content-end mt-3 p-3">
-                    <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
-               </div>
-         </div>
-      
-        </div>
-      </div>
-  
-  </div>  
-    
-              {{-- <div class="card-body">
-                <div class="form-group">
-                  <label class="form-label">Username</label>
-                  <input type="text" class="form-control mb-1" value="Enter your Username">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Name</label>
-                  <input type="text" class="form-control" value="{{ Auth::user()->name }}">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">E-mail</label>
-                  <input type="text" class="form-control mb-1" value="{{ Auth::user()->email }}">
-                  
-                </div>
-                
-              </div> --}}
-              
-    
+                                  
             </div>
 
             <div class="tab-pane fade" id="account-change-password">
