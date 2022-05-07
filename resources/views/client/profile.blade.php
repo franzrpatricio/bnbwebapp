@@ -1,8 +1,7 @@
 @extends('layouts.client')
 @section('content')
-    <h2>Hello</h2>
 
-    <div class="header">
+    <div class="header" style="background-image: url('{{asset('assets/client/building.jpg')}}')">
 
       <div  class="p-3 text-center bg-image"  style="filter: brightness(60%);">
         <img src="" alt="">
@@ -24,7 +23,7 @@
       <div class="row gy-4">
         
         <div class="card">
-          <img src="./images/ar2.jpg" style="height: 100%; width: 100%;" class="card-image-top">
+          <img src="{{asset('assets/client/ar2.jpg')}}" style="height: 100%; width: 100%;" class="card-image-top">
 
           </div>
         </div>
@@ -68,12 +67,12 @@
   </section><!-- End About Section -->
   <br>
 
-  <section id="about" class="about section-bg">
+  <section id="about" class="about section-bg py-4">
     <div class="container">
 
-      <div class="row gy-4">
+      <div class="row py-4">
         <div class="card">
-          <img src="./images/421827_498466030218141_776598220_n.jpg" style="height: 100%; width: 100%;" class="card-image-top">
+          <img src="{{asset('assets/client/ar1.jpg')}}" style="height: 100%; width: 100%;" class="card-image-top">
 
           </div>
 
@@ -113,6 +112,6 @@
           </div><!-- End .content-->
         </div>
       </div>
-
-    </div>
+  </section>
+  </div>
 @endsection

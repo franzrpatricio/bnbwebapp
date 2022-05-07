@@ -15,7 +15,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/client.css') }}" rel="stylesheet">
     
 </head>
