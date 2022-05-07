@@ -1,7 +1,7 @@
 @extends('layouts.client')
 @section('content')
   <!-- Banner -->
-  <div class="header">
+  <div class="header" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
     <div  class="p-3 text-center bg-image"  style="filter: brightness(60%);"></div>
     <div class="d-flex justify-content-center align-items-center" >
       <div class="banner-title text-center">
@@ -16,7 +16,7 @@
     <div class="container" data-aos="fade-up">
       <div class="row">
         <div class="col-lg-6 video-box align-self-baseline" data-aos="fade-right" data-aos-delay="100">
-          <img src="./images/about-us-hero.png" class="img1" style="height: 80%; width: 100%;"  alt="">
+          <img src="{{asset('assets/client/about-us-hero.png')}}" class="img1" style="height: 80%; width: 100%;"  alt="">
         </div>
         
         <div class="col-lg-6 pt-3 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100" >
@@ -29,7 +29,7 @@
     </div>
   </section>
 
-  <div class="header">
+  <div class="header" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
     <div class="p-5 text-center bg-image">
       <img src="" alt="">
     </div>
@@ -45,7 +45,7 @@
       <div class="col-md-4">
         <div class="box">
           <div class="our-services settings">
-            <div class="icon"> <img src="./images/vecteezy_icon-telescope-on-stand-blue-eyes-style-simple_-removebg-preview.png" style="height: 80px;"> </div>
+            <div class="icon"> <img src="{{asset('assets/client/vision.png')}}" style="height: 80px;"> </div>
             <h4>Vision</h4>
             <p style="text-align:justify;">It's our mission at Bana & Bana Architects to provide client focused service through our responsible practice of Architecture.</p>
           </div>
@@ -55,7 +55,7 @@
       <div class="col-md-4">
         <div class="box">
           <div class="our-services privacy">
-            <div class="icon"> <img src="./images/vecteezy_icon-museum-building-i-blue-eyes-style_-removebg-preview.png" style="height: 80px;justify-content: center;"> </div>
+            <div class="icon"> <img src="{{asset('assets/client/mission.png')}}" style="height: 80px;justify-content: center;"> </div>
             <h4>Mission</h4>
             <p style="text-align:justify;">To be viewed as a respected architectural firm, providing high quality design and service to our clients with honesty and integrity.</p>
           </div>
@@ -65,7 +65,7 @@
       <div class="col-md-4">
         <div class="box">
           <div class="our-services ssl">
-            <div class="icon"> <img src="./images/Sports__260_-removebg-preview.png" style="height: 80px; align-items: center;"> </div>
+            <div class="icon"> <img src="{{asset('assets/client/goal.png')}}" style="height: 80px; align-items: center;"> </div>
             <h4>Goals</h4>
             <p style="text-align:justify;">Our goal at Bana & Bana Architects is to designing well, creating beautiful buildings.</p>
           </div>
@@ -75,7 +75,7 @@
   </div>
 
 
-  <div class="header">
+  <div class="header" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
     <div  class="p-5 text-center bg-image"  style="filter: brightness(60%);">
       <img src="" alt="">
     </div>
