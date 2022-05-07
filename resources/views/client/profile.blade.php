@@ -1,7 +1,5 @@
 @extends('layouts.client')
 @section('content')
-    <h2>Hello</h2>
-
     <div class="header">
 
       <div  class="p-3 text-center bg-image"  style="filter: brightness(60%);">

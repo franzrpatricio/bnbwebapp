@@ -1,110 +1,149 @@
 @extends('layouts.client')
 @section('content')
-<div class="container-fluid bg-light h-100">
-  <div class="row min-vh-100">
-    <div class="col-lg-3 col-md-3 col-sm-12 p-3 navbar-expand-lg navbar-expand-md navbar-light bg-light">
-      {{-- SEARCH BAR --}}
-      <div>
-        <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('projects')}}">
-          @csrf
-          <div class="input-group">
-              <input class="form-control" name="query" type="search" placeholder="Search Project here..." aria-label="Search Project" aria-describedby="btnNavbarSearch"/>
-              <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
-          </div>
-        </form>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <div>
-            {{-- CATEGORIES --}}
-            <div class="container  border-bottom p-3" >
+  <div>
+    <div class="header">
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="banner-title text-center">
+          <h1 class="mb-3 text-light">Gallery</h1>
+        </div>
+      </div>
+      {{-- @foreach ($images as $image)
+        <div class="p-5 text-center bg-image"  style="filter: brightness(60%);">
+          <img src="{{ asset('uploads/project_images/'.$image->filenames) }}" alt="">
+        </div>
+      @endforeach --}}
+    </div>
+  </div> 
+  
+  <div class="container-fluid p-3" >
+    <div class="row"> 
+      <div class="col-12 col-lg-6 col-sm-12 col-md-12 p-3">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            @foreach ($images as $item)
               <div>
-                <h3>Category</h3>
-              </div> 
-                @foreach ($categories as $category)
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">{{$category->name}}</label>
-                  </div>
-                @endforeach
-            </div>
-
-            {{-- ARCHITECTURAL DESIGNS --}}
-            <div class="container border-bottom p-3">
-              <h3>Architectural Design</h3>
-                @foreach ($architectural as $design)
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">{{$design->design}}</label>
-                  </div>
-                @endforeach
-            </div>
-
-            {{-- STORIES --}}
-            <div class="container border-bottom p-3">
-              <h3>No. Stories</h3>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">Bungalow</label>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></button>
+              </div>
+  
+              <div class="carousel-inner" style="height:500px; width: 100%; ">
+                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                  <img src="{{ asset('uploads/project_images/'.$item->filenames) }}" alt="..." >
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">1</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">2</label>
-                </div>
-            </div>
+              </div>
+            @endforeach
+            {{-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button> --}}
+          </div>
+  
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+  
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+  
+      {{-- @foreach ($project as $proj)
+        <div class="col-12 col-lg-6 col-sm-12 col-md-12 d-flex justify-content-center align-items-center">  
+          <label for="">Architectural Designs: <p style="text-align: justify;">@php $p = json_decode($proj->designs); @endphp</p></label>
+          <label for="">Amenities: <p style="text-align: justify;">@php $p = json_decode($proj->amenities); @endphp</p></label>
+          <label for="">Description: <p style="text-align: justify;">{{$proj->description}}</p></label>
+        </div>
+      @endforeach --}}
 
-            {{-- AMENITIES --}}
-            <div class="container  border-bottom  p-3">
-              <h3>Amenities</h3>
-                @foreach ($amenities as $amenity)
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">{{$amenity->service}}</label>
-                  </div>
-                @endforeach
-            </div>
+      <div class="col-12 col-lg-6 col-sm-12 col-md-12 d-flex justify-content-center align-items-center">  
+        <label for="">Architectural Designs: </label>
+        @foreach (json_decode($project->designs) as $item => $key)
+          <p style="text-align: justify;">{{$key}}</p>
+        @endforeach
+        <label for="">Amenities: </label>
+        @foreach (json_decode($project->amenities) as $item => $key)
+          <p style="text-align: justify;">{{$key}}</p>
+        @endforeach
+        {{-- FOR SUMMERNOTE DATA USE -> {!! MESSAGE !!} --}}
+        <label for="">Description: </label>
+        <p style="text-align: justify;">{!!$project->description!!}</p>
+      </div>
+      {{-- <div class="col-12 col-lg-6 col-sm-12 col-md-12 d-flex justify-content-center align-items-center">
+        <p  style="text-align: justify;">
+          Tanza, Cavite Project<br>            
+          Kitchen 15.10' x 9.06'<br>
+          Living, Dining 60 cm x 60 cm<br>
+          Study, Den and Maid’s Room<br>
+          Living, Dining 60 cm x 60 cm<br>
+          Living, Dining 60 cm x 60 cm<br><br>
+          Opulent, and meticulously detailed, this lush modern themed home is very classy. Floor to ceiling windows bring in soft northern and westerly light. Spaces are crafte by a refined and highly practical floor plan. A sweeping 10 foot balcony invites amazing entertaining, and offers privileged direct access to swimming, sun patios and fitness. Working with great real space gave the architects an opportunity to refine the layout to match the building's true charcter. Results are impressive. Two large bedroom suites are located at either end of the living spaces for undisturbed privacy. A home office is sited close to the master bedroom suite. And a rarity home living even the kitchen has a door to the:
+        </p>
+      </div> --}}
+    </div>
+  
+    <div>
+      <div class="header">
+        <div  class="p-5 text-center bg-image"  style="filter: brightness(60%);">
+        <img src="" alt="">
+        </div>
+  
+        <div class="d-flex justify-content-center align-items-center" >
+          <div class="banner-title text-center">
+            <h1 class="mb-3 text-light">Virtual Tour</h1>
           </div>
         </div>
       </div>
     </div>
-    
-    <div class="col-lg-9 col-md-9 col-sm-12 p-3 ">
-        {{-- display msg after redirecting --}}
-        @if (isset($msg))
-          <div class="alert alert-danger">
-            <div class="">Showing Results of "{{Request::input('query')}}"</div>
-            {{ $msg }}
-            <a href="{{url('projects')}}" class="close float-end" data-dismiss="alert" aria-label="close">&times;</a>
+  
+    <div class="d-flex justify-content-center p-3">
+      <iframe width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/Fo1QgbSZXHU" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  
+    {{-- it should be form --}}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 p-3">
+          <div class="p-3"> Comment Panel</div>
+          
+          <div class="p-3"> 
+            <input type="email" name="email" placeholder="Email" id="email" style="width: 100%;">
           </div>
-        @endif
-        
-        @foreach ($projects as $project)
-          <div class="row ">
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
-              <div>
-                <div class="card" style="height: 300px; width: 200px; ">
-                  <div class="img-fluid border-bottom">
-                    <img src="{{asset('uploads/project/'.$project->image)}}" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
-                  </div>
-                  <div class="card-body">
-                    <h6 class="card-title text-center">{{$project->name}}</h6>
-                    <div class="text-center">
-                      <a href="sampleproject.html">
-                        <button class="btn btn-primary text ">View</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>  
+          <div class="p-3"> 
+            <input type="email" name="email" placeholder="Email" id="email" style="width: 100%;">
+          </div>
+          <div class="p-3"> 
+            <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
+          </div>  
+      
+          <button type="button" class="btn btn-info pull-right" style="color:aqua;">Post</button>
+        </div>
+  
+        <div class="col-lg-6 p-3">
+          <div>Comment Review</div>
+          <div class="card m-3" style="width: 500px; height: 150px;">
+            <div class="row p-3" >
+              <div class="col-3">
+                <img src="./images/ar1.jpg" class="img-fluid" style="height: 100px; width: 100px; border-radius: 200px;">
               </div>
-            </div>
+              
+              <div class="col-9" >
+                <div>name</div>
+                <div>email</div>
+                <div>comment</div>
+              </div>
+            </div> 
           </div>
-        @endforeach
+        </div> 
       </div>
     </div>
+    {{-- end form --}}
   </div>
-</div>
 @endsection
