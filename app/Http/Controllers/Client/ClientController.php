@@ -24,12 +24,13 @@ class ClientController extends Controller
     #projects from specialization
     public function specProject($category_id, $category_slug){
         $projects = Projects::where('category_id', $category_id)->where('status','1')->get();
+        $category = Category::all();
         if (Projects::where('category_id', $category_id)->where('status','1')->exists()) {
             # code...
-            return view('client.specialization',compact('projects'));
+            return view('client.specialization',compact('projects','category'));
         } else {
             # code...
-            return view ('client.specialization',['msg'=> 'No projects for this Category.🥺']);
+            return view ('client.specialization',['msg'=> 'No projects for this Category.🥺'],compact('projects','category'));
         }
     }
     public function profile(){
@@ -37,7 +38,7 @@ class ClientController extends Controller
     }
     public function projects(Request $request){
         $categories = Category::where('status','1')->get();
-        $projects = Projects::where('status','1')->paginate(4);
+        $projects = Projects::where('status','1')->get();
         $amenities = Amenities::all();
         $architectural = Designs::all();
         
@@ -49,7 +50,7 @@ class ClientController extends Controller
                 return view('client.projects', compact('categories','projects','amenities','architectural'));
             } else {
                 # code...
-                return view ('client.projects',['msg'=> 'Sorry but '.$find_this.' not Found.🥺'],compact('categories','projects','amenities','architectural'));
+                return view('client.projects',['msg'=> 'Sorry but '.$find_this.' not Found.🥺'],compact('categories','projects','amenities','architectural'));
             }
         }
         return view('client.projects', compact('categories','projects','amenities','architectural'));

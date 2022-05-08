@@ -60,15 +60,13 @@
 
                     <h6>Mode</h6>
                     <div class="row">
-                        <div class="mb-3">
-                            <label>Navbar Status</label>
-                            <input type="checkbox" name="name"/>
-                        </div>
                         <div class="col-md-3 mb-3">
                             <label>Visible</label>
                             <input type="checkbox" name="status"/>
-                            {{-- <input type="checkbox" name="status" />Hidden --}}
-                            {{-- <input type="checkbox" name="status"/>Active --}}
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label>Feature</label>
+                            <input type="checkbox" name="feature"/>
                         </div>
                         <div class="col-md-6">
                             <button class="btn btn-primary">Save Category</button>

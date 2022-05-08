@@ -1,5 +1,7 @@
 @extends('layouts.client')
 @section('title',"$project->meta_title")
+@section('meta_description',"$project->meta_description")
+@section('meta_keyword',"$project->meta_keyword")
 @section('content')
   <div>
     <div class="header">

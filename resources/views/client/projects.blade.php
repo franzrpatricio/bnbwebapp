@@ -55,6 +55,10 @@
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                   <label class="form-check-label" for="flexCheckDefault">2</label>
                 </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">3</label>
+                </div>
             </div>
 
             {{-- AMENITIES --}}
@@ -112,7 +116,7 @@
           </div>
         </div>
       @endforeach
-      {{ $projects->links() }}
+      {{-- {{ $projects->links() }} --}}
     </div>
   </div>
 </div>
