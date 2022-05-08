@@ -60,11 +60,11 @@ class ClientController extends Controller
                 return view('client.project', compact('project','images'));
             } else {
                 # code...
-                return view('client.project',compact('project'));
+                return view('client.project',['msg'=>'No images found'],compact('project','images'));
             }
         } else {
             # code...
-            return view('users.admin.project.gallery')->with('msg','No images found');
+            return view('client.project',['msg'=>'No images found']);
         }
     }
     public function contact(){

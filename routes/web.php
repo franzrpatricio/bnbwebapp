@@ -34,14 +34,14 @@ Route::get('/portfolio', [App\Http\Controllers\Client\ClientController::class, '
 Route::get('/profile', [App\Http\Controllers\Client\ClientController::class, 'profile']);
 Route::get('specialization/{category_id}', [App\Http\Controllers\Client\ClientController::class, 'specProject']);
 Route::get('/projects', [App\Http\Controllers\Client\ClientController::class, 'projects']);
-Route::get('/project/{project_id}', [App\Http\Controllers\Client\ClientController::class, 'project']);
+Route::get('project/{project_id}', [App\Http\Controllers\Client\ClientController::class, 'project']);
 Route::get('/contact', [App\Http\Controllers\Client\ClientController::class, 'contact']);
 #when request hits server, pull out botman instance; listen to any incoming commands
 Route::post('/botman',function(){
     app('botman')->listen();
 });
 
-// #INQUIRY CREATE
+// #INQUIRY CREATE in Contact Us
 // Route::get('add-inquiry', [App\Http\Controllers\InquiryController::class, 'create']);
 // Route::post('add-inquiry', [App\Http\Controllers\InquiryController::class, 'store']);
 
