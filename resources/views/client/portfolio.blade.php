@@ -92,7 +92,7 @@
       <article class="col-md-4 col-lg-3">
         <div class="card-content">
           @foreach ($category as $item)
-            <a href="{{url('specialization/'.$item->id)}}"><img class="spectrum1" src="{{asset('uploads/category/'.$item->image)}}" style="height: 200px;" alt="meow">
+            <a href="{{url('specialization/'.$item->id.'/'.$item->slug)}}"><img class="spectrum1" src="{{asset('uploads/category/'.$item->image)}}" style="height: 200px;" alt="meow">
             <h4 class="spectrum-h2 text-center text-justify">{{$item->name}}</h4>
             <p>Bana & Bana Architectural provides architectural residencial designs and can be built according to the client's own preference of design.</p></a>
           @endforeach

@@ -14,7 +14,7 @@ class ConfirmEstimation extends Conversation
     public function confirm(){
         $this->say('details of estimation');
         $user = $this->bot->userStorage()->find();
-        $type = $user->get('house');
+        $type = $user->get('type');
         $area = $user->get('sqm');
         // $release = $this->getData();
 
@@ -69,7 +69,7 @@ class ConfirmEstimation extends Conversation
         $message .= 'Email : ' . $user->get('email') . '<br>';
         $message .= 'Mobile : ' . $user->get('mobile') . '<br>';
         $message .= 'House Area : ' . $user->get('sqm') . '<br>';
-        $message .= 'House Plan Type : ' . $user->get('house') . '<br>';
+        $message .= 'House Plan Type : ' . $user->get('type') . '<br>';
         $message .= 'Materials : ' .$details.'<br>';
         $message .= '---------------------------------------<br>';
         $message .= 'Total Estimated Price : ' . $total . '<br>';

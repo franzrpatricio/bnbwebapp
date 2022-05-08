@@ -1,4 +1,5 @@
 @extends('layouts.client')
+@section('title',"$project->meta_title")
 @section('content')
   <div>
     <div class="header">
@@ -11,7 +12,7 @@
   </div> 
   
   <div class="float-end">
-    <a href="{{url('projects')}}" class="btn btn-secondary mt-auto">Back</a>
+    <a href="{{url('specialization/'.$project->category->id.'/'.$project->category->slug)}}" class="btn btn-secondary mt-auto">Back</a>
   </div>
 
   <div class="container-fluid p-3" >
@@ -27,6 +28,7 @@
     {{-- display msg after redirecting --}}
     @if (isset($msg))
       <div class="alert alert-danger">{{ $msg }}</div>
+      <a href="{{url('projects')}}" class="close float-end" data-dismiss="alert" aria-label="close">&times;Go to Projects</a>
     @endif
 
     <div class="row"> 
@@ -75,6 +77,8 @@
         {{-- FOR SUMMERNOTE DATA USE -> {!! MESSAGE !!} --}}
         <label for="">Description: </label>
         <p style="text-align: justify;">{!!$project->description!!}</p>
+        <label for="">Date Posted: </label>
+        <p style="text-align: justify;">{{$project->created_at}}</p>
       </div>
     </div>
   

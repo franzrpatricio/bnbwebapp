@@ -18,20 +18,26 @@ class ClientController extends Controller
         return view('client.index');
     }
     public function portfolio(){
-        $category = Category::where('navbar_status','1')->where('status','1')->get();
+        $category = Category::where('feature','1')->where('status','1')->get();
         return view('client.portfolio', compact('category'));
     }
-    #specific project from specialization
-    public function specProject($category_id){
+    #projects from specialization
+    public function specProject($category_id, $category_slug){
         $projects = Projects::where('category_id', $category_id)->where('status','1')->get();
-        return view('client.specialization',compact('projects'));
+        if (Projects::where('category_id', $category_id)->where('status','1')->exists()) {
+            # code...
+            return view('client.specialization',compact('projects'));
+        } else {
+            # code...
+            return view ('client.specialization',['msg'=> 'No projects for this Category.🥺']);
+        }
     }
     public function profile(){
         return view('client.profile');
     }
     public function projects(Request $request){
         $categories = Category::where('status','1')->get();
-        $projects = Projects::where('status','1')->get();
+        $projects = Projects::where('status','1')->paginate(4);
         $amenities = Amenities::all();
         $architectural = Designs::all();
         
@@ -49,7 +55,7 @@ class ClientController extends Controller
         return view('client.projects', compact('categories','projects','amenities','architectural'));
     }
     #specific project from projects
-    public function project($project_id){
+    public function project($project_id,$project_slug){
         $project = Projects::find($project_id);
         if ($project) {
             # code...

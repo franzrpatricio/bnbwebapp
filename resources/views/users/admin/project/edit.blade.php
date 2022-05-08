@@ -104,6 +104,7 @@
 
                     <div class="mb-3">
                         <label><strong>Architectural Designs :</strong></label><br>
+                        <span>Please select designs again:</span>
                         <select name="designs[]" id="desgins" multiple class="filter-multi-select">
                             @foreach ($architectural as $item)
                                 <option value="{{ $item->design }}">{{$item->design}}</option>
@@ -113,6 +114,7 @@
 
                     <div class="mb-3">
                         <label><strong>Amenities :</strong></label><br>
+                        <span>Please select amenities again:</span>
                         <select name="amenities[]" id="amenities" multiple class="filter-multi-select">
                             @foreach ($amenities as $item)
                                 <option value="{{ $item->service }}">{{$item->service}}</option>

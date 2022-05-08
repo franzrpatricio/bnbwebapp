@@ -15,6 +15,8 @@ use App\Http\Conversations\SelectHousePlanConversation;
 
 $botman = app('botman');
 
+#LAHAT NG DATA NA INI -STORE NAPUPUNTA SA STORAGE/BOTMAN
+
 #in order for the bot to reply when the user says hi added with something else, we will add '(.*)'
 $botman->hears('hi|hello|yow|zup(.*)', function($bot){
     $bot->typesAndWaits(2);
