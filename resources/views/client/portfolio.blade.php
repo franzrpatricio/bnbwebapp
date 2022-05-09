@@ -102,5 +102,6 @@
         </article>
       @endforeach
     <!-- .card -->
+    <a href="{{url('categories')}}">>>View other Categories
   </div>
 @endsection

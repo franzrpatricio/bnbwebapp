@@ -43,6 +43,19 @@ class CategoryFormRequest extends FormRequest
                 'mimes:jpeg,jpg,png'
                 #mimes limit to only these types of image
             ],
+            'meta_title' => [
+                'required',
+                'string',
+                'max:200'
+            ],
+            'meta_description' => [
+                'required',
+                'string'
+            ],
+            'meta_keyword' => [
+                'required',
+                'string'
+            ],
             'status' => [
                 'nullable',
             ],

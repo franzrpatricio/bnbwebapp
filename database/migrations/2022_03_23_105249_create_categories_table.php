@@ -20,6 +20,9 @@ return new class extends Migration
             $table->mediumText('description');            
             $table->string('image')->nullable(); #image name
             
+            $table->string('meta_title');
+            $table->mediumText('meta_description');
+            $table->mediumText('meta_keyword');
             $table->tinyInteger('status');
             $table->tinyText('feature');
             $table->tinyInteger('created_by')->default(0); #user id kung sino nag gawa

@@ -1,4 +1,5 @@
 @extends('layouts.client')
+
 @section('content')
 <div class="container-fluid bg-light h-100">
   <div class="row min-vh-100">
@@ -19,6 +20,10 @@
           <a href="{{url('portfolio')}}" class="close float-end" data-dismiss="alert" aria-label="close">&times;</a>
         </div>
       @endif
+
+      <div class="float-end">
+        <a href="{{url('portfolio')}}" class="btn btn-secondary mt-auto">Back</a>
+      </div>
 
       @foreach ($projects as $project)
         <div class="row ">

@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\InquiriesController;
 // });
 Route::get('/', [App\Http\Controllers\Client\ClientController::class, 'index']);
 Route::get('/portfolio', [App\Http\Controllers\Client\ClientController::class, 'portfolio']);
+Route::get('/categories', [App\Http\Controllers\Client\ClientController::class, 'categories']);
 Route::get('/profile', [App\Http\Controllers\Client\ClientController::class, 'profile']);
 Route::get('specialization/{category_id}/{category_slug}', [App\Http\Controllers\Client\ClientController::class, 'specProject']);
 Route::get('/projects', [App\Http\Controllers\Client\ClientController::class, 'projects']);

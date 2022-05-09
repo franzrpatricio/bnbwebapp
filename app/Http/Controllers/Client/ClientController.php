@@ -18,19 +18,38 @@ class ClientController extends Controller
         return view('client.index');
     }
     public function portfolio(){
-        $category = Category::where('feature','1')->where('status','1')->get();
+        $category = Category::where('feature','1')->get();
         return view('client.portfolio', compact('category'));
     }
+    public function categories(){
+        #check muna kung featured or not
+        #check if there are categories with active sataus, then get it, if none, disp something
+        $categories = Category::where('feature','0')->get();
+        if (Category::where('status','1')->exists()) {
+            # code...
+            return view('client.categories', compact('categories'));
+        } else {
+            # code...
+            return view ('client.categories',['msg'=> 'No Active Categories.🥺'],compact('categories'));
+        }
+    }
+
     #projects from specialization
     public function specProject($category_id, $category_slug){
         $projects = Projects::where('category_id', $category_id)->where('status','1')->get();
         $category = Category::all();
-        if (Projects::where('category_id', $category_id)->where('status','1')->exists()) {
+        if (Category::where('status','1')->exists()) {
             # code...
-            return view('client.specialization',compact('projects','category'));
+            if (Projects::where('category_id', $category_id)->where('status','1')->exists()) {
+                # code...
+                return view('client.specialization',compact('projects','category'));
+            } else {
+                # code...
+                return view ('client.specialization',['msg'=> 'No Projects found in this Category.🥺'],compact('projects','category'));
+            }
         } else {
             # code...
-            return view ('client.specialization',['msg'=> 'No projects for this Category.🥺'],compact('projects','category'));
+            return view ('client.specialization',['msg'=> 'No Active Projects for this Category.🥺'],compact('projects','category'));
         }
     }
     public function profile(){

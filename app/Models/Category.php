@@ -19,6 +19,9 @@ class Category extends Model
         'slug',
         'description',
         'image',
+        'meta_title',
+        'meta_description',
+        'meta_keyword',
         'status',
         'feature',
         'created_by'

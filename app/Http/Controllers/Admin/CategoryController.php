@@ -57,6 +57,10 @@ class CategoryController extends Controller
             $category->image = $filename;
         }
       
+        $category->meta_title = $data['meta_title'];
+        $category->meta_description = $data['meta_description'];
+        $category->meta_keyword = $data['meta_keyword'];
+
         $category->status = $request->status == true ? '1':'0';
         $category->feature = $request->feature == true ? '1':'0';
 
@@ -110,6 +114,10 @@ class CategoryController extends Controller
             $category->image = $filename;
         }
   
+        $category->meta_title = $data['meta_title'];
+        $category->meta_description = $data['meta_description'];
+        $category->meta_keyword = $data['meta_keyword'];
+
         $category->status = $request->status == true ? '1':'0';
         $category->feature = $request->feature == true ? '1':'0';
         

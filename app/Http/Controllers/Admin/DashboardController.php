@@ -15,8 +15,8 @@ class DashboardController extends Controller
     public function index(){
         // return 'hello';
         #view the page of dashboard.blade.php inside admin folder
-        $administrators = User::where('role_as','0')->count();
-        $staffs = User::where('role_as','1')->count();
+        $administrators = User::where('role_as','1')->count();
+        $staffs = User::where('role_as','0')->count();
         $categories = Category::count();
 
         #USE THIS CODE TO DISPLAY ALL ACTIVE PROJECTS
