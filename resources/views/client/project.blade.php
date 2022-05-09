@@ -116,19 +116,52 @@
         {{-- post the form --}}
         {{-- save to comments db --}}
         <div class="col-lg-6 p-3">
+          @if (session('msgc'))
+            <h6 class="alert alert-warning mb-3">{{session('msgc')}}</h6>
+          @endif  
           <div class="p-3"> Comment Panel</div>
+            <form action="{{url('comments')}}" method="post">
+              @csrf
+              <input type="hidden" name="project_slug" value="{{$project->slug}}">
+              {{-- <input type="hidden" name="project_id" value="{{$project->id}}"> --}}
+              <div class="p-3"> 
+                {{-- <input type="text" name="name" placeholder="Full Name" id="email" style="width: 100%;"> --}}
+                <label for="">Name</label>
+                <input type="text" 
+                  name="name" 
+                  class="form-control @error('name') is-invalid @enderror('name')" 
+                  placeholder="Full Name" 
+                  id="email" 
+                  style="width: 100%;"
+                  required> 
+                @error('name')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
+              </div>
+              <div class="p-3"> 
+                {{-- <input type="email" name="email" placeholder="Email" id="email" style="width: 100%;"> --}}
+                <label>Email</label>
+                <input type="email" 
+                  name="email" 
+                  class="form-control @error('name') is-invalid @enderror('email')" 
+                  placeholder="Email" 
+                  id="email" 
+                  style="width: 100%;"
+                  required>
+                @error('email')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
+              </div>
+              <div class="p-3"> 
+                <textarea class="form-control" name="comment" placeholder="leave a comment..." rows="3" required></textarea>
+              </div>  
           
-          <div class="p-3"> 
-            <input type="email" name="email" placeholder="Email" id="email" style="width: 100%;">
-          </div>
-          <div class="p-3"> 
-            <input type="email" name="email" placeholder="Email" id="email" style="width: 100%;">
-          </div>
-          <div class="p-3"> 
-            <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
-          </div>  
-      
-          <button type="button" class="btn btn-info pull-right" style="color:aqua;">Post</button>
+              <button type="submit" class="btn btn-info pull-right" style="color:aqua;">Post</button>
+            </form>
         </div>
         {{-- end form --}}
 
@@ -142,22 +175,27 @@
           comment->comment
           comment->created_at
         --}}
-        <div class="col-lg-6 p-3">
-          <div>Comment Review</div>
-          <div class="card m-3" style="width: 500px; height: 150px;">
-            <div class="row p-3" >
-              <div class="col-3">
-                <img src="./images/ar1.jpg" class="img-fluid" style="height: 100px; width: 100px; border-radius: 200px;">
-              </div>
-              
-              <div class="col-9" >
-                <div>name</div>
-                <div>email</div>
-                <div>comment</div>
-              </div>
-            </div> 
-          </div>
-        </div> 
+        @forelse ($project->comments as $comment)
+          <div class="col-lg-6 p-3">
+            <div>Comment Review</div>
+            <div class="card m-3" style="width: 500px; height: 150px;">
+              <div class="row p-3" >
+                <div class="col-3">
+                  <img src="{{asset('assets/avatar/shanks.jpg')}}" class="img-fluid" style="height: 100px; width: 100px; border-radius: 200px;">
+                </div>
+                
+                <div class="col-9" >
+                  <div>{{$comment->name}}</div>
+                  <div>{{$comment->email}}</div>
+                  <div>{{$comment->comment}}</div>
+                  <div>{{$comment->created_at->format('d-m-Y')}}</div>
+                </div>
+              </div> 
+            </div>
+          </div> 
+        @empty
+          <h6>No Comments yet.</h6>
+        @endforelse
       </div>
     </div>
   </div>

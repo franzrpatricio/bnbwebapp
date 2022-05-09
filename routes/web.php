@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProjectsController;
+use App\Http\Controllers\Client\CommentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HousePlanController;
 use App\Http\Controllers\Admin\InquiriesController;
@@ -37,6 +38,8 @@ Route::get('specialization/{category_id}/{category_slug}', [App\Http\Controllers
 Route::get('/projects', [App\Http\Controllers\Client\ClientController::class, 'projects']);
 Route::get('project/{project_id}/{project_slug}', [App\Http\Controllers\Client\ClientController::class, 'project']);
 Route::get('/contact', [App\Http\Controllers\Client\ClientController::class, 'contact']);
+
+Route::post('comments', [App\Http\Controllers\Client\CommentController::class, 'store']);
 #when request hits server, pull out botman instance; listen to any incoming commands
 Route::post('/botman',function(){
     app('botman')->listen();
@@ -185,5 +188,12 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #SEARCH
     Route::get('inquiries/find', [App\Http\Controllers\Admin\InquiriesController::class, 'search']);
 
+    #COMMENTS
+    #READ
+    Route::get('comments', [App\Http\Controllers\Client\CommentController::class, 'index']);
+    #SEARCH
+    Route::get('comments/find', [App\Http\Controllers\Client\CommentController::class, 'search']);
+    #DELETE
+    Route::delete('delete-comment/{comment_id}',[App\Http\Controllers\Client\CommentController::class, 'destroy'])->name('comments.destroy');
     #The fundamental difference between the POST and PUT requests is reflected in the different meaning of the Request-URI. The URI in a POST request identifies the resource that will handle the enclosed entity... In contrast, the URI in a PUT request identifies the entity enclosed with the request.
 });

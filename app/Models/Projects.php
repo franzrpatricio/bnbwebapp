@@ -54,6 +54,9 @@ class Projects extends Model
     // {
     //     return $this->hasMany(Designs::class,'design_id', 'id'); 
     // }
+    public function comments(){
+        return $this->hasMany(Comments::class, 'project_id','id');
+    }
 
     /**
      * Set the ProjDesgins
