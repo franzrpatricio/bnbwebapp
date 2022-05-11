@@ -1,7 +1,3 @@
-
-
-
-
 /**navbar*/
 .navbar{
     background-color: #296BCC;
@@ -314,159 +310,7 @@ div a:hover {
   }
   
 
-  /**Contact Us**/
-  .contact{
-    position: relative;
-    min-height: 100vh;
-    padding: 50px 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background: url(images/blue-architecture-houses-buildings-skyscrapers-modern-skyscapes-windows-3888x2592-architecture-modern-hd-art-wallpaper-preview.jpg);
-    background-size: cover;
-  }
-  .contact p{
-    align-items: center;
   
-  }
-  .contact .content{
-    max-width: 800px;
-    text-align: center;
-  }
-  .contact .content h5{
-    color: #fff;
-    font-size: 36px;
-    font-weight: 500;
-  }
-  .contact .content p{
-    color: #fff;
-    font-size: 100px;
-    align-items: center;
-    justify-content: center;
-  }
-  .contact .content{
-    font-weight: 300;
-    color: #fff;
-  }
-  .container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-  }
-  .container .contactInfo{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-  }
-  .container .contactInfo .box{
-    position: relative;
-    padding: 20px 0;
-    display: flex;
-  }
-  .container .contactInfo .box .icon{
-    min-width: 60px;
-    height: 60px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    font-size: 22px;
-  }
-  .container .contactInfo .box .text{
-    display: flex;
-    margin-left: 20px;
-    font-size: 16px;
-    color: #fff;
-    flex-direction: column;
-    font-weight: 300;
-  }
-  .container .contactInfo .box .text h3{
-    font-weight: 500;
-    color: #fff;
-  }
-  .contactForm{
-    width: 100%;
-    padding: 40px;
-    background: #fff;
-    border-radius: 5px;
-  }
-  .contactForm h2{
-    font-size: 30px;
-    color: #333;
-    font-weight: 500;
-  }
-  .contactForm .inputBox{
-    position: relative;
-    width: 100%;
-    margin-top: 10px;
-  }
-  .contactForm .inputBox input,
-  .contactForm .inputBox textarea{
-    width: 100%;
-    padding: 5px 0;
-    font-size: 16px;
-    margin: 10px 0;
-    border: none;
-    border-bottom: 2px solid #333;
-    outline: none;
-    resize: none;
-  }
-  .contactForm .inputBox span{
-    position: absolute;
-    left: 0;
-    padding: 5px 0;
-    font-size: 16px;
-    margin: 10px 0;
-    pointer-events: none;
-    transition: 0.5s;
-    color: #666;
-  }
-  .contactForm .inputBox input:focus ~ span,
-  .contactForm .inputBox input:valid ~ span,
-  .contactForm .inputBox textarea:focus ~ span,
-  .contactForm .inputBox textarea:valid ~ span{
-    color: #e91e63;
-    font-size: 12px;
-    transform: translateY(-20px);
-  }
-  .contactForm .inputBox input[type="submit"]{
-    width: 100px;
-    background: #00bcd4;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 18px;
-    border-radius: 5px;
-  }
-  .contactForm .inputBox input[type="submit"]:hover{
-    border: 1px solid #3EA4D7;
-    background: #3EA4D7;
-    transition: 1s;
-  }
-  
-  @media (max-width: 991px){
-    .contact{
-      padding: 50px;
-    }
-    .container{
-      flex-direction: column;
-    }
-    .container .contactInfo{
-      margin-left: 40px;
-    }
-    .container .contactInfo{
-      width: 100%;
-    }
-    .contactForm h2{
-      font-size: 17px;
-    }
-  }
-
   /**project**/
 
   
@@ -650,15 +494,18 @@ div a:hover {
       color: #fff;
       opacity: 1
     }
+
+
+   
     .contact{
       position: relative;
-      min-height: 80vh;
+      min-height: 100vh;
       padding: 50px 100px;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      background: url(./images/blue-architecture-houses-buildings-skyscrapers-modern-skyscapes-windows-3888x2592-architecture-modern-hd-art-wallpaper-preview.jpg);
+      background: url(/resources/views/users/Client/images/blue-architecture-houses-buildings-skyscrapers-modern-skyscapes-windows-3888x2592-architecture-modern-hd-art-wallpaper-preview.jpg);
       background-size: cover;
     }
      

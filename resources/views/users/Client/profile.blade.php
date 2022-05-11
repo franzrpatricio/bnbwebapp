@@ -34,16 +34,13 @@
 
       <div class="row gy-4">
         
-        <div class="card">
-          <img src="./images/ar2.jpg" style="height: 100%; width: 100%;" class="card-image-top">
-
-          </div>
-        </div>
+     
+        </div> 
         <div class="col-xl-7">
           <div class="content d-flex flex-column justify-content-center ps-0 ps-xl-4">
             <h3 data-aos="fade-in" data-aos-delay="100">Architect Michael G. Bana</h3>
             <p data-aos="fade-in">
-              Arch. Michael G. Bana is a product of Technological Institute of the Philippines graduated Bachelor of Science in Architecture in October 1992.
+              Architect. Michael G. Bana is a product of Technological Institute of the Philippines graduated Bachelor of Science in Architecture in October 1992.
                 He is a highly skilled and dedicated professional with 20 years of experience and has a strong background in SIte Supervising, Planning, & Technical Drawing Management.
                 Highly commited to quality and teamwork. He provides technical skills and expertise in various architectural design of engineering structures. Prepare work plans and communicate
                 to project managers to determine the scope of work. Besides being an Architect, he is also a Site Supervisor and MEP Site Engineer. He became a Installation Site Manager of Penny Steel Haus
@@ -83,11 +80,7 @@
     <div class="container">
 
       <div class="row gy-4">
-        <div class="card">
-          <img src="./images/421827_498466030218141_776598220_n.jpg" style="height: 100%; width: 100%;" class="card-image-top">
-
-          </div>
-
+        
         </div>
         <div class="col-xl-7">
           <div class="content d-flex flex-column justify-content-center ps-0 ps-xl-4">
