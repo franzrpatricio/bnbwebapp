@@ -45,8 +45,23 @@ class ProjectFormRequest extends FormRequest
                 'mimes:jpeg,jpg,png'
                 #mimes limit to only these types of image
             ],
+            'vtour' => [
+                'required',
+                'file',
+                // 'size:5000',
+                'mimetypes:video/mp4'
+                #file size = 10240 = 10MB
+            ],
             'cost' => [
                 'required',
+                'numeric' #para decimal
+            ],
+            'stories' => [
+                // 'required',
+                'string'
+            ],
+            'rooms' => [
+                // 'required',
                 'numeric' #para decimal
             ],
             'slug' => [
@@ -55,6 +70,12 @@ class ProjectFormRequest extends FormRequest
                 'max:200'
             ],
             'description' => [
+                'required'
+            ],
+            'designs' => [
+                'required'
+            ],
+            'amenities' => [
                 'required'
             ],
             'meta_title' => [
@@ -69,6 +90,12 @@ class ProjectFormRequest extends FormRequest
             'meta_keyword' => [
                 'required',
                 'string'
+            ],
+            'filenames' => [
+                'nullable',
+            ],
+            'filenames.*' => [
+                'mimes:jpeg,jpg,png,gif',
             ],
             'status' => [
                 'nullable',

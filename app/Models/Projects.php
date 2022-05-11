@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Files;
 use App\Models\Category;
+use App\Models\Amenities;
 use App\Models\HousePlan;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Projects extends Model
 {
@@ -19,9 +21,12 @@ class Projects extends Model
         'houseplan_id',
         'name',
         'image',
+        'vtour',
         'cost',
         'slug',
         'description',
+        'designs',
+        'amenities',
         'meta_title',
         'meta_description',
         'meta_keyword',
@@ -41,4 +46,30 @@ class Projects extends Model
         return $this->belongsTo(HousePlan::class, 'houseplan_id', 'id');
         #it only says ('foreign key','primary key')
     }
+    // public function files() 
+    // {
+    //     return $this->hasMany(Files::class,'project_id', 'id'); 
+    // }
+    // public function design() 
+    // {
+    //     return $this->hasMany(Designs::class,'design_id', 'id'); 
+    // }
+
+    /**
+     * Set the ProjDesgins
+     *
+     */
+    // public function setCatAttribute($value)
+    // {
+    //     $this->attributes['cat'] = json_encode($value);
+    // }
+  
+    // /**
+    //  * Get the ProjDesigns
+    //  *
+    //  */
+    // public function getCatAttribute($value)
+    // {
+    //     return $this->attributes['cat'] = json_decode($value);
+    // }
 }

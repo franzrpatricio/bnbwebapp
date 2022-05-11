@@ -15,6 +15,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
@@ -76,9 +77,8 @@
             @yield('content')
         </main>
     </div>
-
-    <!-- Scripts -->
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
-    
 </body>
 </html>
+<!-- Scripts -->
+<script src="{{ asset('assets/js/jquery-3.6.0.min') }}" defer></script>
+<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>

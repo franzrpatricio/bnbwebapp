@@ -13,10 +13,13 @@ class FaqsController extends Controller
 {
     #VIEW
     public function index(Request $request){
-        $faqs = Faq::all();
+        // $faqs = Faq::all();
         if ($request->has('trashed')) {
             # code...
-            $faqs = Faq::onlyTrashed()->get();
+            $faqs = Faq::onlyTrashed()->paginate(3);
+        } else {
+            # code...
+            $faqs = Faq::paginate(3);
         }
         return view('users.admin.faqs.index', compact('faqs'));
     }
@@ -83,5 +86,22 @@ class FaqsController extends Controller
     {
         Faq::onlyTrashed()->restore();
         return redirect('admin/faqs')->with('msg', 'success');
+    }
+
+    #SEARCH
+    public function search(Request $request){
+        $find_this = $request->get('query');
+        $faqs = Faq::where('id', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('question', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('answewr', 'LIKE', '%'.$find_this.'%')
+            // ->orWhere('role_as', 'LIKE', '%'.$find_this.'%')
+            // ->orWhere('status', 'LIKE', '%'.$find_this.'%')
+            ->paginate(2);
+        if (count ($faqs) > 0) {
+            return view('users.admin.faqs.index', compact('faqs'));
+        } else {
+            # code...
+            return view ('users.admin.faqs.index', compact('faqs'))->with( 'No FAQ Found. 🥺' );
+        }
     }
 }

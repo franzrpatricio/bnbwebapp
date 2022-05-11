@@ -13,16 +13,25 @@ class UsersController extends Controller
 {
     public function index(Request $request){
         if(Auth::check()){
-            if (Auth::user()->role_as=='0' ) {
-                #role_as == 1 = staff
-                #role_as == 0 = admin
+            if (Auth::user()->role_as=='1') {
+                #role_as == 0 = staff
+                #role_as == 1 = admin
                 # code... 
+<<<<<<< HEAD
                 $users = User::get();
                 if ($request->has('trashed')) {
                     # code...
                     $users = User::onlyTrashed()->get();
                 }else {
                     $users = User::get();
+=======
+                // $users = User::paginate(5);
+                if ($request->has('trashed')) {
+                    # code...
+                    $users = User::onlyTrashed()->paginate(3);
+                }else {
+                    $users = User::paginate(3);
+>>>>>>> backendfranz
                 }
 
                 return view('users.admin.users.index', compact('users'));
@@ -107,6 +116,27 @@ class UsersController extends Controller
     #RESTORE ALL
     public function restore_all(){
         User::onlyTrashed()->restore();
+<<<<<<< HEAD
         return redirect('admin/projects')->with('msg','Successfully Restored Users');
+=======
+        return redirect('admin/users')->with('msg','Successfully Restored Users');
+    }
+
+    #SEARCH
+    public function search(Request $request){
+        $find_this = $request->get('query');
+        $users = User::where('id', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('name', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('email', 'LIKE', '%'.$find_this.'%')
+            // ->orWhere('role_as', 'LIKE', '%'.$find_this.'%')
+            // ->orWhere('status', 'LIKE', '%'.$find_this.'%')
+            ->paginate(2);
+        if (count ($users) > 0) {
+            return view('users.admin.users.index', compact('users'));
+        } else {
+            # code...
+            return view ('users.admin.users.index', compact('users'))->with( 'No Users Found. 🥺' );
+        }
+>>>>>>> backendfranz
     }
 }

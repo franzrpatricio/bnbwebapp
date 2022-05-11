@@ -34,7 +34,7 @@ class DashboardController extends Controller
         // $inquiries = Inquiry::count();
         // $reviews = Review::count();
 
-        if(Auth::user()->role_as == '0'){
+        if(Auth::user()->role_as == '1'){
             // return view('users/admin/dashboard', compact('administrators','staffs'));
             return view('users/admin/dashboard', compact('administrators','staffs','categories', 'projects', 'houseplans'));
         }else {

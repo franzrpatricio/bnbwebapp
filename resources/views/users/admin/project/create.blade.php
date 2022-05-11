@@ -4,9 +4,12 @@
 
 <div class="container-fluid px-4">
     <div class="card">
-        <div class="card mt-4"></div>
+        {{-- <div class="card mt-4"></div> --}}
         <div class="card-header">
-            <h4><div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New Project</div></h4>
+            <h4><div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>
+                Create New Project
+                <a href="{{url('admin/projects')}}" class="btn btn-danger float-end">Back</a>
+            </div></h4>
         </div>
 
         <div class="card-body">
@@ -21,6 +24,7 @@
 
             <form action="{{url('admin/add-project')}}" method="post" enctype="multipart/form-data">
                 @csrf
+
                 <div class="mb-3">
                     <label for="">Category</label>
                     {{-- select what category --}}
@@ -51,8 +55,21 @@
                     <input type="file" name="image"class="form-control">
                 </div>
                 <div class="mb-3">
+                    <label>Virtual Tour</label>
+                    <span><h5>Upload your Project Virutal Tour</h5></span>
+                    <input type="file" name="vtour" class="form-control">
+                </div>
+                <div class="mb-3">
                     <label>Cost</label>
                     <input type="number" required name="cost" min="0" value="0" step="0.01" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Stories</label>
+                    <input type="text" name="stories" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Rooms</label>
+                    <input type="number" name="rooms" min="1" value="1" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="">Slug</label>
@@ -62,6 +79,24 @@
                 <div class="mb-3">
                     <label>Description</label>
                     <textarea name="description" id="summernoteDesc" rows="5" class="form-control"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="">Architectural Designs</label>
+                    <select name="designs[]" id="desgins" multiple class="filter-multi-select">
+                        @foreach ($architectural as $item)
+                            <option value="{{$item->design}}">{{$item->design}}</option>
+                        @endforeach
+                    </select>    
+                </div>
+                
+                <div class="mb-3">
+                    <label for="">Amenities</label>
+                    <select name="amenities[]" id="amenities" multiple class="filter-multi-select">
+                        @foreach ($amenities as $item)
+                            <option value="{{$item->service}}">{{$item->service}}</option>
+                        @endforeach
+                    </select>    
                 </div>
 
                 <h6>SEO Tags</h6>
@@ -76,6 +111,30 @@
                 <div class="mb-3">
                     <label>Meta Keywords</label>
                     <textarea name="meta_keyword" rows="3" class="form-control"></textarea>
+                </div>
+
+                {{-- <div class="form-group">
+                    <label><strong>Amenities :</strong></label><br>
+                    @foreach ($amenities as $item)
+                        <label><input type="checkbox" value="{{$item->id}}" name="amenity[]">{{$item->service}}</label>
+                    @endforeach
+                </div>   --}}
+                {{-- <div class="form-group">
+                    <label><strong>Architectural Design :</strong></label><br>
+                    @foreach ($architectural as $designs)
+                        <label><input type="checkbox" value="{{$designs->id}}" name="designs[]">{{$designs->design}}</label>
+                    @endforeach
+                </div>   --}}
+
+                <div class="form-group">
+                    <label>Upload Project Files</label>
+                    <span>You can upload multiple images</span>
+                    <input type="file" 
+                            name="filenames[]"
+                            class="form-control"
+                            id="inputFiles"
+                            multiple
+                    >
                 </div>
 
                 <h6>Status</h6>

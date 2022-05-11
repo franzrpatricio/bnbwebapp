@@ -8,7 +8,7 @@
         <li class="breadcrumb-item active">All Active Modules</li>
     </ol>
     <div class="row">
-        @if (Auth::user()->role_as == '0')
+        @if (Auth::user()->role_as == '1')
         <!-- User -->
             {{-- ADMIN --}}
             <div class="col-xl-3 col-md-6 mb-4">

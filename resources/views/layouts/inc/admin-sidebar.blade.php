@@ -9,7 +9,7 @@
                 </a>
                 <div class="sb-sidenav-menu-heading">Interface</div>
                 
-                @if (Auth::user()->role_as == '0')
+                @if (Auth::user()->role_as == '1')
                     {{-- ADMIN --}}
                     
                 {{-- USER --}}
@@ -30,7 +30,7 @@
                         </a>
                     </nav>
                 </div>
-                @elseif(Auth::user()->role_as == '1')
+                @elseif(Auth::user()->role_as == '0')
                     {{-- STAFF --}}
                 @endif
 

@@ -67,12 +67,28 @@
                             <label>Image</label>
                             <input type="file" name="image"class="form-control">
                         </div>
+
+                        <div class="col-md-6">
+                            <label>Virtual Tour</label>
+                            <span><h5>Upload your Project Virutal Tour</h5></span>
+                            <input type="file" name="vtour" class="form-control">
+                        </div>
                     </div>
                     
                     <div class="row">
                         <div class="col-md-6">
                             <label>Cost</label>
                             <input type="text" name="cost" value="{{$project->cost}}" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Stories</label>
+                            <input type="text" name="stories" value="{{$project->stories}}" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Rooms</label>
+                            <input type="number" name="rooms" value="{{$project->rooms}}" class="form-control">
                         </div>
     
                         <div class="col-md-6">
@@ -85,6 +101,39 @@
                         <label>Description</label>
                         <textarea name="description" id="summernoteDesc" rows="5" class="form-control">{{$project->description}}</textarea>
                     </div>
+
+                    <div class="mb-3">
+                        <label><strong>Architectural Designs :</strong></label><br>
+                        <select name="designs[]" id="desgins" multiple class="filter-multi-select">
+                            @foreach ($architectural as $item)
+                                <option value="{{ $item->design }}">{{$item->design}}</option>
+                            @endforeach
+                        </select>    
+                    </div>
+
+                    <div class="mb-3">
+                        <label><strong>Amenities :</strong></label><br>
+                        <select name="amenities[]" id="amenities" multiple class="filter-multi-select">
+                            @foreach ($amenities as $item)
+                                <option value="{{ $item->service }}">{{$item->service}}</option>
+                            @endforeach
+                        </select>    
+                    </div>
+
+                    {{-- <div class="form-group">
+                        <label><strong>Amenities :</strong></label><br>
+                        <select name="amenities[]" id="amenities" multiple class="filter-multi-select">
+                            @foreach ($amenities as $item)
+                                <option
+                                    @if (json_decode($project->amenities) == $item->service) selected
+                                    @endif
+                                    value="{{ $item->service }}"
+                                >
+                                    {{$item->service}}
+                                </option>
+                            @endforeach
+                        </select>    
+                    </div>  --}}
 
                     <h6>SEO Tags</h6>
                     <div class="mb-3">
@@ -102,7 +151,7 @@
                             <textarea name="meta_keyword" rows="3" class="form-control">{{$project->meta_keyword}}</textarea>
                         </div>
                     </div>
-                    
+
                     <h6>Status</h6>
                     <div class="row">
                         <div class="col-md-3 mb-3">

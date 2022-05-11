@@ -15,10 +15,9 @@ class HousePlanController extends Controller
         #get all categories
         // $houseplan = HousePlan::all();
         if ($request->has('trashed')) {
-            $houseplan = HousePlan::onlyTrashed()
-                ->get();
+            $houseplan = HousePlan::onlyTrashed()->paginate(3);
         } else {
-            $houseplan = HousePlan::get();
+            $houseplan = HousePlan::paginate(3);
         }
 
         #get all houseplans
@@ -114,5 +113,24 @@ class HousePlanController extends Controller
         HousePlan::onlyTrashed()->restore();
   
         return redirect('admin/houseplan')->with('msg','success');
+    }
+
+    #SEARCH
+    public function search(Request $request){
+        $find_this = $request->get('query');
+        $houseplan = HousePlan::where('id', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('type', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('cost', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('floor', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('wall', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('window', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('ceiling', 'LIKE', '%'.$find_this.'%')
+            ->paginate(2);
+        if (count ($houseplan) > 0) {
+            return view('users.admin.houseplan.index', compact('houseplan'));
+        } else {
+            # code...
+            return view ('users.admin.houseplan.index', compact('houseplan'))->with( 'No Housep Plan Found. 🥺' );
+        }
     }
 }
