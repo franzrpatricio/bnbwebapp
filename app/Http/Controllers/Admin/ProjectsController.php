@@ -197,6 +197,7 @@ class ProjectsController extends Controller
         }
 
         $project->cost = $data['cost'];
+        $project->stories = $data['stories'];
         $project->slug = Str::slug($data['slug']);
         $project->description = $data['description'];
 

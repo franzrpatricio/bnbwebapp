@@ -60,8 +60,13 @@ class ClientController extends Controller
         $projects = Projects::where('status','1')->get();
         $amenities = Amenities::all();
         $architectural = Designs::all();
-        
+                
         $find_this = $request->get('query');
+        $find_category = $request->get('category');
+        $find_design = $request->get('design');
+        $find_stories = $request->get('stories');
+        $find_amenity = $request->get('stories');
+
         if ($find_this) {
             # code...
             $projects = Projects::where('name', 'LIKE', '%'.$find_this.'%')->get();
@@ -71,7 +76,48 @@ class ClientController extends Controller
                 # code...
                 return view('client.projects',['msg'=> 'Sorry but '.$find_this.' not Found.🥺'],compact('categories','projects','amenities','architectural'));
             }
-        }
+        } elseif ($find_category) {
+            # code...
+            $projects = Projects::where('category_id', 'LIKE', '%'.$find_category.'%')->get();
+            if (count ($projects) > 0) {
+                return view('client.projects', compact('categories','projects','amenities','architectural'));
+            } else {
+                # code...
+                return view('client.projects',['msg'=> 'Sorry but '.$find_category.' not Found.🥺'],compact('categories','projects','amenities','architectural'));
+            }
+        } elseif ($find_design) {
+            # code...
+            // $design = json_decode($find_design);
+            $projects = Projects::where('designs', 'LIKE', '%'.$find_design.'%')->get();
+            if (count ($projects) > 0) {
+                return view('client.projects', compact('categories','projects','amenities','architectural'));
+            } else {
+                # code...
+                return view('client.projects',['msg'=> 'Sorry but '.$find_design.' not Found.🥺'],compact('categories','projects','amenities','architectural'));
+            }
+        } elseif ($find_stories) {
+            # code...
+            $projects = Projects::where('stories', 'LIKE', '%'.$find_stories.'%')->get();
+            if (count ($projects) > 0) {
+                return view('client.projects', compact('categories','projects','amenities','architectural'));
+            } else {
+                # code...
+                return view('client.projects',['msg'=> 'Sorry but '.$find_stories.' not Found.🥺'],compact('categories','projects','amenities','architectural'));
+            }
+        } elseif ($find_amenity) {
+            # code...
+            $projects = Projects::where('amenities', 'LIKE', '%'.$find_amenity.'%')->get();
+            if (count ($projects) > 0) {
+                return view('client.projects', compact('categories','projects','amenities','architectural'));
+            } else {
+                # code...
+                return view('client.projects',['msg'=> 'Sorry but '.$find_amenity.' not Found.🥺'],compact('categories','projects','amenities','architectural'));
+            }
+        } 
+        // else {
+        //     # code...
+        //     return view('client.projects',['msg'=> 'Sorry but we found nothing on applied filters.🥺'],compact('categories','projects','amenities','architectural'));
+        // }
         return view('client.projects', compact('categories','projects','amenities','architectural'));
     }
     #specific project from projects
@@ -86,11 +132,11 @@ class ClientController extends Controller
                 return view('client.project', compact('project','images'));
             } else {
                 # code...
-                return view('client.project',['msg'=>'No images found'],compact('project','images'));
+                return view('client.project',['msgc'=>'No images found'],compact('project','images'));
             }
         } else {
             # code...
-            return view('client.project',['msg'=>'No images found']);
+            return view('client.project',['msgc'=>'No images found']);
         }
     }
     public function contact(){

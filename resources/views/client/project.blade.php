@@ -76,6 +76,12 @@
         @foreach (json_decode($project->amenities) as $item => $key)
           <p style="text-align: justify;">{{$key}}</p>
         @endforeach
+        <label for="">Cost: </label>
+        <p style="text-align: justify;">{{$project->cost}}</p>
+        <label for="">Stories: </label>
+        <p style="text-align: justify;">{{$project->stories}}</p>
+        <label for="">Rooms: </label>
+        <p style="text-align: justify;">{{$project->rooms}}</p>
         {{-- FOR SUMMERNOTE DATA USE -> {!! MESSAGE !!} --}}
         <label for="">Description: </label>
         <p style="text-align: justify;">{!!$project->description!!}</p>
@@ -116,11 +122,9 @@
         {{-- post the form --}}
         {{-- save to comments db --}}
         <div class="col-lg-6 p-3">
-          @if (session('msgc'))
-            <h6 class="alert alert-warning mb-3">{{session('msgc')}}</h6>
-          @endif  
           <div class="p-3"> Comment Panel</div>
             <form action="{{url('comments')}}" method="post">
+              {{-- Returning false stops the page from reloading --}}
               @csrf
               <input type="hidden" name="project_slug" value="{{$project->slug}}">
               {{-- <input type="hidden" name="project_id" value="{{$project->id}}"> --}}
@@ -175,9 +179,13 @@
           comment->comment
           comment->created_at
         --}}
-        @forelse ($project->comments as $comment)
-          <div class="col-lg-6 p-3">
-            <div>Comment Review</div>
+
+        <div class="col-lg-6 p-3">
+          <div>Comment Review</div>
+          @if (session('msgc'))
+            <h6 class="alert alert-warning mb-3">{{session('msgc')}}</h6>
+          @endif  
+          @forelse ($project->comments->sortByDesc('created_at') as $comment)
             <div class="card m-3" style="width: 500px; height: 150px;">
               <div class="row p-3" >
                 <div class="col-3">
@@ -192,10 +200,10 @@
                 </div>
               </div> 
             </div>
-          </div> 
-        @empty
-          <h6>No Comments yet.</h6>
-        @endforelse
+          @empty
+            <h6>No Comments yet.</h6>
+          @endforelse
+        </div> 
       </div>
     </div>
   </div>
