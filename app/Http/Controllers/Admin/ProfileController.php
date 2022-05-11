@@ -25,6 +25,17 @@ class ProfileController extends Controller
 
     public function showChangePasswordGet() {
         return view('auth.passwords.change-password');
+    public function profile(){
+        $user = User::find(Auth::user()->id);
+        return view('users.profilesettings', compact('user'));
+    }
+
+    public function profile_settings(Request $request){
+        return view('users.profilesettings');
+    }
+
+    public function showChangePasswordGet() {
+        return view('users.profilesettings');
     }
 
     public function changePasswordPost(Request $request) {
