@@ -145,13 +145,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #RESTORE
     Route::get('restore-user/{users_id}',[App\Http\Controllers\Admin\UsersController::class, 'restore'])->name('users.restore');
     Route::get('users/restore-users',[App\Http\Controllers\Admin\UsersController::class, 'restore_all'])->name('users.restore_all');
-<<<<<<< HEAD
-    
-=======
     #SEARCH
     Route::get('users/find', [App\Http\Controllers\Admin\UsersController::class,'search']);
 
->>>>>>> backendfranz
     #USER STAFF
     #VIEW PROFILE
     Route::get('profile', [App\Http\Controllers\Admin\UsersController::class, 'profile']);
@@ -173,18 +169,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #DELETE
     Route::delete('delete-faq/{faq_id}', [App\Http\Controllers\Admin\FaqsController::class, 'destroy'])->name('faqs.destroy');
     #RESTORE
-<<<<<<< HEAD
-    Route::get('restore-faq/{faq_id}',[App\Http\Controllers\FaqsController::class, 'restore']);
-    Route::get('restore-faqs/{faq_id}',[App\Http\Controllers\FaqsController::class, 'restore_all']);
-    Route::get('profile_settings', [App\Http\Controllers\Admin\ProfileController::class, 'profile_settings']);
-
-    
-=======
     Route::get('restore-faq/{faq_id}',[App\Http\Controllers\Admin\FaqsController::class, 'restore'])->name('faqs.restore');
     Route::get('restore-faqs',[App\Http\Controllers\Admin\FaqsController::class, 'restore_all'])->name('faqs.restore_all');
     #SEARCH
     Route::get('faqs/find', [App\Http\Controllers\Admin\FaqsController::class, 'search']);
->>>>>>> backendfranz
 
     #INQUIRY CRUD
     #READ
@@ -199,11 +187,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('inquiries/find', [App\Http\Controllers\Admin\InquiriesController::class, 'search']);
 
     #The fundamental difference between the POST and PUT requests is reflected in the different meaning of the Request-URI. The URI in a POST request identifies the resource that will handle the enclosed entity... In contrast, the URI in a PUT request identifies the entity enclosed with the request.
-<<<<<<< HEAD
 });
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
-});
->>>>>>> backendfranz
+
