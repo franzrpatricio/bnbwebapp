@@ -247,7 +247,7 @@
                   <div>
                   <div class="card" style="height: 300px; width: 200px; "  >
                       <div class="img-fluid border-bottom">
-                      <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
+                      <img src="/public/assets/client/residencial.jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
                       </div>
                       <div class="card-body">
                         <h6 class="card-title text-center">San Pedro Project</h6>

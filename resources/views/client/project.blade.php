@@ -135,10 +135,10 @@
                 <div>
                 <div class="card" style="height: 300px; width: 200px; "  >
                     <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
+                    <img src="{{asset('assets/client/Gent.png')}}" class="card-img-top img-top " style="height:200px; width: 200px; width: 200px; object-fit:contain;" alt="...">
                     </div>
                     <div class="card-body">
-                      <h6 class="card-title text-center">Quezon City Project</h6>
+                      <h6 class="card-title text-center">General Trias Project</h6>
                       <div class="text-center">
                         <a href="sampleproject.html">
                       <button  class="btn btn-primary text " >View  </button>
@@ -152,10 +152,10 @@
                 <div>
                 <div class="card" style="height: 300px; width: 200px; "  >
                     <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
+                    <img src="{{asset('assets/client/atanacio.png')}}" class="card-img-top img-top " style="height: 200px; width: 200px; object-fit: contain;" alt="...">
                     </div>
                     <div class="card-body">
-                      <h6 class="card-title text-center">Tanza Cavite Project</h6>
+                      <h6 class="card-title text-center">Atanacio Project</h6>
        
                       <div class="text-center">
                         <button  class="btn btn-primary text " >View  </button>
@@ -168,10 +168,10 @@
                 <div>
                 <div class="card" style="height: 300px; width: 200px; "  >
                     <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
+                    <img src="{{asset('assets/client/gacusan.png')}}" class="card-img-top img-top " style="height: 200px; width: 200px; object-fit: contain;" alt="...">
                     </div>
                     <div class="card-body">
-                      <h6 class="card-title text-center">Manila Project</h6>
+                      <h6 class="card-title text-center">Gacusan Project</h6>
        
                       <div class="text-center">
                         <button  class="btn btn-primary text " >View  </button>
@@ -184,10 +184,10 @@
                 <div>
                 <div class="card" style="height: 300px; width: 200px; "  >
                     <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
+                    <img src="{{asset('assets/client/lourdes.png')}}" class="card-img-top img-top " style="height: 200px; width: 200px; object-fit: contain;" alt="...">
                     </div>
                     <div class="card-body">
-                      <h6 class="card-title text-center">Lancaster Project</h6>
+                      <h6 class="card-title text-center">Lourdes Project</h6>
        
                       <div class="text-center">
                         <button  class="btn btn-primary text " >View  </button>
@@ -200,10 +200,10 @@
                 <div>
                 <div class="card" style="height: 300px; width: 200px; "  >
                     <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
+                    <img src="{{asset('assets/client/starosa.png')}}" class="card-img-top img-top " style="height: 200px; width: 200px; object-fit: contain;" alt="...">
                     </div>
                     <div class="card-body">
-                      <h6 class="card-title text-center">Zobel Project</h6>
+                      <h6 class="card-title text-center">Sta. Rosa Project</h6>
        
                       <div class="text-center">
                         <button  class="btn btn-primary text " >View  </button>
@@ -216,10 +216,10 @@
                 <div>
                 <div class="card" style="height: 300px; width: 200px; "  >
                     <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
+                    <img src="{{asset('assets/client/cruz.png')}}" class="card-img-top img-top " style="height: 200px; width: 200px; object-fit: contain;" alt="...">
                     </div>
                     <div class="card-body">
-                      <h6 class="card-title text-center">Laguna Project</h6>
+                      <h6 class="card-title text-center">Cruz Project</h6>
        
                       <div class="text-center">
                         <button  class="btn btn-primary text " >View  </button>
@@ -232,10 +232,10 @@
                 <div>
                 <div class="card" style="height: 300px; width: 200px; "  >
                     <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
+                    <img src="{{asset('assets/client/calamucha.png')}}" class="card-img-top img-top " style="height: 200px; width: 200px; object-fit: contain;" alt="...">
                     </div>
                     <div class="card-body">
-                      <h6 class="card-title text-center">Batangas Project</h6>
+                      <h6 class="card-title text-center">Calamucha Project</h6>
        
                       <div class="text-center">
                         <button  class="btn btn-primary text " >View </button>
@@ -248,10 +248,10 @@
                 <div>
                 <div class="card" style="height: 300px; width: 200px; "  >
                     <div class="img-fluid border-bottom">
-                    <img src="images/15288516_1292551174142952_7851552844722180038_o (1).jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
+                    <img src="{{asset('assets/client/maribel.png')}}" class="card-img-top img-top " style="height: 200px; width: 200px; object-fit: contain;" alt="...">
                     </div>
                     <div class="card-body">
-                      <h6 class="card-title text-center">San Pedro Project</h6>
+                      <h6 class="card-title text-center">Maribel Project</h6>
        
                       <div class="text-center">
                         <button  class="btn btn-primary text " >View </button>
