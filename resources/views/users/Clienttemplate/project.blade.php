@@ -231,7 +231,8 @@
                   <div>
                   <div class="card" style="height: 300px; width: 200px; "  >
                       <div class="img-fluid border-bottom">
-                      <img src="images/building2.jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
+                      <img src="../public/assets/client/ar2.jpg" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
+                      public\assets\client\ar2.jpg
                       </div>
                       <div class="card-body">
                         <h6 class="card-title text-center">Batangas Project</h6>
