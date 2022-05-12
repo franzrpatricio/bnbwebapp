@@ -26,17 +26,43 @@
 				</div>
 				<div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
 					<div class="about-text">
-						<h2>Arch. Christopher G. Bana UAP</h2>
-						<h3 style="font-size:20px">Co-Founder of Bana & Bana Architects</h3>
+						<h2 style="color:#3EA4D7;">Arch. Christopher G. Bana UAP</h2>
+						<h3 style="font-size:20px; color:#ffcc00;">Co-Founder of Bana & Bana Architects</h3>
 						<p style="text-align:justify;">  Arch. Michael G. Bana is a product of Technological Institute of the Philippines graduated Bachelor of Science in Architecture in October 1992.
                 He is a highly skilled and dedicated professional with 20 years of experience and has a strong background in SIte Supervising, Planning, & Technical Drawing Management.
                 Highly commited to quality and teamwork. He provides technical skills and expertise in various architectural design of engineering structures. Prepare work plans and communicate
-                to project managers to determine the scope of work. Besides being an Architect, he is also a Site Supervisor and MEP Site Engineer. He became a Installation Site Manager of Penny Steel Haus
-                during 1993-1997. He also became a Site Engineer for Site Tech Electromechanical in Dubai, UEA in 2008-2010. Now he is the Co-Founder of Bana & Bana Architects in 2011 up to the present day. </p><a class="btn btn-primary" href="#">Learn More</a>
+                to project managers to determine the scope of work. </p>
+                
+                <div class="row gy-4 mt-3">
+              <div class="col-md-6 icon-box" data-aos="fade-up">
+                <i class="bx bx-receipt"></i>
+                <h4><a href="#">Site Engineer</a></h4>
+                <p>Penny Steel Haus during 1993-1997. He also became a Site Engineer for Site Tech Electromechanical in Dubai, UEA in 2008-2010. </p>
+              </div>
+              <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
+                <i class="bx bx-cube-alt"></i>
+                <h4><a href="#">Site Supervisor</a></h4>
+                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+              </div>
+              <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
+                <i class="bx bx-images"></i>
+                <h4><a href="#">MEP Site Engineer</a></h4>
+                <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+              </div>
+              <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
+                <i class="bx bx-shield"></i>
+                <h4><a href="#">Co-Founder of Bana & Bana Architects</a></h4>
+                <p>2011 up to the present day</p>
+              </div>
+            </div>
+          </div>
+                
 					</div>
 				</div>
 			</div>
 		</div>
+
+    
 <br><br>
     <section class="about section-padding" id="about">
 		<div class="container">
@@ -46,13 +72,37 @@
 				</div>
 				<div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
 					<div class="about-text">
-						<h2>Arch. Michael G. Bana UAP</h2>
-						<h3 style="font-size:20px">Co-Founder of Bana & Bana Architects</h3>
+						<h2 style="color:#3EA4D7;">Arch. Michael G. Bana UAP</h2>
+						<h3 style="font-size:20px; color:#ffcc00;">Co-Founder of Bana & Bana Architects</h3>
 						<p style="text-align:justify;">  Arch. Michael G. Bana is a product of Technological Institute of the Philippines graduated Bachelor of Science in Architecture in October 1992.
                 He is a highly skilled and dedicated professional with 20 years of experience and has a strong background in SIte Supervising, Planning, & Technical Drawing Management.
                 Highly commited to quality and teamwork. He provides technical skills and expertise in various architectural design of engineering structures. Prepare work plans and communicate
-                to project managers to determine the scope of work. Besides being an Architect, he is also a Site Supervisor and MEP Site Engineer. He became a Installation Site Manager of Penny Steel Haus
-                during 1993-1997. He also became a Site Engineer for Site Tech Electromechanical in Dubai, UEA in 2008-2010. Now he is the Co-Founder of Bana & Bana Architects in 2011 up to the present day. </p><a class="btn btn-primary" href="#">Learn More</a>
+                to project managers to determine the scope of work. </p>
+                
+                <div class="row gy-4 mt-3">
+              <div class="col-md-6 icon-box" data-aos="fade-up">
+                <i class="bx bx-receipt"></i>
+                <h4><a href="#">Site Engineer</a></h4>
+                <p>Penny Steel Haus during 1993-1997. He also became a Site Engineer for Site Tech Electromechanical in Dubai, UEA in 2008-2010. </p>
+              </div>
+              <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
+                <i class="bx bx-cube-alt"></i>
+                <h4><a href="#">Site Supervisor</a></h4>
+                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+              </div>
+              <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
+                <i class="bx bx-images"></i>
+                <h4><a href="#">MEP Site Engineer</a></h4>
+                <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+              </div>
+              <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
+                <i class="bx bx-shield"></i>
+                <h4><a href="#">Co-Founder of Bana & Bana Architects</a></h4>
+                <p>2011 up to the present day</p>
+              </div>
+            </div>
+          </div>
+               
 					</div>
 				</div>
 			</div>
