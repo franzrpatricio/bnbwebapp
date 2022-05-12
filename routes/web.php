@@ -41,6 +41,8 @@ Route::post('/botman',function(){
     app('botman')->listen();
 });
 
+Route::get('/home',[App\Http\Controllers\Auth\LoginController::class, 'store']);
+
 // #INQUIRY CREATE
 // Route::get('add-inquiry', [App\Http\Controllers\InquiryController::class, 'create']);
 // Route::post('add-inquiry', [App\Http\Controllers\InquiryController::class, 'store']);
@@ -149,15 +151,24 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('users/find', [App\Http\Controllers\Admin\UsersController::class,'search']);
 
     #USER STAFF
-    #VIEW PROFILE
-    Route::get('profile', [App\Http\Controllers\Admin\ProfileController::class, 'profile']);
-    #EDIT PROFILE
-    Route::get('profile/edit-profile', [App\Http\Controllers\Admin\UsersController::class, 'editProfile']);
-    Route::put('profile/update-profile',[App\Http\Controllers\Admin\UsersController::class, 'updateProfile']);
-    #CHANGEPASS
-    Route::get('profilesettings', [App\Http\Controllers\Admin\ProfileController::class, 'showChangePasswordGet'])->name('changePasswordGet');
-    Route::post('profilesettings', [App\Http\Controllers\Admin\ProfileController::class, 'changePasswordPost'])->name('changePasswordPost');
+    // #VIEW PROFILE
+     Route::get('profile', [App\Http\Controllers\Admin\ProfileController::class, 'profile']);
+    // #EDIT PROFILE
+    //  Route::get('profile/edit-profile', [App\Http\Controllers\Admin\UsersController::class, 'editProfile']);
+      Route::post('profile/update-profile',[App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('update-profile');
+    // #CHANGEPASS
+     Route::get('profilesettings', [App\Http\Controllers\Admin\ProfileController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+     Route::post('profilesettings', [App\Http\Controllers\Admin\ProfileController::class, 'changePasswordPost'])->name('changePasswordPost');
 
+    #ACTIVITYLOGS
+    // Route::get('profilesettings/activityLog',[App\Http\Controllers\Admin\ProfileController::class, 'activityLog'])->name('profilesettings/activityLog');
+    // Route::get('activityLoginLogout',[App\Http\Controllers\Admin\ProfileController::class, 'activityLoginLogout'])->name('activityLoginLogout');
+
+    
+
+    
+
+    
 
     #FAQS CRUD 
     #READ
