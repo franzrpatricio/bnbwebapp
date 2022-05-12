@@ -2,6 +2,7 @@
 @section('content')
     
     <!-- contact us codes -->
+    <div class="contact">
     <div class="container1">
       <div class="form">
           <div class="contact-info">
@@ -34,5 +35,6 @@
           </div>
       </div>
     </div>
+</div>
 
 @endsection

@@ -505,7 +505,7 @@ div a:hover {
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      background: url(/resources/views/users/Client/images/blue-architecture-houses-buildings-skyscrapers-modern-skyscapes-windows-3888x2592-architecture-modern-hd-art-wallpaper-preview.jpg);
+      background-image: url(../client/contacthome.jpg);
       background-size: cover;
     }
      
