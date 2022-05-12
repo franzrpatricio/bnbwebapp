@@ -21,7 +21,7 @@
               </div>
               <div class="social-media">
                   <p>Connect with us :</p> 
-                  <div class="social-icons"> <a href="#"> <i class="fa fa-facebook-f"></i> </a> <a href="#"> <i class="fa fa-twitter"></i> </a><a href="#"> <i class="fa fa-instagram"></i> </a> </div>
+                  <div class="social-icons"> <a href="#"> <i class="fa fa-facebook" aria-hidden="true"></i><a href="#"> <i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"> <i class="fa fa-instagram"></i> </a> </div>
               </div>
           </div>
           <div class="contact-info-form"> <span class="circle one"></span> <span class="circle two"></span>
