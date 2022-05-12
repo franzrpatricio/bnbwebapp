@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Events\ClientSubscribed;
 use App\Models\Files;
 use App\Models\Designs;
 use App\Models\Category;
 use App\Models\Projects;
 use App\Models\Amenities;
+use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use SebastianBergmann\CodeCoverage\Report\Xml\Project;
+use Illuminate\Support\Facades\Validator;
 
 class ClientController extends Controller
 {
@@ -141,5 +143,28 @@ class ClientController extends Controller
     }
     public function contact(){
         return view('client.contact');
+    }
+    public function subscribe(Request $request){
+
+        // dd('OK');
+        $validator = Validator::make($request->all(),[
+            'email' => 'required|string|email|max:255|unique:newsletter,email'
+        ]);
+
+        if ($validator->fails()) {
+            # code...
+            return redirect()->back()->with('msgc','This email has already subscribed!');
+        } else {
+            # code...
+            event(new ClientSubscribed($request->input('email')));
+            // Newsletter::create([
+            //     'email' => $request->email
+            // ]);
+            return redirect()->back()->with('msgc','Subscription Added. Thanks, Pal!');
+        }
+    }
+    public function subscriber(){
+        $subscribers = Newsletter::paginate(5);
+        return view('users.admin.newsletter.subscriber',compact('subscribers'));
     }
 }

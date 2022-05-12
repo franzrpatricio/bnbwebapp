@@ -128,13 +128,16 @@
                     </nav>
                 </div> --}}
                 <a class="nav-link link-light" href="{{ url('admin/inquiries') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-message  "></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-message"></i></div>
                     Inquiry List
-                </a>
-                
+                </a>                
                 <a class="nav-link link-light" href="{{ url('admin/comments') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
                     Comment Review
+                </a>
+                <a class="nav-link link-light" href="{{ url('admin/newsletter') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    Subscribers
                 </a>
             </div>
         </div>
