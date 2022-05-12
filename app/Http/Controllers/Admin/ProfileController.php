@@ -16,7 +16,7 @@ class ProfileController extends Controller
 {
     public function profile(){
         $user = User::find(Auth::user()->id);
-        $logs = Logs::paginate(10);
+        $logs = Logs::orderBy('id','desc')->paginate(10);
         
 
         return view('users.profilesettings', compact(['user','logs']));

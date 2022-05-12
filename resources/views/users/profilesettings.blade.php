@@ -46,12 +46,10 @@
                             </div>
               
                               <hr class="border-light m-0"> 
-                            <div class="card p-3"><a type="button" class="btn" data-toggle="collapse" data-target="#Edit">
-                                              <i class="fa-solid fa-pen" style="color:#4CA5D7;"></i> 
-                                            </a>
+                            <div class="card p-3">
                               <div>
                                   <div class="row text-start">
-                                          <div class="col-6">
+                                          <!-- <div class="col-6">
                                             Username:
                                           </div>
                                         <div class="col-6">
@@ -64,10 +62,18 @@
                                         <div class="col-6">
                                            {{ Auth::user()->email }}
                                           
-                                        </div>
+                                        </div> -->
+
+                                        <div class="form-group">
+                                                
+                                                  <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}" placeholder="Enter New Name">
+                                                </div>
+                                                <div class="form-group">
+                                                  <input type="text" name="email" class="form-control" value="{{ Auth::user()->email }}" placeholder="Enter New Email">
+                                                </div>
                                       </div>
 
-                                          <div id="Edit" class="collapse">
+                                          <!-- <div id="Edit" class="collapse">
                                           
                                               <div class="card"> 
                                                 
@@ -84,7 +90,7 @@
                                                </div>
                                         
                                     
-                                          </div>
+                                          </div> -->
                                   </div>
                       
                                          
