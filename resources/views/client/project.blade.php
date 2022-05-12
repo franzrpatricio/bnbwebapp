@@ -135,13 +135,13 @@
                 <div>
                 <div class="card" style="height: 300px; width: 200px; "  >
                     <div class="img-fluid border-bottom">
-                    <img src="{{asset('assets/client/Gent.png')}}" class="card-img-top img-top " style="height:200px; width: 200px; width: 200px; object-fit:fill;" alt="...">
+                    <img src="{{asset('assets/client/Gent.png')}}" class="card-img-top img-top " style="height:200px; width: 200px;  object-fit:fill;" alt="...">
                     </div>
                     <div class="card-body">
                       <h6 class="card-title text-center">General Trias Project</h6>
                       <div class="text-center">
                         <a href="sampleproject.html">
-                      <button  class="btn btn-primary text " >View  </button>
+                      <button  class="btn btn-primary text " style="color:white;" >View  </button>
                       </a>
                       </div>
                     </div>
@@ -158,7 +158,7 @@
                       <h6 class="card-title text-center">Atanacio Project</h6>
        
                       <div class="text-center">
-                        <button  class="btn btn-primary text " >View  </button>
+                        <button  class="btn btn-primary text " style="color:white;" >View  </button>
                         </div>
                     </div>
                   </div>
@@ -174,7 +174,7 @@
                       <h6 class="card-title text-center">Gacusan Project</h6>
        
                       <div class="text-center">
-                        <button  class="btn btn-primary text " >View  </button>
+                        <button  class="btn btn-primary text " style="color:white;">View  </button>
                         </div>
                     </div>
                   </div>
@@ -190,7 +190,7 @@
                       <h6 class="card-title text-center">Lourdes Project</h6>
        
                       <div class="text-center">
-                        <button  class="btn btn-primary text " >View  </button>
+                        <button  class="btn btn-primary text " style="color:white;" >View  </button>
                         </div>
                     </div>
                   </div>
@@ -206,7 +206,7 @@
                       <h6 class="card-title text-center">Sta. Rosa Project</h6>
        
                       <div class="text-center">
-                        <button  class="btn btn-primary text " >View  </button>
+                        <button  class="btn btn-primary text " style="color:white;">View  </button>
                         </div>
                     </div>
                   </div>
@@ -222,7 +222,7 @@
                       <h6 class="card-title text-center">Cruz Project</h6>
        
                       <div class="text-center">
-                        <button  class="btn btn-primary text " >View  </button>
+                        <button  class="btn btn-primary text " style="color:white;">View  </button>
                         </div>
                     </div>
                   </div>
@@ -238,7 +238,7 @@
                       <h6 class="card-title text-center">Calamucha Project</h6>
        
                       <div class="text-center">
-                        <button  class="btn btn-primary text " >View </button>
+                        <button  class="btn btn-primary text " style="color:white;">View </button>
                         </div>
                     </div>
                   </div>
@@ -254,7 +254,7 @@
                       <h6 class="card-title text-center">Maribel Project</h6>
        
                       <div class="text-center">
-                        <button  class="btn btn-primary text " >View </button>
+                        <button  class="btn btn-primary text " style="color:white;">View </button>
                         </div>
                     </div>
                   </div>
