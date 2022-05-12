@@ -16,6 +16,9 @@
     <!-- Styles -->
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/client.css') }}" rel="stylesheet">
+{{-- Animation --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.6.2/animate.min.css" rel="stylesheet">
+ 
     
 </head>
 <body>
@@ -26,6 +29,10 @@
         </main>
         @include('layouts.inc.client-footer')
     </div>
+{{-- Animation --}}
+    
+    
+
 </body>
 </html>
 <!-- Scripts -->
