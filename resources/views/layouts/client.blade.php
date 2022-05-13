@@ -34,6 +34,7 @@
             @yield('content')
         </main>
         @include('layouts.inc.staff-footer')
+        {{-- @include('layouts.newsletter') --}}
     </div>
 </body>
 </html>
