@@ -3,11 +3,14 @@
 @section('content')
 
 <div class="container-fluid px-4">
+    <h1 class="mt-5">Manage Comments</h1>
+
     <div class="card mt-4">
         <div class="card-header">
             <h4>
                 <div class="sb-nav-link-icon">
                     <i class="fas fa-list"></i>List of Comments
+                </div>
 
                     <!-- Navbar Search-->
                     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('admin/comments/find')}}">
