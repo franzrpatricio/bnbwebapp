@@ -37,7 +37,7 @@
     </div>
     <div class="d-flex justify-content-center align-items-center" >
       <div class="banner-title text-center">
-        <h1 class="mb-3 text-light fade-in">Roadmaps</h1>
+        <h1 class="mb-3 text-light" data-aos="fade-left" data-aos-duration="3000">Roadmaps</h1>
       </div>
     </div>
   </div>

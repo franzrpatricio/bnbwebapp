@@ -27,6 +27,9 @@ class ClientController extends Controller
     public function project(){
         return view('client.project');
     }
+    public function projects(){
+        return view('client.projects');
+    }
     public function contact(){
         return view('client.contact');
     }
