@@ -20,7 +20,7 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{$administrators}}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-users fa-2x text-gray-300" style="color: #4CA5D7"></i>
+                                <i class="fas fa-user-shield fa-2x text-gray-300" style="color: #4CA5D7"></i>
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{$staffs}}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-users fa-2x text-gray-300" style="color: #4CA5D7"></i>
+                                <i class="fas fa-user-tie fa-2x text-gray-300" style="color: #4CA5D7"></i>
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $faqs }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-envelope fa-2x text-gray-300" style="color: #4CA5D7"></i>
+                            <i class="fas fa-question-circle fa-2x text-gray-300" style="color: #4CA5D7"></i>
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $comments }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300" style="color: #4CA5D7"></i>
+                            <i class="fa-solid fa-address-card fa-2x text-gray-300" style="color: #4CA5D7"></i>
                         </div>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $subscribers }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300" style="color: #4CA5D7"></i>
+                            <i class="fas fa-users fa-2x text-gray-300" style="color: #4CA5D7"></i>
                         </div>
                     </div>
                 </div>
