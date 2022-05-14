@@ -33,7 +33,7 @@
         <main class="py-4">
             @yield('content')
         </main>
-        @include('layouts.inc.staff-footer')
+        @include('layouts.inc.client-footer')
         {{-- @include('layouts.newsletter') --}}
     </div>
 </body>
