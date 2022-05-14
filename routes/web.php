@@ -163,7 +163,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #ACTIVITYLOGS
     // Route::get('profilesettings/activityLog',[App\Http\Controllers\Admin\ProfileController::class, 'activityLog'])->name('profilesettings/activityLog');
     // Route::get('activityLoginLogout',[App\Http\Controllers\Admin\ProfileController::class, 'activityLoginLogout'])->name('activityLoginLogout');
-
+    Route::get('logs', [App\Http\Controllers\Admin\ProfileController::class, 'logs']);
     
 
     

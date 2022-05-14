@@ -21,25 +21,12 @@ class ProjectsController extends Controller
 {
     #VIEW
     public function index(Request $request){
-<<<<<<< HEAD
-        if(Auth::check()){
-            $projects = Projects::all();
-            if ($request->has('trashed')) {
-                # code...
-                $projects = Projects::onlyTrashed()->get();
-            }
-            return view('users.admin.project.index', compact('projects'));
-        }else {
-            #if not authenticated
-            return redirect('/login')->with('status','Log In First!');
-=======
         // $projects = Projects::get();
         if ($request->has('trashed')) {
             # code...
             $projects = Projects::onlyTrashed()->paginate(2);
         }else {
             $projects = Projects::paginate(2);
->>>>>>> backendfranz
         }
     }
 
@@ -113,7 +100,6 @@ class ProjectsController extends Controller
         $project->status = $request->status == true ? '1':'0';
         $project->posted_by = Auth::user()->id;
         $project->save();
-<<<<<<< HEAD
         
         $projID = $project->id;
         // $data = $request->input('amenity');
@@ -157,7 +143,6 @@ class ProjectsController extends Controller
                  );
             }
         }
-=======
         //insert to activity logs
         $name = Auth::user()->name;
                 $description = "Created Project";
@@ -171,7 +156,6 @@ class ProjectsController extends Controller
             ];
                 
                 DB::table('user_activity_logs')->insert($data);
->>>>>>> backendtrisha
         return redirect('admin/projects')->with('msg','Successfully Created Project');
     }
 

@@ -70,6 +70,20 @@ class CategoryController extends Controller
         #after everything....
         #save the category
         $category->save();
+
+        #insert to activity logs
+        $name = Auth::user()->name;
+        $description = "Created Category";
+        $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+
+        $data = [
+            'name'          => $name,
+            'description'   => $description,
+            'date_time'     => $date_time,
+        ];
+            
+        DB::table('user_activity_logs')->insert($data);
+
         #redirect with message;see in index.blade.php
         return redirect('admin/categories')->with('msg','Successfully Added New Category. Thanks!');
     }
@@ -128,6 +142,20 @@ class CategoryController extends Controller
         #after everything....
         #save the category
         $category->update();
+
+        #insert to activity logs
+        $name = Auth::user()->name;
+        $description = "Update Category";
+        $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+
+        $data = [
+            'name'          => $name,
+            'description'   => $description,
+            'date_time'     => $date_time,
+        ];
+            
+        DB::table('user_activity_logs')->insert($data);
+
         #redirect with message;see in index.blade.php
         return redirect('admin/categories')->with('msg','Successfully Updated Category. Thanks! :D');
     }

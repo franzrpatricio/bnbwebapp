@@ -36,6 +36,19 @@ class FaqsController extends Controller
         $faq->answewr = $data['answewr'];
         $faq->posted_by = Auth::user()->id;
         $faq->save();
+
+         #insert to activity logs
+         $name = Auth::user()->name;
+         $description = "Created FAQs";
+         $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+ 
+         $data = [
+             'name'          => $name,
+             'description'   => $description,
+             'date_time'     => $date_time,
+         ];
+             
+         DB::table('user_activity_logs')->insert($data);
         return redirect('admin/faqs')->with('msg','Successfully Created FAQ');
     }
     #VIEW specific project
@@ -51,6 +64,20 @@ class FaqsController extends Controller
         $faq->answewr = $data['answewr'];
         $faq->posted_by = Auth::user()->id;
         $faq->update();
+
+         #insert to activity logs
+         $name = Auth::user()->name;
+         $description = "Update FAQs";
+         $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+ 
+         $data = [
+             'name'          => $name,
+             'description'   => $description,
+             'date_time'     => $date_time,
+         ];
+             
+         DB::table('user_activity_logs')->insert($data);
+
         return redirect('admin/faqs')->with('msg','Successfully Updated FAQ');
     }
     #DELETE

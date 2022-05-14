@@ -14,7 +14,7 @@
           <div class="list-group list-group-flush account-settings-links">
             <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#activity-logs">Activity Logs</a>
+           
           </div>
         </div>
         <div class="col-md-9">
@@ -26,23 +26,30 @@
 
                       
                                 
-                      <form class="form-horizontal" method="POST" action="{{ route('update-profile') }}">
+                      <form class="form-horizontal" method="POST" action="{{ route('update-profile') }}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                             <div class="text-center">
-                        
-                                    <img class="profile-pic" src="{{ asset('assets/images/aj.jpg') }}" alt="" style="border-radius: 100px; width: 200px; height: 200px; align-items: center; padding: 10px;">
-                                    
-                                    <div class="ml-4 sm-12">
-                                      <label class="btn btn-outline-primary">
-                                        Upload new photo
-                                        <input type="file" class="account-settings-fileinput" name="image" style="position: absolute; visibility: hidden; width: 1px;height: 1px; opacity: 0;">
-                                        @if ($errors->has('image'))
-                                                        <span class="help-block">
-                                                            <strong>{{ $errors->first('image') }}</strong>
-                                                        </span>
-                                                    @endif
-                                      </label>&nbsp;
-                                    </div>
+                              @if (Auth::user()->image === "def.png")
+                              <img class="profile-pic" src="{{ asset('assets/images/'.Auth::user()->image) }}" alt="" style="border-radius: 100px; width: 200px; height: 200px; align-items: center; padding: 10px;">
+                              @else 
+                              <img class="profile-pic" src="{{ asset('uploads/users/'.Auth::user()->image) }}" alt="" style="border-radius: 100px; width: 200px; height: 200px; align-items: center; padding: 10px;">
+                              @endif
+                              
+                              
+                              <div class="ml-4 sm-12">
+                                <label class="btn btn-outline-primary">
+                                  Upload new photo
+                                  <input type="file" 
+                                    class="account-settings-fileinput" 
+                                    value="{{ Auth::user()->image }}" 
+                                    name="image" style="position: absolute; visibility: hidden; width: 1px;height: 1px; opacity: 0;">
+                                  @if ($errors->has('image'))
+                                      <span class="help-block">
+                                          <strong>{{ $errors->first('image') }}</strong>
+                                      </span>
+                                  @endif
+                                </label>&nbsp;
+                              </div>
                             </div>
               
                               <hr class="border-light m-0"> 
@@ -105,7 +112,6 @@
               
                         <div class="text-right mt-3 p-3">
                           <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
-                          <button type="button" class="btn btn-default">Cancel</button>
                         </div>
                   </form>
                 
@@ -176,7 +182,6 @@
               </div>
                 <div class="text-right mt-3 p-3">
                   <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
-                  <button type="button" class="btn btn-default">Cancel</button>
                 </div>
                 <!-- <script>
 
@@ -199,34 +204,7 @@
                             </script> -->
             </div>
 
-                  <div class="tab-pane fade" id="activity-logs">
-                    <div class="card-body pb-2">
-          
-                        <table class="table bg-white" >
-                          <thead class="bg-dark text-light">
-                              <th>ID</th>
-                              <th>Name</th>
-                              <th>Action</th>
-                              <th>Date</th>
-                          </thead>
-                          <tbody>
-                          @foreach ($logs as $row)  
-                              <tr>
-                                  <td data-title="ID">{{ $row->id }}</td>
-                                  <td data-title="Name">{{ $row->name }}</td>
-                                  <td data-title="Action">{{ $row->description }}</td>
-                                  <td data-title="Date">{{ $row->date_time }}</td>
-              
-                              </tr>
-                          @endforeach
-                            
-                          </tbody>
-                      </table>
-                      <h5>Page</h5>
-                      {{ $logs->links() }}
-          
-                    </div>
-                  </div>
+                  
           </div>
         </div>
            

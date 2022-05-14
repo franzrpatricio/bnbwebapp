@@ -3,36 +3,31 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\UserFormRequest;
+use DB;
 use Carbon\Carbon;
 
 class UsersController extends Controller
 {
+    use RegistersUsers;
     public function index(Request $request){
         if(Auth::check()){
             if (Auth::user()->role_as=='1') {
                 #role_as == 0 = staff
                 #role_as == 1 = admin
                 # code... 
-<<<<<<< HEAD
-                $users = User::get();
-                if ($request->has('trashed')) {
-                    # code...
-                    $users = User::onlyTrashed()->get();
-                }else {
-                    $users = User::get();
-=======
                 // $users = User::paginate(5);
                 if ($request->has('trashed')) {
                     # code...
                     $users = User::onlyTrashed()->paginate(3);
                 }else {
                     $users = User::paginate(3);
->>>>>>> backendfranz
                 }
 
                 return view('users.admin.users.index', compact('users'));
@@ -50,6 +45,7 @@ class UsersController extends Controller
         return view('users.admin.users.create');
     }
     public function store(UserFormRequest $request){
+        
         #BACKEND PART...CONTROLLER COMMUNICATING WITH MODEL
         #UserFormRequest=FormValidation before inserting data...
         $data = $request->validated();
@@ -94,7 +90,6 @@ class UsersController extends Controller
         // $users->email = $data['email'];
         // $users->password = $data['password'];
         #PASSWORD NEEDS TO ENCRYPT
-<<<<<<< HEAD
         if ($user) {
             # code...
             $user->role_as = $request->role_as == true ? '1':'0';
@@ -105,37 +100,27 @@ class UsersController extends Controller
             #after everything....
             #save the category
             $user->update();
+
+            #insert to activity logs
+        $name = Auth::user()->name;
+        $description = "Update a User's Info";
+        $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+
+    $data = [
+
+        'name'          => $name,
+        'description'   => $description,
+        'date_time'     => $date_time,
+    ];
+        
+        DB::table('user_activity_logs')->insert($data);
+        
             #redirect with message;see in index.blade.php
             return redirect('admin/users')->with('msg','Successfully Updated a User! :D');
         }else {
             # code...
             return redirect('admin/users')->with('msg','No user found.');
         }
-=======
-       
-        $users->status = $request->status == true ? '1':'0';
-        #get id of authenticated user who posted the category
-        $users->created_by = Auth::user()->id;
-        #after everything....
-        #save the category
-        $users->update();
-
-        #insert to activity logs
-        $name = Auth::user()->name;
-                $description = "Update a User's Info";
-                $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
-
-            $data = [
-
-                'name'          => $name,
-                'description'   => $description,
-                'date_time'     => $date_time,
-            ];
-                
-                DB::table('user_activity_logs')->insert($data);
-        #redirect with message;see in index.blade.php
-        return redirect('admin/users')->with('msg','Successfully Updated a User! :D');
->>>>>>> backendtrisha
     }
     #DELETE
     public function destroy($users_id){
@@ -158,9 +143,6 @@ class UsersController extends Controller
     #RESTORE ALL
     public function restore_all(){
         User::onlyTrashed()->restore();
-<<<<<<< HEAD
-        return redirect('admin/projects')->with('msg','Successfully Restored Users');
-=======
         return redirect('admin/users')->with('msg','Successfully Restored Users');
     }
 
@@ -179,6 +161,5 @@ class UsersController extends Controller
             # code...
             return view ('users.admin.users.index', compact('users'))->with( 'No Users Found. 🥺' );
         }
->>>>>>> backendfranz
     }
 }

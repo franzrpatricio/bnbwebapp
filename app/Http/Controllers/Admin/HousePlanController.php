@@ -48,6 +48,20 @@ class HousePlanController extends Controller
         #after everything....
         #save the category
         $houseplan->save();
+
+         #insert to activity logs
+         $name = Auth::user()->name;
+         $description = "Created HousePlan";
+         $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+ 
+         $data = [
+             'name'          => $name,
+             'description'   => $description,
+             'date_time'     => $date_time,
+         ];
+             
+         DB::table('user_activity_logs')->insert($data);
+         
         #redirect with message;see in index.blade.php
         return redirect('admin/houseplan')->with('msg','Successfully Added New House Plan. Thanks!');
     }
@@ -75,6 +89,20 @@ class HousePlanController extends Controller
         #after everything....
         #save the category
         $houseplan->update();
+
+         #insert to activity logs
+         $name = Auth::user()->name;
+         $description = "Update HousePlan";
+         $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+ 
+         $data = [
+             'name'          => $name,
+             'description'   => $description,
+             'date_time'     => $date_time,
+         ];
+             
+         DB::table('user_activity_logs')->insert($data);
+
         #redirect with message;see in index.blade.php
         return redirect('admin/houseplan')->with('msg','Successfully Updated House Plan. Thanks! :D');
     }

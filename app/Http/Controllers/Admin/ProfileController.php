@@ -2,40 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Logs;
-use App\Http\Requests\Admin\UserFormRequest;
-use Carbon\Carbon;
-use Hash;
-use Auth;
 use DB;
+use Auth;
+use Hash;
+use Carbon\Carbon;
+use App\Models\Logs;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\Admin\UserProfileFormRequest;
 
 class ProfileController extends Controller
 {
-    // public function change_password(){
-    //     return view('users.admin.profile.change_password');
-
-    // }
-
-    // public function update_password(Request $request){
-    //     return view('users.admin.profile.update_password');
-    // }
-
-    // public function profile_settings(Request $request){
-    //     return view('users.admin.profile.profile_settings');
-    // }
-
-    public function showChangePasswordGet() {
-        return view('auth.passwords.change-password');
+    
     public function profile(){
         $user = User::find(Auth::user()->id);
-        $logs = Logs::orderBy('id','desc')->paginate(10);
-        
-
-        return view('users.profilesettings', compact(['user','logs']));
+    
+        return view('users.profilesettings', compact('user'));
     }
+    public function logs(){
+        $logs = Logs::orderBy('id','desc')->paginate(10);
+       
+        return view('users.logs', compact('logs'));
+    }
+
 
 
     public function showChangePasswordGet() {
@@ -81,12 +72,15 @@ class ProfileController extends Controller
     }
     
 
-    public function update(UserFormRequest $request){
-        $data = $request->validated();
+    public function update(Request $request){
+       $request->validate([
+            'name' => 'required|string|max:20',
+            'email' => 'required|string|max:40',
+        ]);
 
         $user = Auth::user();
-        $user->name = $data['name'];
-        $user->email = $data['email'];
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
         
         #image condition...
         #if data has image file...

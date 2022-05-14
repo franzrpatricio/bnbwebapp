@@ -67,13 +67,8 @@
                 <div class="col-md-3 mb-3">
                     <label>Role</label>
                     <select name="role_as" class="form-control">
-<<<<<<< HEAD
-                        <option value="0">Administrator</option>
-                        <option value="1">Staff</option>
-=======
                         <option value="1">Administrator</option>
                         <option value="0">Staff</option>
->>>>>>> backendfranz
                     </select>
                 </div>
 
