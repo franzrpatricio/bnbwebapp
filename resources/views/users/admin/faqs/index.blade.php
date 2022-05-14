@@ -10,7 +10,7 @@
             <h4>
                 <div class="sb-nav-link-icon">
                     <i class="fas fa-list"></i>List of FAQs
-                </div>
+               
 
                 <!-- Navbar Search-->
                 <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('admin/faqs/find')}}">
@@ -20,15 +20,16 @@
                         <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
+                </div>
             </h4>
             <div class="float-end">
                 @if(request()->has('trashed'))
-                    <a href="{{ route('faqs.index') }}" class="btn btn-info btn-sm">View All FAQs</a>
-                    <a href="{{ route('faqs.restore_all') }}" class="btn btn-success btn-sm">Restore All</a>
+                    <a href="{{ route('faqs.index') }}" class="btn btn-info btn-sm m-1">View All FAQs</a>
+                    <a href="{{ route('faqs.restore_all') }}" class="btn btn-success btn-sm m-1">Restore All</a>
                 @else
-                    <a href="{{ url('admin/add-faq') }}" class="btn btn-primary btn-sm">
-                    <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New FAQs</div>
-                    <a href="{{ route('faqs.index', ['trashed' => 'post']) }}" class="btn btn-primary btn-sm">View Deleted Faqs</a>
+                    <a href="{{ url('admin/add-faq') }}" class="btn btn-primary btn-sm m-1">
+                    <div class="sb-nav-link-icon"><i class="fas fa-plus-circle m-1"></i>Create New FAQs</div>
+                    <a href="{{ route('faqs.index', ['trashed' => 'post']) }}" class="btn btn-primary btn-sm m-1">View Deleted Faqs</a>
                 </a>
                 @endif
             </div>

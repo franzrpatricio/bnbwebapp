@@ -10,7 +10,7 @@
             <h4>
                 <div class="sb-nav-link-icon">
                     <i class="fas fa-list"></i>List of Categories
-                </div>
+                
 
                 <!-- Navbar Search-->
                 <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('admin/categories/find')}}">
@@ -20,6 +20,7 @@
                         <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
+            </div>
             </h4>
 
             <div class="float-end">
