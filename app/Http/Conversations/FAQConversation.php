@@ -22,46 +22,27 @@ class FAQConversation extends Conversation
             $askthis = Question::create('Choose from the Frequently Asked Questions below.');
             foreach ($faqs as $faq) {
                 # code...
-                $askthis->addButton(Button::create($faq->question)->value($faq->id));
-
-                $this->ask($askthis,function(Answer $answer, $faq){
-                    if ($answer->isInteractiveMessageReply()) {
-                        # code...
-                        $this->say($faq->answewr);
-                        // $faq = Faq::where('id',$answer->getValue())->select('answer')->get();
-                        // switch ($answer->getValue()) {
-                        //     case '1':
-                        //         # code...
-                        //         $this->say($faq->answewr);
-                        //         break;
-                        //     case '2':
-                        //         # code...
-                        //         $this->say($faq->answewr);
-                        //         break;
-                        //     case '3':
-                        //         # code...
-                        //         $this->say($faq->answewr);
-                        //         break;
-                        //     case '4':
-                        //         # code...
-                        //         $this->say($faq->answewr);
-                        //         break;
-                        //     case '5':
-                        //         # code...
-                        //         $this->say($faq->answewr);
-                        //         break;
-                        //     default:
-                        //         # code...
-                        //         $this->say("I don't have an answer to that but i'll look up to that query.");
-                        //         break;
-                        // }
-                    }else {
-                        # code...
-                        $this->say('lol');
-                    }
-                    $this->repeat();
-                });
+                $askthis->addButton(Button::create($faq->question)->value($faq->answewr));
             }
+            
+            $this->ask($askthis,function(Answer $answer){
+                if ($answer->isInteractiveMessageReply()) {
+                    # code...
+                    // $this->say($answer->getValue());
+                    $selectedValue = $answer->getValue();
+                    // $this->say($selectedValue);
+                    $this->bot->userStorage()->save([
+                        'answewr' => $selectedValue,
+                    ]);
+                    $choice = $this->bot->userStorage()->find();
+                    $this->say('Answer: '.$choice->get('answewr') );
+                }else {
+                    # code...
+                    $this->say('lol');
+                }
+                $this->say("Type !stop if you wish to stop the FAQs");
+                $this->repeat();
+            });
         }else {
             # code...
             $this->say("Sorry we don't have any FAQs for now.");

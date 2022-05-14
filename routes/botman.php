@@ -16,18 +16,6 @@ use App\Http\Conversations\SelectHousePlanConversation;
 $botman = app('botman');
 
 #LAHAT NG DATA NA INI -STORE NAPUPUNTA SA STORAGE/BOTMAN
-
-#in order for the bot to reply when the user says hi added with something else, we will add '(.*)'
-$botman->hears('hi|hello|yow|zup(.*)', function($bot){
-    $bot->typesAndWaits(2);
-    $bot->reply('hello');
-});
-
-$botman->hears('ty|thanks|tnx|thank you(.*)', function($bot){
-    $bot->typesAndWaits(2);
-    $bot->reply("You're Welcome");
-});
-
 #Capture User Input->use->{}
 
 #bot reply with attachments
@@ -42,23 +30,74 @@ $botman->hears('!gif {meme}',function($bot,$meme){
     $bot->reply($message);
 });
 
-#bot replies with video
-// $botman->hears('!watch',function($bot){
-//     $message = OutgoingMessage::create('Take a break and listen to Ikaw Lang by Nobita!<3')
-//     ->withAttachment(new Video('https://www.youtube.com/watch?v=O18n_AEkee4'));
-
-//     // $vid = new Video('https://youtu.be/rxXsdj7EBm4',['custom_payload'=>true,]);
-//     // $message = OutgoingMessage::create('Take a break and listen to Ikaw Lang by Nobita!<3')->withAttachment($vid);
-
-//     $bot->typesAndWaits(2);
-//     $bot->reply($message);
-// });
-
 $botman->hears('!smile',function($bot){
     $image = new Image('/assets/images/smile.png');
     $message = OutgoingMessage::create("Lighten up, pal! This one's for you. 🤗")
                 ->withAttachment($image);
     $bot->reply($message);
+});
+
+#simple inline convo && CONVERSATION class
+$botman->hears('!askMe', function($bot){
+    $bot->typesAndWaits(2);
+    $bot->startConversation(new SelectHousePlanConversation());
+});
+
+$botman->hears('!faq', function($bot){
+    $bot->typesAndWaits(2);
+    $bot->startConversation(new FAQConversation());
+});
+
+$botman->hears('!estimate', function($bot){
+    $bot->typesAndWaits(2);
+    $bot->startConversation(new OnboardingConversation());   
+});
+
+// $botman->hears('!skip', function($bot){
+//     $bot->typesAndWaits(2);
+//     $bot->reply('Skipped something in our convo!');
+// })->skipsConversation();
+
+$botman->hears("!forgetMe", function (BotMan $bot) {
+    // Delete all stored information. 
+    $bot->userStorage()->delete();
+    $bot->typesAndWaits(2);
+    $bot->reply("What a loss to spend that much time with someone, only to find out that she's a stranger.<br>
+    -Joel Barish");
+});
+
+#stops convo immediately
+$botman->hears('!stop', function($bot){
+    $bot->typesAndWaits(2);
+    $bot->reply('Conversation has stopped');
+})->stopsConversation();
+
+#fallback message
+$botman->fallback(function($bot){
+    #get the user message
+    $message = $bot->getMessage();
+
+    $bot->typesAndWaits(2);
+    $bot->reply("I don't know what should I say about ".$message->getText());
+    $bot->reply("Here are the list of my commands:<br>
+        !gif 'type something...'<br>
+        !smile<br>
+        !faq<br>
+        !estimate<br>
+        !forgetMe<br>
+        !stop<br>
+    ");
+});
+
+#in order for the bot to reply when the user says hi added with something else, we will add '(.*)'
+$botman->hears('hi|hello|yow|zup(.*)', function($bot){
+    $bot->typesAndWaits(2);
+    $bot->reply('hello');
+});
+
+$botman->hears('ty|thanks|tnx|thank you(.*)', function($bot){
+    $bot->typesAndWaits(2);
+    $bot->reply("You're Welcome");
 });
 
 #store user information
@@ -98,58 +137,15 @@ $botman->hears('information',function($bot){
     $bot->reply('You are '.$un.'! Your real name is '.$fn.''.$ln.'.');
 });
 
+#bot replies with video
+// $botman->hears('!watch',function($bot){
+//     $message = OutgoingMessage::create('Take a break and listen to Ikaw Lang by Nobita!<3')
+//     ->withAttachment(new Video('https://www.youtube.com/watch?v=O18n_AEkee4'));
 
-#simple inline convo && CONVERSATION class
-$botman->hears('!askMe', function($bot){
-    $bot->typesAndWaits(2);
-    $bot->startConversation(new SelectHousePlanConversation());
-    
-});
+//     // $vid = new Video('https://youtu.be/rxXsdj7EBm4',['custom_payload'=>true,]);
+//     // $message = OutgoingMessage::create('Take a break and listen to Ikaw Lang by Nobita!<3')->withAttachment($vid);
 
-$botman->hears('!faq', function($bot){
-    $bot->typesAndWaits(2);
-    $bot->startConversation(new FAQConversation());
-});
-
-$botman->hears('!estimate', function($bot){
-    $bot->typesAndWaits(2);
-    $bot->startConversation(new OnboardingConversation());   
-   
-});
-
-// $botman->hears('!skip', function($bot){
 //     $bot->typesAndWaits(2);
-//     $bot->reply('Skipped something in our convo!');
-// })->skipsConversation();
-
-$botman->hears("!forgetMe", function (BotMan $bot) {
-    // Delete all stored information. 
-    $bot->userStorage()->delete();
-    $bot->typesAndWaits(2);
-    $bot->reply("What a loss to spend that much time with someone, only to find out that she's a stranger.<br>
-    -Joel Barish");
-});
-
-#stops convo immediately
-$botman->hears('!stop', function($bot){
-    $bot->typesAndWaits(2);
-    $bot->reply('Conversation has stopped');
-})->stopsConversation();
-
-#fallback message
-$botman->fallback(function($bot){
-    #get the user message
-    $message = $bot->getMessage();
-
-    $bot->typesAndWaits(2);
-    $bot->reply("I don't know what should I say about ".$message->getText());
-    $bot->reply("Here are the list of my commands:<br>
-        !gif 'type something...'<br>
-        !smile<br>
-        !faq<br>
-        !estimate<br>
-        !forgetMe<br>
-        !stop<br>
-    ");
-});
+//     $bot->reply($message);
+// });
 ?>
