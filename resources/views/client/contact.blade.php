@@ -2,8 +2,9 @@
 @section('content')
     
     <!-- contact us codes -->
+    <div class="contact">
     <div class="container1">
-      <div class="form">
+      <div class="form"  data-aos="fade-right" data-aos-duration="1000">
           <div class="contact-info">
               <h3 class="title">Let's get in touch</h3>
               <p class="text"> Contact us with the following details. and fillup the form with the details. </p>
@@ -20,7 +21,7 @@
               </div>
               <div class="social-media">
                   <p>Connect with us :</p> 
-                  <div class="social-icons"> <a href="#"> <i class="fa fa-facebook-f"></i> </a> <a href="#"> <i class="fa fa-twitter"></i> </a><a href="#"> <i class="fa fa-instagram"></i> </a> </div>
+                  <div class="social-icons"> <a href="#"> <i class="fa fa-facebook" aria-hidden="true"></i><a href="#"> <i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"> <i class="fa fa-instagram"></i> </a> </div>
               </div>
           </div>
           <div class="contact-info-form"> <span class="circle one"></span> <span class="circle two"></span>
@@ -34,5 +35,8 @@
           </div>
       </div>
     </div>
-
+</div>
+<script>
+  AOS.init();
+</script>
 @endsection
