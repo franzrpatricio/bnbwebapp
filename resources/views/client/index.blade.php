@@ -2,14 +2,17 @@
 @section('content')
 <main>
     <!-- Homepage Codes -->
-    <section class="home">
+    <section class="home"  data-aos="fade-right" data-aos-duration="1000">
       <img src="{{asset('assets/client/bghome.jpg')}}" class="fitBg">
       <div class="content1">
-      <h2 class="animate__animated animate__fadeInLeft animate__delay-0.7s">Bana & Bana Architects</h2>
-          <p class="animate__animated animate__fadeInRight animate__delay-0.7s">By Wisdom a House is Built and by Understanding it is Established</p>
-          <button type="button" class="btn btn-outline-light btn-lg animate__animated animate__fadeInUp animate__delay-0.7s">Learn More</button>
+      <h2  data-aos="fade-right" data-aos-duration="1000">Bana & Bana Architects</h2>
+          <p  data-aos="fade-left" data-aos-duration="1000">By Wisdom a House is Built and by Understanding it is Established</p>
+          <button type="button" class="btn btn-outline-light btn-lg"  data-aos="fade-right" data-aos-duration="1000">Learn More</button>
       </div>
   </section>
 </main>
 
+<script>
+  AOS.init();
+</script>
 @endsection

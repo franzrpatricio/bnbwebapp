@@ -1,12 +1,12 @@
 @extends('layouts.client')
 @section('content')
   <!-- Banner -->
-  <div class="header animate__animated animate__fadeInLeft animate__delay-0.7s" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
+  <div class="header" data-aos="fade-right" data-aos-duration="1000" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
     <div  class="p-3 text-center bg-image"  style="filter: brightness(60%);"></div>
     <div class="d-flex justify-content-center align-items-center">
       <div class="banner-title text-center">
-        <h1 class="mb-3 text-light py-4 animate__animated animate__fadeInRight animate__delay-0.7s">Portfolio</h1>
-        <p class="mb-3 text-light text-center animate__animated animate__fadeInRight animate__delay-0.7s" style="font-size: 22px;">Get to Know More About the Firm</p>
+        <h1 class="mb-3 text-light py-4" data-aos="fade-right" data-aos-duration="1000">Portfolio</h1>
+        <p class="mb-3 text-light text-center" data-aos="fade-right" data-aos-duration="1000" style="font-size: 22px;">Get to Know More About the Firm</p>
       </div>
     </div>
   </div>
@@ -17,12 +17,12 @@
     <div class="container">
       <div class="row" >
         <div class="col-lg-6 video-box align-self-baseline">
-          <img src="{{asset('assets/client/about-us-hero.png')}}" class="img1 animate__animated animate__fadeInLeft animate__delay-0.7s" style="height: 80%; width: 100%;"  alt="">
+          <img src="{{asset('assets/client/about-us-hero.png')}}" data-aos="fade-right" data-aos-duration="1000" style="height: 80%; width: 100%;"  alt="">
         </div>
         
         <div class="col-lg-6 pt-3 pt-lg-0 content"  >
-          <h2 class="animate__animated animate__fadeInLeft animate__delay-0.7s">ABOUT US</h2>
-          <p class="animate__animated animate__fadeInLeft animate__delay-0.7s" style="text-align: justify; text-indent: 50px; font-size: 15px; font-color: #213b52;">
+          <h2 data-aos="fade-right" data-aos-duration="1000">ABOUT US</h2>
+          <p data-aos="fade-right" data-aos-duration="1000" style="text-align: justify; text-indent: 50px; font-size: 15px; font-color: #213b52;">
           Bana & Bana Architects formerly known as MC Architects is an architectural firm founded in 200 by two brothers namely Arch. Christopher G. Bana and Arch. Michael G. Bana, who collaborated with other architects in the past. Bana & Bana Architectural Firm were able to operate their firm legally with clients. This experience enables their young office to work on technically challenging small to large scale projects. 
           </p>
         </div>
@@ -32,7 +32,7 @@
 <br>
 
 
-  <div class="header"  data-aos="fade-right" data-aos-duration="3000" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
+  <div class="header"  data-aos="fade-left" data-aos-duration="3000" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
     <div class="p-5 text-center bg-image">
     </div>
     <div class="d-flex justify-content-center align-items-center" >
@@ -42,9 +42,9 @@
     </div>
   </div>
 
-  <div class="container-fluid mb-5"  data-aos="fade-right" data-aos-duration="3000">
+  <div class="container-fluid mb-5"  >
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4" data-aos="zoom-in" data-aos-duration="3000">
         <div class="box">
           <div class="our-services settings">
             <div class="icon"> <img src="{{asset('assets/client/vision.png')}}" style="height: 80px;"> </div>
@@ -54,7 +54,7 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4" data-aos="zoom-in" data-aos-duration="3000">
         <div class="box">
           <div class="our-services privacy">
             <div class="icon"> <img src="{{asset('assets/client/mission.png')}}" style="height: 80px;justify-content: center;"> </div>
@@ -64,7 +64,7 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4" data-aos="zoom-in" data-aos-duration="3000">
         <div class="box">
           <div class="our-services ssl">
             <div class="icon"> <img src="{{asset('assets/client/goal.png')}}" style="height: 80px; align-items: center;"> </div>

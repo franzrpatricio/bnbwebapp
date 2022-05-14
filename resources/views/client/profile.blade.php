@@ -1,15 +1,15 @@
 @extends('layouts.client')
 @section('content')
 
-    <div class="header animate__animated animate__fadeInLeft" style="background-image: url('{{asset('assets/client/building2.jpg')}}')">
+    <div class="header" data-aos="fade-right" data-aos-duration="1000" style="background-image: url('{{asset('assets/client/building2.jpg')}}')">
 
       <div  class="p-4 text-center bg-image"  style="filter: brightness(60%);">
         <img src="" alt="">
         </div>
       <div class="d-flex justify-content-center align-items-center" >
         <div class="banner-title text-center">
-          <h1 class="mb-3 text-light animate__animated animate__fadeInRight">Architect's Profile</h1>
-          <p class="mb-3 text-light text-center animate__animated animate__fadeInRight" style="font-size:20px;">Get to Know our Finest Architects</p>
+          <h1 class="mb-3 text-light" data-aos="fade-right" data-aos-duration="1000">Architect's Profile</h1>
+          <p class="mb-3 text-light text-center" data-aos="fade-right" data-aos-duration="1000" style="font-size:20px;">Get to Know our Finest Architects</p>
           
         </div>
       </div>
@@ -18,9 +18,9 @@
   
 
    <!-- ======= About Section ======= -->
-   <section class="about section-padding animate__animated animate__fadeInLeft animate__delay-0.7s" id="about">
+   <section class="about section-padding" data-aos="fade-right" data-aos-duration="1000" id="about">
 		<div class="container">
-			<div class="row animate__animated animate__fadeInLeft animate__delay-0.7s" data-aos="fade-up" data-aos-delay="750">
+			<div class="row" data-aos="fade-up" data-aos-delay="750">
 				<div class="col-lg-4 col-md-12 col-12">
 					<div class="about-img" data-aos="fade-up" data-aos-delay="750"><img class="img-fluid" src="{{asset('assets/client/ar2.jpg')}}" style="height: 400px; width:700px; align-items:justify;"></div>
 				</div>

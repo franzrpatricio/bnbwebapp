@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light" data-aos="fade-right" data-aos-duration="1000">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php"><img src="{{asset('assets/client/logo.png')}}" width="200" height="100" alt=""></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,3 +26,7 @@
       </div>
     </div>
 </nav>
+
+<script>
+  AOS.init();
+</script>

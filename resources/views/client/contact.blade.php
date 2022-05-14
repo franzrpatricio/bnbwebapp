@@ -4,7 +4,7 @@
     <!-- contact us codes -->
     <div class="contact">
     <div class="container1">
-      <div class="form animate__animated animate__fadeInLeft animate__delay-0.7s">
+      <div class="form"  data-aos="fade-right" data-aos-duration="1000">
           <div class="contact-info">
               <h3 class="title">Let's get in touch</h3>
               <p class="text"> Contact us with the following details. and fillup the form with the details. </p>
@@ -36,5 +36,7 @@
       </div>
     </div>
 </div>
-
+<script>
+  AOS.init();
+</script>
 @endsection
