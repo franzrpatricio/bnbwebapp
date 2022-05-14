@@ -15,7 +15,7 @@
     </div>
 
 </div> 
-<div class="container-fluid p-3" >
+<div class="container-fluid p-3">
 
 <div class="row"> 
 
@@ -84,24 +84,47 @@ Tanza, Cavite Project<br>
   <iframe width="560" height="315" src="https://www.youtube.com/embed/Fo1QgbSZXHU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-<div class="container-fluid" data-aos="fade-right" data-aos-duration="3000">
+<div class="container-fluid" style="background:whitesmoke;" data-aos="fade-right" data-aos-duration="3000">
   <div class="row">
     <div class="col-lg-6 p-3">
       <div class="p-3"> Comment Panel</div>
+      <div class="p-3">
+        <label>Name:</label> 
+        <input type="name" name="name" placeholder="Name" id="name" style="width: 100%;">
+      </div>
       <div class="p-3"> 
+      <label>E-mail:</label> 
         <input type="email" name="email" placeholder="Email" id="email" style="width: 100%;">
       </div>
       <div class="p-3"> 
-        <input type="email" name="email" placeholder="Email" id="email" style="width: 100%;">
-      </div>
-      <div class="p-3"> 
+      <label>Comment:</label> 
         <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
       </div>
-      <button type="button" class="btn btn-info pull-right" style="color:aqua;">Post</button>
+      <button type="button" class="btn btn-primary  btn-info " style=" width:100px">Post</button>
     </div>
+
+
+
 
     <div class="col-lg-6 p-3">
       <div>Comment Review</div>
+
+
+
+    <div style="background:whitesmoke; overflow-y:scroll; height:380px">
+      <div class="card m-3" style="width: 500px; height: 150px;">
+        <div class="row p-3" >
+          <div class="col-3">
+            <img src="./images/ar1.jpg" class="img-fluid" style="height: 100px; width: 100px; border-radius: 200px;"></img>
+          </div>
+          
+          <div class="col-9" >
+            <div>name</div>
+            <div>email</div>
+            <div>comment</div>
+          </div>
+        </div> 
+      </div>
 
       <div class="card m-3" style="width: 500px; height: 150px;">
         <div class="row p-3" >
@@ -120,9 +143,9 @@ Tanza, Cavite Project<br>
       <div class="card m-3" style="width: 500px; height: 150px;">
         <div class="row p-3" >
           <div class="col-3">
-            <img src="./images/ar1.jpg" class="img-fluid" style="height: 100px; width: 100px; border-radius: 200px;">
+            <img src="./images/ar1.jpg" class="img-fluid" style="height: 100px; width: 100px; border-radius: 200px;"></img>
           </div>
-
+          
           <div class="col-9" >
             <div>name</div>
             <div>email</div>
@@ -130,23 +153,11 @@ Tanza, Cavite Project<br>
           </div>
         </div> 
       </div>
+  </div>
 
-      <div class="card m-3" style="width: 500px; height: 150px;">
-        <div class="row p-3" >
-          <div class="col-3">
-            <img src="./images/ar1.jpg" class="img-fluid" style="height: 100px; width: 100px; border-radius: 200px;">
-          </div>
 
-          <div class="col-9" >
-            <div>name</div>
-            <div>email</div>
-            <div>comment</div>
-          </div>
-        </div> 
-      </div> 
-</div>
-</div>
-</div>
+
+  
 
 
 <script>
