@@ -1,6 +1,6 @@
 @extends('layouts.client')
 @section('content')
-    <div class="container-fluid bg-light h-100">
+    <div class="container-fluid bg-light h-100" data-aos="fade-right" data-aos-duration="1000">
       <div class="row min-vh-100">
         <div class="col-lg-3 col-md-3 col-sm-12 p-3 navbar-expand-lg navbar-expand-md navbar-light bg-light">
             <div>
