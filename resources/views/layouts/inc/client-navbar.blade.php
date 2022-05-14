@@ -16,7 +16,7 @@
             <a class="nav-link text-light" href="{{ url('/profile') }}">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="{{ url('/project') }}">Projects</a>
+            <a class="nav-link text-light" href="{{ url('/projects') }}">Projects</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-light" href="{{ url('/contact') }}">Contact Us</a>
