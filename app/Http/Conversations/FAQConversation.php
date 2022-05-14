@@ -40,7 +40,7 @@ class FAQConversation extends Conversation
                     # code...
                     $this->say('lol');
                 }
-                $this->say("Type !stop if you wish to stop the FAQs");
+                $this->say("Type stop if you wish to stop the FAQs");
                 $this->repeat();
             });
         }else {

@@ -27,6 +27,10 @@ use App\Http\Controllers\Admin\InquiriesController;
 #for client/prospect/visitor
 #BOT WIDGET
 // Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
+// Route::match(['get', 'post'],'botman',function(){
+//     app('botman')->listen();
+// });
+
 // Route::get('/admin', function(){
 //     return view ('index');
 // });
@@ -45,6 +49,7 @@ Route::post('subscribe', [App\Http\Controllers\Client\ClientController::class, '
 Route::post('/botman',function(){
     app('botman')->listen();
 });
+
 
 // #INQUIRY CREATE in Contact Us
 // Route::get('add-inquiry', [App\Http\Controllers\InquiryController::class, 'create']);
