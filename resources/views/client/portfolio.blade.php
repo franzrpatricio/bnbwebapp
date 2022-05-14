@@ -1,37 +1,39 @@
 @extends('layouts.client')
 @section('content')
   <!-- Banner -->
-  <div class="header" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
+  <div class="header animate__animated animate__fadeInLeft animate__delay-0.7s" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
     <div  class="p-3 text-center bg-image"  style="filter: brightness(60%);"></div>
     <div class="d-flex justify-content-center align-items-center">
       <div class="banner-title text-center">
-        <h1 class="mb-3 text-light py-4">Portfolio</h1>
-        <p class="mb-3 text-light text-center" style="font-size: 22px;">Get to Know More About the Firm</p>
+        <h1 class="mb-3 text-light py-4 animate__animated animate__fadeInRight animate__delay-0.7s">Portfolio</h1>
+        <p class="mb-3 text-light text-center animate__animated animate__fadeInRight animate__delay-0.7s" style="font-size: 22px;">Get to Know More About the Firm</p>
       </div>
     </div>
   </div>
+<br>
 
   <!-- Banner About Us -->
-  <section id="about-video" class="about-video">
-    <div class="container" data-aos="fade-up">
-      <div class="row">
-        <div class="col-lg-6 video-box align-self-baseline" data-aos="fade-right" data-aos-delay="100">
-          <img src="{{asset('assets/client/about-us-hero.png')}}" class="img1" style="height: 80%; width: 100%;"  alt="">
+  <section id="about-video" class="about-video" >
+    <div class="container">
+      <div class="row" >
+        <div class="col-lg-6 video-box align-self-baseline">
+          <img src="{{asset('assets/client/about-us-hero.png')}}" class="img1 animate__animated animate__fadeInLeft animate__delay-0.7s" style="height: 80%; width: 100%;"  alt="">
         </div>
         
-        <div class="col-lg-6 pt-3 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100" >
-          <h2 >ABOUT US</h2>
-          <p  style="text-align: justify; text-indent: 50px; font-size: 15px; font-color: #213b52;">
+        <div class="col-lg-6 pt-3 pt-lg-0 content"  >
+          <h2 class="animate__animated animate__fadeInLeft animate__delay-0.7s">ABOUT US</h2>
+          <p class="animate__animated animate__fadeInLeft animate__delay-0.7s" style="text-align: justify; text-indent: 50px; font-size: 15px; font-color: #213b52;">
           Bana & Bana Architects formerly known as MC Architects is an architectural firm founded in 200 by two brothers namely Arch. Christopher G. Bana and Arch. Michael G. Bana, who collaborated with other architects in the past. Bana & Bana Architectural Firm were able to operate their firm legally with clients. This experience enables their young office to work on technically challenging small to large scale projects. 
           </p>
         </div>
       </div>
     </div>
   </section>
+<br>
 
-  <div class="header" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
+
+  <div class="header"  data-aos="fade-right" data-aos-duration="3000" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
     <div class="p-5 text-center bg-image">
-      <img src="" alt="">
     </div>
     <div class="d-flex justify-content-center align-items-center" >
       <div class="banner-title text-center">
@@ -40,7 +42,7 @@
     </div>
   </div>
 
-  <div class="container-fluid mb-5">
+  <div class="container-fluid mb-5"  data-aos="fade-right" data-aos-duration="3000">
     <div class="row">
       <div class="col-md-4">
         <div class="box">
@@ -75,7 +77,7 @@
   </div>
 
 
-  <div class="header" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
+  <div class="header" data-aos="fade-right" data-aos-duration="3000"style=" background-image: url({{asset('assets/client/building2.jpg')}});">
     <div  class="p-5 text-center bg-image"  style="filter: brightness(60%);">
       <img src="" alt="">
     </div>
@@ -88,7 +90,7 @@
 
   <!-- Specialization -->
   <div class="container">
-    <div class="row">
+    <div class="row" data-aos="fade-right" data-aos-duration="3000">
       <article class="col-md-4 col-lg-3">
         <div class="card-content">
           @foreach ($category as $item)
@@ -102,4 +104,9 @@
       </article>
     <!-- .card -->
   </div>
+
+
+  <script>
+  AOS.init();
+</script>
 @endsection

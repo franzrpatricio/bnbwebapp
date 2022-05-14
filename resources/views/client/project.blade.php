@@ -130,7 +130,7 @@
             <div class="">
               Showing Results of "Mansion House"                  
             </div>
-            <div class="row animate__animated animate__fadeInLeft">
+            <div class="row animate__animated animate__fadeInLeft animate__delay-0.7s">
               <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
                 <div>
                 <div class="card" style="height: 300px; width: 200px; "  >
