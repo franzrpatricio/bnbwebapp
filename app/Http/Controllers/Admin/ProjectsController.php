@@ -9,13 +9,18 @@ use App\Models\Category;
 use App\Models\Projects;
 use App\Models\Amenities;
 use App\Models\HousePlan;
+use App\Events\NewProject;
+use App\Models\Newsletter;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ProjectAmenities;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Events\NewProject as EventsNewProject;
 use App\Http\Requests\Admin\ProjectFormRequest;
+use App\Mail\MailSubscribers;
 
 class ProjectsController extends Controller
 {
@@ -144,6 +149,15 @@ class ProjectsController extends Controller
                  );
             }
         }
+        // if ($request->status == '1') {
+            # code...
+            $subscribers = Newsletter::all();
+            foreach ($subscribers as $subscriber) {
+                # code...
+                // event(new NewProject($subscriber->email));
+                Mail::to($subscriber->email)->send(new MailSubscribers($subscriber));
+            }
+        // }
         return redirect('admin/projects')->with('msg','Successfully Created Project');
     }
 

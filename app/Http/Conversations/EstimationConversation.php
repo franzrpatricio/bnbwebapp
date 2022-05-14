@@ -16,16 +16,6 @@ class EstimationConversation extends Conversation
         $this->askLot();
     }
 
-    // public function askLot()
-    // {
-    //     $this->ask('Great. What is your House sqm?', function(Answer $answer) {
-    //         $this->bot->userStorage()->save([
-    //             'sqm' => $answer->getText(),
-    //         ]);
-    //         # Trigger the Select House Plan Conversation
-    //         $this->bot->startConversation(new SelectHousePlanConversation());
-    //     });
-    // }
     public function askLot(){
         $this->ask('What is your House sqm?', function(Answer $answer){
             $value = $answer->getText();

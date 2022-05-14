@@ -2,6 +2,7 @@
 
 namespace App\Http\Conversations;
 
+use App\Models\User;
 use BotMan\BotMan\Messages\Conversations\Conversation;
 
 class ConfirmEstimation extends Conversation
@@ -46,24 +47,6 @@ class ConfirmEstimation extends Conversation
         //         break;
         // }
 
-        // if ($type == 'bare') {
-        //     # code...
-        //     $cost = collect($release[0][1]);
-        //     $details = collect($release[0][2]);
-        //     $total = $cost * $area;
-        // }elseif ($type == 'standard') {
-        //     # code...
-        //     $cost = collect($release[1][1]);
-        //     $details = collect($release[1][2]);
-        //     $total = $cost * $area;
-        // }elseif ($type == 'luxury') {
-        //     # code...
-        //     $cost = collect($release[2][1]);
-        //     $details = collect($release[2][2]);
-        //     $total = $cost * $area;
-        // }
-        // $user = $this->bot->userStorage()->find();
-
         $message = '-------------------------------------- <br>';
         $message .= 'Name : ' . $user->get('name') . '<br>';
         $message .= 'Email : ' . $user->get('email') . '<br>';
@@ -75,41 +58,5 @@ class ConfirmEstimation extends Conversation
         $message .= 'Total Estimated Price : ' . $total . '<br>';
 
         $this->say('Great. Your booking has been confirmed. Here is your booking details. <br><br>' . $message);
-    }
-
-    private function getData()
-    {
-        return collect([
-            [
-                'bare' => 'BARE',
-                'cost' => 20000,
-                'details' => [
-                    'floor' => 'Polished Concrete',
-                    'wall' => 'Concrete',
-                    'window' => 'Minimal to Standard',
-                    'ceiling' => 'None/ Soffit is Optional',
-                ],
-            ],
-            [
-                'standard' => 'STANDARD',
-                'cost' => 30000,
-                'details' => [
-                    'floor' => 'Tiles',
-                    'wall' => 'Paint',
-                    'window' => 'Standard',
-                    'ceiling' => 'Gypsum',
-                ],
-            ],
-            [
-                'luxury' => 'LUXURY',
-                'cost' => 40000,
-                'details' => [
-                    'floor' => 'Tiles to Natural Stones',
-                    'wall' => 'Imported wall tiles to cladding',
-                    'window' => 'Bigger to Full Window',
-                    'ceiling' => 'PVC',
-                ]
-            ]
-        ]);
     }
 }
