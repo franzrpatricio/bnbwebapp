@@ -101,7 +101,7 @@
           </div>
           <!-- .card-content -->
         </article>
-      @endforeach
+      {{-- @endforeach --}}
     <!-- .card -->
     <a href="{{url('categories')}}">>>View other Categories
   </div>
