@@ -4,7 +4,7 @@
     <!-- contact us codes -->
     <div class="contact">
     <div class="container1">
-      <div class="form">
+      <div class="form animate__animated animate__fadeInLeft">
           <div class="contact-info">
               <h3 class="title">Let's get in touch</h3>
               <p class="text"> Contact us with the following details. and fillup the form with the details. </p>

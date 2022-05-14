@@ -1,15 +1,15 @@
 @extends('layouts.client')
 @section('content')
 
-    <div class="header animate__animated animate__bounceInLeft" style="background-image: url('{{asset('assets/client/building2.jpg')}}')">
+    <div class="header animate__animated animate__fadeInLeft" style="background-image: url('{{asset('assets/client/building2.jpg')}}')">
 
       <div  class="p-4 text-center bg-image"  style="filter: brightness(60%);">
         <img src="" alt="">
         </div>
       <div class="d-flex justify-content-center align-items-center" >
         <div class="banner-title text-center">
-          <h1 class="mb-3 text-light animate__animated animate__bounceInRight">Architect's Profile</h1>
-          <p class="mb-3 text-light text-center animate__animated animate__bounceInRight" style="font-size:20px;">Get to Know our Finest Architects</p>
+          <h1 class="mb-3 text-light animate__animated animate__fadeInRight">Architect's Profile</h1>
+          <p class="mb-3 text-light text-center animate__animated animate__fadeInRight" style="font-size:20px;">Get to Know our Finest Architects</p>
           
         </div>
       </div>

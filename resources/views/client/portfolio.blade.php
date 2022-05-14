@@ -3,9 +3,9 @@
   <!-- Banner -->
   <div class="header" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
     <div  class="p-3 text-center bg-image"  style="filter: brightness(60%);"></div>
-    <div class="d-flex justify-content-center align-items-center" >
+    <div class="d-flex justify-content-center align-items-center">
       <div class="banner-title text-center">
-        <h1 class="mb-3 text-light py-3">Portfolio</h1>
+        <h1 class="mb-3 text-light py-4">Portfolio</h1>
         <p class="mb-3 text-light text-center" style="font-size: 22px;">Get to Know More About the Firm</p>
       </div>
     </div>
