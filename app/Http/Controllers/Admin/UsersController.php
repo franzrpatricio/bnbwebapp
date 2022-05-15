@@ -62,17 +62,14 @@ class UsersController extends Controller
     }
     #UPDATE specific category
     public function update(Request $request, $users_id){
-        // $data = $request->validated();
+        
 
         $user = User::find($users_id);
-        // $users->name = $data['name'];
-        // $users->email = $data['email'];
-        // $users->password = $data['password'];
-        #PASSWORD NEEDS TO ENCRYPT
+       
         if ($user) {
             # code...
-            $user->role_as = $request->role_as == true ? '1':'0';
-            $user->status = $request->status == true ? '1':'0';
+            $user->role_as = $request->role_as == true ? '0':'1'; #admin=1,staff=0
+            $user->status = $request->status == true ? '0':'1'; #active=1, inactive=0
             // $user->updated_at = $request->touch();
             #get id of authenticated user who posted the category
             // $user->created_by = Auth::user()->id;
