@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FaqsController;
-use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -12,6 +11,8 @@ use App\Http\Controllers\Client\CommentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HousePlanController;
 use App\Http\Controllers\Admin\InquiriesController;
+use App\Http\Controllers\Admin\VirtualTourController;
+use App\Http\Controllers\Admin\ProjectImagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,13 +116,15 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('projects/find', [App\Http\Controllers\Admin\ProjectsController::class, 'search']);
     
     #VIEW GALLERY
-    Route::get('project/gallery/{project_id}', [App\Http\Controllers\Admin\FilesController::class, 'gallery'])->name('projects.gallery');
-    // Route::get('projects/images/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class,'gallery']);
-    #CREATE PROJECT IMAGES 
-    // Route::get('projects/add-images', [App\Http\Controllers\Admin\FilesController::class, 'create']);
-    Route::post('update-image/{files_id}', [App\Http\Controllers\Admin\FilesController::class, 'update'])->name('gallery.update');
+    Route::get('project/gallery/{project_id}', [App\Http\Controllers\Admin\ProjectImagesController::class, 'gallery'])->name('projects.gallery');
+    Route::post('update-image/{image_id}', [App\Http\Controllers\Admin\ProjectImagesController::class, 'update'])->name('gallery.update');
     #DELETE GALLERY
-    Route::get('delete-gallery/{files_id}', [App\Http\Controllers\Admin\FilesController::class,'destroy'])->name('gallery.destroy');
+    Route::get('delete-gallery/{image_id}', [App\Http\Controllers\Admin\ProjectImagesController::class,'destroy'])->name('gallery.destroy');
+    #VIEW VIRTUAL TOUR
+    Route::get('project/virtual_tour/{project_id}', [App\Http\Controllers\Admin\VirtualTourController::class, 'virtualTour'])->name('projects.virtualTour');
+    Route::post('update-video/{video_id}', [App\Http\Controllers\Admin\VirtualTourController::class, 'update'])->name('virtualTour.update');
+    #DELETE VIRTUAL TOUR
+    Route::get('delete-virtual_tour/{video_id}', [App\Http\Controllers\Admin\VirtualTourController::class,'destroy'])->name('virtualTour.destroy');
 
     #HOUSE PLAN CRUD
     #READ

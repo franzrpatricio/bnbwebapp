@@ -2,24 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Projects;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Files extends Model
+class VirtualTour extends Model
 {
     use HasFactory;
+    protected $table = 'virtual_tour';
 
     protected $fillable = [
-        // 'id',
         'project_id',
-        'filenames'
+        'video'
     ];
 
     public function project(){
         return $this->belongsTo(Projects::class, 'project_id', 'id');
     }
-
-    // public function setFilenamesAttribute($value){
-    //     $this->attributes['filenames'] = json_encode($value);
-    // }
 }

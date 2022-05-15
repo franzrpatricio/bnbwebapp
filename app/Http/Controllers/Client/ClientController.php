@@ -11,6 +11,8 @@ use App\Models\Amenities;
 use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ProjectImages;
+use App\Models\VirtualTour;
 use Illuminate\Support\Facades\Validator;
 
 class ClientController extends Controller
@@ -127,14 +129,15 @@ class ClientController extends Controller
         $project = Projects::find($project_id);
         if ($project) {
             # code...
-            $images = Files::select('id','filenames')->where('project_id', $project_id)->get();
+            $images = ProjectImages::select('id','image')->where('project_id', $project_id)->get();
+            $videos = VirtualTour::select('id','video')->where('project_id',$project_id)->get();
             # CHECK IF THERE ARE NO IMAGES FOR THIS PROJECT ID
-            if (Files::where('project_id', $project_id)->exists()) {
+            if (ProjectImages::where('project_id', $project_id)->exists() && VirtualTour::where('project_id', $project_id)->exists()) {
                 # code...
-                return view('client.project', compact('project','images'));
+                return view('client.project', compact('project','images','videos'));
             } else {
                 # code...
-                return view('client.project',['msgc'=>'No images found'],compact('project','images'));
+                return view('client.project',['msgc'=>'No Gallery and Virtual Tour for this Project'],compact('project','images','videos'));
             }
         } else {
             # code...

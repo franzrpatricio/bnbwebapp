@@ -45,7 +45,7 @@ class ProjectFormRequest extends FormRequest
                 'mimes:jpeg,jpg,png'
                 #mimes limit to only these types of image
             ],
-            'vtour' => [
+            'vtour.*' => [
                 'nullable',
                 'file',
                 // 'size:5000',
