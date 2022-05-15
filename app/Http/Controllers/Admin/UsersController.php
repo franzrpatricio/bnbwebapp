@@ -54,7 +54,7 @@ class UsersController extends Controller
         $users->email = $data['email'];
         $users->password = Hash::make($data['password']);
         $users->role_as = $request->role_as == true ? '1':'0';
-        $users->status = $request->status == true ? '1':'0';
+        $users->status = $request->status == true ? '0':'1';
 
         #save the category
         $users->save();

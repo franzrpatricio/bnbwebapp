@@ -45,6 +45,7 @@
                         <th>Email</th>
                         <th>Contact Number</th>
                         <th>Address</th>
+                        <th>Inquiry Message</th>
                         <th>Inqury Date</th>
                         <th>Actions</th>
                     </tr>
@@ -57,8 +58,9 @@
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->email}}</td>
-                                <td>{{$item->contact}}</td>
+                                <td>{{$item->phone}}</td>
                                 <td>{{$item->address}}</td>
+                                <td>{{$item->message}}</td>
                                 <td>{{$item->created_at->format('m/d/Y')}}</td>
                                 <td>
                                     {{-- pass the ID of specific category --}}

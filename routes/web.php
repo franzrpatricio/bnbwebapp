@@ -30,12 +30,14 @@ use App\Http\Controllers\Admin\ProfileController;
 // Route::get('/admin', function(){
 //     return view ('index');
 // });
+Route::post('/send-email', [App\Http\Controllers\Client\ClientController::class, 'sendEmail'])->name('send.email');
 Route::get('/', [App\Http\Controllers\Client\ClientController::class, 'index']);
 Route::get('/portfolio', [App\Http\Controllers\Client\ClientController::class, 'portfolio']);
 Route::get('/profile', [App\Http\Controllers\Client\ClientController::class, 'profile']);
 Route::get('specialization/{category_id}', [App\Http\Controllers\Client\ClientController::class, 'specProject']);
 Route::get('/project', [App\Http\Controllers\Client\ClientController::class, 'project']);
 Route::get('/contact', [App\Http\Controllers\Client\ClientController::class, 'contact']);
+
 #when request hits server, pull out botman instance; listen to any incoming commands
 Route::post('/botman',function(){
     app('botman')->listen();
@@ -43,8 +45,8 @@ Route::post('/botman',function(){
 
 Route::get('/home',[App\Http\Controllers\Auth\LoginController::class, 'store']);
 
-// #INQUIRY CREATE
-// Route::get('add-inquiry', [App\Http\Controllers\InquiryController::class, 'create']);
+#INQUIRY CREATE
+// Route::get('add-inquiry', [App\Http\Controllers\InquiryController::class, 'create']);   
 // Route::post('add-inquiry', [App\Http\Controllers\InquiryController::class, 'store']);
 
 // #REVIEWS CRUD
