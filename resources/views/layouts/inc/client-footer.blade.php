@@ -2,9 +2,7 @@
     <footer class="bd-footer text-white">
       <div class="container">
         <div class="row">
-            <div class="col-lg-4  col-md-6 ">
-                @include('layouts.newsletter')
-            </div>
+            
           <div class="col-lg-2 col-md-6 mb-3 p-3">
             <a class="d-inline-flex align-items-center mb-2 link-dark text-decoration-none" href="/" aria-label="Bootstrap">
                 <img src="{{asset('assets/client/logo.png')}}" width="80" height="40" alt="">       
@@ -43,7 +41,9 @@
             </ul>
             </div>
           </div>
-         
+          <div class="col-lg-4  col-md-6 ">
+            @include('layouts.newsletter')
+        </div>
           
             
           </div>
