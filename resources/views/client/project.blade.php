@@ -13,11 +13,12 @@
     </div>
   </div> 
   
+  
+
+  <div class="container-fluid p-3" >
   <div class="float-end">
     <a href="{{url('specialization/'.$project->category->id.'/'.$project->category->slug)}}" class="btn btn-secondary mt-auto">Back</a>
   </div>
-
-  <div class="container-fluid p-3" >
     {{-- show any errors in saving the forms --}} 
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -67,26 +68,50 @@
         </div>
       </div>
 
-      <div class="col-12 col-lg-6 col-sm-12 col-md-12 d-flex justify-content-center align-items-center">  
-        <label for="">Architectural Designs: </label>
-        @foreach (json_decode($project->designs) as $item => $key)
-          <p style="text-align: justify;">{{$key}}</p>
-        @endforeach
-        <label for="">Amenities: </label>
+      <div class="col-12 col-lg-6 col-sm-12 col-md-12 d-flex mt-3"> 
+        <div>
+        <div>
+          <label for="">Architectural Designs: </label>
+           @foreach (json_decode($project->designs) as $item => $key)
+             <p >{{$key}}</p>
+            @endforeach
+        </div> 
+
+        <div>
+          <label for="">Amenities: </label>
         @foreach (json_decode($project->amenities) as $item => $key)
-          <p style="text-align: justify;">{{$key}}</p>
+          <p>{{$key}}</p>
         @endforeach
-        <label for="">Cost: </label>
-        <p style="text-align: justify;">{{$project->cost}}</p>
-        <label for="">Stories: </label>
-        <p style="text-align: justify;">{{$project->stories}}</p>
-        <label for="">Rooms: </label>
-        <p style="text-align: justify;">{{$project->rooms}}</p>
-        {{-- FOR SUMMERNOTE DATA USE -> {!! MESSAGE !!} --}}
+        </div>
+
+        <div>
+          <label for="">Cost: </label>
+        <p>{{$project->cost}}</p>
+        </div>
+
+        <div>
+          <label for="">Stories: </label>
+        <p>{{$project->stories}}</p>
+        </div>
+        
+        <div>
+          <label for="">Rooms: </label>
+          <p>{{$project->rooms}}</p>
+        </div>
+
+        <div>
+           {{-- FOR SUMMERNOTE DATA USE -> {!! MESSAGE !!} --}}
         <label for="">Description: </label>
-        <p style="text-align: justify;">{!!$project->description!!}</p>
+        <p>{!!$project->description!!}</p>
+                
+        </div>
+        
+    
+       
+       
         <label for="">Date Posted: </label>
-        <p style="text-align: justify;">{{$project->created_at}}</p>
+        <p>{{$project->created_at}}</p>
+        </div>
       </div>
     </div>
   
@@ -115,22 +140,23 @@
       </iframe>
     </div>
   
-    <div class="container-fluid">
+    <div class="container-fluid" style="background-color:whitesmoke">
       <div class="row">
         {{-- it should be form --}}
         {{-- validate form --}}
         {{-- post the form --}}
         {{-- save to comments db --}}
-        <div class="col-lg-6 p-3">
-          <div class="p-3"> Comment Panel</div>
+        <div class="col-lg-6">
+          
             <form action="{{url('comments')}}" method="post">
+              <div class="p-2"> Comment Panel</div>
               {{-- Returning false stops the page from reloading --}}
               @csrf
               <input type="hidden" name="project_slug" value="{{$project->slug}}">
               {{-- <input type="hidden" name="project_id" value="{{$project->id}}"> --}}
-              <div class="p-3"> 
+              <div class="p-2"> 
                 {{-- <input type="text" name="name" placeholder="Full Name" id="email" style="width: 100%;"> --}}
-                <label for="">Name</label>
+                <label for="">Name:</label>
                 <input type="text" 
                   name="name" 
                   class="form-control @error('name') is-invalid @enderror('name')" 
@@ -144,9 +170,9 @@
                     </div>
                 @enderror
               </div>
-              <div class="p-3"> 
+              <div class="p-2"> 
                 {{-- <input type="email" name="email" placeholder="Email" id="email" style="width: 100%;"> --}}
-                <label>Email</label>
+                <label>Email:</label>
                 <input type="email" 
                   name="email" 
                   class="form-control @error('name') is-invalid @enderror('email')" 
@@ -160,11 +186,12 @@
                     </div>
                 @enderror
               </div>
-              <div class="p-3"> 
+              <div class="p-2"> 
                 <textarea class="form-control" name="comment" placeholder="leave a comment..." rows="3" required></textarea>
               </div>  
-          
-              <button type="submit" class="btn btn-info pull-right" style="color:aqua;">Post</button>
+          <div class="p-2">
+              <button type="submit" class="btn btn-info"  style="width:150px">Post</button>
+              </div>
             </form>
         </div>
         {{-- end form --}}
@@ -180,12 +207,16 @@
           comment->created_at
         --}}
 
+        
+        
         <div class="col-lg-6 p-3">
+        <div style="overflow-y:scroll; height:370px;">
           <div>Comment Review</div>
           @if (session('msgc'))
             <h6 class="alert alert-warning mb-3">{{session('msgc')}}</h6>
           @endif  
           @forelse ($project->comments->sortByDesc('created_at') as $comment)
+          
             <div class="card m-3" style="width: 500px; height: 150px;">
               <div class="row p-3" >
                 <div class="col-3">
@@ -207,4 +238,5 @@
       </div>
     </div>
   </div>
+        </div>
 @endsection

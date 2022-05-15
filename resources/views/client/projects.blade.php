@@ -15,9 +15,8 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div>
-              <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
-              <a href="{{url('projects')}}" class="btn btn-danger btn-sm mt-auto">Reset</a>
-
+              
+              
               {{-- CATEGORIES --}}
               <div class="container  border-bottom p-3" >
                 <div>
@@ -91,6 +90,12 @@
                       <label class="form-check-label" for="flexCheckDefault">{{$amenity->service}}</label>
                     </div>
                   @endforeach
+              </div>
+
+              <div class="text-center p-3">
+                <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
+              <button href="{{url('projects')}}" class="btn btn-danger btn-sm mt-auto">Reset</button>
+
               </div>
             </div>
           </div>
