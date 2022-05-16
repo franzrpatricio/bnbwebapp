@@ -80,9 +80,65 @@ Tanza, Cavite Project<br>
 </div>
 
 
-  <div class="d-flex justify-content-center p-3" data-aos="fade-right" data-aos-duration="3000">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/Fo1QgbSZXHU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="container">
+  <div id="myCarousel" class="carousel slide" data-interval="false">
+
+  <div class="carousel-inner" role="listbox">
+      <div class="item active">
+      <video class="img-fluid" autoplay loop muted>
+      <source src="{{asset('assets/videos/v1.mp4')}}">
+      </video>
+      </div>
+	  <div class="item">
+    <video class="img-fluid" autoplay loop muted>
+    <source src="{{asset('assets/videos/v2.mp4')}}">
+       
+      </video>
+      </div>
+	  <div class="item">
+    <video class="img-fluid" autoplay loop muted>
+    <source src="{{asset('assets/videos/v3.mp4')}}">
+       
+      </video>
+      </div>
+	  
+	  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		  <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		  <span class="sr-only">Next</span>
+      </a>
+    </div>
+	
+    <div class="row" id="thumbCarousel">
+
+      <div data-target="#myCarousel" data-slide-to="0" class="col-4 thumb active">
+      <video class="img-fluid" >
+      <source src="{{asset('assets/videos/v1.mp4')}}">
+       
+      </video>
+    </div>
+      <div data-target="#myCarousel" data-slide-to="1" class="col-4 thumb">
+      <video class="img-fluid" >
+      <source src="{{asset('assets/videos/v2.mp4')}}">
+       
+      </video>
+      </div>
+      <div data-target="#myCarousel" data-slide-to="2" class="col-4 thumb">
+      <video class="img-fluid" >
+      <source src="{{asset('assets/videos/v3.mp4')}}">
+       
+      </video>
+      </div>
+            
+    </div>
+  
+  </div>
 </div>
+</div>
+
 
 <div class="container-fluid" style="background:whitesmoke;" data-aos="fade-right" data-aos-duration="3000">
   <div class="row">

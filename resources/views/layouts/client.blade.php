@@ -23,6 +23,14 @@
     <link rel="stylesheet" href="slidein.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Carousel -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
     
 </head>
@@ -64,3 +72,36 @@
     document.getElementById("myNav").style.width = "0%";
     }
 </script>
+<script>
+         $(document).ready(function(){
+	 
+   //carousel-control
+   
+   $("#myCarousel").mouseover(function(){
+     $("#myCarousel .carousel-control").show();
+   });
+
+   $("#myCarousel").mouseleave(function(){
+     $("#myCarousel .carousel-control").hide();
+   });
+   
+   //active thumbnail
+   
+   $("#thumbCarousel .thumb").on("click", function(){
+     $(this).addClass("active");
+     $(this).siblings().removeClass("active");
+   
+   });
+   
+   //carousel slides
+   
+   $('#myCarousel').on('slid.bs.carousel', function(){
+      var index = $('.carousel-inner .item.active').index();
+      //console.log(index);
+      var thumbnailActive = $('#thumbCarousel .thumb[data-slide-to="'+index+'"]');
+      thumbnailActive.addClass('active');
+      $(thumbnailActive).siblings().removeClass("active");
+      //console.log($(thumbnailActive).siblings()); 
+   });
+  });
+       </script>
