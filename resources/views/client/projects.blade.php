@@ -10,7 +10,7 @@
           @csrf
           <div class="input-group">
               <input class="form-control" name="query" type="search" placeholder="Search Project here..." aria-label="Search Project" aria-describedby="btnNavbarSearch"/>
-              <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+              <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
           </div>
           <br>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
