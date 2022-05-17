@@ -47,7 +47,9 @@
             <div class="carousel-inner" style="height:500px; width: 100%; ">
               @foreach ($images as $item)
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                  <div class="card-img">
                   <img src="{{ asset('uploads/project_images/'.$item->filenames) }}" alt="..." >
+</div>
                 </div>
               @endforeach
             </div>
@@ -68,26 +70,46 @@
       </div>
 
       <div class="col-12 col-lg-6 col-sm-12 col-md-12 d-flex justify-content-center align-items-center">  
-        <label for="">Architectural Designs: </label>
+        <div>
+      <label for="">Architectural Designs: </label>
         @foreach (json_decode($project->designs) as $item => $key)
           <p style="text-align: justify;">{{$key}}</p>
+              </div>
         @endforeach
+
+        <div>
         <label for="">Amenities: </label>
         @foreach (json_decode($project->amenities) as $item => $key)
           <p style="text-align: justify;">{{$key}}</p>
+              </div>
         @endforeach
+
+        <div>
         <label for="">Cost: </label>
         <p style="text-align: justify;">{{$project->cost}}</p>
+              </div>
+
+        <div>
         <label for="">Stories: </label>
         <p style="text-align: justify;">{{$project->stories}}</p>
+              </div>
+
+        <div>
         <label for="">Rooms: </label>
         <p style="text-align: justify;">{{$project->rooms}}</p>
+              </div>
+
         {{-- FOR SUMMERNOTE DATA USE -> {!! MESSAGE !!} --}}
+        <div>
         <label for="">Description: </label>
         <p style="text-align: justify;">{!!$project->description!!}</p>
+              </div>
+        
+        <div>
         <label for="">Date Posted: </label>
         <p style="text-align: justify;">{{$project->created_at}}</p>
       </div>
+              </div>
     </div>
   
     <div>
