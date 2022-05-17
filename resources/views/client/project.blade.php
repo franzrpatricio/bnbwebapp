@@ -80,65 +80,22 @@ Tanza, Cavite Project<br>
 </div>
 
 
-<div class="container">
-  <div id="myCarousel" class="carousel slide" data-interval="false">
-
-  <div class="carousel-inner" role="listbox">
-      <div class="item active">
-      <video class="img-fluid" autoplay loop muted>
-      <source src="{{asset('assets/videos/v1.mp4')}}">
-      </video>
-      </div>
-	  <div class="item">
-    <video class="img-fluid" autoplay loop muted>
-    <source src="{{asset('assets/videos/v2.mp4')}}">
+<div class=container>
+    <div class="vtour">
+        <div>
+             <video src="{{asset('assets/videos/v1.mp4')}}" class="slider" autoplay loop muted></video>
+        </div>
        
-      </video>
-      </div>
-	  <div class="item">
-    <video class="img-fluid" autoplay loop muted>
-    <source src="{{asset('assets/videos/v3.mp4')}}">
+        <div>
+            <ul>
+            <li onclick="videoslider('{{asset('assets/videos/v1.mp4')}}')"><video src="{{asset('assets/videos/v1.mp4')}}"></video></li>
+            <li onclick="videoslider('{{asset('assets/videos/v2.mp4')}}')"><video src="{{asset('assets/videos/v2.mp4')}}"></video></li>
+            <li onclick="videoslider('{{asset('assets/videos/v3.mp4')}}')"><video src="{{asset('assets/videos/v3.mp4')}}"></video></li>
+            </ul>
+        </div>
        
-      </video>
-      </div>
-	  
-	  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-		  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		  <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-		  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-		  <span class="sr-only">Next</span>
-      </a>
     </div>
-	
-    <div class="row" id="thumbCarousel">
-
-      <div data-target="#myCarousel" data-slide-to="0" class="col-4 thumb active">
-      <video class="img-fluid" >
-      <source src="{{asset('assets/videos/v1.mp4')}}">
-       
-      </video>
-    </div>
-      <div data-target="#myCarousel" data-slide-to="1" class="col-4 thumb">
-      <video class="img-fluid" >
-      <source src="{{asset('assets/videos/v2.mp4')}}">
-       
-      </video>
-      </div>
-      <div data-target="#myCarousel" data-slide-to="2" class="col-4 thumb">
-      <video class="img-fluid" >
-      <source src="{{asset('assets/videos/v3.mp4')}}">
-       
-      </video>
-      </div>
-            
-    </div>
-  
-  </div>
 </div>
-</div>
-
 
 <div class="container-fluid" style="background:whitesmoke;" data-aos="fade-right" data-aos-duration="3000">
   <div class="row">
