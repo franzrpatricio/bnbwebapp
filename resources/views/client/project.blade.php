@@ -115,7 +115,7 @@
       </iframe>
     </div>
   
-    <div class="container-fluid">
+    <div class="container-fluid" style="background-color:whitesmoke">
       <div class="row">
         {{-- it should be form --}}
         {{-- validate form --}}
@@ -128,7 +128,7 @@
               @csrf
               <input type="hidden" name="project_slug" value="{{$project->slug}}">
               {{-- <input type="hidden" name="project_id" value="{{$project->id}}"> --}}
-              <div class="p-3"> 
+              <div> 
                 {{-- <input type="text" name="name" placeholder="Full Name" id="email" style="width: 100%;"> --}}
                 <label for="">Name</label>
                 <input type="text" 
@@ -144,7 +144,7 @@
                     </div>
                 @enderror
               </div>
-              <div class="p-3"> 
+              <div> 
                 {{-- <input type="email" name="email" placeholder="Email" id="email" style="width: 100%;"> --}}
                 <label>Email</label>
                 <input type="email" 
@@ -160,11 +160,12 @@
                     </div>
                 @enderror
               </div>
-              <div class="p-3"> 
+              <br>
+              <div > 
                 <textarea class="form-control" name="comment" placeholder="leave a comment..." rows="3" required></textarea>
               </div>  
           
-              <button type="submit" class="btn btn-info pull-right" style="color:aqua;">Post</button>
+              <button type="submit" class="btn btn-info " style="width:100px;">Post</button>
             </form>
         </div>
         {{-- end form --}}
@@ -179,9 +180,10 @@
           comment->comment
           comment->created_at
         --}}
-
+          
         <div class="col-lg-6 p-3">
           <div>Comment Review</div>
+         <div style="overflow-y:scroll;height:380px;bakcground-color:whitesmoke">
           @if (session('msgc'))
             <h6 class="alert alert-warning mb-3">{{session('msgc')}}</h6>
           @endif  
@@ -204,7 +206,9 @@
             <h6>No Comments yet.</h6>
           @endforelse
         </div> 
-      </div>
+        </div>
+        </div>
+        </div>
     </div>
   </div>
 @endsection
