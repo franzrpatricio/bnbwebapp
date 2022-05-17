@@ -123,7 +123,9 @@
             <div>
               <div class="card" style="height: 300px; width: 200px; ">
                 <div class="img-fluid border-bottom">
-                  <img src="{{asset('uploads/project/'.$project->image)}}" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
+                  <div class="card-img">
+                  <img src="{{asset('uploads/project/'.$project->image)}}" class="card-img-top" style="height: 200px;width:199px; object-fit: contain;" alt="...">
+              </div>
                 </div>
                 <div class="card-body">
                   <h6 class="card-title text-center">{{$project->name}}</h6>
