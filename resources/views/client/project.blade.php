@@ -80,17 +80,17 @@ Tanza, Cavite Project<br>
 </div>
 
 
-<div class=container>
+<div class="container p-2">
     <div class="vtour">
-        <div>
-             <video src="{{asset('assets/videos/v1.mp4')}}" class="slider" autoplay loop muted></video>
+        <div class=" p-5">
+             <video src="{{asset('assets/videos/v1.mp4')}}" class="slider img-fluid" autoplay loop muted></video>
         </div>
        
         <div>
             <ul>
-            <li onclick="videoslider('{{asset('assets/videos/v1.mp4')}}')"><video src="{{asset('assets/videos/v1.mp4')}}"></video></li>
-            <li onclick="videoslider('{{asset('assets/videos/v2.mp4')}}')"><video src="{{asset('assets/videos/v2.mp4')}}"></video></li>
-            <li onclick="videoslider('{{asset('assets/videos/v3.mp4')}}')"><video src="{{asset('assets/videos/v3.mp4')}}"></video></li>
+            <li class="img-fluid" onclick="videoslider('{{asset('assets/videos/v1.mp4')}}')"><video src="{{asset('assets/videos/v1.mp4')}}"></video></li>
+            <li class="img-fluid" onclick="videoslider('{{asset('assets/videos/v2.mp4')}}')"><video src="{{asset('assets/videos/v2.mp4')}}"></video></li>
+            <li class="img-fluid" onclick="videoslider('{{asset('assets/videos/v3.mp4')}}')"><video src="{{asset('assets/videos/v3.mp4')}}"></video></li>
             </ul>
         </div>
        
