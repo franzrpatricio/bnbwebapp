@@ -41,6 +41,8 @@
                 <thead>
                     <tr class="text-center">
                         <th>SN</th>
+                        <th>Project ID</th>
+                        <th>Project Name</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Contact Number</th>
@@ -56,6 +58,8 @@
                         @foreach ($inquiries as $item)
                             <tr class="text-center">
                                 <td>{{$item->id}}</td>
+                                <td>{{$item->proj_id}}</td>
+                                <td>{{$item->proj_name}}</td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->phone}}</td>

@@ -9,6 +9,7 @@ use App\Mail\ContactMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\ProjectInquiryMail;
 
 class ClientController extends Controller
 {
@@ -55,5 +56,33 @@ class ClientController extends Controller
 
         Mail::to('rbana989e@gmail.com')->send(new ContactMail($data));
         return redirect('/contact')->with('msg','Thanks for reaching out!');
+    }
+    public function sendProjInquiry(Request $request){
+        //validate form
+        
+        $data = [
+            'proj_name' => "QC Proj",
+            'proj_id' => "123",
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'phone'=>$request->phone,
+            'address'=>$request->address,
+            'message'=>$request->message
+
+        ];
+
+        $inquiry = new Inquiry;
+        $inquiry->proj_id = $data['proj_id'];
+        $inquiry->proj_name = $data['proj_name']; 
+        $inquiry->name = $data['name'];
+        $inquiry->email = $data['email'];
+        $inquiry->phone = $data['phone'];
+        $inquiry->address = $data['address'];
+        $inquiry->message = $data['message'];
+
+        $inquiry->save();
+
+        Mail::to('rbana989e@gmail.com')->send(new ProjectInquiryMail($data));
+        return redirect('/project')->with('msg','Thanks for reaching out!');
     }
 }

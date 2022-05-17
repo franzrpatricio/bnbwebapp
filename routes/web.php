@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\ProfileController;
 //     return view ('index');
 // });
 Route::post('/send-email', [App\Http\Controllers\Client\ClientController::class, 'sendEmail'])->name('send.email');
+Route::post('/send-projectInquiry', [App\Http\Controllers\Client\ClientController::class, 'sendProjInquiry'])->name('send.projectInquiry');
 Route::get('/', [App\Http\Controllers\Client\ClientController::class, 'index']);
 Route::get('/portfolio', [App\Http\Controllers\Client\ClientController::class, 'portfolio']);
 Route::get('/profile', [App\Http\Controllers\Client\ClientController::class, 'profile']);
