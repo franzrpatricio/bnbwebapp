@@ -26,9 +26,20 @@
                           </thead>
                           <tbody>
 
-                          @foreach ($logs as $row) 
+                          @foreach ($logs->sortByDesc('date_time') as $row) 
+                          
                               <tr>
-                                  <td data-title="Role">{{ $row->role_as }}</td>
+                                  <td data-title="Role">
+                                    @if ($row->role_as == 1)
+                                        
+                                         Admin
+                                        
+                                    @else 
+                                    
+                                        Staff
+                                    
+                                    @endif
+                                  </td>
                                   <td data-title="Name">{{ $row->name }}</td>
                                   <td data-title="Action">{{ $row->description }}</td>
                                   <td data-title="Date">{{ $row->date_time }}</td>

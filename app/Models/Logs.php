@@ -12,7 +12,8 @@ class Logs extends Model
     protected $table = 'user_activity_logs';
 
     protected $fillable = [
-        
+
+        'user_id',
         'name',
         'role_as',
         'description',

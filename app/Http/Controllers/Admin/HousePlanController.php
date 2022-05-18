@@ -49,17 +49,21 @@ class HousePlanController extends Controller
         #save the category
         $houseplan->save();
 
-         #insert to activity logs
+         //insert to activity logs
+         $user_id = Auth::user()->id;
          $name = Auth::user()->name;
-         $description = "Created HousePlan";
+         $role_as = Auth::user()->role_as;
+         $description = "Created a House Plam";
          $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
- 
-         $data = [
-             'name'          => $name,
-             'description'   => $description,
-             'date_time'     => $date_time,
-         ];
-             
+
+     $data = [
+         'user_id'       => $user_id,
+         'name'          => $name,
+         'description'   => $description,
+         'date_time'     => $date_time,
+         'role_as'       => $role_as
+     ];
+         
          DB::table('user_activity_logs')->insert($data);
          
         #redirect with message;see in index.blade.php
@@ -90,17 +94,21 @@ class HousePlanController extends Controller
         #save the category
         $houseplan->update();
 
-         #insert to activity logs
+         //insert to activity logs
+         $user_id = Auth::user()->id;
          $name = Auth::user()->name;
-         $description = "Update HousePlan";
+         $role_as = Auth::user()->role_as;
+         $description = "Update a House Plan";
          $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
- 
-         $data = [
-             'name'          => $name,
-             'description'   => $description,
-             'date_time'     => $date_time,
-         ];
-             
+
+     $data = [
+         'user_id'       => $user_id,
+         'name'          => $name,
+         'description'   => $description,
+         'date_time'     => $date_time,
+         'role_as'       => $role_as
+     ];
+         
          DB::table('user_activity_logs')->insert($data);
 
         #redirect with message;see in index.blade.php

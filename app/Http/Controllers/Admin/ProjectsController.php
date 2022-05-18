@@ -143,19 +143,23 @@ class ProjectsController extends Controller
                  );
             }
         }
-        //insert to activity logs
-        $name = Auth::user()->name;
-                $description = "Created Project";
+                //insert to activity logs
+                $user_id = Auth::user()->id;
+                $name = Auth::user()->name;
+                $role_as = Auth::user()->role_as;
+                $description = "Created a Project";
                 $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
 
             $data = [
-
+                'user_id'       => $user_id,
                 'name'          => $name,
                 'description'   => $description,
                 'date_time'     => $date_time,
+                'role_as'       => $role_as
             ];
                 
                 DB::table('user_activity_logs')->insert($data);
+
         return redirect('admin/projects')->with('msg','Successfully Created Project');
     }
 
@@ -224,19 +228,24 @@ class ProjectsController extends Controller
         $project->status = $request->status ==true ? '0':'1';
         $project->posted_by = Auth::user()->id;
         $project->update();
-        //insert to activity logs
-        $name = Auth::user()->name;
+
+                //insert to activity logs
+                $user_id = Auth::user()->id;
+                $name = Auth::user()->name;
+                $role_as = Auth::user()->role_as;
                 $description = "Update a Project";
                 $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
 
             $data = [
-
+                'user_id'       => $user_id,
                 'name'          => $name,
                 'description'   => $description,
                 'date_time'     => $date_time,
+                'role_as'       => $role_as
             ];
                 
                 DB::table('user_activity_logs')->insert($data);
+
         return redirect('admin/projects')->with('msg','Successfully Updated Project');
     }
 

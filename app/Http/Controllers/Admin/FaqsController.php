@@ -37,18 +37,23 @@ class FaqsController extends Controller
         $faq->posted_by = Auth::user()->id;
         $faq->save();
 
-         #insert to activity logs
+         //insert to activity logs
+         $user_id = Auth::user()->id;
          $name = Auth::user()->name;
-         $description = "Created FAQs";
+         $role_as = Auth::user()->role_as;
+         $description = "Added a FAQ";
          $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
- 
-         $data = [
-             'name'          => $name,
-             'description'   => $description,
-             'date_time'     => $date_time,
-         ];
-             
+
+     $data = [
+         'user_id'       => $user_id,
+         'name'          => $name,
+         'description'   => $description,
+         'date_time'     => $date_time,
+         'role_as'       => $role_as
+     ];
+         
          DB::table('user_activity_logs')->insert($data);
+
         return redirect('admin/faqs')->with('msg','Successfully Created FAQ');
     }
     #VIEW specific project
@@ -65,17 +70,21 @@ class FaqsController extends Controller
         $faq->posted_by = Auth::user()->id;
         $faq->update();
 
-         #insert to activity logs
+         //insert to activity logs
+         $user_id = Auth::user()->id;
          $name = Auth::user()->name;
+         $role_as = Auth::user()->role_as;
          $description = "Update FAQs";
          $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
- 
-         $data = [
-             'name'          => $name,
-             'description'   => $description,
-             'date_time'     => $date_time,
-         ];
-             
+
+     $data = [
+         'user_id'       => $user_id,
+         'name'          => $name,
+         'description'   => $description,
+         'date_time'     => $date_time,
+         'role_as'       => $role_as
+     ];
+         
          DB::table('user_activity_logs')->insert($data);
 
         return redirect('admin/faqs')->with('msg','Successfully Updated FAQ');

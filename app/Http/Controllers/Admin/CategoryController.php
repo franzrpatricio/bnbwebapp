@@ -71,18 +71,22 @@ class CategoryController extends Controller
         #save the category
         $category->save();
 
-        #insert to activity logs
-        $name = Auth::user()->name;
-        $description = "Created Category";
-        $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+                //insert to activity logs
+                $user_id = Auth::user()->id;
+                $name = Auth::user()->name;
+                $role_as = Auth::user()->role_as;
+                $description = "Created Category";
+                $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
 
-        $data = [
-            'name'          => $name,
-            'description'   => $description,
-            'date_time'     => $date_time,
-        ];
-            
-        DB::table('user_activity_logs')->insert($data);
+            $data = [
+                'user_id'       => $user_id,
+                'name'          => $name,
+                'description'   => $description,
+                'date_time'     => $date_time,
+                'role_as'       => $role_as
+            ];
+                
+                DB::table('user_activity_logs')->insert($data);
 
         #redirect with message;see in index.blade.php
         return redirect('admin/categories')->with('msg','Successfully Added New Category. Thanks!');
@@ -143,17 +147,21 @@ class CategoryController extends Controller
         #save the category
         $category->update();
 
-        #insert to activity logs
+        //insert to activity logs
+        $user_id = Auth::user()->id;
         $name = Auth::user()->name;
-        $description = "Update Category";
+        $role_as = Auth::user()->role_as;
+        $description = "Update a Category";
         $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
 
-        $data = [
-            'name'          => $name,
-            'description'   => $description,
-            'date_time'     => $date_time,
-        ];
-            
+    $data = [
+        'user_id'       => $user_id,
+        'name'          => $name,
+        'description'   => $description,
+        'date_time'     => $date_time,
+        'role_as'       => $role_as
+    ];
+        
         DB::table('user_activity_logs')->insert($data);
 
         #redirect with message;see in index.blade.php

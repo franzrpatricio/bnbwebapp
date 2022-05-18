@@ -22,9 +22,20 @@ class ProfileController extends Controller
         return view('users.profilesettings', compact('user'));
     }
     public function logs(){
-        $logs = Logs::orderBy('id','desc')->paginate(10);
+        $user = Auth::user();
+        // $logs = Logs::orderBy('id','desc')->paginate(10);
        
-        return view('users.logs', compact('logs'));
+        // return view('users.logs', compact('logs'));
+        if ($user->role_as == '0')
+        {
+            $logs = Logs::where('user_id',$user->id)->paginate(10);
+            return view('users.logs', compact('logs'));
+        }
+        else
+        {
+            $logs = Logs::paginate(10);
+            return view('users.logs', compact('logs'));
+        }
     }
 
 
@@ -55,15 +66,18 @@ class ProfileController extends Controller
         $user->save();
         
         //insert to activity logs
+        $user_id = Auth::user()->id;
         $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
                 $description = "Changed Password";
                 $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
 
             $data = [
-
+                'user_id'       => $user_id,
                 'name'          => $name,
                 'description'   => $description,
                 'date_time'     => $date_time,
+                'role_as'       => $role_as
             ];
                 
                 DB::table('user_activity_logs')->insert($data);
@@ -111,16 +125,19 @@ class ProfileController extends Controller
          #save the category
          $user->update();
          
-                #insert to activity logs
+                //insert to activity logs
+                $user_id = Auth::user()->id;
                 $name = Auth::user()->name;
-                $description = "Updated Profile";
+                $role_as = Auth::user()->role_as;
+                $description = "Update Own Profile";
                 $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
 
             $data = [
-
+                'user_id'       => $user_id,
                 'name'          => $name,
                 'description'   => $description,
                 'date_time'     => $date_time,
+                'role_as'       => $role_as
             ];
                 
                 DB::table('user_activity_logs')->insert($data);
