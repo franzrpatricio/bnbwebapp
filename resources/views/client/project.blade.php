@@ -47,14 +47,10 @@
             <div class="carousel-inner" style="height:500px; width: 100%; ">
               @foreach ($images as $item)
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                  <img src="{{ asset('uploads/project_images/'.$item->filenames) }}" alt="..." >
+                  <img src="{{ asset('uploads/project_images/'.$item->image) }}" alt="..." >
                 </div>
               @endforeach
             </div>
-              {{-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button> --}}
-
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -104,16 +100,56 @@
       </div>
     </div>
   
-    <div class="d-flex justify-content-center p-3">
-      <iframe width="560" 
+    {{-- <div class="d-flex justify-content-center p-3">
+      @foreach ($videos as $video)
+        <iframe width="560" 
         height="315" 
-        src="{{asset('uploads/virtual_tour/'.$project->vtour)}}" 
-        {{-- title="YouTube video player"  --}}
+        src="{{asset('uploads/virtual_tour/'.$video->video)}}" 
+        title="YouTube video player" 
         frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
-    </div>
+      @endforeach
+    </div> --}}
+
+    <div class="row"> 
+      <div class="col-12 col-lg-6 col-sm-12 col-md-12 p-3">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              @foreach ($videos as $video)
+                <div>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></button>
+                </div>
+              @endforeach
+            </div>
+                
+            <div class="carousel-inner" style="height:500px; width: 100%; ">
+              @foreach ($videos as $video)
+                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                  <iframe width="650" 
+                    height="350" 
+                    src="{{asset('uploads/virtual_tour/'.$video->video)}}" 
+                    {{-- title="YouTube video player"  --}}
+                    frameborder="0" 
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                  </iframe>
+                </div>
+              @endforeach
+            </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+  
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    {{-- </div> --}}
   
     <div class="container-fluid">
       <div class="row">

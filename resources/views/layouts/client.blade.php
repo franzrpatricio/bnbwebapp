@@ -33,6 +33,8 @@
         <main class="py-4">
             @yield('content')
         </main>
+        @include('layouts.inc.staff-footer')
+        {{-- @include('layouts.newsletter') --}}
     </div>
 </body>
 </html>
@@ -44,14 +46,17 @@
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
 
 <script>
-    var botmanWidget = {
+    var botmanWidget = { 
         frameEndpoint: '/botman/chat',
         dateTimeFormat: 'm/d/yy HH:MM',
         title:'BnBot 🤖',
-        introMessage: 'Hi, I am the official chat bot of Bana and Bana Architects!✋',
+        introMessage: 'Hi, I am the official chat bot of Bana and Bana Architects!✋<br><br>Type anything! So that I can give you the commands I know!',
         placeholderText:'Type something here...',
         aboutText: '©️ Bana and Bana Architects 2022',
         displayMessageTime:'true',
+        desktopHeight: '600',
+        mobileHeight: '100%',
+        mobileWidth: '300',
     };
 </script>
 <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>

@@ -24,24 +24,15 @@ Replace '0' with corresponding slide number. -->
     @endif    
   </div>
   <div class="card-body">
-      {{-- <div class="float-end">
-        <a href="{{ route('gallery.destroy', $project->id) }}" class="btn btn-danger mt-auto">Delete</a>
-        <a href="{{url('admin/projects')}}" class="btn btn-secondary mt-auto">Back</a>
-      </div> --}}
-      {{-- DISPLAYING IMAGES --}}
-      {{-- @foreach ($images as $item)
-          <div>
-            <img src="{{ asset('uploads/project_images/'.$item) }}"  width="100px" height="100px" class="mt-4 ml-4"/>
-          </div>
-      @endforeach --}}
+
     <div class="float-end">
       <a href="{{url('admin/projects')}}" class="btn btn-secondary mt-auto">Back</a>
     </div>
 
-    @foreach ($image as $item)
+    @foreach ($images as $item)
       <div class="row" id="gallery" data-toggle="modal" data-target="#exampleModal">
           <div class="col-12 col-sm-6 col-lg-3">
-            <img src="{{ asset('uploads/project_images/'.$item->filenames) }}" 
+            <img src="{{ asset('uploads/project_images/'.$item->image) }}" 
               class="w-100" 
               data-slide-to="{{ $loop->index }}"
               data-target="#carouselExample"
@@ -79,7 +70,7 @@ Replace '0' with corresponding slide number. -->
           <div class="modal-body">
             <div id="carouselExample" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
-                @foreach ($image as $item)
+                @foreach ($images as $item)
                   <div>
                     <li data-target="#carouselExample" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
                   </div>
@@ -87,9 +78,9 @@ Replace '0' with corresponding slide number. -->
               </ol>
 
               <div class="carousel-inner">
-                @foreach ($image as $item)
+                @foreach ($images as $item)
                   <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                    <img src="{{ asset('uploads/project_images/'.$item->filenames) }}" class="d-block w-100"/>
+                    <img src="{{ asset('uploads/project_images/'.$item->image) }}" class="d-block w-100"/>
                   </div>
                 @endforeach
               </div>

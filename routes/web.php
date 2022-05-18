@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FaqsController;
-use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -12,6 +11,8 @@ use App\Http\Controllers\Client\CommentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HousePlanController;
 use App\Http\Controllers\Admin\InquiriesController;
+use App\Http\Controllers\Admin\VirtualTourController;
+use App\Http\Controllers\Admin\ProjectImagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,10 @@ use App\Http\Controllers\Admin\InquiriesController;
 #for client/prospect/visitor
 #BOT WIDGET
 // Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
+// Route::match(['get', 'post'],'botman',function(){
+//     app('botman')->listen();
+// });
+
 // Route::get('/admin', function(){
 //     return view ('index');
 // });
@@ -39,13 +44,15 @@ Route::get('/profile', [App\Http\Controllers\Client\ClientController::class, 'pr
 Route::get('specialization/{category_id}/{category_slug}', [App\Http\Controllers\Client\ClientController::class, 'specProject']);
 Route::get('/projects', [App\Http\Controllers\Client\ClientController::class, 'projects']);
 Route::get('project/{project_id}/{project_slug}', [App\Http\Controllers\Client\ClientController::class, 'project']);
-Route::get('/contact', [App\Http\Controllers\Client\ClientController::class, 'contact']);
-
 Route::post('comments', [App\Http\Controllers\Client\CommentController::class, 'store']);
+Route::get('/contact', [App\Http\Controllers\Client\ClientController::class, 'contact']);
+Route::post('subscribe', [App\Http\Controllers\Client\ClientController::class, 'subscribe'])->name('subscribe.subscribe');
+
 #when request hits server, pull out botman instance; listen to any incoming commands
 Route::post('/botman',function(){
     app('botman')->listen();
 });
+
 
 // #INQUIRY CREATE in Contact Us
 // Route::get('add-inquiry', [App\Http\Controllers\InquiryController::class, 'create']);
@@ -111,13 +118,15 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('projects/find', [App\Http\Controllers\Admin\ProjectsController::class, 'search']);
     
     #VIEW GALLERY
-    Route::get('project/gallery/{project_id}', [App\Http\Controllers\Admin\FilesController::class, 'gallery'])->name('projects.gallery');
-    // Route::get('projects/images/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class,'gallery']);
-    #CREATE PROJECT IMAGES 
-    // Route::get('projects/add-images', [App\Http\Controllers\Admin\FilesController::class, 'create']);
-    Route::post('update-image/{files_id}', [App\Http\Controllers\Admin\FilesController::class, 'update'])->name('gallery.update');
+    Route::get('project/gallery/{project_id}', [App\Http\Controllers\Admin\ProjectImagesController::class, 'gallery'])->name('projects.gallery');
+    Route::post('update-image/{image_id}', [App\Http\Controllers\Admin\ProjectImagesController::class, 'update'])->name('gallery.update');
     #DELETE GALLERY
-    Route::get('delete-gallery/{files_id}', [App\Http\Controllers\Admin\FilesController::class,'destroy'])->name('gallery.destroy');
+    Route::get('delete-gallery/{image_id}', [App\Http\Controllers\Admin\ProjectImagesController::class,'destroy'])->name('gallery.destroy');
+    #VIEW VIRTUAL TOUR
+    Route::get('project/virtual_tour/{project_id}', [App\Http\Controllers\Admin\VirtualTourController::class, 'virtualTour'])->name('projects.virtualTour');
+    Route::post('update-video/{video_id}', [App\Http\Controllers\Admin\VirtualTourController::class, 'update'])->name('virtualTour.update');
+    #DELETE VIRTUAL TOUR
+    Route::get('delete-virtual_tour/{video_id}', [App\Http\Controllers\Admin\VirtualTourController::class,'destroy'])->name('virtualTour.destroy');
 
     #HOUSE PLAN CRUD
     #READ
@@ -197,5 +206,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('comments/find', [App\Http\Controllers\Client\CommentController::class, 'search']);
     #DELETE
     Route::delete('delete-comment/{comment_id}',[App\Http\Controllers\Client\CommentController::class, 'destroy'])->name('comments.destroy');
+
+    #NEWSLETTER
+    Route::get('newsletter', [App\Http\Controllers\Client\ClientController::class, 'subscriber']);
     #The fundamental difference between the POST and PUT requests is reflected in the different meaning of the Request-URI. The URI in a POST request identifies the resource that will handle the enclosed entity... In contrast, the URI in a PUT request identifies the entity enclosed with the request.
 });

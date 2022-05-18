@@ -11,6 +11,8 @@ use BotMan\BotMan\Messages\Conversations\Conversation;
 
 class SelectHousePlanConversation extends Conversation
 {
+    protected $details;
+
     public function run()
     {
         $this->askHousePlanType();
@@ -18,60 +20,120 @@ class SelectHousePlanConversation extends Conversation
 
     public function askHousePlanType(){
 
-        // $question = Question::create('Do you need a database?')
-        // ->addButtons([
-        //     Button::create('Bare')->value('bare'),
-        //     Button::create('Standard')->value('standard'),
-        //     Button::create('Luxury')->value('luxury'),
-        // ]);
+        $question = Question::create('What type of House Plan do you prefer?')
+            ->addButtons([
+                Button::create('Bare')->value('Bare'),
+                Button::create('Standard')->value('Standard'),
+                Button::create('Luxury')->value('Luxury'),
+            ]);
 
-        $plans = HousePlan::all();
-        if (count($plans)>0) {
-            # code...
-            $button = Question::create('What type of House Plan do you prefer?');
-            foreach ($plans as $plan) {
+        $this->ask($question, function(Answer $answer) {
+            if ($answer->isInteractiveMessageReply()) {
+                $this->bot->userStorage()->save([
+                    'type' => $answer->getValue()
+                ]);
+            } else {
                 # code...
-                $button->addButton(Button::create($plan->type)->value($plan->id));
-
-                $this->ask($button, function(Answer $answer){
-                    if ($answer->isInteractiveMessageReply()) {
-                        # code...
-                        $selectedValue = $answer->getValue();
-                        $this->say($selectedValue);
-                        $this->bot->userStorage()->save([
-                            'type' => $selectedValue,
-                        ]);
-                        $user = $this->bot->userStorage()->find();
-                        $this->say( $user->get('type') );
-                    } else {
-                        # code...
-                        $this->repeat();
-                    }
-                    $this->bot->startConversation(new ConfirmEstimation());
-                });
+                $this->say('Please Select only from the Buttons.');
+                $this->repeat();
             }
-        }
+            $this->choices();
+        });
+    }
 
-        // $this->ask($question, function(Answer $answer){
-        //     $this->say('hey');
-        //     if ($answer->isInteractiveMessageReply()) {
-        //         # code...
-        //         $selectedValue = $answer->getValue();
-        //         $this->say('hey'.$selectedValue);
-               
-        //         $this->bot->userStorage()->save([
-        //             'house' => $selectedValue,
-        //         ]);
-        //         $user = $this->bot->userStorage()->find();
-                
-        //         $this->say( $user->get('house') );
-        //     }
-        //     else {
-        //         # code...
-        //         $this->say('asda');
-        //         $this->repeat();
-        //     }
-        //     $this->bot->startConversation(new ConfirmEstimation());
-        // });
+    public function choices(){
+        $user = $this->bot->userStorage()->find();
+        if ($user->get('type')=='Bare') {
+            # code...
+            $this->Bare();
+        } elseif ($user->get('type')=='Standard') {
+            # code...
+            $this->Standard();
+        } elseif ($user->get('type')=='Luxury') {
+            # code...
+            $this->Luxury();
+        }
+    }
+
+    public function Bare(){
+        $user = $this->bot->userStorage()->find();
+        $total = $user->get('sqm')*20000;
+        $message = '-------------------------------------- <br>';
+        $message .= '<>Name : ' . $user->get('name') . '<br>';
+        $message .= 'Email : ' . $user->get('email') . '<br>';
+        $message .= 'Mobile : ' . $user->get('mobile') . '<br>';
+        $message .= 'House Area : ' . $user->get('sqm').'sqm'. '<br>';
+        $message .= 'House Plan Type : ' . $user->get('type') . '<br>';
+        $message .= 'MATERIALS USED<br>';
+        $message .= 'Floor : Polished Concrete<br>';
+        $message .= 'Wall : Concrete<br>';
+        $message .= 'Window : Minimal To Standard<br>';
+        $message .= 'Ceiling : None/Soffit is optional<br>';
+        $message .= '---------------------------------------<br>';
+        $message .= 'Total Estimated Price : P ' . $total .'.00 <br>';
+        $message .= '<br>';
+        $message .= '<small><strong>IMPORTANT: PLEASE READ!</strong></small><br>';
+        $message .= '<small>-RATES are rules of thumb ONLY and serve as the minimum basis for your building ESTIMATES may vary to your choosen design</small><br>';
+        $message .= '<small>-ALWAYS consult with an ARCHITECT to know more about your building according to you unique needs</small><br>';
+        $message .= '<small>-A lot of factors may affect the COSTS,i.e. soil state, market influence, labor,etc.</small><br>';
+        $message .= '<small>-These data should be useful at the early stages of the design process to know certain limitations and manage expections</small><br>';
+        $message .= '<small>-Landscape,pools, fences and other structures or components aside from the main building are EXCLUDED in the said approximate rate and should be computed saperately.</small><br>';
+        $message .= '<small>-Lastly, Professional Fees, Transaction and Permit Fees, Taxes and the like are also NOT included in the approximate buiuilding contruction rate.</small><br>';
+
+        $this->say('<small>Great. Your Estimated Price is done! Here is the details for the Estimated Price.</small><br><br>' . $message);
+    }
+    public function Standard(){
+        $user = $this->bot->userStorage()->find();
+        $total = $user->get('sqm')*30000;
+        $message = '-------------------------------------- <br>';
+        $message .= 'Name : ' . $user->get('name') . '<br>';
+        $message .= 'Email : ' . $user->get('email') . '<br>';
+        $message .= 'Mobile : ' . $user->get('mobile') . '<br>';
+        $message .= 'House Area : ' . $user->get('sqm').'sqm'. '<br>';
+        $message .= 'House Plan Type : ' . $user->get('type') . '<br>';
+        $message .= 'MATERIALS USED<br>';
+        $message .= 'Floor : Polished Concrete<br>';
+        $message .= 'Wall : Concrete<br>';
+        $message .= 'Window : Minimal To Standard<br>';
+        $message .= 'Ceiling : None/Soffit is optional<br>';
+        $message .= '---------------------------------------<br>';
+        $message .= 'Total Estimated Price : ' . $total . '<br>';
+        $message .= '<br>';
+        $message .= '<small><strong>IMPORTANT: PLEASE READ!</strong></small><br>';
+        $message .= '<small>-RATES are rules of thumb ONLY and serve as the minimum basis for your building ESTIMATES may vary to your choosen design</small><br>';
+        $message .= '<small>-ALWAYS consult with an ARCHITECT to know more about your building according to you unique needs</small><br>';
+        $message .= '<small>-A lot of factors may affect the COSTS,i.e. soil state, market influence, labor,etc.</small><br>';
+        $message .= '<small>-These data should be useful at the early stages of the design process to know certain limitations and manage expections</small><br>';
+        $message .= '<small>-Landscape,pools, fences and other structures or components aside from the main building are EXCLUDED in the said approximate rate and should be computed saperately.</small><br>';
+        $message .= '<small>-Lastly, Professional Fees, Transaction and Permit Fees, Taxes and the like are also NOT included in the approximate buiuilding contruction rate.</small><br>';
+
+        $this->say('<small>Great. Your Estimated Price is done! Here is the details for the Estimated Price.</small><br><br>' . $message);
+    }
+    public function Luxury(){
+        $user = $this->bot->userStorage()->find();
+        $total = $user->get('sqm')*40000;
+        $message = '-------------------------------------- <br>';
+        $message .= 'Name : ' . $user->get('name') . '<br>';
+        $message .= 'Email : ' . $user->get('email') . '<br>';
+        $message .= 'Mobile : ' . $user->get('mobile') . '<br>';
+        $message .= 'House Area : ' . $user->get('sqm').'sqm'. '<br>';
+        $message .= 'House Plan Type : ' . $user->get('type') . '<br>';
+        $message .= 'MATERIALS USED<br>';
+        $message .= 'Floor : Polished Concrete<br>';
+        $message .= 'Wall : Concrete<br>';
+        $message .= 'Window : Minimal To Standard<br>';
+        $message .= 'Ceiling : None/Soffit is optional<br>';
+        $message .= '---------------------------------------<br>';
+        $message .= 'Total Estimated Price : ' . $total . '<br>';
+        $message .= '<br>';
+        $message .= '<small><strong>IMPORTANT: PLEASE READ!</strong></small><br>';
+        $message .= '<small>-RATES are rules of thumb ONLY and serve as the minimum basis for your building ESTIMATES may vary to your choosen design</small><br>';
+        $message .= '<small>-ALWAYS consult with an ARCHITECT to know more about your building according to you unique needs</small><br>';
+        $message .= '<small>-A lot of factors may affect the COSTS,i.e. soil state, market influence, labor,etc.</small><br>';
+        $message .= '<small>-These data should be useful at the early stages of the design process to know certain limitations and manage expections</small><br>';
+        $message .= '<small>-Landscape,pools, fences and other structures or components aside from the main building are EXCLUDED in the said approximate rate and should be computed saperately.</small><br>';
+        $message .= '<small>-Lastly, Professional Fees, Transaction and Permit Fees, Taxes and the like are also NOT included in the approximate buiuilding contruction rate.</small><br>';
+
+        $this->say('<small>Great. Your Estimated Price is done! Here is the details for the Estimated Price.</small><br><br>' . $message);
     }
 }

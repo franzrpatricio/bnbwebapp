@@ -106,7 +106,7 @@
         </div>
 
         <!-- FAQS -->
-        {{-- <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -120,10 +120,10 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <!-- Inquiries -->
-        {{-- <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -137,16 +137,16 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <!-- Customer Reviews -->
-        {{-- <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold  text-uppercase mb-1">Customer Reviews</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $reviews }}</div>
+                            <div class="text-xs font-weight-bold  text-uppercase mb-1">Comments</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $comments }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300" style="color: #4CA5D7"></i>
@@ -154,7 +154,24 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
+
+        <!-- Subscribers -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold  text-uppercase mb-1">Subscribers</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $subscribers }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300" style="color: #4CA5D7"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

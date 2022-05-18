@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Events\ClientSubscribed;
 use App\Models\Files;
 use App\Models\Designs;
 use App\Models\Inquiry;
 use App\Models\Category;
 use App\Models\Projects;
 use App\Models\Amenities;
+use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use App\Mail\ProjectInquiryMail;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
+use App\Models\ProjectImages;
+use App\Models\VirtualTour;
+use Illuminate\Support\Facades\Validator;
 
 class ClientController extends Controller
 {
@@ -128,14 +132,15 @@ class ClientController extends Controller
         $project = Projects::find($project_id);
         if ($project) {
             # code...
-            $images = Files::select('id','filenames')->where('project_id', $project_id)->get();
+            $images = ProjectImages::select('id','image')->where('project_id', $project_id)->get();
+            $videos = VirtualTour::select('id','video')->where('project_id',$project_id)->get();
             # CHECK IF THERE ARE NO IMAGES FOR THIS PROJECT ID
-            if (Files::where('project_id', $project_id)->exists()) {
+            if (ProjectImages::where('project_id', $project_id)->exists() && VirtualTour::where('project_id', $project_id)->exists()) {
                 # code...
-                return view('client.project', compact('project','images'));
+                return view('client.project', compact('project','images','videos'));
             } else {
                 # code...
-                return view('client.project',['msgc'=>'No images found'],compact('project','images'));
+                return view('client.project',['msgc'=>'No Gallery and Virtual Tour for this Project'],compact('project','images','videos'));
             }
         } else {
             # code...
@@ -173,5 +178,29 @@ class ClientController extends Controller
 
         Mail::to('rbana989e@gmail.com')->send(new ProjectInquiryMail($data));
         return redirect('/project')->with('msg','Thanks for reaching out!');
+    }
+
+    public function subscribe(Request $request){
+
+        // dd('OK');
+        $validator = Validator::make($request->all(),[
+            'email' => 'required|string|email|max:255|unique:newsletter,email'
+        ]);
+
+        if ($validator->fails()) {
+            # code...
+            return redirect()->back()->with('msgc','This email has already subscribed!');
+        } else {
+            # code...
+            event(new ClientSubscribed($request->input('email')));
+            // Newsletter::create([
+            //     'email' => $request->email
+            // ]);
+            return redirect()->back()->with('msgc','Subscription Added. Thanks, Pal!');
+        }
+    }
+    public function subscriber(){
+        $subscribers = Newsletter::paginate(5);
+        return view('users.admin.newsletter.subscriber',compact('subscribers'));
     }
 }

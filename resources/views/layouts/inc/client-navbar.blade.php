@@ -15,7 +15,7 @@
   
 <!-- Use any element to open/show the overlay navigation menu -->
 <span onclick="openNav()">
-    <nav class="navbar navbar-expand-md">
+    <nav class="navbar sticky-top navbar-expand-md">
         <div class="container">
             <a href="#" class="navbar-brand" style="color: antiquewhite">BANA AND BANA</a>
         </div>
