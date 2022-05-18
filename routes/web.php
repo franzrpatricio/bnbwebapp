@@ -30,6 +30,8 @@ use App\Http\Controllers\Admin\InquiriesController;
 // Route::get('/admin', function(){
 //     return view ('index');
 // });
+
+Route::post('/send-projectInquiry', [App\Http\Controllers\Client\ClientController::class, 'sendProjInquiry'])->name('send.projectInquiry');
 Route::get('/', [App\Http\Controllers\Client\ClientController::class, 'index']);
 Route::get('/portfolio', [App\Http\Controllers\Client\ClientController::class, 'portfolio']);
 Route::get('/categories', [App\Http\Controllers\Client\ClientController::class, 'categories']);

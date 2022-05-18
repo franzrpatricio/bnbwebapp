@@ -1,5 +1,8 @@
 @extends('layouts.client')
 @section('content')
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css
+" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <div class="container-fluid bg-light h-100">
   <div class="row min-vh-100">
     <div class="col-lg-3 col-md-3 col-sm-12 p-3 navbar-expand-lg navbar-expand-md navbar-light bg-light">
@@ -131,6 +134,54 @@
                     <a href="{{ url('project/'.$project->id.'/'.$project->slug) }}">
                       <button class="btn btn-primary text ">View</button>
                     </a>
+                    {{-- MODAL PROJECT INQUIRY FORM START --}}
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Inquire about this Project
+    </button>
+    @if (session('msgc'))
+        <h6 class="alert alert-warning mb-3">{{session('msgc')}}</h6>
+    @endif  
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">project </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          {{-- START FORM --}}
+          <form action="{{ route('send.projectInquiry') }}" method="POST" onclick=" false;" autocomplete="off">
+            @csrf
+            <div class="modal-body">
+              <div class="contact-info-form"> <span class="circle one"></span> <span class="circle two"></span>
+                <h3 class="title">Inquiry Form</h3>
+                <div class="col-md-12">
+                <div class="social-input-containers"> <input type="@disabled(true)" name="proj_id" value="{{ $project->id }}" class="form-control"></div>
+                <div class="social-input-containers"> <input type="@disabled(true)" name="proj_name" value="{{ $project->name }}" class="form-control"></div>
+                <div class="social-input-containers"> <input type="text" name="name" class="input" placeholder="Name" /> </div>
+                <div class="social-input-containers"> <input type="email" name="email" class="input" placeholder="Email" /> </div>
+                <div class="social-input-containers"> <input type="tel" name="phone" class="input" placeholder="Phone" /> </div>
+                <div class="social-input-containers"> <input type="text" name="address" class="input" placeholder="Address" /> </div>
+                <div class="social-input-containers textarea"> <textarea name="message" class="input" placeholder="Message"></textarea> </div> 
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+          {{-- END FORM --}}
+        </div>
+      </div>
+    </div>
+    {{-- MODAL PROJECT INQUIRY FORM END --}}
+
                   </div>
                 </div>
               </div>  
@@ -142,4 +193,11 @@
     </div>
   </div>
 </div>
+<!-- script -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js
+" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js
+" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js
+" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 @endsection
