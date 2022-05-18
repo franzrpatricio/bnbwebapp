@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Events\ClientSubscribed;
 use App\Models\Files;
 use App\Models\Designs;
 use App\Models\Inquiry;
@@ -10,13 +9,15 @@ use App\Models\Category;
 use App\Models\Projects;
 use App\Models\Amenities;
 use App\Models\Newsletter;
+use App\Models\VirtualTour;
 use Illuminate\Http\Request;
+use App\Models\ProjectImages;
+use App\Events\ClientSubscribed;
 use App\Mail\ProjectInquiryMail;
 use App\Http\Controllers\Controller;
-use SebastianBergmann\CodeCoverage\Report\Xml\Project;
-use App\Models\ProjectImages;
-use App\Models\VirtualTour;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class ClientController extends Controller
 {
@@ -177,7 +178,7 @@ class ClientController extends Controller
         $inquiry->save();
 
         Mail::to('rbana989e@gmail.com')->send(new ProjectInquiryMail($data));
-        return redirect('/project')->with('msg','Thanks for reaching out!');
+        return redirect('/projects')->with('msg','Thanks for reaching out!');
     }
 
     public function subscribe(Request $request){

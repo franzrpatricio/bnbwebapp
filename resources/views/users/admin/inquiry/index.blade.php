@@ -57,7 +57,7 @@
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->email}}</td>
-                                <td>{{$item->contact}}</td>
+                                <td>{{$item->phone}}</td>
                                 <td>{{$item->address}}</td>
                                 <td>{{$item->created_at->format('m/d/Y')}}</td>
                                 <td>
