@@ -82,25 +82,34 @@ Tanza, Cavite Project<br>
 
 <div class="container p-2">
     <div class="vtour">
-        <div class=" p-5">
-             <video src="{{asset('assets/videos/v1.mp4')}}" class="slider img-fluid" autoplay loop muted></video>
-        </div>
-       
-        <div>
-            <ul>
-            <li class="img-fluid" onclick="videoslider('{{asset('assets/videos/v1.mp4')}}')"><video src="{{asset('assets/videos/v1.mp4')}}"></video></li>
-            <li class="img-fluid" onclick="videoslider('{{asset('assets/videos/v2.mp4')}}')"><video src="{{asset('assets/videos/v2.mp4')}}"></video></li>
-            <li class="img-fluid" onclick="videoslider('{{asset('assets/videos/v3.mp4')}}')"><video src="{{asset('assets/videos/v3.mp4')}}"></video></li>
-            </ul>
-        </div>
-       
+        <div class="p-5">
+            <video src="{{asset('assets/videos/v1.mp4')}}" class="slider img-fluid" autoplay loop muted></video>
+       </div>
     </div>
+    <div class="row p-2" width="600">
+           
+                <div class="col-4 d-flex align-items-center"> 
+                  <div onclick="videoslider('{{asset('assets/videos/v1.mp4')}}')">
+                    <video src="{{asset('assets/videos/v1.mp4')}}"></video>
+                  </div>
+                </div>
+                <div class="col-4 d-flex align-items-center">
+                <div onclick="videoslider('{{asset('assets/videos/v1.mp4')}}')">
+                    <video src="{{asset('assets/videos/v2.mp4')}}"></video>
+                  </div>
+                </div>
+               <div class="col-4 d-flex align-items-center">
+               <div onclick="videoslider('{{asset('assets/videos/v1.mp4')}}')">
+                    <video src="{{asset('assets/videos/v3.mp4')}}"></video>
+                  </div>
+               </div>
+      </div>
 </div>
 
 <div class="container-fluid" style="background:whitesmoke;" data-aos="fade-right" data-aos-duration="3000">
   <div class="row">
     <div class="col-lg-6 p-3">
-      <div class="p-3"> Comment Panel</div>
+      <div class="p-3"> Comment Panel </div>
       <div class="p-3">
         <label>Name:</label> 
         <input type="name" name="name" placeholder="Name" id="name" style="width: 100%;">
@@ -113,7 +122,7 @@ Tanza, Cavite Project<br>
       <label>Comment:</label> 
         <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
       </div>
-      <button type="button" class="btn btn-primary  btn-info " style=" width:100px">Post</button>
+      <button type="button"class="btn btn-primary  btn-info " style=" width:100px">Post</button>
     </div>
 
 
