@@ -907,54 +907,5 @@ div a:hover {
       padding:1rem 0;
       line-height: 1.8;
   }
-  /* vtour */
-  .vtour{
-    width: 90%;
-    height: 50vh;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.vtour .slider{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
-}
-
-
-.vtour ul{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 20;
-}
-
-.vtour ul li{
-    list-style: none;
-    cursor: pointer;
-    margin: 10px;
-}
-
-
-.vtour ul li video{
-    width: 150px;
-    transition: all 0.3s;
-
-}
-.vtour ul li video:hover{
-    transform: scale(1.1);
-}
-
-video{
-    width: 60%;
-    height: 60%;
-}
+ 
  

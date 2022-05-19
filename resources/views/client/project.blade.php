@@ -68,33 +68,39 @@ Tanza, Cavite Project<br>
 <div class="header" data-aos="fade-right" data-aos-duration="1000" style="background-image: url('{{asset('assets/client/building2.jpg')}}')">
 
 <div  class="p-5 text-center bg-image"  style="filter: brightness(60%);">
-    <img src="" alt="">
- </div>
-    <div class="d-flex justify-content-center align-items-center" >
-     <div class="banner-title text-center">
-      <h1 class="mb-3 text-light" data-aos="fade-right" data-aos-duration="1000">Virtual Tour</h1>
-  </div>
-  </div>
-</div>
+   
+      </div>
+        <div class="d-flex justify-content-center align-items-center" >
+          <div class="banner-title text-center">
+            <h1 class="mb-3 text-light" data-aos="fade-right" data-aos-duration="1000">Virtual Tour</h1>
+          </div>
+         </div>
+          </div>
 
 </div>
 
 
-<div class="container p-2">
-    <div class="vtour">
-        <div class=" p-5">
-             <video src="{{asset('assets/videos/v1.mp4')}}" class="slider img-fluid" autoplay loop muted></video>
-        </div>
-       
-        <div>
-            <ul>
-            <li class="img-fluid" onclick="videoslider('{{asset('assets/videos/v1.mp4')}}')"><video src="{{asset('assets/videos/v1.mp4')}}"></video></li>
-            <li class="img-fluid" onclick="videoslider('{{asset('assets/videos/v2.mp4')}}')"><video src="{{asset('assets/videos/v2.mp4')}}"></video></li>
-            <li class="img-fluid" onclick="videoslider('{{asset('assets/videos/v3.mp4')}}')"><video src="{{asset('assets/videos/v3.mp4')}}"></video></li>
-            </ul>
-        </div>
-       
-    </div>
+<div class="container-fluid p-2">
+  <div class="row m-5">
+      <div class="col-lg-9 col-md-12">
+           <video src="{{asset('assets/videos/v1.mp4')}}" class="slider img-fluid" style="width:800px;" autoplay loop muted></video>
+      </div>
+     
+      <div class="col-lg-3 col-md-12" style="background:whitesmoke; overflow-y:scroll; height:400px">
+          <ul style="list-style: none;">
+          <li class="img-fluid p-2" onclick="videoslider('{{asset('assets/videos/v1.mp4')}}')">
+            <video src="{{asset('assets/videos/v1.mp4')}}" style="cursor: pointer;  width: 200px; transform: scale(1.1);"></video>
+          </li>
+          <li class="img-fluid p-2" onclick="videoslider('{{asset('assets/videos/v2.mp4')}}')">
+            <video src="{{asset('assets/videos/v2.mp4')}}"style="cursor: pointer;  width: 200px; transform: scale(1.1);"></video>
+          </li>
+          <li class="img-fluid p-2" onclick="videoslider('{{asset('assets/videos/v3.mp4')}}')">
+            <video src="{{asset('assets/videos/v3.mp4')}}" style="cursor: pointer;  width: 200px; transform: scale(1.1);"></video>
+          </li>
+          </ul>
+      </div>
+     
+  </div>
 </div>
 
 <div class="container-fluid" style="background:whitesmoke;" data-aos="fade-right" data-aos-duration="3000">
