@@ -106,7 +106,7 @@ Tanza, Cavite Project<br>
 <div class="container-fluid" style="background:whitesmoke;" data-aos="fade-right" data-aos-duration="3000">
   <div class="row">
     <div class="col-lg-6 p-3">
-      <div class="p-3"> Comment Panel</div>
+      <div class="p-3"> Comment Panel </div>
       <div class="p-3">
         <label>Name:</label> 
         <input type="name" name="name" placeholder="Name" id="name" style="width: 100%;">
@@ -119,7 +119,7 @@ Tanza, Cavite Project<br>
       <label>Comment:</label> 
         <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
       </div>
-      <button type="button" class="btn btn-primary  btn-info " style=" width:100px">Post</button>
+      <button type="button"class="btn btn-primary  btn-info " style=" width:100px">Post</button>
     </div>
 
 
