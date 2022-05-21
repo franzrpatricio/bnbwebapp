@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Faq;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\FaqFormRequest;
@@ -42,13 +44,13 @@ class FaqsController extends Controller
          $name = Auth::user()->name;
          $role_as = Auth::user()->role_as;
          $description = "Added a FAQ";
-         $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+         $date_time = Carbon::now();
 
      $data = [
          'user_id'       => $user_id,
          'name'          => $name,
          'description'   => $description,
-         'date_time'     => $date_time,
+         'created_at'     => $date_time,
          'role_as'       => $role_as
      ];
          
@@ -75,13 +77,13 @@ class FaqsController extends Controller
          $name = Auth::user()->name;
          $role_as = Auth::user()->role_as;
          $description = "Update FAQs";
-         $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+         $date_time = Carbon::now();
 
      $data = [
          'user_id'       => $user_id,
          'name'          => $name,
          'description'   => $description,
-         'date_time'     => $date_time,
+         'created_at'     => $date_time,
          'role_as'       => $role_as
      ];
          

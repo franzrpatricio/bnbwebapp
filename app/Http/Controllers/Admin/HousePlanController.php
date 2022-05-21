@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\HousePlan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\HousePlanFormRequest;
@@ -21,7 +23,7 @@ class HousePlanController extends Controller
         }
 
         #get all houseplans
-        $houseplan = HousePlan::all();
+        // $houseplan = HousePlan::all();
         return view('users.admin.houseplan.index', compact('houseplan'));
     }
 
@@ -54,13 +56,13 @@ class HousePlanController extends Controller
          $name = Auth::user()->name;
          $role_as = Auth::user()->role_as;
          $description = "Created a House Plam";
-         $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+         $date_time = Carbon::now();
 
      $data = [
          'user_id'       => $user_id,
          'name'          => $name,
          'description'   => $description,
-         'date_time'     => $date_time,
+         'created_at'     => $date_time,
          'role_as'       => $role_as
      ];
          
@@ -99,13 +101,13 @@ class HousePlanController extends Controller
          $name = Auth::user()->name;
          $role_as = Auth::user()->role_as;
          $description = "Update a House Plan";
-         $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+         $date_time = Carbon::now();
 
      $data = [
          'user_id'       => $user_id,
          'name'          => $name,
          'description'   => $description,
-         'date_time'     => $date_time,
+         'created_at'     => $date_time,
          'role_as'       => $role_as
      ];
          

@@ -32,8 +32,8 @@ class ClientController extends Controller
     public function categories(){
         #check muna kung featured or not
         #check if there are categories with active sataus, then get it, if none, disp something
-        $categories = Category::where('feature','0')->get();
-        if (Category::where('status','1')->exists()) {
+        $categories = Category::where('status','1')->orWhere('feature','0')->get();
+        if (Category::where('status','1')->orWhere('feature','0')->exists()) {
             # code...
             return view('client.categories', compact('categories'));
         } else {
@@ -45,8 +45,8 @@ class ClientController extends Controller
     #projects from specialization
     public function specProject($category_id, $category_slug){
         $projects = Projects::where('category_id', $category_id)->where('status','1')->get();
-        $category = Category::all();
-        if (Category::where('status','1')->exists()) {
+        $category = Category::where('id', $category_id)->where('slug',$category_slug)->get();
+        if (Category::where('id', $category_id)->where('slug',$category_slug)->exists()) {
             # code...
             if (Projects::where('category_id', $category_id)->where('status','1')->exists()) {
                 # code...

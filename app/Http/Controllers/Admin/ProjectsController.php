@@ -33,6 +33,7 @@ class ProjectsController extends Controller
         }else {
             $projects = Projects::paginate(2);
         }
+        return view('users.admin.project.index', compact('projects'));
     }
 
     #CREATE
@@ -40,7 +41,7 @@ class ProjectsController extends Controller
         #FORM
         #1 means visible
         #show all categories and houseplans with status == 1
-        $category = Category::where('status', '0')->get(); 
+        $category = Category::where('status', '1')->get(); 
         $houseplan = HousePlan::where('status', '1')->get();
         $amenities = Amenities::all();
         $architectural = Designs::all();
@@ -133,24 +134,22 @@ class ProjectsController extends Controller
                  );
             }
         }
-<<<<<<< HEAD
-                //insert to activity logs
-                $user_id = Auth::user()->id;
-                $name = Auth::user()->name;
-                $role_as = Auth::user()->role_as;
-                $description = "Created a Project";
-                $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Created a Project";
+        $date_time = Carbon::now();
 
-            $data = [
-                'user_id'       => $user_id,
-                'name'          => $name,
-                'description'   => $description,
-                'date_time'     => $date_time,
-                'role_as'       => $role_as
-            ];
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
                 
-                DB::table('user_activity_logs')->insert($data);
-=======
+        DB::table('user_activity_logs')->insert($data);
         #saving and mailing of subscribers
         $subscribers = Newsletter::all();
         foreach ($subscribers as $subscriber) {
@@ -158,7 +157,6 @@ class ProjectsController extends Controller
             // event(new NewProject($subscriber->email));
             Mail::to($subscriber->email)->send(new MailSubscribers($subscriber));
         }
->>>>>>> backendfranz
 
         return redirect('admin/projects')->with('msg','Successfully Created Project');
     }
@@ -230,24 +228,22 @@ class ProjectsController extends Controller
         $project->posted_by = Auth::user()->id;
         $project->update();
 
-<<<<<<< HEAD
-                //insert to activity logs
-                $user_id = Auth::user()->id;
-                $name = Auth::user()->name;
-                $role_as = Auth::user()->role_as;
-                $description = "Update a Project";
-                $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Update a Project";
+        $date_time = Carbon::now();
 
-            $data = [
-                'user_id'       => $user_id,
-                'name'          => $name,
-                'description'   => $description,
-                'date_time'     => $date_time,
-                'role_as'       => $role_as
-            ];
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
                 
-                DB::table('user_activity_logs')->insert($data);
-=======
+        DB::table('user_activity_logs')->insert($data);
         #vtour condition...
         #if data has file...
         if ($request->hasfile('videos')) {
@@ -287,7 +283,6 @@ class ProjectsController extends Controller
                  );
             }
         }
->>>>>>> backendfranz
 
         return redirect('admin/projects')->with('msg','Successfully Updated Project');
     }

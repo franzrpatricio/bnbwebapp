@@ -7,7 +7,10 @@
     </div>
       <div class="d-flex justify-content-center align-items-center" >
         <div class="banner-title text-center">
-          <h1 class="mb-3 text-light">Specialization Title</h1>
+          @foreach ($category as $item)
+              
+          @endforeach
+          <h1 class="mb-3 text-light">{{$item->name}}</h1>
         </div>
     </div>
   </div>

@@ -62,28 +62,53 @@
     </div>
   </div>
 
-  <div class="col-12 col-lg-6 col-sm-12 col-md-12 d-flex justify-content-center align-items-center">
-    <label for="">Architectural Designs: </label>
-    @foreach (json_decode($project->designs) as $item => $key)
-      <p style="text-align: justify;" data-aos="fade-right" data-aos-duration="3000">{{$key}}</p>
-    @endforeach
-    <label for="">Amenities: </label>
-    @foreach (json_decode($project->amenities) as $item => $key)
-      <p style="text-align: justify;" data-aos="fade-right" data-aos-duration="3000">{{$key}}</p>
-    @endforeach
-    <label for="">Cost: </label>
-    <p style="text-align: justify;" data-aos="fade-right" data-aos-duration="3000">{{$project->cost}}</p>
-    <label for="">Stories: </label>
-    <p style="text-align: justify;" data-aos="fade-right" data-aos-duration="3000">{{$project->stories}}</p>
-    <label for="">Rooms: </label>
-    <p style="text-align: justify;" data-aos="fade-right" data-aos-duration="3000">{{$project->rooms}}</p>
-    {{-- FOR SUMMERNOTE DATA USE -> {!! MESSAGE !!} --}}
-    <label for="">Description: </label>
-    <p style="text-align: justify;" data-aos="fade-right" data-aos-duration="3000">{!!$project->description!!}</p>
-    <label for="">Date Posted: </label>
-    <p style="text-align: justify;" data-aos="fade-right" data-aos-duration="3000">{{$project->created_at}}</p>
-  </div>
+  <div class=" col-lg-6 col-sm-12 col-md-12" data-aos="fade-right" data-aos-duration="3000">
+<div class="row">
+    <div class="col-6">
+        <h5>Architectural Designs: </h5>  
+        @foreach (json_decode($project->designs) as $item => $key)
+            <p>{{$key}}</p>
+         @endforeach
+    </div>
+
+
+    <div class="col-6">
+        <h5>Amenities:   </h5>
+         @foreach (json_decode($project->amenities) as $item => $key)
+            <p style="text-align: justify;"  >{{$key}}</p>
+          @endforeach
+    </div>
+
+    <div class="col-6">
+        <h5>Cost:</h5>
+         <p style="text-align: justify;" >{{$project->cost}}</p>
+    </div>
+
+
+    <div class="col-6">
+      
+      <h5>Stories:</h5> 
+        <p style="text-align: justify;" >{{$project->stories}}</p>
+    
+    </div>
+
+
+    <div class="col-6">
+     <h5>Rooms:</h5> 
+    <p style="text-align: justify;">{{$project->rooms}}</p>
+    </div>
+
+    <div class="col-12">
+      {{-- FOR SUMMERNOTE DATA USE -> {!! MESSAGE !!} --}}
+    <h5>Description:</h5> 
+    <p style="text-align: justify;"">{!!$project->description!!}</p>
+   <h5>  Date Posted:</h5>
+    <p style="text-align: justify;" >{{$project->created_at}}</p>
+    </div>
+    
+ 
 </div>
+  </div>
 
 <div>
 <div class="header" data-aos="fade-right" data-aos-duration="1000" style="background-image: url('{{asset('assets/client/building2.jpg')}}')">
@@ -101,17 +126,24 @@
 <div class="container-fluid p-2">
     <div class="row m-5">
       <div class="col-lg-9 col-md-12">
-          <video src="{{asset('uploads/virtual_tour/'.$project->video)}}" class="slider img-fluid" style="width:800px;" autoplay loop muted></video>
+        @forelse ($videos->take(1) as $video)
+          <video src="{{asset('uploads/virtual_tour/'.$video->video)}}" class="slider img-fluid" style="width:800px;" autoplay loop muted></video>
+        @empty
+          <h2>No Virtual Tour Yet.</h2>          
+        @endforelse
+          {{-- <video src="{{asset('uploads/virtual_tour/'.$project->video)}}" class="slider img-fluid" style="width:800px;" autoplay loop muted></video> --}}
       </div>
 
       <div class="col-lg-3 col-md-12" style="background:whitesmoke; overflow-y:scroll; height:400px">
-        @foreach ($videos as $video)
+        @forelse ($videos as $video)
           <ul style="list-style: none;">
             <li class="img-fluid p-2" onclick="videoslider('{{asset('uploads/virtual_tour/'.$video->video)}}')">
               <video src="{{asset('uploads/virtual_tour/'.$video->video)}}" style="cursor: pointer;  width: 200px; transform: scale(1.1);"></video>
             </li>
           </ul>
-        @endforeach
+        @empty
+            <h4>No Virtual Tour Yet</h4>
+        @endforelse
       </div>
     </div>
 </div>
@@ -220,8 +252,8 @@
 
       @forelse ($project->comments->sortByDesc('created_at') as $comment)
         <div style="background:whitesmoke; overflow-y:scroll; height:380px">
-          <div class="card m-3" style="width: 500px; height: 150px;">
-            <div class="row p-3" >
+          <div class="card" style="width: 500px; height: 150px;">
+            <div class="row" >
               <div class="col-3">
                 <img src="{{asset('assets/avatar/shanks.jpg')}}" class="img-fluid" style="height: 100px; width: 100px; border-radius: 200px;">
               </div>
