@@ -113,10 +113,15 @@ the project
    
     </div>
 
-<a href="{{url('categories')}}">>>View other Categories
+    <div class="text-center p-3">
+      <a href="{{url('categories')}}">
+      View other Categories</a>
+    </div>
+
+
 
   
-<a href="{{url('categories')}}">>>View other Categories
+
   <script>
   AOS.init();
 </script>
