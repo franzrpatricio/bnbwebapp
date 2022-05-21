@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Events\ClientSubscribed;
 use App\Models\Files;
 use App\Models\Designs;
+use App\Models\Inquiry;
 use App\Models\Category;
 use App\Models\Projects;
 use App\Models\Amenities;
 use App\Models\Newsletter;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\ProjectImages;
 use App\Models\VirtualTour;
+use Illuminate\Http\Request;
+use App\Models\ProjectImages;
+use App\Events\ClientSubscribed;
+use App\Mail\ProjectInquiryMail;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class ClientController extends Controller
 {
@@ -150,6 +154,36 @@ class ClientController extends Controller
     public function contact(){
         return view('client.contact');
     }
+    public function sendProjInquiry(Request $request){
+        //validate form
+
+        $data = [
+            'proj_id'=>$request->proj_id,
+            'proj_name'=>$request->proj_name,
+            
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'phone'=>$request->phone,
+            'address'=>$request->address,
+            'message'=>$request->message
+
+        ];
+
+        $inquiry = new Inquiry;
+        $inquiry->proj_id = $data['proj_id'];
+        $inquiry->proj_name = $data['proj_name']; 
+        $inquiry->name = $data['name'];
+        $inquiry->email = $data['email'];
+        $inquiry->phone = $data['phone'];
+        $inquiry->address = $data['address'];
+        $inquiry->message = $data['message'];
+
+        $inquiry->save();
+
+        Mail::to('rbana989e@gmail.com')->send(new ProjectInquiryMail($data));
+        return redirect('/projects')->with('msg','Thanks for reaching out!');
+    }
+
     public function subscribe(Request $request){
 
         // dd('OK');

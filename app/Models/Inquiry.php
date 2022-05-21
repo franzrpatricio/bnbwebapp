@@ -13,10 +13,12 @@ class Inquiry extends Model
     protected $table = 'inquiries'; # copy from created schema
 
     protected $fillable = [
-        'namme',
+        
+        'name', 
         'email',
-        'contact',
-        'address'
+        'phone',
+        'address',
+        'message'
     ];
     protected $dates = ['deleted_at'];
 }
