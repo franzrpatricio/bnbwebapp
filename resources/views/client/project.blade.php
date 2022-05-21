@@ -48,7 +48,9 @@
             <div class="carousel-inner" style="height:500px; width: 100%; ">
               @foreach ($images as $item)
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                  <div class="card-img">
                   <img src="{{ asset('uploads/project_images/'.$item->filenames) }}" alt="..." >
+</div>
                 </div>
               @endforeach
             </div>
@@ -68,51 +70,48 @@
         </div>
       </div>
 
-      <div class="col-12 col-lg-6 col-sm-12 col-md-12 d-flex mt-3"> 
+      <div class="col-12 col-lg-6 col-sm-12 col-md-12 d-flex justify-content-center align-items-center">  
         <div>
-        <div>
-          <label for="">Architectural Designs: </label>
-           @foreach (json_decode($project->designs) as $item => $key)
-             <p >{{$key}}</p>
-            @endforeach
-        </div> 
-
-        <div>
-          <label for="">Amenities: </label>
-        @foreach (json_decode($project->amenities) as $item => $key)
-          <p>{{$key}}</p>
+      <label for="">Architectural Designs: </label>
+        @foreach (json_decode($project->designs) as $item => $key)
+          <p style="text-align: justify;">{{$key}}</p>
+              </div>
         @endforeach
-        </div>
 
         <div>
-          <label for="">Cost: </label>
-        <p>{{$project->cost}}</p>
-        </div>
+        <label for="">Amenities: </label>
+        @foreach (json_decode($project->amenities) as $item => $key)
+          <p style="text-align: justify;">{{$key}}</p>
+              </div>
+        @endforeach
 
         <div>
-          <label for="">Stories: </label>
-        <p>{{$project->stories}}</p>
-        </div>
-        
-        <div>
-          <label for="">Rooms: </label>
-          <p>{{$project->rooms}}</p>
-        </div>
+        <label for="">Cost: </label>
+        <p style="text-align: justify;">{{$project->cost}}</p>
+              </div>
 
         <div>
-           {{-- FOR SUMMERNOTE DATA USE -> {!! MESSAGE !!} --}}
+        <label for="">Stories: </label>
+        <p style="text-align: justify;">{{$project->stories}}</p>
+              </div>
+
+        <div>
+        <label for="">Rooms: </label>
+        <p style="text-align: justify;">{{$project->rooms}}</p>
+              </div>
+
+        {{-- FOR SUMMERNOTE DATA USE -> {!! MESSAGE !!} --}}
+        <div>
         <label for="">Description: </label>
-        <p>{!!$project->description!!}</p>
-                
-        </div>
+        <p style="text-align: justify;">{!!$project->description!!}</p>
+              </div>
         
-    
-       
-       
+        <div>
         <label for="">Date Posted: </label>
         <p>{{$project->created_at}}</p>
         </div>
       </div>
+              </div>
     </div>
   
     <div>
@@ -154,7 +153,7 @@
               @csrf
               <input type="hidden" name="project_slug" value="{{$project->slug}}">
               {{-- <input type="hidden" name="project_id" value="{{$project->id}}"> --}}
-              <div class="p-2"> 
+              <div> 
                 {{-- <input type="text" name="name" placeholder="Full Name" id="email" style="width: 100%;"> --}}
                 <label for="">Name:</label>
                 <input type="text" 
@@ -170,7 +169,7 @@
                     </div>
                 @enderror
               </div>
-              <div class="p-2"> 
+              <div> 
                 {{-- <input type="email" name="email" placeholder="Email" id="email" style="width: 100%;"> --}}
                 <label>Email:</label>
                 <input type="email" 
@@ -186,12 +185,12 @@
                     </div>
                 @enderror
               </div>
-              <div class="p-2"> 
+              <br>
+              <div > 
                 <textarea class="form-control" name="comment" placeholder="leave a comment..." rows="3" required></textarea>
               </div>  
-          <div class="p-2">
-              <button type="submit" class="btn btn-info"  style="width:150px">Post</button>
-              </div>
+          
+              <button type="submit" class="btn btn-info " style="width:100px;">Post</button>
             </form>
         </div>
         {{-- end form --}}
@@ -206,12 +205,11 @@
           comment->comment
           comment->created_at
         --}}
-
-        
-        
+          
         <div class="col-lg-6 p-3">
         <div style="overflow-y:scroll; height:370px;">
           <div>Comment Review</div>
+         <div style="overflow-y:scroll;height:380px;bakcground-color:whitesmoke">
           @if (session('msgc'))
             <h6 class="alert alert-warning mb-3">{{session('msgc')}}</h6>
           @endif  
@@ -235,7 +233,9 @@
             <h6>No Comments yet.</h6>
           @endforelse
         </div> 
-      </div>
+        </div>
+        </div>
+        </div>
     </div>
   </div>
         </div>
