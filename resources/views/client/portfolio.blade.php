@@ -100,7 +100,7 @@ the project
           <div class="card-shadow" syle="width:20rem">
             <div class="card-content">
               <div class="card-img">
-                <img class="card-img-top" src="{{asset('uploads/category/'.$item->image)}}" style="height:100%; width:100%" alt="meow">
+                <img class="card-img-top" src="{{asset('uploads/category/'.$item->image)}}" style="max-height:100%; width:300px" alt="meow">
               </div>
               <a href="{{url('specialization/'.$item->id)}}">
                 <h4 class="text-center text-justify" style="color:#0d6efd;">{{$item->name}}</h4>
