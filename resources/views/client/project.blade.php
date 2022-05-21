@@ -122,7 +122,7 @@
   Inquire about this Project
 </button>
 @if (session('msgpi'))
-    <h6 class="alert alert-warning mb-3">{{session('msgc')}}</h6>
+    <h6 class="alert alert-warning mb-3">{{session('msgpi')}}</h6>
 @endif  
 
 <!-- Modal -->
@@ -210,20 +210,6 @@
     
         <button type="submit" class="btn btn-info pull-right" style="color:aqua;">Post</button>
       </form>
-
-      {{-- <div class="p-3">
-        <label>Name:</label> 
-        <input type="name" name="name" placeholder="Name" id="name" style="width: 100%;">
-      </div>
-      <div class="p-3"> 
-      <label>E-mail:</label> 
-        <input type="email" name="email" placeholder="Email" id="email" style="width: 100%;">
-      </div>
-      <div class="p-3"> 
-      <label>Comment:</label> 
-        <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
-      </div>
-      <button type="button"class="btn btn-primary  btn-info " style=" width:100px">Post</button> --}}
     </div>
 
     <div class="col-lg-6 p-3">

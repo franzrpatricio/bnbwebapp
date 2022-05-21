@@ -71,7 +71,7 @@ Route::post('/botman',function(){
 // Route::get('delete-review/{review_id}',[App\Http\Controllers\ReviewsController::class, 'destroy']);
 
 #USERS GATEWAY
-Auth::routes(['register'=>false]);
+Auth::routes();
 Route::get('/gateway', function () {
     return view('auth/login');
 });

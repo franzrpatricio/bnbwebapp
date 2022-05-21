@@ -21,9 +21,13 @@
         </div>
         
         <div class="col-lg-6 pt-3 pt-lg-0 content"  >
-          <h2 data-aos="fade-right" data-aos-duration="1000">ABOUT US</h2>
-          <p data-aos="fade-right" data-aos-duration="1000" style="text-align: justify; text-indent: 50px; font-size: 15px; font-color: #213b52;">
-          Bana & Bana Architects formerly known as MC Architects is an architectural firm founded in 200 by two brothers namely Arch. Christopher G. Bana and Arch. Michael G. Bana, who collaborated with other architects in the past. Bana & Bana Architectural Firm were able to operate their firm legally with clients. This experience enables their young office to work on technically challenging small to large scale projects. 
+          <h2 style="color:#0d6efd;" data-aos="fade-right" data-aos-duration="1000">ABOUT US</h2>
+          <p data-aos="fade-right" data-aos-duration="1000" style="text-align: justify; text-indent: 50px; font-size: 17px; font-color: #213b52;">
+          Bana & Bana Architects formerly known as MC Architects is an architectural firm founded in 200 by two brothers namely Arch. Christopher G. Bana and Arch. Michael G. Bana, who collaborated with other architects in the past. Bana & Bana Architectural Firm were able to operate their firm legally with clients. This experience enables their young office to work on technically challenging small to large scale projects. We are committed to low energy sustainable 
+design providing appropriate, imaginative, cost effective and technical solutions to meet our client’s 
+individual requirements. We implement and manage our input into each project to the highest 
+professional standards, meeting with our clients requirements with clear communication throughout 
+the project
           </p>
         </div>
       </div>
@@ -48,7 +52,7 @@
         <div class="box">
           <div class="our-services settings">
             <div class="icon"> <img src="{{asset('assets/client/vision.png')}}" style="height: 80px;"> </div>
-            <h4>Vision</h4>
+            <h4 style="color:#0d6efd;">Vision</h4>
             <p style="text-align:justify;">It's our mission at Bana & Bana Architects to provide client focused service through our responsible practice of Architecture.</p>
           </div>
         </div>
@@ -58,7 +62,7 @@
         <div class="box">
           <div class="our-services privacy">
             <div class="icon"> <img src="{{asset('assets/client/mission.png')}}" style="height: 80px;justify-content: center;"> </div>
-            <h4>Mission</h4>
+            <h4 style="color:#0d6efd;">Mission</h4>
             <p style="text-align:justify;">To be viewed as a respected architectural firm, providing high quality design and service to our clients with honesty and integrity.</p>
           </div>
         </div>
@@ -68,7 +72,7 @@
         <div class="box">
           <div class="our-services ssl">
             <div class="icon"> <img src="{{asset('assets/client/goal.png')}}" style="height: 80px; align-items: center;"> </div>
-            <h4>Goals</h4>
+            <h4 style="color:#0d6efd;">Goals</h4>
             <p style="text-align:justify;">Our goal at Bana & Bana Architects is to designing well, creating beautiful buildings.</p>
           </div>
         </div>
@@ -90,25 +94,48 @@
 
   <!-- Specialization -->
   <div class="container">
-    <div class="row" data-aos="fade-right" data-aos-duration="3000">
-      <article class="col-md-4 col-lg-3">
-        <div class="card-content">
-          @forelse ($category as $item)
-            <a href="{{url('specialization/'.$item->id.'/'.$item->slug)}}"><img class="spectrum1" src="{{asset('uploads/category/'.$item->image)}}" style="height: 200px;" alt="meow">
-            <h4 class="spectrum-h2 text-center text-justify">{{$item->name}}</h4>
-            <p>Bana & Bana Architectural provides architectural residencial designs and can be built according to the client's own preference of design.</p></a>
-          @empty
-              <h2>No Featured Categories</h2>
-          @endforelse
+    <div class="row">        
+      @foreach ($category as $item)
+        <div class="col-md-4 col-lg-3">
+          <div class="card-shadow" syle="width:20rem">
+            <div class="card-content">
+              <div class="card-img">
+                <img class="card-img-top" src="{{asset('uploads/category/'.$item->image)}}" style="height:100%; width:100%" alt="meow">
+              </div>
+              <a href="{{url('specialization/'.$item->id)}}">
+                <h4 class="text-center text-justify" style="color:#0d6efd;">{{$item->name}}</h4>
+                  <p style="text-align:justify">Bana & Bana Architectural provides architectural residencial designs and can be built according to the client's own preference of design.</p></a>
+            </div>
           </div>
-          <!-- .card-content -->
-        </article>
-    <!-- .card -->
-    <a href="{{url('categories')}}">>>View other Categories
+        </div>
+      @endforeach 
+    </div>
   </div>
 
+  {{-- <div class="container">
+        <div class="row" data-aos="fade-right" data-aos-duration="3000">
+          <article class="col-md-4 col-lg-3">
+            <div class="card-content">
+              @forelse ($category as $item)
+                <a href="{{url('specialization/'.$item->id.'/'.$item->slug)}}"><img class="spectrum1" src="{{asset('uploads/category/'.$item->image)}}" style="height: 200px;" alt="meow">
+                <h4 class="spectrum-h2 text-center text-justify">{{$item->name}}</h4>
+                <p>Bana & Bana Architectural provides architectural residencial designs and can be built according to the client's own preference of design.</p></a>
+              @empty
+                  <h2>No Featured Categories</h2>
+              @endforelse
+              </div>
+              <!-- .card-content -->
+            </article>
+        <!-- .card -->
+        <a href="{{url('categories')}}">>>View other Categories
+      </div> --}}
 
-  <script>
+  <div class="text-center p-3">
+    <a href="{{url('categories')}}">
+    View other Categories</a>
+  </div>
+
+<script>
   AOS.init();
 </script>
 @endsection
