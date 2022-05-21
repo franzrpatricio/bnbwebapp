@@ -21,8 +21,8 @@
 
             <form action="{{url('admin/add-user')}}" method="post" enctype="multipart/form-data">
                 @csrf
-
-                <div class="mb-3">
+                <div class="row">
+                <div class="col-6 mb-3">
                     <label for="">Name</label>
                     {{-- input name refers to db field --}}
                     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror('name')"> 
@@ -32,7 +32,7 @@
                         </div>
                     @enderror
                 </div>
-                <div class="mb-3">
+                <div class="col-6 mb-3">
                     <label>Email</label>
                     <input type="email" name="email" class="form-control @error('name') is-invalid @enderror('email')">
                     @error('email')
@@ -42,10 +42,10 @@
                     @enderror
                 </div>
 
-                <div class="mb-3">
-                    <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                <div class="col-6 mb-3">
+                    <label for="password" class="form-label">{{ __('Password') }}</label>
 
-                    <div class="col-md-6">
+                 
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                         @error('password')
@@ -53,18 +53,18 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                    </div>
+                   
                 </div>
 
-                <div class="mb-3">
-                    <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                <div class="col-6 mb-3">
+                    <label for="password-confirm" class=" form-label">{{ __('Confirm Password') }}</label>
 
-                    <div class="col-md-6">
+                   
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                    </div>
+                   
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-6 mb-3">
                     <label>Role</label>
                     <select name="role_as" class="form-control">
                         <option value="1">Administrator</option>
@@ -72,12 +72,12 @@
                     </select>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-6 mb-3">
                     <label>Disable User</label>
                     <input type="checkbox" name="status"/>
                 </div>
 
-                <div class="col-md-8">
+                <div class="d-flex justify-content-end">
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">
                         {{__('Save User')}}
@@ -85,8 +85,9 @@
                         <a href="{{url('admin/users')}}" class="btn btn-secondary">Cancel</a>
                     </div>
                 </div>
+                </div>
             </form>
         </div>
     </div>
-</div>
+
 @endsection

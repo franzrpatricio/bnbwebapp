@@ -13,6 +13,7 @@
             {{-- ADMIN --}}
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
+                    <a href="{{ url('admin/users') }}" class="stretched-link"></a>
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
@@ -21,6 +22,7 @@
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-user-shield fa-2x text-gray-300" style="color: #4CA5D7"></i>
+                                
                             </div>
                         </div>
                     </div>
@@ -30,6 +32,7 @@
             {{-- STAFF --}}
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
+                <a href="{{ url('admin/users') }}" class="stretched-link"></a>
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
@@ -49,6 +52,7 @@
         <!-- Categories -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
+            <a href="{{ url('admin/categories') }}" class="stretched-link"></a>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -66,6 +70,7 @@
         <!-- Projects -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
+            <a href="{{ url('admin/projects') }}" class="stretched-link"></a>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -87,6 +92,7 @@
         <!-- houseplans -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
+            <a href="{{ url('admin/houseplan') }}" class="stretched-link"></a>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -108,6 +114,7 @@
         <!-- FAQS -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
+            <a href="{{ url('admin/faqs') }}" class="stretched-link"></a>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -125,6 +132,7 @@
         <!-- Inquiries -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
+            <a href="{{ url('admin/inquiries') }}" class="stretched-link"></a>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -142,6 +150,7 @@
         <!-- Customer Reviews -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
+            <a href="{{ url('admin/comments') }}" class="stretched-link"></a>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -159,6 +168,7 @@
         <!-- Subscribers -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
+            <a href="{{ url('admin/newsletter') }}" class="stretched-link"></a>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
