@@ -1,145 +1,149 @@
 @extends('layouts.client')
 @section('content')
-<div class="container-fluid bg-light h-100">
-  <div class="row min-vh-100">
-    <div class="col-lg-3 col-md-3 col-sm-12 p-3 navbar-expand-lg navbar-expand-md navbar-light bg-light">
-      {{-- SEARCH BAR --}}
-      <div>
-        <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('projects')}}">
+  <div class="container-fluid bg-light h-100" data-aos="fade-right" data-aos-duration="1000">
+    <div class="row min-vh-100">
+      <div class="col-lg-3 col-md-3 col-sm-12 p-3 navbar-expand-lg navbar-expand-md navbar-light bg-light">
+        {{-- SEARCH BAR --}}
+        <div>
+          <!-- Navbar Search-->
+          <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('projects')}}">
           @csrf
-          <div class="input-group">
-              <input class="form-control" name="query" type="search" placeholder="Search Project here..." aria-label="Search Project" aria-describedby="btnNavbarSearch"/>
-              <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
-          </div>
+            <input class="form-control" name="query" type="search" placeholder="Search Project here..." aria-label="Search Project" aria-describedby="btnNavbarSearch"/>
+            <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+            {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa-solid fa-filter"></span></button> --}}
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div>
-              <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
-              <a href="{{url('projects')}}" class="btn btn-danger btn-sm mt-auto">Reset</a>
+            {{-- <div class="input-group">
+                <input class="form-control" name="query" type="search" placeholder="Search Project here..." aria-label="Search Project" aria-describedby="btnNavbarSearch"/>
+                <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+            </div> --}}
 
-              {{-- CATEGORIES --}}
-              <div class="container  border-bottom p-3" >
-                <div>
-                  <h3>Category</h3>
-                </div> 
-                  @foreach ($categories as $category)
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div>
+                <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
+                <a href="{{url('projects')}}" class="btn btn-danger btn-sm mt-auto">Reset</a>
+  
+                {{-- CATEGORIES --}}
+                <div class="container  border-bottom p-3" >
+                  <div>
+                    <h3>Category</h3>
+                  </div> 
+                    @foreach ($categories as $category)
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="category" value="{{$category->id}}" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">{{$category->name}}</label>
+                      </div>
+                    @endforeach
+                </div>
+  
+                {{-- ARCHITECTURAL DESIGNS --}}
+                <div class="container border-bottom p-3">
+                  <h3>Architectural Design</h3>
+                    @foreach ($architectural as $design)
+                      <div class="form-check">
+                        <input class="form-check-input" 
+                          type="checkbox" 
+                          name="design" 
+                          value="{{$design->design}}" 
+                          id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">{{$design->design}}</label>
+                      </div>
+                    @endforeach
+                </div>
+  
+                {{-- STORIES --}}
+                <div class="container border-bottom p-3">
+                  <h3>No. Stories</h3>
+                  {{-- @foreach ($projects->sortBy('stories') as $project)
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="category" value="{{$category->id}}" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">{{$category->name}}</label>
+                      <input class="form-check-input" type="checkbox" name="stories" value="{{$project->stories}}" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">{{$project->stories}}</label>
                     </div>
-                  @endforeach
-              </div>
-
-              {{-- ARCHITECTURAL DESIGNS --}}
-              <div class="container border-bottom p-3">
-                <h3>Architectural Design</h3>
-                  @foreach ($architectural as $design)
-                    <div class="form-check">
-                      <input class="form-check-input" 
-                        type="checkbox" 
-                        name="design" 
-                        value="{{$design->design}}" 
-                        id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">{{$design->design}}</label>
-                    </div>
-                  @endforeach
-              </div>
-
-              {{-- STORIES --}}
-              <div class="container border-bottom p-3">
-                <h3>No. Stories</h3>
-                {{-- @foreach ($projects->sortBy('stories') as $project)
+                  @endforeach --}}
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="stories" value="{{$project->stories}}" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">{{$project->stories}}</label>
+                    <input class="form-check-input" type="checkbox" name="stories" value="Bungalow" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">Bungalow</label>
                   </div>
-                @endforeach --}}
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="stories" value="Bungalow" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">Bungalow</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="stories" value="1" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">1</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="stories" value="2" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">2</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="stories" value="3" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">3</label>
+                  </div>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="stories" value="1" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">1</label>
+                {{-- 
+                  put projects->stories in value,
+                  find = request->get('name'),
+                  if find
+                    stories = Projects::where('stories','LIKE','%'.find.'%')->get(),
+                    if count stories > 0 return view compact,
+                    else return view msg compact,
+                  return view compact,
+                --}}
+  
+                {{-- AMENITIES --}}
+                <div class="container  border-bottom  p-3">
+                  <h3>Amenities</h3>
+                    @foreach ($amenities as $amenity)
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="amenity" value="{{$amenity->service}}" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">{{$amenity->service}}</label>
+                      </div>
+                    @endforeach
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="stories" value="2" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">2</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="stories" value="3" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">3</label>
-                </div>
-              </div>
-              {{-- 
-                put projects->stories in value,
-                find = request->get('name'),
-                if find
-                  stories = Projects::where('stories','LIKE','%'.find.'%')->get(),
-                  if count stories > 0 return view compact,
-                  else return view msg compact,
-                return view compact,
-              --}}
-
-              {{-- AMENITIES --}}
-              <div class="container  border-bottom  p-3">
-                <h3>Amenities</h3>
-                  @foreach ($amenities as $amenity)
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="amenity" value="{{$amenity->service}}" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">{{$amenity->service}}</label>
-                    </div>
-                  @endforeach
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
     
-    <div class="col-lg-9 col-md-9 col-sm-12 p-3 ">
-      {{-- show any errors in saving the forms --}} 
-      @if ($errors->any())
-        <div class="alert alert-danger">
-            @foreach ($errors->all() as $error)
-                <div>{{$error}}</div>
-            @endforeach
-        </div>
-      @endif  
+      <div  class="col-lg-9 col-md-9 col-sm-12 p-3 ">
+        {{-- show any errors in saving the forms --}} 
+        @if ($errors->any())
+          <div class="alert alert-danger">
+              @foreach ($errors->all() as $error)
+                  <div>{{$error}}</div>
+              @endforeach
+          </div>
+        @endif  
+  
+        {{-- display msg after redirecting --}}
+        @if (isset($msg))
+          <div class="alert alert-danger">
+            <div class="">Showing Results of "{{Request::input('query')}}"</div>
+            {{ $msg }}
+            <a href="{{url('projects')}}" class="close float-end" data-dismiss="alert" aria-label="close">&times;</a>
+          </div>
+        @endif
 
-      {{-- display msg after redirecting --}}
-      @if (isset($msg))
-        <div class="alert alert-danger">
-          <div class="">Showing Results of "{{Request::input('query')}}"</div>
-          {{ $msg }}
-          <a href="{{url('projects')}}" class="close float-end" data-dismiss="alert" aria-label="close">&times;</a>
-        </div>
-      @endif
-        
-      @foreach ($projects as $project)
-        <div class="row ">
-          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
-            <div>
-              <div class="card" style="height: 300px; width: 200px; ">
-                <div class="img-fluid border-bottom">
-                  <img src="{{asset('uploads/project/'.$project->image)}}" class="card-img-top img-top " style="height: 200px; object-fit: contain;" alt="...">
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title text-center">{{$project->name}}</h6>
-                  <div class="text-center">
-                    <a href="{{ url('project/'.$project->id.'/'.$project->slug) }}">
-                      <button class="btn btn-primary text ">View</button>
-                    </a>
+        @foreach ($projects as $project)
+          <div class="row animate__animated animate__fadeInUp animate__delay-0.7s">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
+              <div>
+              <div class="card" style="height: 300px; width: 200px; "  >
+                  <div class="img-fluid border-bottom">
+                  <img src="{{asset('uploads/project/'.$project->image)}}" class="card-img-top img-top " style="height:200px; width: 200px;  object-fit:fill;" alt="...">
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-title text-center">{{$project->name}}</h6>
+                    <div class="text-center">
+                      <a href="{{ url('project/'.$project->id.'/'.$project->slug) }}">
+                        <button class="btn btn-primary text" style="color:white;" >View  </button>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>  
-            </div>
+            </div>               
           </div>
-        </div>
-      @endforeach
-      {{-- {{ $projects->links() }} --}}
+        @endforeach
+      </div>
     </div>
   </div>
-</div>
 @endsection

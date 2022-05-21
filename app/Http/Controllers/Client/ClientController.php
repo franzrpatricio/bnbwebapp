@@ -49,11 +49,11 @@ class ClientController extends Controller
                 return view('client.specialization',compact('projects','category'));
             } else {
                 # code...
-                return view ('client.specialization',['msg'=> 'No Projects found in this Category.🥺'],compact('projects','category'));
+                return view ('client.specialization',['msg'=> 'No Active Projects for this Category.🥺👉👈'],compact('projects','category'));
             }
         } else {
             # code...
-            return view ('client.specialization',['msg'=> 'No Active Projects for this Category.🥺'],compact('projects','category'));
+            return view ('client.specialization',['msg'=> 'No Active Projects for this Category.🥺👉👈'],compact('projects','category'));
         }
     }
     public function profile(){
@@ -78,7 +78,7 @@ class ClientController extends Controller
                 return view('client.projects', compact('categories','projects','amenities','architectural'));
             } else {
                 # code...
-                return view('client.projects',['msg'=> 'Sorry but '.$find_this.' not Found.🥺'],compact('categories','projects','amenities','architectural'));
+                return view('client.projects',['msg'=> 'Sorry but '.$find_this.' not Found.🥺👉👈'],compact('categories','projects','amenities','architectural'));
             }
         } elseif ($find_category) {
             # code...
@@ -144,6 +144,9 @@ class ClientController extends Controller
             return view('client.project',['msgc'=>'No images found']);
         }
     }
+    // public function projects(){
+    //     return view('client.projects');
+    // }
     public function contact(){
         return view('client.contact');
     }

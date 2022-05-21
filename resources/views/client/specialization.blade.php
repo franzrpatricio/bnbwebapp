@@ -1,5 +1,4 @@
 @extends('layouts.client')
-
 @section('content')
 <div class="container-fluid bg-light h-100">
   <div class="row min-vh-100">
