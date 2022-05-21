@@ -22,6 +22,8 @@ class CreateInquiriesTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('message');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

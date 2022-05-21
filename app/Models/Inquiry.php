@@ -13,7 +13,6 @@ class Inquiry extends Model
     protected $table = 'inquiries'; # copy from created schema
 
     protected $fillable = [
-        
         'name', 
         'email',
         'phone',

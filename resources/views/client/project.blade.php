@@ -89,17 +89,14 @@
 <div class="header" data-aos="fade-right" data-aos-duration="1000" style="background-image: url('{{asset('assets/client/building2.jpg')}}')">
 
 <div  class="p-5 text-center bg-image"  style="filter: brightness(60%);">
-   
-      </div>
-        <div class="d-flex justify-content-center align-items-center" >
-          <div class="banner-title text-center">
-            <h1 class="mb-3 text-light" data-aos="fade-right" data-aos-duration="1000">Virtual Tour</h1>
-          </div>
-         </div>
-          </div>
-
 </div>
-
+<div class="d-flex justify-content-center align-items-center" >
+  <div class="banner-title text-center">
+    <h1 class="mb-3 text-light" data-aos="fade-right" data-aos-duration="1000">Virtual Tour</h1>
+  </div>
+</div>
+</div>
+</div>
 
 <div class="container-fluid p-2">
     <div class="row m-5">
@@ -118,6 +115,53 @@
       </div>
     </div>
 </div>
+
+{{-- MODAL PROJECT INQUIRY FORM START --}}
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Inquire about this Project
+</button>
+@if (session('msgpi'))
+    <h6 class="alert alert-warning mb-3">{{session('msgc')}}</h6>
+@endif  
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">project </h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {{-- START FORM --}}
+      <form action="{{ route('send.projectInquiry') }}" method="POST" onclick=" false;" autocomplete="off">
+        @csrf
+        <div class="modal-body">
+          <div class="contact-info-form"> <span class="circle one"></span> <span class="circle two"></span>
+            <h3 class="title">Inquiry Form</h3>
+            <div class="col-md-12">
+              <div class="social-input-containers"> <input type="hidden" name="proj_id" value="{{ $project->id }}" class="form-control"></div>
+              <div class="social-input-containers"> <input type="@disabled(true)" name="proj_name" value="{{ $project->name }}" class="form-control"></div>
+              <div class="social-input-containers"> <input type="text" name="name" class="input" placeholder="Name" /> </div>
+              <div class="social-input-containers"> <input type="email" name="email" class="input" placeholder="Email" /> </div>
+              <div class="social-input-containers"> <input type="tel" name="phone" class="input" placeholder="Phone" /> </div>
+              <div class="social-input-containers"> <input type="text" name="address" class="input" placeholder="Address" /> </div>
+              <div class="social-input-containers textarea"> <textarea name="message" class="input" placeholder="Message"></textarea> </div> 
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </form>
+      {{-- END FORM --}}
+    </div>
+  </div>
+</div>
+{{-- MODAL PROJECT INQUIRY FORM END --}}
 
 <div class="container-fluid" style="background:whitesmoke;" data-aos="fade-right" data-aos-duration="3000">
   <div class="row">

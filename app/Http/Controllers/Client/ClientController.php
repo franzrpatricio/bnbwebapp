@@ -181,7 +181,7 @@ class ClientController extends Controller
         $inquiry->save();
 
         Mail::to('rbana989e@gmail.com')->send(new ProjectInquiryMail($data));
-        return redirect('/projects')->with('msg','Thanks for reaching out!');
+        return redirect()->back()->with('msgpi','Thanks for reaching out!');
     }
 
     public function subscribe(Request $request){
