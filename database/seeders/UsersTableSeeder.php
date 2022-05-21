@@ -56,7 +56,8 @@ class UsersTableSeeder extends Seeder
                 'email' => 'honn2141@gmail.com',
                 'password' => '$2y$10$8K/olc27rSPi6mIuJdizW.8QJu1yA7rAMoqzXrXLWKKtdrX/hLopm',
                 'image' => 'franz.jpg'
-                #adminfr4nz   
+                #adminfr4nz 
+                #fr4nzadmin  
             ]
         );
     }

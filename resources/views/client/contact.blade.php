@@ -25,16 +25,23 @@
               </div>
           </div>
           <div class="contact-info-form"> <span class="circle one"></span> <span class="circle two"></span>
-          <form action="{{ route('send.email') }}" method="POST">
+            <form action="{{ route('send.email') }}" method="POST">
                 @csrf
-                  <h3 class="title">Contact us</h3>
-                  <div class="social-input-containers"> <input type="text" name="name" class="input" placeholder="Name" /> </div>
-                  <div class="social-input-containers"> <input type="email" name="email" class="input" placeholder="Email" /> </div>
-                  <div class="social-input-containers"> <input type="tel" name="phone" class="input" placeholder="Phone" /> </div>
-                  <div class="social-input-containers"> <input type="text" name="address" class="input" placeholder="Address" /> </div>
-                  <div class="social-input-containers textarea"> <textarea name="message" class="input" placeholder="Message"></textarea> </div> 
-                  <input type="submit" value="Send Message" class="btn1" />
-              </form>
+                <h3 class="title">Contact us</h3>
+                <div class="social-input-containers"> <input type="text" name="name" class="input" placeholder="Name" /> </div>
+                <div class="social-input-containers"> <input type="email" name="email" class="input" placeholder="Email" /> </div>
+                <div class="social-input-containers"> <input type="tel" name="phone" class="input" placeholder="Phone" /> </div>
+                <div class="social-input-containers"> <input type="text" name="address" class="input" placeholder="Address" /> </div>
+                <div class="social-input-containers textarea"> <textarea name="message" class="input" placeholder="Message"></textarea> </div> 
+                <input type="submit" value="Send Message" class="btn1" />
+                {{-- display msg after redirecting --}}
+                @if (isset($msg))
+                <div class="alert alert-danger">
+                    {{ $msg }}
+                    {{-- <a href="{{url('portfolio')}}" class="close float-end" data-dismiss="alert" aria-label="close">&times;</a> --}}
+                </div>
+                @endif
+            </form>
           </div>
       </div>
     </div>

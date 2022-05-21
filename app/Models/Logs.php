@@ -17,6 +17,5 @@ class Logs extends Model
         'name',
         'role_as',
         'description',
-        'date_time',
     ];
 }

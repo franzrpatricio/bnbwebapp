@@ -19,7 +19,6 @@ class CreateUserActivityLogsTable extends Migration
             $table->string('name')->nullable();
             $table->string('role_as')->nullable();
             $table->string('description')->nullable();
-            $table->string('date_time')->nullable();
             $table->timestamps();
         });
     }

@@ -102,7 +102,7 @@ the project
               <div class="card-img">
                 <img class="card-img-top" src="{{asset('uploads/category/'.$item->image)}}" style="max-height:100%; width:300px" alt="meow">
               </div>
-              <a href="{{url('specialization/'.$item->id)}}">
+              <a href="{{url('specialization/'.$item->id.'/'.$item->slug)}}">
                 <h4 class="text-center text-justify" style="color:#0d6efd;">{{$item->name}}</h4>
                   <p style="text-align:justify">Bana & Bana Architectural provides architectural residencial designs and can be built according to the client's own preference of design.</p></a>
             </div>
@@ -111,24 +111,6 @@ the project
       @endforeach 
     </div>
   </div>
-
-  {{-- <div class="container">
-        <div class="row" data-aos="fade-right" data-aos-duration="3000">
-          <article class="col-md-4 col-lg-3">
-            <div class="card-content">
-              @forelse ($category as $item)
-                <a href="{{url('specialization/'.$item->id.'/'.$item->slug)}}"><img class="spectrum1" src="{{asset('uploads/category/'.$item->image)}}" style="height: 200px;" alt="meow">
-                <h4 class="spectrum-h2 text-center text-justify">{{$item->name}}</h4>
-                <p>Bana & Bana Architectural provides architectural residencial designs and can be built according to the client's own preference of design.</p></a>
-              @empty
-                  <h2>No Featured Categories</h2>
-              @endforelse
-              </div>
-              <!-- .card-content -->
-            </article>
-        <!-- .card -->
-        <a href="{{url('categories')}}">>>View other Categories
-      </div> --}}
 
   <div class="text-center p-3">
     <a href="{{url('categories')}}">
