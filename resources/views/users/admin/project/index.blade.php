@@ -51,7 +51,7 @@
                         <th>ID</th>
                         <th>Project Name</th>
                         <th>Thumbnail</th>
-                        <th>Gallery</th>
+                        <th colspan="2">Gallery and Virtual Tour</th>
                         <th>Status</th>
                         <th>Action</th> {{-- edit --}}
                     </tr>
@@ -75,12 +75,13 @@
 
                             <td>
                                 <a href="{{route('projects.gallery',$item->id)}}" class="btn btn-primary btn-sm mr-2">
-                                    <i class="fa-solid fa-eye"></i>
+                                    {{-- <i class="fa-solid fa-eye"></i> --}}Gallery
                                 </a>
-                                {{-- <a href="{{route('projects.gallery')}}" class="btn btn-primary btn-sm mr-2">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-eye"></i></div> --}}
-                            </a>
-
+                            </td>
+                            <td>
+                                <a href="{{route('projects.virtualTour',$item->id)}}" class="btn btn-primary btn-sm mr-2">
+                                    {{-- <i class="fa-solid fa-eye"></i> --}}Virtual Tour
+                                </a>
                             </td>
                             
                             {{-- if status is true, show if not visible || visible --}}

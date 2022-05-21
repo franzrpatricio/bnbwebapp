@@ -2,7 +2,7 @@
 
 namespace App\Http\Conversations;
 
-use App\Models\Faqs;
+use App\Models\Faq;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Outgoing\Question;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
@@ -16,48 +16,31 @@ class FAQConversation extends Conversation
     }
     
     public function faqs(){
-        $faqs = Faqs::all();
+        $faqs = Faq::all();
         if (count($faqs)>0) {
             # code...
             $askthis = Question::create('Choose from the Frequently Asked Questions below.');
-            foreach ($faqs->question as $faq) {
+            foreach ($faqs as $faq) {
                 # code...
-                $askthis->addButton(Button::create($faq)->value($faq->id));
+                $askthis->addButton(Button::create($faq->question)->value($faq->answewr));
             }
+            
             $this->ask($askthis,function(Answer $answer){
                 if ($answer->isInteractiveMessageReply()) {
                     # code...
-                    $this->say($answer->getValue());
-                    switch ($answer->getValue()) {
-                        case '1':
-                            # code...
-                            $this->say($faqs->answer);
-                            break;
-                        case '2':
-                            # code...
-                            $this->say('this is faq 2');
-                            break;
-                        case '3':
-                            # code...
-                            $this->say('this is faq 3');
-                            break;
-                        case '4':
-                            # code...
-                            $this->say('this is faq 4');
-                            break;
-                        case '5':
-                            # code...
-                            $this->say('this is faq 5');
-                            break;
-                        default:
-                            # code...
-                            $this->say("I don't have an answer to that but i'll look up to that query.");
-                            break;
-                    }
+                    // $this->say($answer->getValue());
+                    $selectedValue = $answer->getValue();
+                    // $this->say($selectedValue);
+                    $this->bot->userStorage()->save([
+                        'answewr' => $selectedValue,
+                    ]);
+                    $choice = $this->bot->userStorage()->find();
+                    $this->say('Answer: '.$choice->get('answewr') );
                 }else {
                     # code...
-                    $this->say('lol wtf');
+                    $this->say('lol');
                 }
+                $this->say("Type stop if you wish to stop the FAQs");
                 $this->repeat();
             });
         }else {

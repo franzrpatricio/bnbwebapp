@@ -19,14 +19,16 @@ class AdminMiddleware
     {
         #CHECK USER IF LOGGED IN
         if(Auth::check()){
-            if (Auth::user()->role_as=='0' ||Auth::user()->role_as=='1') {
+            if (Auth::user()->status=='1') {
                 #role_as == 0 = staff
                 #role_as == 1 = admin
                 # code... 
+                #if status is 0, the user will be blocked when trying to access the dashboard.
+                #let admin edit the user status, only then the user will have the access to the dashboard.
                 return $next($request);
             }else {
                 # code...
-                return redirect('/home')->with('status','Access Denied! Not an Admin.');
+                return redirect('/home')->with('error','Access Denied!');
             }
         }else {
             #if not authenticated

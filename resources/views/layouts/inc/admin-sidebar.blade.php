@@ -14,7 +14,7 @@
                     
                 {{-- USER --}}
                 <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUser" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-user-cog"></i></div>
                     Users
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -114,26 +114,30 @@
                 
                 
                  {{-- Inquiry List --}}
-                 <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInquiryList" aria-expanded="false" aria-controls="collapseLayouts">
+                 {{-- <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInquiryList" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-message"></i></div>
                     Inquiry List
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="collapseInquiryList" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                </a> --}}
+                {{-- <div class="collapse" id="collapseInquiryList" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link link-light" href="{{ url('admin/inquiries') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                             List of Inquiry List
                         </a>
                     </nav>
-                </div>
-               
-                
-              
-               
-                <a class="nav-link link-light" href="tables.html">
+                </div> --}}
+                <a class="nav-link link-light" href="{{ url('admin/inquiries') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-message"></i></div>
+                    Inquiry List
+                </a>                
+                <a class="nav-link link-light" href="{{ url('admin/comments') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
                     Comment Review
+                </a>
+                <a class="nav-link link-light" href="{{ url('admin/newsletter') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    Subscribers
                 </a>
             </div>
         </div>

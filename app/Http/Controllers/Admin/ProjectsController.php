@@ -9,13 +9,18 @@ use App\Models\Category;
 use App\Models\Projects;
 use App\Models\Amenities;
 use App\Models\HousePlan;
+use App\Events\NewProject;
+use App\Models\Newsletter;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ProjectAmenities;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Events\NewProject as EventsNewProject;
 use App\Http\Requests\Admin\ProjectFormRequest;
+use App\Mail\MailSubscribers;
 
 class ProjectsController extends Controller
 {
@@ -66,21 +71,6 @@ class ProjectsController extends Controller
             #then in to $category
             $project->image = $filename;
         }
-        #vtour condition...
-        #if data has file...
-        if ($request->hasfile('vtour')) {
-            #store image file from data in to $file
-            $vtour = $request->file('vtour');
-            #then get extension of image file 
-            #together with the timestamp uploaded 
-            #and store it in $filename
-            $vidname = time().'.'. $vtour->getClientOriginalExtension();
-            #move the $filename in directory
-            $vtour->move('uploads/virtual_tour/', $vidname);
-            #store filename as data for image field in db 
-            #then in to $category
-            $project->vtour = $vidname;
-        }
 
         $project->cost = $data['cost'];
         $project->stories = $data['stories'];
@@ -101,48 +91,49 @@ class ProjectsController extends Controller
         $project->posted_by = Auth::user()->id;
         $project->save();
         
-        $projID = $project->id;
-        // $data = $request->input('amenity');
-        // foreach ($data as $key) {
-        //     DB::table('project_amenities')->insert(
-        //         array(
-        //             'project_id' => $projID,
-        //             'amenity_id' => $key,
-        //             'posted_by' => Auth::user()->id,
-        //             'created_at' => Carbon::now(),
-        //         )
-        //      );
-        // }
 
-        // $data = $request->input('designs');
-        // foreach ($data as $key) {
-        //     DB::table('Project_design')->insert(
-        //         array(
-        //             'project_id' => $projID,
-        //             'design_id' => $key,
-        //             'posted_by' => Auth::user()->id,
-        //             'created_at' => Carbon::now(),
-        //         )
-        //      );
-        // }
-        if ($request->hasfile('filenames')) {
+        #id of this project needed to save multi images and videos in Files DB Table
+        $projID = $project->id;
+        #vtour condition...
+        #if data has file...
+        if ($request->hasfile('videos')) {
+            #store image file from data in to $file
+            $videos = $request->file('videos');
+            foreach ($videos as $video) {
+                # code...
+                $video_name = time().rand(1,50).'.'.$video->getClientOriginalExtension();
+                $video->move('uploads/virtual_tour/', $video_name);
+
+                DB::table('virtual_tour')->insert(
+                    array(
+                        'posted_by' => Auth::user()->id,
+                        'project_id' => $projID,
+                        'video' => $video_name,
+                        'created_at' => Carbon::now(),
+                    )
+                );
+            }
+        }
+        #saving of multiple image files
+        if ($request->hasfile('images')) {
             # code...
-            $files = $request->file('filenames');
-            foreach ($files as $image) {
+            $images = $request->file('images');
+            foreach ($images as $image) {
                 # code...
                 $image_name = time().rand(1,50).'.'.$image->getClientOriginalExtension();
                 $image->move('uploads/project_images/', $image_name);
 
-                DB::table('files')->insert(
+                DB::table('project_images')->insert(
                     array(
                         'posted_by' => Auth::user()->id,
                         'project_id' => $projID,
-                        'filenames' => $image_name,
+                        'image' => $image_name,
                         'created_at' => Carbon::now(),
                     )
                  );
             }
         }
+<<<<<<< HEAD
                 //insert to activity logs
                 $user_id = Auth::user()->id;
                 $name = Auth::user()->name;
@@ -159,6 +150,15 @@ class ProjectsController extends Controller
             ];
                 
                 DB::table('user_activity_logs')->insert($data);
+=======
+        #saving and mailing of subscribers
+        $subscribers = Newsletter::all();
+        foreach ($subscribers as $subscriber) {
+            # code...
+            // event(new NewProject($subscriber->email));
+            Mail::to($subscriber->email)->send(new MailSubscribers($subscriber));
+        }
+>>>>>>> backendfranz
 
         return redirect('admin/projects')->with('msg','Successfully Created Project');
     }
@@ -196,23 +196,24 @@ class ProjectsController extends Controller
             $project->image = $filename;
         }
 
-        #vtour condition...
-        #if data has file...
-        if ($request->hasfile('vtour')) {
-            #store image file from data in to $file
-            $vtour = $request->file('vtour');
-            #then get extension of image file 
-            #together with the timestamp uploaded 
-            #and store it in $filename
-            $vidname = time().'.'. $vtour->getClientOriginalExtension();
-            #move the $filename in directory
-            $vtour->move('uploads/virtual_tour/', $vidname);
-            #store filename as data for image field in db 
-            #then in to $category
-            $project->vtour = $vidname;
-        }
+        // #old vtour condition...
+        // #if data has file...
+        // if ($request->hasfile('vtour')) {
+        //     #store image file from data in to $file
+        //     $vtour = $request->file('vtour');
+        //     #then get extension of image file 
+        //     #together with the timestamp uploaded 
+        //     #and store it in $filename
+        //     $vidname = time().'.'. $vtour->getClientOriginalExtension();
+        //     #move the $filename in directory
+        //     $vtour->move('uploads/virtual_tour/', $vidname);
+        //     #store filename as data for image field in db 
+        //     #then in to $category
+        //     $project->vtour = $vidname;
+        // }
 
         $project->cost = $data['cost'];
+        $project->stories = $data['stories'];
         $project->slug = Str::slug($data['slug']);
         $project->description = $data['description'];
 
@@ -225,10 +226,11 @@ class ProjectsController extends Controller
         $project->meta_description = $data['meta_description'];
         $project->meta_keyword = $data['meta_keyword'];
         
-        $project->status = $request->status ==true ? '0':'1';
+        $project->status = $request->status ==true ? '1':'0';
         $project->posted_by = Auth::user()->id;
         $project->update();
 
+<<<<<<< HEAD
                 //insert to activity logs
                 $user_id = Auth::user()->id;
                 $name = Auth::user()->name;
@@ -245,6 +247,47 @@ class ProjectsController extends Controller
             ];
                 
                 DB::table('user_activity_logs')->insert($data);
+=======
+        #vtour condition...
+        #if data has file...
+        if ($request->hasfile('videos')) {
+            #store image file from data in to $file
+            $videos = $request->file('videos');
+            foreach ($videos as $video) {
+                # code...
+                $video_name = time().rand(1,50).'.'.$video->getClientOriginalExtension();
+                $video->move('uploads/virtual_tour/', $video_name);
+
+                DB::table('virtual_tour')->insert(
+                    array(
+                        'posted_by' => Auth::user()->id,
+                        'project_id' => $project->id,
+                        'video' => $video_name,
+                        'created_at' => Carbon::now(),
+                    )
+                );
+            }
+        }
+        #saving of multiple image files
+        if ($request->hasfile('images')) {
+            # code...
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                # code...
+                $image_name = time().rand(1,50).'.'.$image->getClientOriginalExtension();
+                $image->move('uploads/project_images/', $image_name);
+
+                DB::table('project_images')->insert(
+                    array(
+                        'posted_by' => Auth::user()->id,
+                        'project_id' => $project->id,
+                        'image' => $image_name,
+                        'created_at' => Carbon::now(),
+                    )
+                 );
+            }
+        }
+>>>>>>> backendfranz
 
         return redirect('admin/projects')->with('msg','Successfully Updated Project');
     }
@@ -286,7 +329,7 @@ class ProjectsController extends Controller
             return view('users.admin.project.index', compact('projects'));
         } else {
             # code...
-            return view ('users.admin.project.index', compact('projects'))->with( 'No Projects Found. 🥺' );
+            return view ('users.admin.project.index', compact('projects'))->with('msg','No Projects Found.🥺' );
         }
     }
 }

@@ -3,15 +3,16 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FaqsController;
-use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProjectsController;
+use App\Http\Controllers\Client\CommentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HousePlanController;
 use App\Http\Controllers\Admin\InquiriesController;
-use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\VirtualTourController;
+use App\Http\Controllers\Admin\ProjectImagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,10 @@ use App\Http\Controllers\Admin\ProfileController;
 #for client/prospect/visitor
 #BOT WIDGET
 // Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
+// Route::match(['get', 'post'],'botman',function(){
+//     app('botman')->listen();
+// });
+
 // Route::get('/admin', function(){
 //     return view ('index');
 // });
@@ -34,22 +39,27 @@ Route::post('/send-email', [App\Http\Controllers\Client\ClientController::class,
 Route::post('/send-projectInquiry', [App\Http\Controllers\Client\ClientController::class, 'sendProjInquiry'])->name('send.projectInquiry');
 Route::get('/', [App\Http\Controllers\Client\ClientController::class, 'index']);
 Route::get('/portfolio', [App\Http\Controllers\Client\ClientController::class, 'portfolio']);
+Route::get('/categories', [App\Http\Controllers\Client\ClientController::class, 'categories']);
 Route::get('/profile', [App\Http\Controllers\Client\ClientController::class, 'profile']);
-Route::get('specialization/{category_id}', [App\Http\Controllers\Client\ClientController::class, 'specProject']);
-Route::get('/project', [App\Http\Controllers\Client\ClientController::class, 'project']);
+Route::get('specialization/{category_id}/{category_slug}', [App\Http\Controllers\Client\ClientController::class, 'specProject']);
+Route::get('/projects', [App\Http\Controllers\Client\ClientController::class, 'projects']);
+Route::get('project/{project_id}/{project_slug}', [App\Http\Controllers\Client\ClientController::class, 'project']);
+Route::post('comments', [App\Http\Controllers\Client\CommentController::class, 'store']);
 Route::get('/contact', [App\Http\Controllers\Client\ClientController::class, 'contact']);
+Route::post('subscribe', [App\Http\Controllers\Client\ClientController::class, 'subscribe'])->name('subscribe.subscribe');
 
 #when request hits server, pull out botman instance; listen to any incoming commands
 Route::post('/botman',function(){
     app('botman')->listen();
 });
 
-Route::get('/home',[App\Http\Controllers\Auth\LoginController::class, 'store']);
+// Route::get('/home',[App\Http\Controllers\Auth\LoginController::class, 'store']);
+Auth::routes(['verify' => true]);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 #INQUIRY CREATE
 // Route::get('add-inquiry', [App\Http\Controllers\InquiryController::class, 'create']);   
 // Route::post('add-inquiry', [App\Http\Controllers\InquiryController::class, 'store']);
-
 // #REVIEWS CRUD
 // #READ ALL
 // Route::get('reviews', [App\Http\Controllers\ReviewsController::class, 'index']);
@@ -63,7 +73,7 @@ Route::get('/home',[App\Http\Controllers\Auth\LoginController::class, 'store']);
 // Route::get('delete-review/{review_id}',[App\Http\Controllers\ReviewsController::class, 'destroy']);
 
 #USERS GATEWAY
-Auth::routes(['register'=>false]);
+Auth::routes();
 Route::get('/gateway', function () {
     return view('auth/login');
 });
@@ -110,13 +120,15 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('projects/find', [App\Http\Controllers\Admin\ProjectsController::class, 'search']);
     
     #VIEW GALLERY
-    Route::get('project/gallery/{project_id}', [App\Http\Controllers\Admin\FilesController::class, 'gallery'])->name('projects.gallery');
-    // Route::get('projects/images/{project_id}',[App\Http\Controllers\Admin\ProjectsController::class,'gallery']);
-    #CREATE PROJECT IMAGES 
-    // Route::get('projects/add-images', [App\Http\Controllers\Admin\FilesController::class, 'create']);
-    Route::post('update-image/{files_id}', [App\Http\Controllers\Admin\FilesController::class, 'update'])->name('gallery.update');
+    Route::get('project/gallery/{project_id}', [App\Http\Controllers\Admin\ProjectImagesController::class, 'gallery'])->name('projects.gallery');
+    Route::post('update-image/{image_id}', [App\Http\Controllers\Admin\ProjectImagesController::class, 'update'])->name('gallery.update');
     #DELETE GALLERY
-    Route::get('delete-gallery/{files_id}', [App\Http\Controllers\Admin\FilesController::class,'destroy'])->name('gallery.destroy');
+    Route::get('delete-gallery/{image_id}', [App\Http\Controllers\Admin\ProjectImagesController::class,'destroy'])->name('gallery.destroy');
+    #VIEW VIRTUAL TOUR
+    Route::get('project/virtual_tour/{project_id}', [App\Http\Controllers\Admin\VirtualTourController::class, 'virtualTour'])->name('projects.virtualTour');
+    Route::post('update-video/{video_id}', [App\Http\Controllers\Admin\VirtualTourController::class, 'update'])->name('virtualTour.update');
+    #DELETE VIRTUAL TOUR
+    Route::get('delete-virtual_tour/{video_id}', [App\Http\Controllers\Admin\VirtualTourController::class,'destroy'])->name('virtualTour.destroy');
 
     #HOUSE PLAN CRUD
     #READ
@@ -168,11 +180,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     // Route::get('activityLoginLogout',[App\Http\Controllers\Admin\ProfileController::class, 'activityLoginLogout'])->name('activityLoginLogout');
     Route::get('logs', [App\Http\Controllers\Admin\ProfileController::class, 'logs']);
     
-
-    
-
-    
-
     #FAQS CRUD 
     #READ
     Route::get('faqs', [App\Http\Controllers\Admin\FaqsController::class, 'index'])->name('faqs.index');
@@ -202,9 +209,15 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     #SEARCH
     Route::get('inquiries/find', [App\Http\Controllers\Admin\InquiriesController::class, 'search']);
 
+    #COMMENTS
+    #READ
+    Route::get('comments', [App\Http\Controllers\Client\CommentController::class, 'index']);
+    #SEARCH
+    Route::get('comments/find', [App\Http\Controllers\Client\CommentController::class, 'search']);
+    #DELETE
+    Route::delete('delete-comment/{comment_id}',[App\Http\Controllers\Client\CommentController::class, 'destroy'])->name('comments.destroy');
+
+    #NEWSLETTER
+    Route::get('newsletter', [App\Http\Controllers\Client\ClientController::class, 'subscriber']);
     #The fundamental difference between the POST and PUT requests is reflected in the different meaning of the Request-URI. The URI in a POST request identifies the resource that will handle the enclosed entity... In contrast, the URI in a PUT request identifies the entity enclosed with the request.
 });
-Auth::routes(['verify' => true]);
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-

@@ -13,14 +13,16 @@
             {{-- ADMIN --}}
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
+                    <a href="{{ url('admin/users') }}" class="stretched-link"></a>
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">USERS</div>
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">ADMINISTRATORS</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{$administrators}}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-users fa-2x text-gray-300" style="color: #4CA5D7"></i>
+                                <i class="fas fa-user-shield fa-2x text-gray-300" style="color: #4CA5D7"></i>
+                                
                             </div>
                         </div>
                     </div>
@@ -30,6 +32,7 @@
             {{-- STAFF --}}
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
+                <a href="{{ url('admin/users') }}" class="stretched-link"></a>
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
@@ -37,7 +40,7 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{$staffs}}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-users fa-2x text-gray-300" style="color: #4CA5D7"></i>
+                                <i class="fas fa-user-tie fa-2x text-gray-300" style="color: #4CA5D7"></i>
                             </div>
                         </div>
                     </div>
@@ -49,6 +52,7 @@
         <!-- Categories -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
+            <a href="{{ url('admin/categories') }}" class="stretched-link"></a>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -66,6 +70,7 @@
         <!-- Projects -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
+            <a href="{{ url('admin/projects') }}" class="stretched-link"></a>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -87,6 +92,7 @@
         <!-- houseplans -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
+            <a href="{{ url('admin/houseplan') }}" class="stretched-link"></a>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -106,8 +112,9 @@
         </div>
 
         <!-- FAQS -->
-        {{-- <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
+            <a href="{{ url('admin/faqs') }}" class="stretched-link"></a>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -115,16 +122,17 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $faqs }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-envelope fa-2x text-gray-300" style="color: #4CA5D7"></i>
+                            <i class="fas fa-question-circle fa-2x text-gray-300" style="color: #4CA5D7"></i>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <!-- Inquiries -->
-        {{-- <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
+            <a href="{{ url('admin/inquiries') }}" class="stretched-link"></a>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -137,24 +145,43 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <!-- Customer Reviews -->
-        {{-- <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
+            <a href="{{ url('admin/comments') }}" class="stretched-link"></a>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold  text-uppercase mb-1">Customer Reviews</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $reviews }}</div>
+                            <div class="text-xs font-weight-bold  text-uppercase mb-1">Comments</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $comments }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300" style="color: #4CA5D7"></i>
+                            <i class="fa-solid fa-address-card fa-2x text-gray-300" style="color: #4CA5D7"></i>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
+
+        <!-- Subscribers -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+            <a href="{{ url('admin/newsletter') }}" class="stretched-link"></a>
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold  text-uppercase mb-1">Subscribers</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $subscribers }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-gray-300" style="color: #4CA5D7"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

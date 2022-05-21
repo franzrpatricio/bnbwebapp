@@ -56,9 +56,15 @@
                 </div>
                 <div class="mb-3">
                     <label>Virtual Tour</label>
-                    <span><h5>Upload your Project Virutal Tour</h5></span>
-                    <input type="file" name="vtour" class="form-control">
+                    <span><h5>Upload Videos for Project Virutal Tour</h5></span>
+                    <input type="file" 
+                        name="videos[]" 
+                        class="form-control"
+                        id="inputFiles"
+                        multiple
+                    >
                 </div>
+
                 <div class="mb-3">
                     <label>Cost</label>
                     <input type="number" required name="cost" min="0" value="0" step="0.01" class="form-control">
@@ -113,24 +119,11 @@
                     <textarea name="meta_keyword" rows="3" class="form-control"></textarea>
                 </div>
 
-                {{-- <div class="form-group">
-                    <label><strong>Amenities :</strong></label><br>
-                    @foreach ($amenities as $item)
-                        <label><input type="checkbox" value="{{$item->id}}" name="amenity[]">{{$item->service}}</label>
-                    @endforeach
-                </div>   --}}
-                {{-- <div class="form-group">
-                    <label><strong>Architectural Design :</strong></label><br>
-                    @foreach ($architectural as $designs)
-                        <label><input type="checkbox" value="{{$designs->id}}" name="designs[]">{{$designs->design}}</label>
-                    @endforeach
-                </div>   --}}
-
                 <div class="form-group">
                     <label>Upload Project Files</label>
                     <span>You can upload multiple images</span>
                     <input type="file" 
-                            name="filenames[]"
+                            name="images[]"
                             class="form-control"
                             id="inputFiles"
                             multiple

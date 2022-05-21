@@ -37,6 +37,7 @@ class CategoryController extends Controller
         $data = $request->validated();
         $category = new Category;
         $category->name = $data['name'];
+        #SEO slug
         $category->slug = Str::slug($data['slug']);
         $category->description = $data['description'];
         
@@ -55,13 +56,11 @@ class CategoryController extends Controller
             #then in to $category
             $category->image = $filename;
         }
-
-        #SEO Tags
+      
         $category->meta_title = $data['meta_title'];
         $category->meta_description = $data['meta_description'];
         $category->meta_keyword = $data['meta_keyword'];
 
-        $category->navbar_status = $request->navbar_status == true ? '1':'0';        
         $category->status = $request->status == true ? '1':'0';
         $category->feature = $request->feature == true ? '1':'0';
 
@@ -103,6 +102,7 @@ class CategoryController extends Controller
 
         $category = Category::find($category_id);
         $category->name = $data['name'];
+        #SEO slug
         $category->slug = Str::slug($data['slug']);
         $category->description = $data['description'];
         
@@ -131,13 +131,11 @@ class CategoryController extends Controller
             #then in to $category
             $category->image = $filename;
         }
-
-        #SEO Tags
+  
         $category->meta_title = $data['meta_title'];
         $category->meta_description = $data['meta_description'];
         $category->meta_keyword = $data['meta_keyword'];
 
-        $category->navbar_status = $request->navbar_status == true ? '1':'0';        
         $category->status = $request->status == true ? '1':'0';
         $category->feature = $request->feature == true ? '1':'0';
         
