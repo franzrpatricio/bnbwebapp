@@ -15,9 +15,7 @@
           <br>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div>
-              <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
-              <a href="{{url('projects')}}" class="btn btn-danger btn-sm mt-auto">Reset</a>
-
+              
               {{-- CATEGORIES --}}
               <div class="container  border-bottom p-3" >
                 <div>
@@ -92,21 +90,31 @@
                     </div>
                   @endforeach
               </div>
+              <div class="text-center p-2">
+                <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
+              <a href="{{url('projects')}}" class="btn btn-danger btn-sm mt-auto">Reset</a>
+
+              </div>
+              
             </div>
           </div>
         </form>
       </div>
     </div>
+
+
+
     
     <div class="col-lg-9 col-md-9 col-sm-12 p-3 ">
-      {{-- show any errors in saving the forms --}} 
-      @if ($errors->any())
-        <div class="alert alert-danger">
-            @foreach ($errors->all() as $error)
-                <div>{{$error}}</div>
-            @endforeach
-        </div>
-      @endif  
+
+           {{-- show any errors in saving the forms --}} 
+            @if ($errors->any())
+               <div class="alert alert-danger">
+                  @foreach ($errors->all() as $error)
+                    <div>{{$error}}</div>
+                  @endforeach
+                </div>
+              @endif  
 
       {{-- display msg after redirecting --}}
       @if (isset($msg))
@@ -117,15 +125,16 @@
         </div>
       @endif
         
-      @foreach ($projects as $project)
+      
         <div class="row ">
+          @foreach ($projects as $project)
           <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
             <div>
               <div class="card" style="height: 300px; width: 200px; ">
                 <div class="img-fluid border-bottom">
                   <div class="card-img">
                   <img src="{{asset('uploads/project/'.$project->image)}}" class="card-img-top" style="height: 200px;width:199px; object-fit: contain;" alt="...">
-              </div>
+                 </div>
                 </div>
                 <div class="card-body">
                   <h6 class="card-title text-center">{{$project->name}}</h6>
@@ -138,8 +147,9 @@
               </div>  
             </div>
           </div>
+          @endforeach
         </div>
-      @endforeach
+      
       {{-- {{ $projects->links() }} --}}
     </div>
   </div>

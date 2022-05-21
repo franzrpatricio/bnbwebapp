@@ -94,31 +94,26 @@ the project
 
   <!-- Specialization -->
   <div class="container">
-    <div data-aos="fade-right" data-aos-duration="3000">
-      <article class="col-md-4 col-lg-3">
-        <div class="card-shadow" syle="width:20rem">
-        <div class="card-content">
-          @foreach ($category as $item)
-            
-              <div class="card-img">
-            <img class="card-img-top" src="{{asset('uploads/category/'.$item->image)}}" style="height:100%; width:100%" alt="meow">
-</div>
-<a href="{{url('specialization/'.$item->id)}}">
-            <h4 class="text-center text-justify" style="color:#0d6efd;">{{$item->name}}</h4>
-            <p style="text-align:justify">Bana & Bana Architectural provides architectural residencial designs and can be built according to the client's own preference of design.</p></a>
-          @endforeach
+      <div class="row">        
+              @foreach ($category as $item)
+              <div class="col-md-4 col-lg-3">
+                <div class="card-shadow" syle="width:20rem">
+                    <div class="card-content">
+                          <div class="card-img">
+                            <img class="card-img-top" src="{{asset('uploads/category/'.$item->image)}}" style="height:100%; width:100%" alt="meow">
+                          </div>
+                            <a href="{{url('specialization/'.$item->id)}}">
+                            <h4 class="text-center text-justify" style="color:#0d6efd;">{{$item->name}}</h4>
+                            <p style="text-align:justify">Bana & Bana Architectural provides architectural residencial designs and can be built according to the client's own preference of design.</p></a>
+                       </div>
+                    </div>
+                </div>
+              @endforeach 
           </div>
-          <!-- .card-content -->
-        </article>
+   
+    </div>
 
-        
-      {{-- @endforeach --}}
-      
-    <!-- .card -->
-    <a href="{{url('categories')}}">>>View other Categories
-  </div>
-</div>
-</div>
+<a href="{{url('categories')}}">>>View other Categories
 
   <script>
   AOS.init();
