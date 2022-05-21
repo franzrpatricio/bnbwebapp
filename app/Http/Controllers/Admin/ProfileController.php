@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use DB;
-use Auth;
-use Hash;
 use Carbon\Carbon;
 use App\Models\Logs;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\UserProfileFormRequest;
 
 class ProfileController extends Controller
@@ -37,8 +37,6 @@ class ProfileController extends Controller
             return view('users.logs', compact('logs'));
         }
     }
-
-
 
     public function showChangePasswordGet() {
         return view('users.profilesettings');
@@ -69,18 +67,18 @@ class ProfileController extends Controller
         $user_id = Auth::user()->id;
         $name = Auth::user()->name;
         $role_as = Auth::user()->role_as;
-                $description = "Changed Password";
-                $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+        $description = "Changed Password";
+        $date_time = Carbon::now();
 
-            $data = [
-                'user_id'       => $user_id,
-                'name'          => $name,
-                'description'   => $description,
-                'date_time'     => $date_time,
-                'role_as'       => $role_as
-            ];
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
                 
-                DB::table('user_activity_logs')->insert($data);
+        DB::table('user_activity_logs')->insert($data);
 
         return redirect()->back()->with("success","Password successfully changed!");
     }
@@ -122,31 +120,27 @@ class ProfileController extends Controller
             $user->image = $filename;
         }
 
-         #save the category
-         $user->update();
+        #save the category
+        $user->update();
          
-                //insert to activity logs
-                $user_id = Auth::user()->id;
-                $name = Auth::user()->name;
-                $role_as = Auth::user()->role_as;
-                $description = "Update Own Profile";
-                $date_time = Carbon::now('Asia/Manila')->format('d-M-Y h:i:s a');
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Update Own Profile";
+        $date_time = Carbon::now();
 
-            $data = [
-                'user_id'       => $user_id,
-                'name'          => $name,
-                'description'   => $description,
-                'date_time'     => $date_time,
-                'role_as'       => $role_as
-            ];
-                
-                DB::table('user_activity_logs')->insert($data);
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+            
+        DB::table('user_activity_logs')->insert($data);
                 
         #redirect with message;see in profilesettings.blade.php
          return redirect('admin/profile')->with('msg','Successfully Updated Profile. Thanks! :D');
     }
-
-
-
-
 }

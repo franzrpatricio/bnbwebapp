@@ -24,17 +24,6 @@ use App\Http\Controllers\Admin\ProjectImagesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-#for client/prospect/visitor
-#BOT WIDGET
-// Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
-// Route::match(['get', 'post'],'botman',function(){
-//     app('botman')->listen();
-// });
-
-// Route::get('/admin', function(){
-//     return view ('index');
-// });
 Route::post('/send-email', [App\Http\Controllers\Client\ClientController::class, 'sendEmail'])->name('send.email');
 Route::post('/send-projectInquiry', [App\Http\Controllers\Client\ClientController::class, 'sendProjInquiry'])->name('send.projectInquiry');
 Route::get('/', [App\Http\Controllers\Client\ClientController::class, 'index']);

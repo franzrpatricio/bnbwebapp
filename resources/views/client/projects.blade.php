@@ -10,19 +10,9 @@
           @csrf
             <input class="form-control" name="query" type="search" placeholder="Search Project here..." aria-label="Search Project" aria-describedby="btnNavbarSearch"/>
             <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
-            {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="fa-solid fa-filter"></span></button> --}}
-
-            {{-- <div class="input-group">
-                <input class="form-control" name="query" type="search" placeholder="Search Project here..." aria-label="Search Project" aria-describedby="btnNavbarSearch"/>
-                <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
-            </div> --}}
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <div>
-                <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
-                <a href="{{url('projects')}}" class="btn btn-danger btn-sm mt-auto">Reset</a>
-  
+              <div>  
                 {{-- CATEGORIES --}}
                 <div class="container  border-bottom p-3" >
                   <div>
@@ -98,12 +88,10 @@
                     @endforeach
                 </div>
               </div>
-              <div class="text-center p-2">
-                <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
-              <a href="{{url('projects')}}" class="btn btn-danger btn-sm mt-auto">Reset</a>
-
-              </div>
-              
+            </div>
+            <div class="text-center p-2">
+              <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
+            <a href="{{url('projects')}}" class="btn btn-danger btn-sm mt-auto">Reset</a>
             </div>
           </form>
         </div>
