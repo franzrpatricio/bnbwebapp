@@ -115,6 +115,8 @@ the project
 
 <a href="{{url('categories')}}">>>View other Categories
 
+  
+<a href="{{url('categories')}}">>>View other Categories
   <script>
   AOS.init();
 </script>
