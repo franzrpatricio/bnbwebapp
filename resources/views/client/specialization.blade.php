@@ -1,5 +1,17 @@
 @extends('layouts.client')
 @section('content')
+
+<div class="header" data-aos="fade-right" data-aos-duration="3000"style=" background-image: url({{asset('assets/client/building2.jpg')}});">
+    <div  class="p-5 text-center bg-image"  style="filter: brightness(60%);">
+      <img src="" alt="">
+    </div>
+      <div class="d-flex justify-content-center align-items-center" >
+        <div class="banner-title text-center">
+          <h1 class="mb-3 text-light">Specialization Title</h1>
+        </div>
+    </div>
+  </div>
+
 <div class="container-fluid bg-light h-100">
   <div class="row min-vh-100">
     <div class="col-lg-9 col-md-9 col-sm-12 p-3 ">
