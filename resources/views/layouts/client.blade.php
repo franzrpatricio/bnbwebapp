@@ -77,9 +77,7 @@
 <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 
 <script>
-
-        function videoslider(links){
-            document.querySelector(".slider").src = links;
-        }
-
-    </script>
+    function videoslider(links){
+        document.querySelector(".slider").src = links;
+    }
+</script>
