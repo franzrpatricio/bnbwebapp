@@ -43,11 +43,13 @@
       </div>
 
       <div class="carousel-inner "style="height:500px; width: 100%; ">
-        @foreach ($images as $item)
+        @forelse ($images as $item)
           <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
             <img src="{{ asset('uploads/project_images/'.$item->image) }}" class="d-block w-100 img-fluid" style="height:500px; width: 100%; " alt="..." >
           </div>
-        @endforeach
+        @empty
+          <h5>No Gallery yet for this Project.</h5>
+        @endforelse
       </div>
 
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -70,34 +72,24 @@
             <p>{{$key}}</p>
          @endforeach
     </div>
-
-
     <div class="col-6">
         <h5>Amenities:   </h5>
          @foreach (json_decode($project->amenities) as $item => $key)
             <p style="text-align: justify;"  >{{$key}}</p>
           @endforeach
     </div>
-
     <div class="col-6">
         <h5>Cost:</h5>
          <p style="text-align: justify;" >{{$project->cost}}</p>
     </div>
-
-
     <div class="col-6">
-      
       <h5>Stories:</h5> 
         <p style="text-align: justify;" >{{$project->stories}}</p>
-    
     </div>
-
-
     <div class="col-6">
      <h5>Rooms:</h5> 
     <p style="text-align: justify;">{{$project->rooms}}</p>
     </div>
-
     <div class="col-12">
       {{-- FOR SUMMERNOTE DATA USE -> {!! MESSAGE !!} --}}
     <h5>Description:</h5> 
@@ -206,7 +198,7 @@
         {{-- Returning false stops the page from reloading --}}
         @csrf
         <input type="hidden" name="project_slug" value="{{$project->slug}}">
-        {{-- <input type="hidden" name="project_id" value="{{$project->id}}"> --}}
+        <input type="hidden" name="project_id" value="{{$project->id}}">
         <div class="p-3"> 
           {{-- <input type="text" name="name" placeholder="Full Name" id="email" style="width: 100%;"> --}}
           <label for="">Name</label>
@@ -249,8 +241,8 @@
 
     <div class="col-lg-6 p-3">
       <div>Comment Review</div>
-      @if (session('msgc'))
-        <h6 class="alert alert-warning mb-3">{{session('msgc')}}</h6>
+      @if (session('msgcom'))
+        <h6 class="alert alert-warning mb-3">{{session('msgcom')}}</h6>
       @endif
 
       @forelse ($project->comments->sortByDesc('created_at') as $comment)

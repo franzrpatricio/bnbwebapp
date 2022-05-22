@@ -18,7 +18,7 @@ class CommentController extends Controller
     }
     public function store(Request $request){
         $project = Projects::where('slug',$request->project_slug)
-            // ->where('id',$request->project_id)
+            ->where('id',$request->project_id)
             ->where('status','1')
             ->first();
 
@@ -39,7 +39,7 @@ class CommentController extends Controller
                 'email' => $request->email,
                 'comment' => $request->comment
             ]);
-            return redirect()->back()->with('msgc','Your Comment is posted!');
+            return redirect()->back()->with('msgcom','Your Comment is posted!');
         } else {
             # code...
             return redirect()->back()->with('msgc','No Projects Found.');
