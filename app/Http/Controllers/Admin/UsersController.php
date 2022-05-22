@@ -73,7 +73,7 @@ class UsersController extends Controller
                 'created_at'     => $date_time,
                 'role_as'       => $role_as
             ];
-                
+                    
                 DB::table('user_activity_logs')->insert($data);
 
         #redirect with message;see in index.blade.php
