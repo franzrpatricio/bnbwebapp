@@ -8,7 +8,17 @@ To open carousel on correct image, this is added to each image element: {data-ta
 Replace '0' with corresponding slide number. -->
 
 <div class="container-fluid px-4">
-  <h1 class="mt-5">Manage Gallery</h1>
+  <div class="row mt-5">
+    <div class="col-6">
+      <h1>Manage Gallery</h1>
+    </div>
+    
+      <div class="col-6 d-flex justify-content-end">
+         <a href="{{url('admin/projects')}}" class="btn btn-secondary mt-auto">Back</a>
+      </div>
+
+  </div>
+  
 
   <div class="card">
     {{-- show any errors in saving the forms --}} 
@@ -25,11 +35,11 @@ Replace '0' with corresponding slide number. -->
       <div class="alert alert-success">{{ session('msg') }}</div>
     @endif    
   </div>
+
+
   <div class="card-body">
 
-    <div class="float-end">
-      <a href="{{url('admin/projects')}}" class="btn btn-secondary mt-auto">Back</a>
-    </div>
+   
 
     @foreach ($images as $item)
       <div class="row" id="gallery" data-toggle="modal" data-target="#exampleModal">
