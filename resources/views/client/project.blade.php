@@ -150,9 +150,12 @@
 
 {{-- MODAL PROJECT INQUIRY FORM START --}}
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Inquire about this Project
+<div class="text-center p-3">
+  <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Inquire about this Project
 </button>
+</div>
+
 @if (session('msgpi'))
     <h6 class="alert alert-warning mb-3">{{session('msgpi')}}</h6>
 @endif  
