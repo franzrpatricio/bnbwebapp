@@ -8,6 +8,8 @@ To open carousel on correct image, this is added to each image element: {data-ta
 Replace '0' with corresponding slide number. -->
 
 <div class="container-fluid px-4">
+  <h1 class="mt-5">Manage Gallery</h1>
+
   <div class="card">
     {{-- show any errors in saving the forms --}} 
     @if ($errors->any())
