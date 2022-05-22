@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\ProjectImagesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+#CLIENT-SIDE PAGES
 Route::post('/send-email', [App\Http\Controllers\Client\ClientController::class, 'sendEmail'])->name('send.email');
 Route::post('/send-projectInquiry', [App\Http\Controllers\Client\ClientController::class, 'sendProjInquiry'])->name('send.projectInquiry');
 Route::get('/', [App\Http\Controllers\Client\ClientController::class, 'index']);
@@ -36,40 +37,25 @@ Route::get('project/{project_id}/{project_slug}', [App\Http\Controllers\Client\C
 Route::post('comments', [App\Http\Controllers\Client\CommentController::class, 'store']);
 Route::get('/contact', [App\Http\Controllers\Client\ClientController::class, 'contact']);
 Route::post('subscribe', [App\Http\Controllers\Client\ClientController::class, 'subscribe'])->name('subscribe.subscribe');
-
 #when request hits server, pull out botman instance; listen to any incoming commands
 Route::post('/botman',function(){
     app('botman')->listen();
 });
 
-// Route::get('/home',[App\Http\Controllers\Auth\LoginController::class, 'store']);
-Auth::routes(['verify' => true]);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-#INQUIRY CREATE
-// Route::get('add-inquiry', [App\Http\Controllers\InquiryController::class, 'create']);   
-// Route::post('add-inquiry', [App\Http\Controllers\InquiryController::class, 'store']);
-// #REVIEWS CRUD
-// #READ ALL
-// Route::get('reviews', [App\Http\Controllers\ReviewsController::class, 'index']);
-// #CREATE FORM AND SUBMIT
-// Route::get('add-review', [App\Http\Controllers\ReviewsController::class, 'create']);
-// Route::post('add-review', [App\Http\Controllers\ReviewsController::class, 'store']);
-// #UPDATE ICON
-// Route::get('edit-review/{review_id}', [App\Http\Controllers\ReviewsController::class, 'edit']);
-// Route::put('update-review/{review_id}',[App\Http\Controllers\ReviewsController::class, 'update']);
-// #DELETE ICON
-// Route::get('delete-review/{review_id}',[App\Http\Controllers\ReviewsController::class, 'destroy']);
-
+#ADMINISTRATOR & STAFF PAGES
 #USERS GATEWAY
-Auth::routes();
+// Auth::routes();
+Auth::routes([
+    'register' => false,
+    'verify' => true
+]);
 Route::get('/gateway', function () {
     return view('auth/login');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 #middleware auth checks user authentication to prevent user to access admin panel w/o logging in
-#admin pages
-Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
+Route::prefix('admin')->middleware(['auth','isAdmin','verified'])->group(function(){
     #PUT ALL YOUR ADMIN CONTROLLERS HERE
     #ADMIN DASHBOARD VIEW
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
