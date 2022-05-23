@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid px-4">
-    <h1 class="mt-5">Manage Comments</h1>
+    <h1 class="mt-3">Manage Comments</h1>
 
     <div class="card mt-4">
         <div class="card-header">
@@ -11,7 +11,6 @@
                 <div class="sb-nav-link-icon">
                     <i class="fas fa-list"></i>List of Comments
               
-
                     <!-- Navbar Search-->
                     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('admin/comments/find')}}">
                         @csrf
@@ -24,7 +23,6 @@
             </h4>
         </div>
        
-
         <div class="card-body">
             {{-- display msg after redirecting --}}
             @if (session('msg'))
@@ -45,7 +43,7 @@
                 </thead>
 
                 <tbody>
-                    @foreach ($comments as $item)
+                    @forelse ($comments as $item)
                         <tr class="text-center">
                             <td>{{$item->id}}</td>
                             <td>{{$item->project->name}}</td>
@@ -63,7 +61,9 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr class="text-center"><td colspan="7"><h5>No Comments</h5></td></tr>
+                    @endforelse
                 </tbody>
             </table>
             {{ $comments->links() }}

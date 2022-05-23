@@ -3,8 +3,7 @@
 @section('content')
 
 <div class="container-fluid px-4">
-<h1 class="mt-5">Manage Users</h1>
-
+    <h1 class="mt-3">Manage Users</h1>
     <div class="card">
         <div class="card mt-4"></div>
         <div class="card-header">
@@ -52,39 +51,35 @@
                 </thead>
 
                 <tbody>
-                    {{-- @if (count($users)>0) --}}
-                        @foreach ($users as $item)    
-                            <tr class="text-center">
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->email}}</td>
-                                <td>{{$item->role_as == '1' ? 'Administrator':'Staff'}}</td>
+                    @forelse ($users as $item)    
+                        <tr class="text-center">
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->email}}</td>
+                            <td>{{$item->role_as == '1' ? 'Administrator':'Staff'}}</td>
 
-                                {{-- if status is true, show if not visible || visible --}}
-                                {{-- to make the user visible just check the box for status --}}
-                                {{-- if status = 1->active; else->inactive --}}
-                                <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td> 
-                                <td>
-                                    @if(request()->has('trashed'))
-                                        <a href="{{ route('users.restore', $item->id) }}" class="btn btn-success">Restore</a>
-                                    @else
-                                        <a href="{{ url('admin/edit-user/'.$item->id) }}"><i class="fas fa-pen"></i></a>
-                                        <form method="POST" action="{{ route('users.destroy', $item->id) }}">
-                                            @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <button type="submit" class="btn delete" title='Delete'>
-                                                <i class="fa-solid fa-trash" style="color:red;"></i>
-                                            </button>
-                                        </form>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    {{-- @else
-                        <tr>
-                            <td colspan="4" class="text-center">No Users Found. 🥺</td>
+                            {{-- if status is true, show if not visible || visible --}}
+                            {{-- to make the user visible just check the box for status --}}
+                            {{-- if status = 1->active; else->inactive --}}
+                            <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td> 
+                            <td>
+                                @if(request()->has('trashed'))
+                                    <a href="{{ route('users.restore', $item->id) }}" class="btn btn-success">Restore</a>
+                                @else
+                                    <a href="{{ url('admin/edit-user/'.$item->id) }}"><i class="fas fa-pen"></i></a>
+                                    <form method="POST" action="{{ route('users.destroy', $item->id) }}">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn delete" title='Delete'>
+                                            <i class="fa-solid fa-trash" style="color:red;"></i>
+                                        </button>
+                                    </form>
+                                @endif
+                            </td>
                         </tr>
-                    @endif --}}
+                    @empty
+                        <tr class="text-center"><td colspan="6"><h5>No Users</h5></td></tr>
+                    @endforelse
                 </tbody>
             </table>
             {{ $users->links() }}

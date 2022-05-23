@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid px-4">
-    <h1 class="mt-5">Manage House Plan</h1>
+    <h1 class="mt-3">Manage House Plan</h1>
 
     <div class="card mt-4">
         <div class="card-header">
@@ -42,12 +42,6 @@
 
             <table class="table table-bordered">
                 <thead>
-                    <div class="text-center">
-                        <small>
-                            <strong>IMPORTANT: PLEASE READ!</strong> <br>
-                            <strong>Rates</strong> are rules of thumb ONLY and serves as the minimun basis for your building. <strong>ESTIMATES</strong> may vary to your chosen design
-                        </small>
-                    </div>
                     <tr class="text-center">
                         <th>ID</th>
                         <th>House Plan</th>
@@ -58,49 +52,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @if (count($houseplan)>0) --}}
-                        @foreach ($houseplan as $item)
-                            <tr class="text-center">
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->type}}</td>
-                                <td>{{$item->cost}}</td>
+                    @forelse ($houseplan as $item)
+                        <tr class="text-center">
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->type}}</td>
+                            <td>{{$item->cost}}</td>
+                            <td>{{$item->floor}}</td>
+                            <td>{{$item->wall}}</td>
+                            <td>{{$item->window}}</td>
+                            <td>{{$item->ceiling}}</td>
 
-                                {{-- <td>Floor</td>
-                                <td>Wall</td>
-                                <td>Window</td>
-                                <td>Ceiling</td> --}}
-                                <td>{{$item->floor}}</td>
-                                <td>{{$item->wall}}</td>
-                                <td>{{$item->window}}</td>
-                                <td>{{$item->ceiling}}</td>
-
-                                {{-- if status is true, show if not visible || visible --}}
-                                {{-- to make the category visible just check the box for status --}}
-                                <td>{{$item->status == '1' ? 'Visible':'Not Visible'}}</td>
-                                <td>
-                                    @if(request()->has('trashed'))
-                                        <a href="{{ route('houseplan.restore', $item->id) }}" class="btn btn-success btn-sm">Restore</a>
-                                    @else
-                                        {{-- pass the ID of specific faq --}}
-                                        <a href="{{ url('admin/edit-houseplan/'.$item->id) }}">
-                                            <i class="fa-solid fa-pen" style="color:#019ad2;"></i>
-                                        </a>
-                                        <form method="POST" action="{{ route('houseplan.destroy', $item->id) }}">
-                                            @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <button type="submit" class="btn delete" title='Delete'>
-                                                <i class="fa-solid fa-trash" style="color:red;"></i>
-                                            </button>
-                                        </form>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    {{-- @else
-                        <tr>
-                            <td colspan="4" class="text-center">No House Plan Found. 🥺</td>
+                            {{-- if status is true, show if not visible || visible --}}
+                            {{-- to make the category visible just check the box for status --}}
+                            <td>{{$item->status == '1' ? 'Visible':'Not Visible'}}</td>
+                            <td>
+                                @if(request()->has('trashed'))
+                                    <a href="{{ route('houseplan.restore', $item->id) }}" class="btn btn-success btn-sm">Restore</a>
+                                @else
+                                    {{-- pass the ID of specific faq --}}
+                                    <a href="{{ url('admin/edit-houseplan/'.$item->id) }}">
+                                        <i class="fa-solid fa-pen" style="color:#019ad2;"></i>
+                                    </a>
+                                    <form method="POST" action="{{ route('houseplan.destroy', $item->id) }}">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn delete" title='Delete'>
+                                            <i class="fa-solid fa-trash" style="color:red;"></i>
+                                        </button>
+                                    </form>
+                                @endif
+                            </td>
                         </tr>
-                    @endif --}}
+                    @empty
+                    <tr class="text-center"><td colspan="10"><h5>No Houseplans</h5></td></tr>
+                    @endforelse
                 </tbody>
             </table>
             {{ $houseplan->links() }}

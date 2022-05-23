@@ -95,7 +95,7 @@ the project
   <!-- Specialization -->
   <div class="container">
     <div class="row">        
-      @foreach ($category as $item)
+      @forelse ($category as $item)
         <div class="col-md-4 col-lg-3">
           <div class="card-shadow" syle="width:20rem">
             <div class="card-content">
@@ -104,11 +104,14 @@ the project
               </div>
               <a href="{{url('specialization/'.$item->id.'/'.$item->slug)}}">
                 <h4 class="text-center text-justify" style="color:#0d6efd;">{{$item->name}}</h4>
-                  <p style="text-align:justify">Bana & Bana Architectural provides architectural residencial designs and can be built according to the client's own preference of design.</p></a>
+                  <p style="text-align:justify">{!!$item->description!!}</p>
+              </a>
             </div>
           </div>
         </div>
-      @endforeach 
+      @empty
+          <h3 class="text-center">No Featured Categories</h3>
+      @endforelse
     </div>
   </div>
 
@@ -116,7 +119,6 @@ the project
     <a href="{{url('categories')}}">
     View other Categories</a>
   </div>
-
 <script>
   AOS.init();
 </script>

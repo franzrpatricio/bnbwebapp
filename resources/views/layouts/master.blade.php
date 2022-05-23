@@ -78,16 +78,12 @@
 
     {{-- CAROUSEL SCRIPT ON BOTTOM OF MASTER --}}
     <script>
-        document.getElementById('gallery').classList.add("custom");
+        // document.getElementById('gallery').classList.add("custom");
+        document.getElementById('gallery');
         document.getElementById('exampleModal').classList.add("custom");
     </script>
 
-    {{-- CHOSEN.JS MULTIPLE SELECT SCRIPT --}}
-    {{-- <script type="text/javascript">
-        $(document).ready(function(){
-            $('#cars').chosen();
-        });
-    </script> --}}
+    {{-- MULTIPLE CHECKBOX --}}
     <script>
         $(function () {
             $('#designs').on('optionselected', function(e) {

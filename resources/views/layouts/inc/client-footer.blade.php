@@ -14,11 +14,11 @@
           <div class=" col-lg-2 col-md-6 col-sm-6 p-5 ">
             <h5>Links</h5>
             <ul class="list-unstyled">
-              <li class="mb-2"><a href="/" class="link-light text-decoration-none">Home</a></li>
-              <li class="mb-2"><a href="#" class="link-light text-decoration-none">Portfolio</a></li>
-              <li class="mb-2"><a href="#" class="link-light text-decoration-none">Profile</a></li>
-              <li class="mb-2"><a href="#" class="link-light text-decoration-none">Projects</a></li>
-              <li class="mb-2"><a href="#" class="link-light text-decoration-none">Contact US</a></li>
+              <li class="mb-2"><a href="{{ url('/') }}" class="link-light text-decoration-none">Home</a></li>
+              <li class="mb-2"><a href="{{ url('/portfolio') }}" class="link-light text-decoration-none">Portfolio</a></li>
+              <li class="mb-2"><a href="{{ url('/profile') }}" class="link-light text-decoration-none">Profile</a></li>
+              <li class="mb-2"><a href="{{ url('/projects') }}" class="link-light text-decoration-none">Projects</a></li>
+              <li class="mb-2"><a href="{{ url('/contact') }}" class="link-light text-decoration-none">Contact US</a></li>
             </ul>
           </div>
           <div class="col-lg-2  col-md-6 col-sm-6 p-5 ">
@@ -35,7 +35,7 @@
             <h5>Social Media</h5>
             <div class="row">
                 <ul class="list-unstyled">
-                  <a href="#"><i class="fa fa-facebook fa-1x fa-color text-white p-2"></i></a>
+                  <a href="https://www.facebook.com/BANA-BANA-Architects-405780513132811/"><i class="fa fa-facebook fa-1x fa-color text-white p-2"></i></a>
                   <a href="#"><i class="fa fa-instagram fa-1x fa-color text-white p-2"></i></a>
                   <a href="#"><i class="fa fa-linkedin fa-1x fa-color text-white p-2"></i></a>      
             </ul>

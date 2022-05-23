@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('image')->default('def.png');
+            $table->string('image')->default('avatar.png');
             $table->tinyInteger('status')->default('1');
             #set role_as column to 0/staff as default value whenever a new user is created
             // $table->integer('role_as')->default('0'); #admin = 0

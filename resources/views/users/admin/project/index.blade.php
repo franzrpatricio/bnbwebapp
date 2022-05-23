@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid px-4">
-<h1 class="mt-5">Manage Projects</h1>
+<h1 class="mt-3">Manage Projects</h1>
     <div class="card">
         <div class="card-header">
             <h4>
@@ -58,7 +58,7 @@
                 </thead>
 
                 <tbody>
-                    @foreach ($projects as $item)    
+                    @forelse ($projects as $item)    
                         <tr class="text-center">
                             <td>{{$item->id}}</td>
                             <td>{{$item->name}}</td>
@@ -102,7 +102,9 @@
                                 @endif
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr class="text-center"><td colspan="7"><h5>No Projects</h5></td></tr>
+                    @endforelse
                 </tbody>
             </table>
             {{ $projects->links() }}

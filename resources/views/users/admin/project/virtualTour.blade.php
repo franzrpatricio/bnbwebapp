@@ -7,6 +7,10 @@ To open lightbox, this is added to the gallery element: {data-toggle="modal" dat
 To open carousel on correct image, this is added to each image element: {data-target="#carouselExample" data-slide-to="0"}.
 Replace '0' with corresponding slide number. -->
 
+<div class="float-end">
+  <a href="{{url('admin/projects')}}" class="btn btn-secondary mt-auto">Back</a>
+</div>
+
 <div class="container-fluid px-4">
   <div class="card">
     {{-- show any errors in saving the forms --}} 
@@ -23,13 +27,11 @@ Replace '0' with corresponding slide number. -->
       <div class="alert alert-success">{{ session('msg') }}</div>
     @endif    
   </div>
-  <div class="card-body">
-    <div class="float-end">
-      <a href="{{url('admin/projects')}}" class="btn btn-secondary mt-auto">Back</a>
-    </div>
 
+  <div class="card-body">
     @foreach ($videos as $item)
         <iframe src="{{ asset('uploads/virtual_tour/'.$item->video) }}" 
+          width="100%" height="200px"
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowfullscreen></iframe>

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid px-4">
-    <h1 class="mt-5">Manage Inquiry</h1>
+    <h1 class="mt-3">Manage Inquiry</h1>
     <div class="card mt-4">
         <div class="card-header">
             <h4>
@@ -58,41 +58,37 @@
                 </thead>
 
                 <tbody>
-                    {{-- @if (count($inquiries)>0) --}}
-                        @foreach ($inquiries as $item)
-                            <tr class="text-center">
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->proj_id}}</td>
-                                <td>{{$item->proj_name}}</td>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->email}}</td>
-                                <td>{{$item->phone}}</td>
-                                <td>{{$item->address}}</td>
-                                <td>{{$item->message}}</td>
-                                <td>{{$item->created_at->format('m/d/Y')}}</td>
-                                <td>
-                                    {{-- pass the ID of specific category --}}
-                                    {{-- <a href="{{ url('admin/edit-houseplan/'.$item->id) }}" class="btn btn-success">Edit</a> --}}
+                    @forelse ($inquiries as $item)
+                        <tr class="text-center">
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->proj_id}}</td>
+                            <td>{{$item->proj_name}}</td>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->email}}</td>
+                            <td>{{$item->phone}}</td>
+                            <td>{{$item->address}}</td>
+                            <td>{{$item->message}}</td>
+                            <td>{{$item->created_at->format('m/d/Y')}}</td>
+                            <td>
+                                {{-- pass the ID of specific category --}}
+                                {{-- <a href="{{ url('admin/edit-houseplan/'.$item->id) }}" class="btn btn-success">Edit</a> --}}
 
-                                    @if(request()->has('trashed'))
-                                        <a href="{{ route('inquiries.restore', $item->id) }}" class="btn btn-success">Restore</a>
-                                    @else
-                                        <form method="POST" action="{{ route('inquiries.destroy', $item->id) }}">
-                                            @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <button type="submit" class="btn delete" title='Delete'>
-                                                <i class="fa-solid fa-trash" style="color:red;"></i>
-                                            </button>
-                                        </form>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    {{-- @else
-                        <tr>
-                            <td colspan="4" class="text-center">No Inquiries Found.</td>
-                        </tr>                        
-                    @endif --}}
+                                @if(request()->has('trashed'))
+                                    <a href="{{ route('inquiries.restore', $item->id) }}" class="btn btn-success">Restore</a>
+                                @else
+                                    <form method="POST" action="{{ route('inquiries.destroy', $item->id) }}">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn delete" title='Delete'>
+                                            <i class="fa-solid fa-trash" style="color:red;"></i>
+                                        </button>
+                                    </form>
+                                @endif
+                            </td>
+                        </tr>
+                    @empty
+                        <tr class="text-center"><td colspan="10"><h5>No Inquiries</h5></td></tr>
+                    @endforelse
                 </tbody>
             </table>
             {{ $inquiries->links() }}

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid px-4">
-    <h1 class="mt-5">Manage FAQs</h1>
+    <h1 class="mt-3">Manage FAQs</h1>
 
     <div class="card mt-4">
         <div class="card-header">
@@ -51,45 +51,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @if (count($faqs)>0) --}}
-                        @foreach ($faqs as $item)
-                            <tr class="text-center">
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->question}}</td>
-                                <td>{{$item->answewr}}</td>
-
-                                <td>
+                    @forelse ($faqs as $item)
+                        <tr class="text-center">
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->question}}</td>
+                            <td>{{$item->answewr}}</td>
+                            <td>
+                                {{-- pass the ID of specific faq --}}
+                                @if(request()->has('trashed'))
+                                    <a href="{{ route('faqs.restore', $item->id) }}" class="btn btn-success">Restore</a>
+                                @else
                                     {{-- pass the ID of specific faq --}}
-                                    {{-- <a href="{{ url('admin/edit-faq/'.$item->id) }}">
+                                    <a href="{{ url('admin/edit-faq/'.$item->id) }}">
                                         <i class="fa-solid fa-pen" style="color:#019ad2;"></i>
                                     </a>
-                                    <a href="{{ url('admin/delete-faq/'.$item->id) }}">
-                                        <i class="fa-solid fa-trash" style="color:red;"></i>
-                                    </a> --}}
-
-                                    @if(request()->has('trashed'))
-                                        <a href="{{ route('faqs.restore', $item->id) }}" class="btn btn-success">Restore</a>
-                                    @else
-                                        {{-- pass the ID of specific faq --}}
-                                        <a href="{{ url('admin/edit-faq/'.$item->id) }}">
-                                            <i class="fa-solid fa-pen" style="color:#019ad2;"></i>
-                                        </a>
-                                        <form method="POST" action="{{ route('faqs.destroy', $item->id) }}">
-                                            @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <button type="submit" class="btn delete" title='Delete'>
-                                                <i class="fa-solid fa-trash" style="color:red;"></i>
-                                            </button>
-                                        </form>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    {{-- @else
-                        <tr>
-                            <td colspan="4" class="text-center">No FAQs Found.</td>
-                        </tr>                        
-                    @endif --}}
+                                    <form method="POST" action="{{ route('faqs.destroy', $item->id) }}">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn delete" title='Delete'>
+                                            <i class="fa-solid fa-trash" style="color:red;"></i>
+                                        </button>
+                                    </form>
+                                @endif
+                            </td>
+                        </tr>
+                    @empty
+                        <tr class="text-center"><td colspan="4"><h5>No FAQs</h5></td></tr>
+                    @endforelse
                 </tbody>
             </table>
             {{ $faqs->links() }}

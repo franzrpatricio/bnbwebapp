@@ -106,7 +106,7 @@
                         <textarea name="description" id="summernoteDesc" rows="5" class="form-control">{{$project->description}}</textarea>
                     </div>
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label><strong>Architectural Designs :</strong></label><br>
                         <span>Please select designs again:</span>
                         <select name="designs[]" id="desgins" multiple class="filter-multi-select">
@@ -114,16 +114,38 @@
                                 <option value="{{ $item->design }}">{{$item->design}}</option>
                             @endforeach
                         </select>    
+                    </div> --}}
+
+                    <div class="mb-3">
+                        <label><strong>Architectural Designs :</strong></label><br>
+                        <select name="designs[]" id="desgins" multiple class="filter-multi-select">
+                            @foreach ($architectural as $itemz)
+                                <option 
+                                    @foreach (json_decode($project->designs) as $item => $key)
+                                        {{ $itemz->design == $key ? 'selected' : '' }} 
+                                    @endforeach
+                                    value="{{ $itemz->design }}"
+                                >
+                                    {{$itemz->design}}
+                                </option>
+                            @endforeach                            
+                        </select>  
                     </div>
 
                     <div class="mb-3">
                         <label><strong>Amenities :</strong></label><br>
-                        <span>Please select amenities again:</span>
                         <select name="amenities[]" id="amenities" multiple class="filter-multi-select">
-                            @foreach ($amenities as $item)
-                                <option value="{{ $item->service }}">{{$item->service}}</option>
-                            @endforeach
-                        </select>    
+                            @foreach ($amenities as $itema)
+                                <option 
+                                    @foreach (json_decode($project->amenities) as $item => $key)
+                                        {{ $itema->service == $key ? 'selected' : '' }} 
+                                    @endforeach
+                                    value="{{ $itema->service }}"
+                                >
+                                    {{$itema->service}}
+                                </option>
+                            @endforeach                            
+                        </select>  
                     </div>
 
                     <h6>SEO Tags</h6>

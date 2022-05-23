@@ -21,11 +21,43 @@ class AmenitiesSeeder extends Seeder
         ]);
         Amenities::create([
             'id' => '2',
-            'service' => 'Game Room',
+            'service' => 'Play Area',
         ]);
         Amenities::create([
             'id' => '3',
             'service' => 'Home Theater',
+        ]);
+        Amenities::create([
+            'id' => '4',
+            'service' => 'Kitchen',
+        ]);
+        Amenities::create([
+            'id' => '5',
+            'service' => 'Laundry Area',
+        ]);
+        Amenities::create([
+            'id' => '6',
+            'service' => 'Garage',
+        ]);
+        Amenities::create([
+            'id' => '7',
+            'service' => 'Balcony',
+        ]);
+        Amenities::create([
+            'id' => '8',
+            'service' => 'Fireplace',
+        ]);
+        Amenities::create([
+            'id' => '9',
+            'service' => 'Yard',
+        ]);
+        Amenities::create([
+            'id' => '10',
+            'service' => 'Mini-Gym',
+        ]);
+        Amenities::create([
+            'id' => '11',
+            'service' => 'Audio Visual Room',
         ]);
     }
 }

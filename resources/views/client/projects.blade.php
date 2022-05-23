@@ -97,7 +97,7 @@
         </div>
       </div>
     
-      <div  class="col-lg-9 col-md-9 col-sm-12 p-3 ">
+      <div class="col-lg-9 col-md-9 col-sm-12 p-3 ">
         {{-- show any errors in saving the forms --}} 
         @if ($errors->any())
           <div class="alert alert-danger">
@@ -118,17 +118,18 @@
         
       
         <div class="row ">
-          @foreach ($projects as $project)
+          @forelse ($projects as $project)
           <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
             <div>
               <div class="card" style="height: 300px; width: 200px; ">
                 <div class="img-fluid border-bottom">
                   <div class="card-img">
-                  <img src="{{asset('uploads/project/'.$project->image)}}" class="card-img-top" style="height: 200px;width:199px; object-fit: contain;" alt="...">
+                    <img src="{{asset('uploads/project/'.$project->image)}}" class="card-img-top" style="height: 200px;width:199px; object-fit: contain;" alt="...">
                  </div>
                 </div>
                 <div class="card-body">
                   <h6 class="card-title text-center">{{$project->name}}</h6>
+                  <h6 class="card-title text-center">{{$project->cost}}</h6>
                   <div class="text-center">
                     <a href="{{ url('project/'.$project->id.'/'.$project->slug) }}">
                       <button class="btn btn-primary text ">View</button>
@@ -138,7 +139,9 @@
               </div>  
             </div>               
           </div>
-          @endforeach
+          @empty
+            <h3>No Projects Found</h3>
+          @endforelse
         </div>
       </div>
     </div>

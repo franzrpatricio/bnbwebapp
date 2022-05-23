@@ -32,14 +32,11 @@ class ClientController extends Controller
     public function categories(){
         #check muna kung featured or not
         #check if there are categories with active sataus, then get it, if none, disp something
-        $categories = Category::where('status','1')->orWhere('feature','0')->get();
-        if (Category::where('status','1')->orWhere('feature','0')->exists()) {
+        $categories = Category::where('status','1')->get();
+        if ($categories) {
             # code...
             return view('client.categories', compact('categories'));
-        } else {
-            # code...
-            return view ('client.categories',['msg'=> 'No Active Categories.🥺'],compact('categories'));
-        }
+        } 
     }
 
     #projects from specialization

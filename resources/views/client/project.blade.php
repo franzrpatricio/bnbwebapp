@@ -68,13 +68,13 @@
 <div class="row">
     <div class="col-6">
         <h5>Architectural Designs: </h5>  
-        @foreach (json_decode($project->designs) as $item => $key)
+          @foreach (json_decode($project->designs) as $item => $key)
             <p>{{$key}}</p>
-         @endforeach
+          @endforeach
     </div>
     <div class="col-6">
         <h5>Amenities:   </h5>
-         @foreach (json_decode($project->amenities) as $item => $key)
+          @foreach (json_decode($project->amenities) as $item => $key)
             <p style="text-align: justify;"  >{{$key}}</p>
           @endforeach
     </div>
@@ -250,7 +250,7 @@
           <div class="card" style="width: 500px; height: 150px;">
             <div class="row" >
               <div class="col-3">
-                <img src="{{asset('assets/avatar/shanks.jpg')}}" class="img-fluid" style="height: 100px; width: 100px; border-radius: 200px;">
+                <img src="{{asset('assets/images/avatar.png')}}" class="img-fluid" style="height: 100px; width: 100px; border-radius: 200px;">
               </div>
               
               <div class="col-9" >
