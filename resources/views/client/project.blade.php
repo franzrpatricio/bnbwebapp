@@ -75,13 +75,19 @@
     <div class="col-6">
         <h5>Amenities:   </h5>
           @foreach (json_decode($project->amenities) as $item => $key)
-            <p style="text-align: justify;"  >{{$key}}</p>
+            <p style="text-align: justify;">{{$key}}</p>
           @endforeach
     </div>
     <div class="col-6">
-        <h5>Cost:</h5>
-         <p style="text-align: justify;" >{{$project->cost}}</p>
+        <h5>House Plan:</h5>
+          {{-- @foreach ($project as $item) --}}
+            <p style="text-align: justify;" >{{ $project->houseplan->type }}</p>
+          {{-- @endforeach --}}
     </div>
+    <div class="col-6">
+      <h5>Cost:</h5>
+       <p style="text-align: justify;" >{{$project->cost}}</p>
+  </div>
     <div class="col-6">
       <h5>Stories:</h5> 
         <p style="text-align: justify;" >{{$project->stories}}</p>

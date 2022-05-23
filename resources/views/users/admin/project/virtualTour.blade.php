@@ -38,7 +38,7 @@ Replace '0' with corresponding slide number. -->
         <form method="post" action="{{ route('virtualTour.update', $item->id) }}" enctype="multipart/form-data">
           @csrf
           <div class="mb-3">
-            <input type="file" name="vtour" class="form-control">
+            <input type="file" name="vtour" class="form-control" required>
           </div>
       
           <div class="mb-3">

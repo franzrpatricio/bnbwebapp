@@ -283,7 +283,6 @@ class ProjectsController extends Controller
                  );
             }
         }
-
         return redirect('admin/projects')->with('msg','Successfully Updated Project');
     }
 
@@ -294,6 +293,22 @@ class ProjectsController extends Controller
             # code...
             #then delete all data based from id
             $project->delete();
+
+            //insert to activity logs
+            $user_id = Auth::user()->id;
+            $name = Auth::user()->name;
+            $role_as = Auth::user()->role_as;
+            $description = "Successfully Deleted Project";
+            $date_time = Carbon::now();
+
+            $data = [
+                'user_id'       => $user_id,
+                'name'          => $name,
+                'description'   => $description,
+                'created_at'     => $date_time,
+                'role_as'       => $role_as
+            ];
+            DB::table('user_activity_logs')->insert($data);
             return redirect('admin/projects')->with('msg','Successfully Deleted Project');
         }else {
             return redirect('admin/projects')->with('msg','No Project ID found');
@@ -303,12 +318,44 @@ class ProjectsController extends Controller
     #RESTORE SINGLE
     public function restore($project_id){
         Projects::withTrashed()->find($project_id)->restore();
+
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Post Successfully Restored";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);
         return redirect('admin/projects')->with('msg','Post Successfully Restored');
     }
  
     #RESTORE ALL
     public function restore_all(){
         Projects::onlyTrashed()->restore();
+
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Restored Projects";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);
         return redirect('admin/projects')->with('msg','Successfully Restored Projects');
     }
 

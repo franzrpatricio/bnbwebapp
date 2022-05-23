@@ -39,23 +39,21 @@ class FaqsController extends Controller
         $faq->posted_by = Auth::user()->id;
         $faq->save();
 
-         //insert to activity logs
-         $user_id = Auth::user()->id;
-         $name = Auth::user()->name;
-         $role_as = Auth::user()->role_as;
-         $description = "Added a FAQ";
-         $date_time = Carbon::now();
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Added a FAQ";
+        $date_time = Carbon::now();
 
-     $data = [
-         'user_id'       => $user_id,
-         'name'          => $name,
-         'description'   => $description,
-         'created_at'     => $date_time,
-         'role_as'       => $role_as
-     ];
-         
-         DB::table('user_activity_logs')->insert($data);
-
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);
         return redirect('admin/faqs')->with('msg','Successfully Created FAQ');
     }
     #VIEW specific project
@@ -98,6 +96,22 @@ class FaqsController extends Controller
             # code...
             #then delete all data based from id
             $faq->delete();
+
+            //insert to activity logs
+            $user_id = Auth::user()->id;
+            $name = Auth::user()->name;
+            $role_as = Auth::user()->role_as;
+            $description = "Successfully Deleted FAQ";
+            $date_time = Carbon::now();
+
+            $data = [
+                'user_id'       => $user_id,
+                'name'          => $name,
+                'description'   => $description,
+                'created_at'     => $date_time,
+                'role_as'       => $role_as
+            ];
+            DB::table('user_activity_logs')->insert($data);
             return redirect('admin/faqs')->with('msg','Successfully Deleted FAQ');
         }else {
             return redirect('admin/faqs')->with('msg','No FAQ ID found');
@@ -112,7 +126,23 @@ class FaqsController extends Controller
     public function restore($faq_id)
     {
         Faq::withTrashed()->find($faq_id)->restore();
-        return redirect('admin/faqs')->with('msg', 'success');
+
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Restored FAQ";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);
+        return redirect('admin/faqs')->with('msg', 'Successfully Restored FAQ');
     }  
 
     /**
@@ -123,7 +153,23 @@ class FaqsController extends Controller
     public function restore_all()
     {
         Faq::onlyTrashed()->restore();
-        return redirect('admin/faqs')->with('msg', 'success');
+
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Restored FAQ";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);
+        return redirect('admin/faqs')->with('msg', 'Successfully Restored All FAQ');
     }
 
     #SEARCH

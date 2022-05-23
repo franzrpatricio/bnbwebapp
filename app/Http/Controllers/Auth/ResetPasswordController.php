@@ -33,7 +33,7 @@ class ResetPasswordController extends Controller
             return 'admin/dashboard';
         }
         elseif( Auth()->user()->role_as == 1){
-            return ('staff/dashboard');
+            return 'admin/dashboard';
         }
     }
 }

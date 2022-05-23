@@ -129,10 +129,10 @@
                 </div>
                 <div class="card-body">
                   <h6 class="card-title text-center">{{$project->name}}</h6>
-                  <h6 class="card-title text-center">{{$project->cost}}</h6>
+                  {{-- <h6 class="card-title text-center">{{$project->cost}}</h6> --}}
                   <div class="text-center">
                     <a href="{{ url('project/'.$project->id.'/'.$project->slug) }}">
-                      <button class="btn btn-primary text ">View</button>
+                      <button class="btn btn-primary text">View</button>
                     </a>
                   </div>
                 </div>

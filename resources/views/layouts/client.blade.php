@@ -65,7 +65,7 @@
         frameEndpoint: '/botman/chat',
         dateTimeFormat: 'm/d/yy HH:MM',
         title:'BnBot 🤖',
-        introMessage: 'Hi, I am the official chat bot of Bana and Bana Architects!✋<br><br>Type anything! So that I can give you the commands I know!',
+        introMessage: 'Hi, I am the official chat bot of Bana and Bana Architects!✋<br><br>Type MENU. So that I can give you the commands I know!',
         placeholderText:'Type something here...',
         aboutText: '©️ Bana and Bana Architects 2022',
         displayMessageTime:'true',

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Projects;
 use Illuminate\Http\Request;
+use App\Models\ProjectImages;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\ProjectImages;
 
 class ProjectImagesController extends Controller
 {
@@ -53,6 +55,23 @@ class ProjectImagesController extends Controller
 
         $image->posted_by = Auth::user()->id;
         $image->update();
+
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Updated Image $image_id";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        
+        DB::table('user_activity_logs')->insert($data);
         return back()->with('msg','Successfully Updated Image');
     }
 
@@ -63,6 +82,23 @@ class ProjectImagesController extends Controller
             # code...
             #write condiiton to delete image
             $image->delete();    
+
+            //insert to activity logs
+            $user_id = Auth::user()->id;
+            $name = Auth::user()->name;
+            $role_as = Auth::user()->role_as;
+            $description = "Successfully Deleted Image $image_id";
+            $date_time = Carbon::now();
+
+            $data = [
+                'user_id'       => $user_id,
+                'name'          => $name,
+                'description'   => $description,
+                'created_at'     => $date_time,
+                'role_as'       => $role_as
+            ];
+            
+            DB::table('user_activity_logs')->insert($data);
             return back()->with('msg','Successfully Deleted image from Gallery.');
         } else {
             return redirect('admin/projects')->with('msg','No Gallery found for this Project.');

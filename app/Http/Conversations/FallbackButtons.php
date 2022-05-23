@@ -24,8 +24,8 @@ class FallbackButtons extends Conversation
         ->addButtons([
             Button::create('Frequently Asked Questions')->value('faq'),
             Button::create('Price Estimation Calculator')->value('estimate'),
-            Button::create('Click for a surprise GIF')->value('random memes'),
-            Button::create('Click if you are a One Piece Fan.')->value('fan'),
+            // Button::create('Click for a surprise GIF')->value('random memes'),
+            // Button::create('Click if you are a One Piece Fan.')->value('fan'),
             Button::create('Forget Everything')->value('forget')
         ]);
 

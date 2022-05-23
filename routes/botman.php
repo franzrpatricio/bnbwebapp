@@ -16,6 +16,14 @@ $botman->hears('ty|thanks|tnx|thank you(.*)', function($bot){
     $bot->typesAndWaits(2);
     $bot->reply("You're Welcome");
 });
+$botman->hears('I want to Inquire(.*)', function($bot){
+    $bot->typesAndWaits(2);
+    $bot->reply("Please go to Contact Us Page to inquire about almost anything to our Architect! :)");
+});
+$botman->hears('MENU', function($bot){
+    $bot->typesAndWaits(2);
+    $bot->startConversation(new FallbackButtons());
+});
 #stops convo immediately
 $botman->hears('stop', function($bot){
     $bot->typesAndWaits(2);

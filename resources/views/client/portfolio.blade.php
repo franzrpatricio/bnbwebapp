@@ -23,11 +23,11 @@
         <div class="col-lg-6 pt-3 pt-lg-0 content"  >
           <h2 style="color:#0d6efd;" data-aos="fade-right" data-aos-duration="1000">ABOUT US</h2>
           <p data-aos="fade-right" data-aos-duration="1000" style="text-align: justify; text-indent: 50px; font-size: 17px; font-color: #213b52;">
-          Bana & Bana Architects formerly known as MC Architects is an architectural firm founded in 200 by two brothers namely Arch. Christopher G. Bana and Arch. Michael G. Bana, who collaborated with other architects in the past. Bana & Bana Architectural Firm were able to operate their firm legally with clients. This experience enables their young office to work on technically challenging small to large scale projects. We are committed to low energy sustainable 
-design providing appropriate, imaginative, cost effective and technical solutions to meet our client’s 
-individual requirements. We implement and manage our input into each project to the highest 
-professional standards, meeting with our clients requirements with clear communication throughout 
-the project
+            Bana & Bana Architects formerly known as MC Architects is an architectural firm founded in 200 by two brothers namely Arch. Christopher G. Bana and Arch. Michael G. Bana, who collaborated with other architects in the past. Bana & Bana Architectural Firm were able to operate their firm legally with clients. This experience enables their young office to work on technically challenging small to large scale projects. We are committed to low energy sustainable 
+            design providing appropriate, imaginative, cost effective and technical solutions to meet our client’s 
+            individual requirements. We implement and manage our input into each project to the highest 
+            professional standards, meeting with our clients requirements with clear communication throughout 
+            the project
           </p>
         </div>
       </div>

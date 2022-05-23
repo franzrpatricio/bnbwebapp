@@ -136,47 +136,43 @@
                             <div class="alert alert-danger">{{ $error }}</div>
                         @endforeach
                     @endif
-            <form class="form-horizontal" method="POST" action="{{ route('changePasswordPost') }}">
-                        {{ csrf_field() }}
-    
+              <form class="form-horizontal" method="POST" action="{{ route('changePasswordPost') }}">
+                {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
                   <label class="form-label">Current password</label>
                   <input id="currentpwd" type="password" class="form-control" name="current-password" required>
                   <span class="eye" style="position: absolute;" onclick="current()">
-                            <i id="hide1" style="display:none;" class="fa fa-eye"></i>
-                            <i id="hide2" class="fa fa-eye-slash"></i>
-                            
-                          </span>
+                    <i id="hide1" style="display:none;" class="fa fa-eye"></i>
+                    <i id="hide2" class="fa fa-eye-slash"></i>
+                  </span>
                   @if ($errors->has('current-password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('current-password') }}</strong>
-                                    </span>
-                                @endif
+                      <span class="help-block">
+                          <strong>{{ $errors->first('current-password') }}</strong>
+                      </span>
+                  @endif
                 </div>
     
                 <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
                   <label class="form-label">New password</label>
                   <input id="newpwd" type="password" class="form-control" name="new-password" required>
                   <span class="eye" style="position: absolute;" onclick="newpass()">
-                            <i id="hide3" style="display:none;" class="fa fa-eye"></i>
-                            <i id="hide4" class="fa fa-eye-slash"></i>
-                            
-                          </span>
+                    <i id="hide3" style="display:none;" class="fa fa-eye"></i>
+                    <i id="hide4" class="fa fa-eye-slash"></i>
+                  </span>
                   @if ($errors->has('new-password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('new-password') }}</strong>
-                                    </span>
-                                @endif
+                      <span class="help-block">
+                          <strong>{{ $errors->first('new-password') }}</strong>
+                      </span>
+                  @endif
                 </div>
     
                 <div class="form-group">
                   <label class="form-label">Repeat new password</label>
                   <input id="repeatpwd" type="password" class="form-control" name="new-password_confirmation" required>
                   <span class="eye" style="position: absolute;" onclick="repeat()">
-                            <i id="hide5" style="display:none;" class="fa fa-eye"></i>
-                            <i id="hide6" class="fa fa-eye-slash"></i>
-                            
-                          </span>
+                    <i id="hide5" style="display:none;" class="fa fa-eye"></i>
+                    <i id="hide6" class="fa fa-eye-slash"></i>
+                  </span>
                 </div>
     
               </div>

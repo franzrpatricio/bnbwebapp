@@ -180,6 +180,23 @@ class CategoryController extends Controller
             // }
             #then delete all data based from id
             $category->delete();
+
+            //insert to activity logs
+            $user_id = Auth::user()->id;
+            $name = Auth::user()->name;
+            $role_as = Auth::user()->role_as;
+            $description = "Category successfully deleted";
+            $date_time = Carbon::now();
+
+            $data = [
+                'user_id'       => $user_id,
+                'name'          => $name,
+                'description'   => $description,
+                'created_at'     => $date_time,
+                'role_as'       => $role_as
+            ];
+            
+            DB::table('user_activity_logs')->insert($data);
             return redirect('admin/categories')->with('msg','Successfully Deleted Category');
         }else {
             return redirect('admin/categories')->with('msg','No Category ID found');
@@ -194,8 +211,24 @@ class CategoryController extends Controller
     public function restore($category_id)
     {
         Category::withTrashed()->find($category_id)->restore();
-  
-        return redirect('admin/categories')->with('msg','success');
+
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfull Restored Category";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        
+        DB::table('user_activity_logs')->insert($data);
+        return redirect('admin/categories')->with('msg','Successfull Restored Category');
     }  
   
     /**
@@ -206,8 +239,24 @@ class CategoryController extends Controller
     public function restore_all()
     {
         Category::onlyTrashed()->restore();
-  
-        return redirect('admin/categories')->with('msg','success');
+        
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Restored All Categories";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        
+        DB::table('user_activity_logs')->insert($data);
+        return redirect('admin/categories')->with('msg','Successfully Restored All Categories');
     }
 
     #SEARCH

@@ -63,7 +63,7 @@
 
                     <div class="col-md-3 mb-3">
                         <label>Disable User</label>
-                        <input type="checkbox" name="status" {{$user->status == '1' ? 'checked':''}}/>
+                        <input type="checkbox" name="status" {{$user->status == '0' ? 'checked':''}}/>
                         {{-- <select name="status" class="form-control">
                             <option value=""{{$user->status=='0' ? 'selected':''}}>Active</option>
                             <option value="" {{$user->status=='1' ? 'selected':''}}>Inactive</option>

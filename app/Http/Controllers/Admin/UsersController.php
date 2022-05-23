@@ -17,7 +17,7 @@ class UsersController extends Controller
 {
     use RegistersUsers;
     public function index(Request $request){
-        if(Auth::check()){
+        // if(Auth::check()){
             if (Auth::user()->role_as=='1') {
                 #role_as == 0 = staff
                 #role_as == 1 = admin
@@ -35,10 +35,10 @@ class UsersController extends Controller
                 # code...
                 return redirect('/home')->with('status','Access Denied! Not an Admin.');
             }
-        }else {
-            #if not authenticated
-            return redirect('/login')->with('status','Log In First!');
-        }        
+        // }else {
+        //     #if not authenticated
+        //     return redirect('/login')->with('status','Log In First!');
+        // }        
     }
     public function create(){
         #VIEW category create form
@@ -59,22 +59,22 @@ class UsersController extends Controller
         #save the category
         $users->save();
 
-                //insert to activity logs
-                $user_id = Auth::user()->id;
-                $name = Auth::user()->name;
-                $role_as = Auth::user()->role_as;
-                $description = "Created User";
-                $date_time = Carbon::now();
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Created User";
+        $date_time = Carbon::now();
 
-            $data = [
-                'user_id'       => $user_id,
-                'name'          => $name,
-                'description'   => $description,
-                'created_at'     => $date_time,
-                'role_as'       => $role_as
-            ];
-                
-                DB::table('user_activity_logs')->insert($data);
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+            
+        DB::table('user_activity_logs')->insert($data);
 
         #redirect with message;see in index.blade.php
         return redirect('admin/users')->with('msg','Successfully Added New User. Thanks!');
@@ -86,8 +86,6 @@ class UsersController extends Controller
     }
     #UPDATE specific category
     public function update(Request $request, $users_id){
-        
-
         $user = User::find($users_id);
        
         if ($user) {
@@ -108,13 +106,13 @@ class UsersController extends Controller
             $description = "Update User's Info";
             $date_time = Carbon::now();
 
-        $data = [
-            'user_id'       => $user_id,
-            'name'          => $name,
-            'description'   => $description,
-            'created_at'     => $date_time,
-            'role_as'       => $role_as
-        ];
+            $data = [
+                'user_id'       => $user_id,
+                'name'          => $name,
+                'description'   => $description,
+                'created_at'     => $date_time,
+                'role_as'       => $role_as
+            ];
             
             DB::table('user_activity_logs')->insert($data);
         
@@ -132,6 +130,23 @@ class UsersController extends Controller
             # code...
             #then delete all data based from id
             $user->delete();
+
+            //insert to activity logs
+            $user_id = Auth::user()->id;
+            $name = Auth::user()->name;
+            $role_as = Auth::user()->role_as;
+            $description = "Successfully Deleted User";
+            $date_time = Carbon::now();
+
+            $data = [
+                'user_id'       => $user_id,
+                'name'          => $name,
+                'description'   => $description,
+                'created_at'     => $date_time,
+                'role_as'       => $role_as
+            ];
+            
+            DB::table('user_activity_logs')->insert($data);
             return redirect('admin/users')->with('msg','Successfully Deleted User');
         }else {
             return redirect('admin/users')->with('msg','No User ID found');
@@ -140,12 +155,46 @@ class UsersController extends Controller
     #RESTORE SINGLE
     public function restore($users_id){
         User::withTrashed()->find($users_id)->restore();
+
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Restore Deleted User";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        
+        DB::table('user_activity_logs')->insert($data);
         return redirect('admin/users')->with('msg','User Successfully Restored');
     }
 
     #RESTORE ALL
     public function restore_all(){
         User::onlyTrashed()->restore();
+
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Restored All Deleted Users";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        
+        DB::table('user_activity_logs')->insert($data);
         return redirect('admin/users')->with('msg','Successfully Restored Users');
     }
 

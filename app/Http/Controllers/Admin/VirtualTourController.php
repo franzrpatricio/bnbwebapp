@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Projects;
 use App\Models\VirtualTour;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,6 +56,22 @@ class VirtualTourController extends Controller
 
         $video->posted_by = Auth::user()->id;
         $video->update();
+
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Updated Video $video_id";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);
         return back()->with('msg','Successfully Updated Video');
     }
 
@@ -64,6 +82,22 @@ class VirtualTourController extends Controller
             # code...
             #write condiiton to delete image
             $video->delete();    
+
+            //insert to activity logs
+            $user_id = Auth::user()->id;
+            $name = Auth::user()->name;
+            $role_as = Auth::user()->role_as;
+            $description = "Successfully Deleted Video $video_id";
+            $date_time = Carbon::now();
+
+            $data = [
+                'user_id'       => $user_id,
+                'name'          => $name,
+                'description'   => $description,
+                'created_at'     => $date_time,
+                'role_as'       => $role_as
+            ];
+            DB::table('user_activity_logs')->insert($data);
             return back()->with('msg','Successfully Deleted Video from Virtual Tour.');
         } else {
             return redirect('admin/projects')->with('msg','No Videos found for this Project Virtual Tour.');
