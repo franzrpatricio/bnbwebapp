@@ -51,23 +51,21 @@ class HousePlanController extends Controller
         #save the category
         $houseplan->save();
 
-         //insert to activity logs
-         $user_id = Auth::user()->id;
-         $name = Auth::user()->name;
-         $role_as = Auth::user()->role_as;
-         $description = "Created a House Plam";
-         $date_time = Carbon::now();
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Added New House Plan";
+        $date_time = Carbon::now();
 
-     $data = [
-         'user_id'       => $user_id,
-         'name'          => $name,
-         'description'   => $description,
-         'created_at'     => $date_time,
-         'role_as'       => $role_as
-     ];
-         
-         DB::table('user_activity_logs')->insert($data);
-         
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);
         #redirect with message;see in index.blade.php
         return redirect('admin/houseplan')->with('msg','Successfully Added New House Plan. Thanks!');
     }
@@ -96,23 +94,21 @@ class HousePlanController extends Controller
         #save the category
         $houseplan->update();
 
-         //insert to activity logs
-         $user_id = Auth::user()->id;
-         $name = Auth::user()->name;
-         $role_as = Auth::user()->role_as;
-         $description = "Update a House Plan";
-         $date_time = Carbon::now();
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Updated House Plan";
+        $date_time = Carbon::now();
 
-     $data = [
-         'user_id'       => $user_id,
-         'name'          => $name,
-         'description'   => $description,
-         'created_at'     => $date_time,
-         'role_as'       => $role_as
-     ];
-         
-         DB::table('user_activity_logs')->insert($data);
-
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);
         #redirect with message;see in index.blade.php
         return redirect('admin/houseplan')->with('msg','Successfully Updated House Plan. Thanks! :D');
     }
@@ -123,6 +119,22 @@ class HousePlanController extends Controller
             # code...
             #then delete all data based from id
             $houseplan->delete();
+
+            //insert to activity logs
+            $user_id = Auth::user()->id;
+            $name = Auth::user()->name;
+            $role_as = Auth::user()->role_as;
+            $description = "Successfully Deleted House Plan";
+            $date_time = Carbon::now();
+
+            $data = [
+                'user_id'       => $user_id,
+                'name'          => $name,
+                'description'   => $description,
+                'created_at'     => $date_time,
+                'role_as'       => $role_as
+            ];
+            DB::table('user_activity_logs')->insert($data);
             return redirect('admin/houseplan')->with('msg','Successfully Deleted House Plan');
         }else {
             return redirect('admin/houseplan')->with('msg','No House Plan ID found');
@@ -137,8 +149,22 @@ class HousePlanController extends Controller
     public function restore($houseplan_id)
     {
         HousePlan::withTrashed()->find($houseplan_id)->restore();
-  
-        return redirect('admin/houseplan')->with('msg','success');
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Restored House Plan";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);  
+        return redirect('admin/houseplan')->with('msg','Successfully Restored House Plan');
     }  
   
     /**
@@ -149,8 +175,22 @@ class HousePlanController extends Controller
     public function restore_all()
     {
         HousePlan::onlyTrashed()->restore();
-  
-        return redirect('admin/houseplan')->with('msg','success');
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Restored All House Plan";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);    
+        return redirect('admin/houseplan')->with('msg','Successfully Restored All House Plan');
     }
 
     #SEARCH

@@ -19,6 +19,7 @@
                 <th>Date</th>
             </thead>
             <tbody>
+              {{-- @foreach ($logs->sortByDesc('date_time') as $row)  --}}
               @foreach ($logs->sortByDesc('date_time') as $row) 
                   <tr>
                     <td data-title="Role">

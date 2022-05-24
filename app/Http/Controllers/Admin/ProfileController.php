@@ -67,7 +67,7 @@ class ProfileController extends Controller
         $user_id = Auth::user()->id;
         $name = Auth::user()->name;
         $role_as = Auth::user()->role_as;
-        $description = "Changed Password";
+        $description = "Password successfully changed";
         $date_time = Carbon::now();
 
         $data = [
@@ -77,9 +77,7 @@ class ProfileController extends Controller
             'created_at'     => $date_time,
             'role_as'       => $role_as
         ];
-                
         DB::table('user_activity_logs')->insert($data);
-
         return redirect()->back()->with("success","Password successfully changed!");
     }
     
@@ -90,57 +88,60 @@ class ProfileController extends Controller
             'email' => 'required|string|max:40',
         ]);
 
-        $user = Auth::user();
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        
-        #image condition...
-        #if data has image file...
-        if ($request->hasfile('image')) {
-            #delete first the current image
-            #before inserting new image
-            #check the path if it is right
-            $destination = 'uploads/users/'.$user->image;
-            if (File::exists($destination)) {
-                # code...
-                #if the path exists, delete it
-                File::delete($destination);
-            }
-
-            #store image file from data in to $file
-            $file = $request->file('image');
-            #then get extension of image file 
-            #together with the timestamp uploaded 
-            #and store it in $filename
-            $filename = time().'.'. $file->getClientOriginalExtension();
-            #move the $filename in directory
-            $file->move('uploads/users/', $filename);
-            #store filename as data for image field in db 
-            #then in to $category
-            $user->image = $filename;
-        }
-
-        #save the category
-        $user->update();
-         
-        //insert to activity logs
-        $user_id = Auth::user()->id;
-        $name = Auth::user()->name;
-        $role_as = Auth::user()->role_as;
-        $description = "Update Own Profile";
-        $date_time = Carbon::now();
-
-        $data = [
-            'user_id'       => $user_id,
-            'name'          => $name,
-            'description'   => $description,
-            'created_at'     => $date_time,
-            'role_as'       => $role_as
-        ];
+        // $user = Auth::user();
+        $user = User::find(Auth::user()->id);
+        if ($user) {
+            # code...
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
             
-        DB::table('user_activity_logs')->insert($data);
+            #image condition...
+            #if data has image file...
+            if ($request->hasfile('image')) {
+                #delete first the current image
+                #before inserting new image
+                #check the path if it is right
+                $destination = 'uploads/users/'.$user->image;
+                if (File::exists($destination)) {
+                    # code...
+                    #if the path exists, delete it
+                    File::delete($destination);
+                }
+    
+                #store image file from data in to $file
+                $file = $request->file('image');
+                #then get extension of image file 
+                #together with the timestamp uploaded 
+                #and store it in $filename
+                $filename = time().'.'. $file->getClientOriginalExtension();
+                #move the $filename in directory
+                $file->move('uploads/users/', $filename);
+                #store filename as data for image field in db 
+                #then in to $category
+                $user->image = $filename;
+            }
+    
+            #save the category
+            $user->update();
+             
+            //insert to activity logs
+            $user_id = Auth::user()->id;
+            $name = Auth::user()->name;
+            $role_as = Auth::user()->role_as;
+            $description = "Successfully Updated Profile";
+            $date_time = Carbon::now();
+    
+            $data = [
+                'user_id'       => $user_id,
+                'name'          => $name,
+                'description'   => $description,
+                'created_at'     => $date_time,
+                'role_as'       => $role_as
+            ];
                 
-        #redirect with message;see in profilesettings.blade.php
-         return redirect('admin/profile')->with('msg','Successfully Updated Profile. Thanks! :D');
+            DB::table('user_activity_logs')->insert($data);
+            #redirect with message;see in profilesettings.blade.php
+            return redirect('admin/profile')->with('msg','Successfully Updated Profile. Thanks! :D');
+        }
     }
 }

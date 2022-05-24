@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Inquiry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\InquiryFormRequest;
@@ -23,40 +25,6 @@ class InquiriesController extends Controller
         // $inquiries = Inquiry::all();
         return view('users.admin.inquiry.index', compact('inquiries'));
     }
-    // #CREATE
-    // public function create(){
-    //     #FORM
-    //     return view('users.admin.inquiry.create');
-    // }
-    // public function store(InquiryFormRequest $request){
-    //     #SAVING
-    //     $data = $request->validated();
-    //     $inquiry = new Inquiry;
-    //     $inquiry->namme = $data['namme'];
-    //     $inquiry->email = $data['email'];
-    //     $inquiry->contact = $data['contact'];
-    //     $inquiry->address = $data['address'];
-    //     $inquiry->posted_by = Auth::user()->id;
-    //     $inquiry->save();
-    //     return redirect('admin/inquiries')->with('msg','Successfully Created Inquiry');
-    // }
-    // #VIEW specific project
-    // public function edit($faq_id){
-    //     $faq = Inquiry::find($faq_id);
-    //     return view('users.admin.inquiry.edit', compact('faq'));
-    // }
-    // #UPDATE specific project
-    // public function update(InquiryFormRequest $request, $inquiry_id){
-    //     $data = $request->validated();
-    //     $inquiry = Inquiry::find($inquiry_id);
-    //     $inquiry->namme = $data['namme'];
-    //     $inquiry->email = $data['email'];
-    //     $inquiry->contact = $data['contact'];
-    //     $inquiry->address = $data['address'];
-    //     $inquiry->posted_by = Auth::user()->id;
-    //     $inquiry->update();
-    //     return redirect('admin/inquiries')->with('msg','Successfully Updated Inquiry');
-    // }
     #DELETE
     public function destroy($inquiry_id){
         $inquiry = Inquiry::find($inquiry_id);
@@ -64,6 +32,22 @@ class InquiriesController extends Controller
             # code...
             #then delete all data based from id
             $inquiry->delete();
+
+            //insert to activity logs
+            $user_id = Auth::user()->id;
+            $name = Auth::user()->name;
+            $role_as = Auth::user()->role_as;
+            $description = "Successfully Deleted Inquiry";
+            $date_time = Carbon::now();
+
+            $data = [
+                'user_id'       => $user_id,
+                'name'          => $name,
+                'description'   => $description,
+                'created_at'     => $date_time,
+                'role_as'       => $role_as
+            ];
+            DB::table('user_activity_logs')->insert($data);  
             return redirect('admin/inquiries')->with('msg','Successfully Deleted Inquiry');
         }else {
             return redirect('admin/inquiries')->with('msg','No Inquiry ID found');
@@ -78,7 +62,22 @@ class InquiriesController extends Controller
     public function restore($inquiry_id)
     {
         Inquiry::withTrashed()->find($inquiry_id)->restore();
-        return redirect()->back();
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Restored Inquiries";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);  
+        return redirect()->back()->with('msg','Successfully Restored Inquiries');
     }  
 
     /**
@@ -89,8 +88,22 @@ class InquiriesController extends Controller
     public function restore_all()
     {
         Inquiry::onlyTrashed()->restore();
-  
-        return redirect()->back();
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Restored All Inquiries";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);  
+        return redirect()->back()->with('msg','Successfully Restored All Inquiries');
     }
 
     #SEARCH
