@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use App\Models\Comments;
 use App\Models\Projects;
-use Egulias\EmailValidator\Warning\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Egulias\EmailValidator\Warning\Comment;
 
 class CommentController extends Controller
 {
     //
-    public function index(){
-        $comments = Comments::paginate(4);
+    public function index(Request $request){
+        if ($request->has('trashed')) {
+            $comments = Comments::onlyTrashed()->paginate(4);
+        } else {
+            $comments = Comments::paginate(4);
+        }
         return view('users.admin.comments.index',compact('comments'));
     }
     public function store(Request $request){
@@ -52,11 +59,81 @@ class CommentController extends Controller
             # code...
             #then delete all data based from id
             $comment->delete();
-            return redirect('admin/comments')->with('msg','Successfully Deleted Project');
+
+            //insert to activity logs
+            $user_id = Auth::user()->id;
+            $name = Auth::user()->name;
+            $role_as = Auth::user()->role_as;
+            $description = "Successfully Deleted Comment";
+            $date_time = Carbon::now();
+
+            $data = [
+                'user_id'       => $user_id,
+                'name'          => $name,
+                'description'   => $description,
+                'created_at'     => $date_time,
+                'role_as'       => $role_as
+            ];
+            DB::table('user_activity_logs')->insert($data);
+            return redirect('admin/comments')->with('msg','Successfully Deleted Comment');
         }else {
-            return redirect('admin/comments')->with('msg','No Project ID found');
+            return redirect('admin/comments')->with('msg','No Comment ID found');
         }
     }
+
+    /**
+     * restore specific post
+     *
+     * @return void
+     */
+    public function restore($comment_id)
+    {
+        Comments::withTrashed()->find($comment_id)->restore();
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Restored Comment";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);  
+        return redirect('admin/comments')->with('msg','Successfully Restored Comment');
+    }  
+  
+    /**
+     * restore all post
+     *
+     * @return response()
+     */
+    public function restore_all()
+    {
+        Comments::onlyTrashed()->restore();
+        //insert to activity logs
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $role_as = Auth::user()->role_as;
+        $description = "Successfully Restored All Comments";
+        $date_time = Carbon::now();
+
+        $data = [
+            'user_id'       => $user_id,
+            'name'          => $name,
+            'description'   => $description,
+            'created_at'     => $date_time,
+            'role_as'       => $role_as
+        ];
+        DB::table('user_activity_logs')->insert($data);    
+        return redirect('admin/comments')->with('msg','Successfully Restored All Comments');
+    }
+
+    #SEARCH FUNCTION
     public function search(Request $request){
         $find_this = $request->get('query');
         $comments = Comments::where('id', 'LIKE', '%'.$find_this.'%')

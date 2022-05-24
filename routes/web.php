@@ -186,11 +186,14 @@ Route::prefix('admin')->middleware(['auth','isAdmin','verified'])->group(functio
 
     #COMMENTS
     #READ
-    Route::get('comments', [App\Http\Controllers\Client\CommentController::class, 'index']);
+    Route::get('comments', [App\Http\Controllers\Client\CommentController::class, 'index'])->name('comments.index');
     #SEARCH
     Route::get('comments/find', [App\Http\Controllers\Client\CommentController::class, 'search']);
     #DELETE
     Route::delete('delete-comment/{comment_id}',[App\Http\Controllers\Client\CommentController::class, 'destroy'])->name('comments.destroy');
+    #RESTORE
+    Route::get('restore-comment/{comment_id}',[App\Http\Controllers\Client\CommentController::class, 'restore'])->name('comments.restore');
+    Route::get('restore-comments',[App\Http\Controllers\Client\CommentController::class, 'restore_all'])->name('comments.restore_all');
 
     #NEWSLETTER
     Route::get('newsletter', [App\Http\Controllers\Client\ClientController::class, 'subscriber']);

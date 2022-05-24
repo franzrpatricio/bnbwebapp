@@ -10,17 +10,15 @@
             <h4>
                 <div class="sb-nav-link-icon">
                     <i class="fas fa-list"></i>List of House Plans
-               
-
-                <!-- Navbar Search-->
-                <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('admin/houseplan/find')}}">
-                    @csrf
-                    <div class="input-group">
-                        <input class="form-control" name="query" type="search" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                        <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
-                    </div>
-                </form>
-            </div>
+                    <!-- Navbar Search-->
+                    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('admin/houseplan/find')}}">
+                        @csrf
+                        <div class="input-group">
+                            <input class="form-control" name="query" type="search" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                            <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
             </h4>
             <div class="float-end">
                 @if(request()->has('trashed'))
@@ -66,6 +64,7 @@
                             {{-- to make the category visible just check the box for status --}}
                             <td>{{$item->status == '1' ? 'Visible':'Not Visible'}}</td>
                             <td>
+                                {{-- ACTIONS DELETE --}}
                                 @if(request()->has('trashed'))
                                     <a href="{{ route('houseplan.restore', $item->id) }}" class="btn btn-success btn-sm">Restore</a>
                                 @else

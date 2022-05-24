@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comments extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'comments'; # copy from created schema
 
@@ -17,6 +18,7 @@ class Comments extends Model
         'email',
         'comment'
     ];
+    protected $dates = ['deleted_at'];
 
     public function project(){
         #get category id

@@ -128,22 +128,29 @@ class ClientController extends Controller
     #specific project from projects
     public function project($project_id,$project_slug){
         $project = Projects::find($project_id);
-        if ($project) {
+        if ($project->status == '1') {
             # code...
             $images = ProjectImages::select('id','image')->where('project_id', $project_id)->get();
             $videos = VirtualTour::select('id','video')->where('project_id',$project_id)->get();
             # CHECK IF THERE ARE NO IMAGES FOR THIS PROJECT ID
-            if (ProjectImages::where('project_id', $project_id)->exists() && VirtualTour::where('project_id', $project_id)->exists()) {
+            if ($images) {
                 # code...
-                return view('client.project', compact('project','images','videos'));
+                if ($videos) {
+                    # code...
+                    return view('client.project', compact('project','images','videos'));
+                } else {
+                    # code...
+                    return view('client.project',['msgc'=>'No Virtual Tour for this Project'],compact('project','images','videos'));
+                }
             } else {
                 # code...
-                return view('client.project',['msgc'=>'No Gallery and Virtual Tour for this Project'],compact('project','images','videos'));
+                return view('client.project',['msgc'=>'No Gallery for this Project'],compact('project','images','videos'));
             }
-        } else {
-            # code...
-            return view('client.project',['msgc'=>'No images found']);
-        }
+        } 
+        // else {
+        //     # code...
+        //     return view('client.project',['msgc'=>'Page not Found.']);
+        // }
     }
     // public function projects(){
     //     return view('client.projects');
