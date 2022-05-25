@@ -6,7 +6,7 @@
     </div>
       <div class="d-flex justify-content-center align-items-center" >
         <div class="banner-title text-center">
-          <h1 class="mb-3 text-light">Categories</h1>
+          <h1 class="mb-3 text-light"><span>Categories</span></h1>
         </div>
     </div>
   </div>

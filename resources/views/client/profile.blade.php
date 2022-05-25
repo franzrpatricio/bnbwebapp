@@ -8,7 +8,7 @@
         </div>
       <div class="d-flex justify-content-center align-items-center" >
         <div class="banner-title text-center">
-          <h1 class="mb-3 text-light" data-aos="fade-right" data-aos-duration="1000">Architect's Profile</h1>
+          <h1 class="mb-3 text-light" data-aos="fade-right" data-aos-duration="1000"><span>Architect's Profile</span></h1>
           <p class="mb-3 text-light text-center" data-aos="fade-right" data-aos-duration="1000" style="font-size:20px;">Get to Know our Finest Architects</p>
           
         </div>

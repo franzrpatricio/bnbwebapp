@@ -5,7 +5,7 @@
     <div  class="p-3 text-center bg-image"  style="filter: brightness(60%);"></div>
     <div class="d-flex justify-content-center align-items-center">
       <div class="banner-title text-center">
-        <h1 class="mb-3 text-light py-4" data-aos="fade-right" data-aos-duration="1000">Portfolio</h1>
+        <h1 class="mb-3 text-light py-4" data-aos="fade-right" data-aos-duration="1000"><span>Portfolio</span></h1>
         <p class="mb-3 text-light text-center" data-aos="fade-right" data-aos-duration="1000" style="font-size: 22px;">Get to Know More About the Firm</p>
       </div>
     </div>
@@ -41,7 +41,7 @@
     </div>
     <div class="d-flex justify-content-center align-items-center" >
       <div class="banner-title text-center">
-        <h1 class="mb-3 text-light" data-aos="fade-left" data-aos-duration="3000">Roadmaps</h1>
+        <h1 class="mb-3 text-light" data-aos="fade-left" data-aos-duration="3000"><span>Roadmaps</span></h1>
       </div>
     </div>
   </div>
@@ -87,7 +87,7 @@
     </div>
       <div class="d-flex justify-content-center align-items-center" >
         <div class="banner-title text-center">
-          <h1 class="mb-3 text-light">Specialization</h1>
+          <h1 class="mb-3 text-light"><span>Specialization</span></h1>
         </div>
     </div>
   </div>
