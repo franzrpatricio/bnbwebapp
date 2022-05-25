@@ -11,7 +11,8 @@
      </div> --}}
     <div class="d-flex justify-content-center align-items-center" >
       <div class="banner-title text-center">
-        <h1 class="mb-3 text-light" data-aos="fade-right" data-aos-duration="1000">{{$project->name}}</h1>
+        {{-- <h1 class="mb-3 text-light" data-aos="fade-right" data-aos-duration="1000">{{$project->name}}</h1> --}}
+        <h1 data-aos="fade-right" data-aos-duration="1000"><span>{{$project->name}}</span></h1>
       </div>
     </div>
   </div>
@@ -103,21 +104,19 @@
    <h5>  Date Posted:</h5>
     <p style="text-align: justify;" >{{$project->created_at}}</p>
     </div>
-    
- 
 </div>
   </div>
 
 <div>
 <div class="header" data-aos="fade-right" data-aos-duration="1000" style="background-image: url('{{asset('assets/client/building2.jpg')}}')">
-
-<div  class="p-5 text-center bg-image"  style="filter: brightness(60%);">
-</div>
-<div class="d-flex justify-content-center align-items-center" >
-  <div class="banner-title text-center">
-    <h1 class="mb-3 text-light" data-aos="fade-right" data-aos-duration="1000">Virtual Tour</h1>
+  <div  class="p-5 text-center bg-image"  style="filter: brightness(60%);">
   </div>
-</div>
+  <div class="d-flex justify-content-center align-items-center" >
+    <div class="banner-title text-center">
+      {{-- <h1 class="mb-3 text-light" data-aos="fade-right" data-aos-duration="1000">Virtual Tour</h1> --}}
+      <h1 data-aos="fade-right" data-aos-duration="1000"><span>Virtual Tour</span></h1>
+    </div>
+  </div>
 </div>
 </div>
 

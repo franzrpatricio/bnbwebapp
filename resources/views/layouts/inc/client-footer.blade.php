@@ -27,31 +27,28 @@
               <li class="mb-2 text-white">Construction</li>
               <li class="mb-2 text-white">Roofing</li>
               <li class="mb-2 text-white">Design and Build</a></li>
-              
             </ul>
-           
           </div>
           <div class="col-lg-2  col-md-6  col-sm-6 p-5 ">
             <h5>Social Media</h5>
             <div class="row">
-                <ul class="list-unstyled">
-                  <a href="https://www.facebook.com/BANA-BANA-Architects-405780513132811/"><i class="fa fa-facebook fa-1x fa-color text-white p-2"></i></a>
-                  <a href="#"><i class="fa fa-instagram fa-1x fa-color text-white p-2"></i></a>
-                  <a href="#"><i class="fa fa-linkedin fa-1x fa-color text-white p-2"></i></a>      
-            </ul>
+              <ul class="list-unstyled">
+                <a href="https://www.facebook.com/BANA-BANA-Architects-405780513132811/"><i class="fa fa-facebook fa-1x fa-color text-white p-2"></i></a>
+                <a href="#"><i class="fa fa-instagram fa-1x fa-color text-white p-2"></i></a>
+                <a href="#"><i class="fa fa-linkedin fa-1x fa-color text-white p-2"></i></a>      
+              </ul>
             </div>
           </div>
           <div class="col-lg-4  col-md-6 p-3">
             @include('layouts.newsletter')
-        </div>
-        <div class="fixed-bottom d-flex justify-content-center">
-            @include('cookie-consent::index')    
-        </div>
-              
           </div>
+
+          <div class="fixed-bottom d-flex justify-content-center">
+              @include('cookie-consent::index')    
+          </div>  
+        </div>
         </div>
       </div>
-    
     </footer>
 
 </div>

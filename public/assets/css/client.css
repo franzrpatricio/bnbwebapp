@@ -911,11 +911,51 @@ div a:hover {
   .js-cookie-consent{
     position: absolute;
     text-align: center;
-    width: 80%; 
-    background-color: #fffbdb;
-    border-color: #fffacc;
+    width: 110%; 
+    opacity: 0.8;
+    background-color: #c5d6ec;
+    border-color: #c5d6ec;
     border: solid 1px;
     justify-content: center;
-
-    
   }
+
+  #btn-back-to-top {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: none;
+  }
+
+
+h1 {
+  color: hsl(0, 0%, 28%);
+  font-size: 50px;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 10px;
+  cursor: pointer;
+}
+h1 span {
+  transition: 0.5s ease-out;
+}
+h1:hover span:nth-child(1) {
+  margin-right: 5px;
+}
+/* h1:hover span:nth-child(1):after {
+  content: "'";
+} */
+h1:hover span:nth-child(3) {
+  margin-left: 30px;
+}
+h1:hover span {
+  color: #fff;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
+}
+
+h5 span {
+  transition: 0.5s ease-out;
+}
+h5:hover span {
+  color: #fff;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 0px #fff;
+}
