@@ -6,12 +6,8 @@
 
 <div>
   <div class="header" data-aos="fade-right" data-aos-duration="1000" style="background-image: url('{{asset('assets/client/building2.jpg')}}')">
-    {{-- <div class="p-5 text-center bg-image"  style="filter: brightness(60%);">
-        <img src="{{asset('uploads/project/'.$project->image)}}" alt="project_thumbnail">
-     </div> --}}
     <div class="d-flex justify-content-center align-items-center" >
       <div class="banner-title text-center">
-        {{-- <h1 class="mb-3 text-light" data-aos="fade-right" data-aos-duration="1000">{{$project->name}}</h1> --}}
         <h1 data-aos="fade-right" data-aos-duration="1000"><span>{{$project->name}}</span></h1>
       </div>
     </div>
@@ -174,13 +170,27 @@
           <div class="contact-info-form"> <span class="circle one"></span> <span class="circle two"></span>
             <h3 class="title">Inquiry Form</h3>
             <div class="col-md-12">
-              <div class="social-input-containers"> <input type="hidden" name="proj_id" value="{{ $project->id }}" class="form-control"></div>
-              <div class="social-input-containers"> <input type="@disabled(true)" name="proj_name" value="{{ $project->name }}" class="form-control"></div>
-              <div class="social-input-containers"> <input type="text" name="name" class="input" placeholder="Name" /> </div>
-              <div class="social-input-containers"> <input type="email" name="email" class="input" placeholder="Email" /> </div>
-              <div class="social-input-containers"> <input type="tel" name="phone" class="input" placeholder="Phone" /> </div>
-              <div class="social-input-containers"> <input type="text" name="address" class="input" placeholder="Address" /> </div>
-              <div class="social-input-containers textarea"> <textarea name="message" class="input" placeholder="Message"></textarea> </div> 
+              <div class="social-input-containers">
+                <input type="hidden" name="proj_id" value="{{ $project->id }}" class="form-control">
+              </div>
+              <div class="social-input-containers">
+                <input type="@disabled(true)" name="proj_name" value="{{ $project->name }}" class="form-control">
+              </div>
+              <div class="social-input-containers">
+                <input type="text" name="name" class="input" placeholder="Name" />
+              </div>
+              <div class="social-input-containers">
+                <input type="email" name="email" class="input" placeholder="Email" />
+              </div>
+              <div class="social-input-containers">
+                <input type="tel" name="phone" class="input" placeholder="Phone" />
+              </div>
+              <div class="social-input-containers">
+                <input type="text" name="address" class="input" placeholder="Address" />
+              </div>
+              <div class="social-input-containers textarea">
+                <textarea name="message" class="input" placeholder="Message"></textarea>
+              </div> 
             </div>
           </div>
         </div>

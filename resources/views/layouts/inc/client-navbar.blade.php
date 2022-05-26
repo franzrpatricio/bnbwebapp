@@ -7,22 +7,6 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarText">
         <ul class="navbar-nav  mb-2 mb-lg-0">
-          {{-- <li class="nav-item ">
-            <a class="nav-link text-light" aria-current="page" href="{{ url('/') }}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-light"  href="{{ url('/portfolio')}}">Portfolio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-light" href="{{ url('/profile') }}">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-light" href="{{ url('/projects') }}">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-light" href="{{ url('/contact') }}">Contact Us</a>
-          </li> --}}
-
           <li class="nav-item">
             <a class="nav-link text-light" href="{{ url('/') }}">
               <h5 data-aos="fade-right" data-aos-duration="1000"><span>Home</span></h5>

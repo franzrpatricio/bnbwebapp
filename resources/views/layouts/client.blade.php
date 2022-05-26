@@ -17,6 +17,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
 
     <!-- Styles -->
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
@@ -50,7 +52,7 @@
                 class="btn btn-primary btn-floating btn-lg"
                 id="btn-back-to-top"
             >
-            <i class="fa-thin fa-arrow-up"></i>
+            <i class="fa fa-caret-up"></i>
         </button>
         </div>
         @include('layouts.inc.client-footer')
@@ -68,7 +70,7 @@
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
 <script>
     var botmanWidget = { 
-        frameEndpoint: '/botman/chat',
+        // frameEndpoint: '/botman/chat',
         dateTimeFormat: 'm/d/yy HH:MM',
         title:'BnBot 🤖',
         introMessage: 'Hi, I am the official chat bot of Bana and Bana Architects!✋<br><br>Type MENU. So that I can give you the commands I know!',
@@ -77,7 +79,7 @@
         displayMessageTime:'true',
         desktopHeight: '600',
         mobileHeight: '100%',
-        mobileWidth: '300',
+        mobileWidth: '100%',
     };
 </script>
 <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
@@ -87,3 +89,41 @@
         document.querySelector(".slider").src = links;
     }
 </script>
+<script>
+    var ready = true;
+    
+    // set interval
+    setInterval(setready, 1000);
+    function setready() {
+      ready = true;
+    }
+    
+    $(document).on('DOMNodeInserted', "#messageArea", function() {
+      if(ready == true)
+      {
+      setTimeout(replacelink, 200);
+      ready = false;
+      }
+    });
+    
+    function replacelink() {
+      $('#messageArea .btn').each(function(){
+          text = $(this).html();
+          link = text.match(/(Link:)\s(\/[^<]*)/g);
+          if(link)
+          {
+            $(this).html(' ');
+            url = link.toString().substring(5);
+            text = text.match(/(.*)(Link:)/g).toString().substring(0,5);
+            $(this).empty();
+            $(this).html('<a href="' + url + '">' + text + '</a>');
+            $(this).addClass('linked');
+          }
+          else
+          {
+            $(this).addClass('linked');
+          }
+      });
+    }
+    
+    </script>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\Admin\FaqsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Client\ClientController;
@@ -42,6 +43,7 @@ Route::post('/botman',function(){
     app('botman')->listen();
 });
 
+Route::get('generate-pdf', [App\Http\Controllers\PDFController::class, 'generateInvoicePDF'])->name('generate-pdf.download');
 
 #ADMINISTRATOR & STAFF PAGES
 #USERS GATEWAY

@@ -139,12 +139,12 @@
               <form class="form-horizontal" method="POST" action="{{ route('changePasswordPost') }}">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
-                  <label class="form-label">Current password</label>
-                  <input id="currentpwd" type="password" class="form-control" name="current-password" required>
-                  <span class="eye" style="position: absolute;" onclick="current()">
+                  {{-- <label class="form-label">Current password</label> --}}
+                  <input id="currentpwd" type="password" class="form-control" name="current-password" placeholder="&#xf084; Current password" style="font-family:Arial, FontAwesome" required>
+                  {{-- <span class="eye" style="position: absolute;" onclick="current()">
                     <i id="hide1" style="display:none;" class="fa fa-eye"></i>
                     <i id="hide2" class="fa fa-eye-slash"></i>
-                  </span>
+                  </span> --}}
                   @if ($errors->has('current-password'))
                       <span class="help-block">
                           <strong>{{ $errors->first('current-password') }}</strong>
@@ -153,12 +153,12 @@
                 </div>
     
                 <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
-                  <label class="form-label">New password</label>
-                  <input id="newpwd" type="password" class="form-control" name="new-password" required>
-                  <span class="eye" style="position: absolute;" onclick="newpass()">
+                  {{-- <label class="form-label">New password</label> --}}
+                  <input id="newpwd" type="password" class="form-control" name="new-password" placeholder="&#xf084; New password" style="font-family:Arial, FontAwesome" required>
+                  {{-- <span class="eye" style="position: absolute;" onclick="newpass()">
                     <i id="hide3" style="display:none;" class="fa fa-eye"></i>
                     <i id="hide4" class="fa fa-eye-slash"></i>
-                  </span>
+                  </span> --}}
                   @if ($errors->has('new-password'))
                       <span class="help-block">
                           <strong>{{ $errors->first('new-password') }}</strong>
@@ -167,46 +167,22 @@
                 </div>
     
                 <div class="form-group">
-                  <label class="form-label">Repeat new password</label>
-                  <input id="repeatpwd" type="password" class="form-control" name="new-password_confirmation" required>
-                  <span class="eye" style="position: absolute;" onclick="repeat()">
+                  {{-- <label class="form-label">Repeat new password</label> --}}
+                  <input id="repeatpwd" type="password" class="form-control" name="new-password_confirmation" placeholder="&#xf084; Confirm New Password" style="font-family:Arial, FontAwesome" required>
+                  {{-- <span class="eye" style="position: absolute;" onclick="repeat()">
                     <i id="hide5" style="display:none;" class="fa fa-eye"></i>
                     <i id="hide6" class="fa fa-eye-slash"></i>
-                  </span>
+                  </span> --}}
                 </div>
     
               </div>
                 <div class="text-right mt-3 p-3">
                   <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
                 </div>
-                <!-- <script>
-
-                            function togglepass(){
-                              var input = document.getElementById("pwd");
-                              var hide = document.getElementById("hide1");
-                              var show = document.getElementById("hide2");
-
-                              if(input.type === 'password'){
-                                input.type = "text";
-                                hide.style.display = "block";
-                                show.style.display = "none";
-                              }
-                              else{
-                                input.type = "password";
-                                hide.style.display = "none";
-                                show.style.display = "block";
-                              }
-                            }
-                            </script> -->
             </div>
-
-                  
           </div>
         </div>
-           
       </div>
     </div>
-    
-    
 </div>
 @endsection

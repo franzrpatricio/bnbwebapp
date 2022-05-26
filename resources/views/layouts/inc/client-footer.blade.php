@@ -42,7 +42,7 @@
           <div class="col-lg-4  col-md-6 p-3">
             @include('layouts.newsletter')
           </div>
-
+          <div></div>
           <div class="fixed-bottom d-flex justify-content-center">
               @include('cookie-consent::index')    
           </div>  

@@ -9,7 +9,9 @@
           <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('projects')}}">
           @csrf
             <input class="form-control" name="query" type="search" placeholder="Search Project here..." aria-label="Search Project" aria-describedby="btnNavbarSearch"/>
-            <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+            <button class="btn btn-primary" id="btnNavbarSearch" type="submit">
+              <i class="fa fa-search"></i>
+            </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <div>  

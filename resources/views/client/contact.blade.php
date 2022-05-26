@@ -28,11 +28,22 @@
             <form action="{{ route('send.email') }}" method="POST">
                 @csrf
                 <h3 class="title">Contact us</h3>
-                <div class="social-input-containers"> <input type="text" name="name" class="input" placeholder="Name" required/> </div>
-                <div class="social-input-containers"> <input type="email" name="email" class="input" placeholder="Email" required/> </div>
-                <div class="social-input-containers"> <input type="tel" name="phone" class="input" placeholder="Phone" required/> </div>
-                <div class="social-input-containers"> <input type="text" name="address" class="input" placeholder="Address"  required/> </div>
-                <div class="social-input-containers textarea"> <textarea name="message" class="input" placeholder="Message" required></textarea> </div> 
+                {{-- ICONS INSIDE FIELDS --}}
+                <div class="social-input-containers">
+                    <input type="text" name="name" class="input" placeholder="&#xf2c0; Full Name" style="font-family:Arial, FontAwesome" required/>
+                </div>
+                <div class="social-input-containers">
+                    <input type="email" name="email" class="input" placeholder="&#xf0e0; Gmail Account" style="font-family:Arial, FontAwesome" required/>
+                </div>
+                <div class="social-input-containers">
+                    <input type="tel" name="phone" class="input" placeholder="&#xf10b; Phone Number" style="font-family:Arial, FontAwesome" required/>
+                </div>
+                <div class="social-input-containers">
+                    <input type="text" name="address" class="input" placeholder="&#xf0e0; Personal Address" style="font-family:Arial, FontAwesome; " required/>
+                </div>
+                <div class="social-input-containers textarea">
+                    <textarea name="message" class="input" placeholder="Message" required></textarea>
+                </div> 
                 <input type="submit" value="Send Message" class="btn1" />
                 {{-- display msg after redirecting --}}
                 @if (isset($msg))

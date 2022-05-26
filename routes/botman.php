@@ -1,6 +1,7 @@
 <?php
 
 use BotMan\BotMan\BotMan;
+use App\Http\Controllers\PDFController;
 use App\Http\Conversations\FallbackButtons;
 
 #DEFINE ALL BOTMAN COMMANDS

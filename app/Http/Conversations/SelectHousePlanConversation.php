@@ -3,11 +3,10 @@
 namespace App\Http\Conversations;
 
 use BotMan\BotMan\Messages\Incoming\Answer;
-use App\Http\Conversations\ConfirmEstimation;
-use App\Models\HousePlan;
 use BotMan\BotMan\Messages\Outgoing\Question;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Conversations\Conversation;
+use Illuminate\Support\Facades\Redirect;
 
 class SelectHousePlanConversation extends Conversation
 {
@@ -46,6 +45,9 @@ class SelectHousePlanConversation extends Conversation
         if ($user->get('type')=='Bare') {
             # code...
             $this->Bare();
+            // return redirect(url('generate-pdf'));
+            // $ctrl = new PDFController();
+            // return $this->$ctrl;
         } elseif ($user->get('type')=='Standard') {
             # code...
             $this->Standard();
@@ -59,7 +61,7 @@ class SelectHousePlanConversation extends Conversation
         $user = $this->bot->userStorage()->find();
         $total = $user->get('sqm')*20000;
         $message = '-------------------------------------- <br>';
-        $message .= '<>Name : ' . $user->get('name') . '<br>';
+        $message .= 'Name : ' . $user->get('name') . '<br>';
         $message .= 'Email : ' . $user->get('email') . '<br>';
         $message .= 'Mobile : ' . $user->get('mobile') . '<br>';
         $message .= 'House Area : ' . $user->get('sqm').'sqm'. '<br>';
@@ -79,8 +81,36 @@ class SelectHousePlanConversation extends Conversation
         $message .= '<small>-These data should be useful at the early stages of the design process to know certain limitations and manage expections</small><br>';
         $message .= '<small>-Landscape,pools, fences and other structures or components aside from the main building are EXCLUDED in the said approximate rate and should be computed saperately.</small><br>';
         $message .= '<small>-Lastly, Professional Fees, Transaction and Permit Fees, Taxes and the like are also NOT included in the approximate buiuilding contruction rate.</small><br>';
-
         $this->say('<small>Great. Your Estimated Price is done! Here is the details for the Estimated Price.</small><br><br>' . $message);
+        // Redirect::route('generate-pdf.download');
+        // $this->say('<a class="btn btn-primary" href="{{route("generate-pdf.download")}}">Here is your Receipt of Rough Estimation.</a>');
+        $this->askTown();
+    }
+
+    public function askTown()
+    {
+        $question = Question::create("Please visit their community page here:")
+            ->addButtons([
+                Button::create('Visit Link: /city/')->value('visit'),
+                Button::create('Make another estimation')->value('again'),
+                Button::create('Ask Something Else')->value('continue')
+            ]);
+
+        return $this->ask($question, function (Answer $answer) {
+            if ($answer->isInteractiveMessageReply()) {
+                if ($answer->getValue() === 'visit') {
+                    $this->say('Glad I could help!');
+                } 
+                elseif ($answer->getValue() === 'again') {
+                    # code...
+                    $this->bot->startConversation(new OnboardingConversation());
+                } 
+                else {
+                    $this->say("Alright, let's talk about something else.");
+                    $this->bot->startConversation(new FallbackButtons());
+                }
+            }
+        });
     }
     public function Standard(){
         $user = $this->bot->userStorage()->find();
