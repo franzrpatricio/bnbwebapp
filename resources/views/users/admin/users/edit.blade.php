@@ -4,11 +4,6 @@
 
 <div class="container-fluid px-4">
     <div class="card mt-4">
-        <div class="card-header">
-            <h4 class="mt-4">Edit Staff
-                <a href="{{url('admin/users')}}" class="btn btn-danger float-end">Back</a>
-            </h4>
-        </div>
         <div class="card-body">
             {{-- show any errors in saving the forms --}}
             @if ($errors->any())
@@ -19,23 +14,11 @@
                 </div>
             @endif
 
-            <div class="col-md-6">
-                <label>Name</label>
-                {{-- <input type="text" name="name" value="{{$user->name}}" class="form-control"> --}}
-                <p class="form-control">{{$user->name}}</p>
+            <div class="row">
+                <div class="col-6 mb-3"><label><strong>Name</strong></label><p class="form-control">{{$user->name}}</p></div>
+                <div class="col-6 mb-3"><label><strong>Email</strong></label><p class="form-control">{{$user->email}}</p></div>
+                <div class="col-6 mb-3"><label for=""><strong>Created At</strong></label><p class="form-control">{{ $user->created_at->format('d/m/Y') }}</p></div>
             </div>
-
-            <div class="col-md-6">
-                <label>Email</label>
-                {{-- <input type="text" name="email" value="{{$user->email}}" class="form-control"> --}}
-                <p class="form-control">{{$user->email}}</p>
-            </div>
-
-            <div class="col-md-3 mb-3">
-                <label for="">Created At</label>
-                <p>{{ $user->created_at->format('d/m/Y') }}</p>
-            </div>
-
 
             <form action="{{ url('admin/update-user/'.$user->id) }}" method="post" enctype="multipart/form-data">
                 {{-- Laravel provides protection with the CSRF attacks 
@@ -50,27 +33,38 @@
                 {{-- FETCH ALL RECORDS --}}
                 {{-- REPLACE CATEGORY ID AND HOUSE PLAN ID WITH CAT && PLAN NAME --}}
                 <div class="row">
-                    <h6>User Status</h6>
+                    <h4>Mode</h4>
                     {{-- if role and status == 1, then display check on the box --}}
                     <div class="col-md-3 mb-3">
-                        <label>Role</label>
+                        <label><strong>Role</strong></label>
                         {{-- <input type="checkbox" name="role_as" {{$user->role_as == '1' ? 'checked':''}}/> --}}
                         <select name="role_as" class="form-control">
+                            <option value="">--Select Role--</option>
                             <option value="0" {{$user->role_as=='1' ? 'selected':''}}>Administrator</option>
                             <option value="1" {{$user->role_as=='0' ? 'selected':''}}>Staff</option>
                         </select>
                     </div>
 
-                    <div class="col-md-3 mb-3">
-                        <label>Disable User</label>
-                        <input type="checkbox" name="status" {{$user->status == '0' ? 'checked':''}}/>
-                        {{-- <select name="status" class="form-control">
-                            <option value=""{{$user->status=='0' ? 'selected':''}}>Active</option>
-                            <option value="" {{$user->status=='1' ? 'selected':''}}>Inactive</option>
-                        </select> --}}
+                    <div class="col-6 mb-3">
+                        @if ($user->status == '1')
+                            <label><strong>User Status</strong></label>
+                            <input type="checkbox" name="status" {{$user->status == '1' ? 'checked':''}}/>
+                        @else
+                            <div><label><strong>User Status</strong></label></div>
+                            <input type="checkbox" name="status" {{$user->status == '1' ? 'checked':''}}/>
+                            <small>Click to activate the user.</small>
+                        @endif
                     </div>
+
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary">Update User</button>
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="fa fa-refresh"></i>
+                            Update User
+                        </button>
+                        <a href="{{url('admin/users')}}" class="btn btn-outline-danger">
+                            <i class="fa fa-times"></i>
+                            Cancel
+                        </a>
                     </div>
                 </div>
             </form>

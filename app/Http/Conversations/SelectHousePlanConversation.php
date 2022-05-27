@@ -91,14 +91,13 @@ class SelectHousePlanConversation extends Conversation
     {
         $question = Question::create("Please visit their community page here:")
             ->addButtons([
-                Button::create('Visit Link: /city/')->value('visit'),
+                Button::create('Download the generated Rough Estimation')->value('download'),
                 Button::create('Make another estimation')->value('again'),
-                Button::create('Ask Something Else')->value('continue')
             ]);
 
         return $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
-                if ($answer->getValue() === 'visit') {
+                if ($answer->getValue() === 'download') {
                     $this->say('Glad I could help!');
                 } 
                 elseif ($answer->getValue() === 'again') {

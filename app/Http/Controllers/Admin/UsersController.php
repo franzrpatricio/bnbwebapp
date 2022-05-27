@@ -25,9 +25,9 @@ class UsersController extends Controller
                 // $users = User::paginate(5);
                 if ($request->has('trashed')) {
                     # code...
-                    $users = User::onlyTrashed()->paginate(3);
+                    $users = User::onlyTrashed()->paginate(2);
                 }else {
-                    $users = User::paginate(3);
+                    $users = User::paginate(2);
                 }
 
                 return view('users.admin.users.index', compact('users'));
@@ -54,7 +54,7 @@ class UsersController extends Controller
         $users->email = $data['email'];
         $users->password = Hash::make($data['password']);
         $users->role_as = $request->role_as == true ? '1':'0';
-        $users->status = $request->status == true ? '0':'1';
+        $users->status = $request->status == true ? '1':'0';
 
         #save the category
         $users->save();
@@ -91,7 +91,7 @@ class UsersController extends Controller
         if ($user) {
             # code...
             $user->role_as = $request->role_as == true ? '0':'1'; #admin=1,staff=0
-            $user->status = $request->status == true ? '0':'1'; #active=1, inactive=0
+            $user->status = $request->status == true ? '1':'0'; #active=1, inactive=0
             // $user->updated_at = $request->touch();
             #get id of authenticated user who posted the category
             // $user->created_by = Auth::user()->id;

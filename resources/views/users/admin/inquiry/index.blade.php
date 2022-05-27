@@ -10,9 +10,8 @@
                 <div class="sb-nav-link-icon">
                     <i class="fas fa-list"></i>Inquiry List
                 
-
                     <!-- Navbar Search-->
-                    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('admin/inquiry/find')}}">
+                    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('admin/inquiries/find')}}">
                         @csrf
                         <div class="input-group">
                             <input class="form-control" name="query" type="search" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />

@@ -3,9 +3,6 @@
 @section('content')
 
 <div class="container-fluid px-4">
-<h1 class="mt-5">Add Category
-    <a href="{{url('admin/categories')}}" class="btn btn-danger float-end">Back</a>
-</h1>
     <div class="card mt-4">
         <div class="card-header">
             <h4><div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New Category</div></h4>
@@ -28,7 +25,7 @@
                     automatically for each user. --}}
                 @csrf
                     <div class="mb-3">
-                        <label>Category Name</label>
+                        {{-- <label>Category Name</label> --}}
                         <input type="text" name="name"class="form-control">
                     </div>
                     <div class="mb-3">
@@ -69,7 +66,11 @@
                             <input type="checkbox" name="feature"/>
                         </div>
                         <div class="col-md-6">
-                            <button class="btn btn-primary">Save Category</button>
+                            <button type="submit" class="btn btn-outline-primary">
+                            <i class="fa fa-plus"></i>
+                            {{__('Add Category')}}
+                            </button>
+                            <a href="{{url('admin/categories')}}" class="btn btn-outline-danger"><i class="fa fa-times"></i>Cancel</a>
                         </div>
                     </div>
             </form>

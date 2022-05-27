@@ -20,7 +20,7 @@
             </thead>
             <tbody>
               {{-- @foreach ($logs->sortByDesc('date_time') as $row)  --}}
-              @foreach ($logs->sortByDesc('date_time') as $row) 
+              @foreach ($logs as $row) 
                   <tr>
                     <td data-title="Role">
                       @if ($row->role_as == 1)

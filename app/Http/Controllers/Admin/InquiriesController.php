@@ -110,10 +110,12 @@ class InquiriesController extends Controller
     public function search(Request $request){
         $find_this = $request->get('query');
         $inquiries = Inquiry::where('id', 'LIKE', '%'.$find_this.'%')
-            ->orWhere('namme', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('proj_name', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('name', 'LIKE', '%'.$find_this.'%')
             ->orWhere('email', 'LIKE', '%'.$find_this.'%')
-            ->orWhere('contact', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('phone', 'LIKE', '%'.$find_this.'%')
             ->orWhere('address', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('message', 'LIKE', '%'.$find_this.'%')
             ->paginate(2);
         if (count ($inquiries) > 0) {
             return view('users.admin.inquiry.index', compact('inquiries'));

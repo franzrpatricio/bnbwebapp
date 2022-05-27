@@ -14,18 +14,18 @@
                     
                 {{-- USER --}}
                 <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUser" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-user-cog"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
                     Users
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseUser" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link collapsed link-light" href="{{ url('admin/add-user') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa fa-user-plus"></i></div>
                             Create New Users
                         </a>
                         <a class="nav-link link-light" href="{{ url('admin/users') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
                             List of Users
                         </a>
                     </nav>

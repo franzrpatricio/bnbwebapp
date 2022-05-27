@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <script src="{{ asset('assets/js/pwd-toggle.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/pwd-toggle.js') }}"></script> --}}
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
@@ -102,10 +102,54 @@
             });
         });
     </script>
-{{-- BOOTSTRAP script link --}}
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    {{-- TOGGLE PASSWORD --}}
+    <script>
+        const togglecurrentPassword = document.querySelector("#togglecurrentPassword");
+        const currentpwd = document.querySelector("#currentpwd");
+
+        togglecurrentPassword.addEventListener("click", function () {
+            // toggle the type attribute
+            const type = currentpwd.getAttribute("type") === "password" ? "text" : "password";
+            currentpwd.setAttribute("type", type);
+            
+            // toggle the icon
+            this.classList.toggle("bi-eye");
+        });
+
+        const togglenewPassword = document.querySelector("#togglenewPassword");
+        const newpwd = document.querySelector("#newpwd");
+
+        togglenewPassword.addEventListener("click", function () {
+            // toggle the type attribute
+            const type = newpwd.getAttribute("type") === "password" ? "text" : "password";
+            newpwd.setAttribute("type", type);
+            
+            // toggle the icon
+            this.classList.toggle("bi-eye");
+        });
+
+        const togglerepeatPassword = document.querySelector("#togglerepeatPassword");
+        const repeatpwd = document.querySelector("#repeatpwd");
+
+        togglerepeatPassword.addEventListener("click", function () {
+            // toggle the type attribute
+            const type = repeatpwd.getAttribute("type") === "password" ? "text" : "password";
+            repeatpwd.setAttribute("type", type);
+            
+            // toggle the icon
+            this.classList.toggle("bi-eye");
+        });
+
+        // prevent form submit
+        const form = document.querySelector("form");
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+        });
+    </script>
+    {{-- BOOTSTRAP script link --}}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
 </body>
 </html>

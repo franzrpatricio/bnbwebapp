@@ -3,31 +3,36 @@
 @section('content')
 
 <div class="container-fluid px-4">
-    <h1 class="mt-3">Manage Users</h1>
-    <div class="card">
-        <div class="card mt-4"></div>
+    <div class="card mt-4">
         <div class="card-header">
             <h4>
                 <div class="sb-nav-link-icon">
-                    <i class="fas fa-list"></i>List of Users
+                    <i class="fa fa-users"></i>List of Users
                     <!-- Navbar Search-->
                     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('admin/users/find')}}">
                         @csrf
                         <div class="input-group">
-                            <input class="form-control" name="query" type="search" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                            <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+                            <input class="form-control" name="query" type="search" placeholder="&#xf002; Search user here..." style="font-family:Arial, FontAwesome" aria-describedby="btnNavbarSearch" />
+                            {{-- <button class="btn btn-outline-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button> --}}
                         </div>
                     </form>
                 </div>
             </h4>
             <div class="float-end">
                 @if(request()->has('trashed'))
-                    <a href="{{ route('users.index') }}" class="btn btn-info btn-sm">View All Users</a>
-                    <a href="{{ route('users.restore_all') }}" class="btn btn-success btn-sm">Restore All Users</a>
+                    <a href="{{ route('users.index') }}" class="btn btn-outline-info btn-sm"><i class="fa fa-users"></i>View All Users</a>
+                    <a href="{{ route('users.restore_all') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fa fa-user-plus"></i>
+                        Restore All Users</a>
                 @else
-                    <a href="{{ url('admin/add-user') }}" class="btn btn-primary btn-sm">
-                        <div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New User</div>
-                        <a href="{{ route('users.index', ['trashed' => 'post']) }}" class="btn btn-primary btn-sm">View Deleted Users</a>
+                    <a href="{{ url('admin/add-user') }}" class="btn btn-outline-primary btn-sm">
+                        <div class="sb-nav-link-icon">
+                            <i class="fa fa-user-plus"></i>Create New User
+                        </div>
+                    </a>
+                    <a href="{{ route('users.index', ['trashed' => 'post']) }}" class="btn btn-outline-danger btn-sm">
+                        <i class="fa fa-user-times"></i>
+                        View Deleted Users
                     </a>
                 @endif
             </div>
@@ -43,7 +48,7 @@
                     <tr class="text-center">
                         <th>ID</th>
                         <th>Full Name</th>
-                        <th>Email</th>
+                        {{-- <th>Email</th> --}}
                         <th>Role</th>
                         <th>Status</th>
                         <th>Action</th> {{-- edit --}}
@@ -55,7 +60,7 @@
                         <tr class="text-center">
                             <td>{{$item->id}}</td>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->email}}</td>
+                            {{-- <td>{{$item->email}}</td> --}}
                             <td>{{$item->role_as == '1' ? 'Administrator':'Staff'}}</td>
 
                             {{-- if status is true, show if not visible || visible --}}
@@ -64,7 +69,7 @@
                             <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td> 
                             <td>
                                 @if(request()->has('trashed'))
-                                    <a href="{{ route('users.restore', $item->id) }}" class="btn btn-success">Restore</a>
+                                    <a href="{{ route('users.restore', $item->id) }}" class="btn btn-outline-success">Restore</a>
                                 @else
                                     <a href="{{ url('admin/edit-user/'.$item->id) }}"><i class="fas fa-pen"></i></a>
                                     <form method="POST" action="{{ route('users.destroy', $item->id) }}">
@@ -95,5 +100,4 @@
         });
     });
 </script>
-
 @endsection

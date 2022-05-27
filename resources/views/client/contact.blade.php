@@ -1,6 +1,5 @@
 @extends('layouts.client')
 @section('content')
-    
     <!-- contact us codes -->
     <div class="contact">
     <div class="container1">
@@ -44,7 +43,7 @@
                 <div class="social-input-containers textarea">
                     <textarea name="message" class="input" placeholder="Message" required></textarea>
                 </div> 
-                <input type="submit" value="Send Message" class="btn1" />
+                <input type="submit" value="Send Message" class="btn btn-outline-light" style="color: aquamarine" />
                 {{-- display msg after redirecting --}}
                 @if (isset($msg))
                 <div class="alert alert-danger">

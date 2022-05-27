@@ -21,18 +21,19 @@
                 {{-- <img src=".{{ asset('assets/images/aj.jpg') }}" class="rounded-circle" width="40px" height="40px"> --}}
                 <small>{{ Auth::user()->name }}</small></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{{ url('admin/profile') }}">Settings</a></li>
-                <li><a class="dropdown-item" href="{{ url('admin/logs') }}">Activity Logs</a></li>
+                <li><a class="dropdown-item" href="{{ url('admin/profile') }}"><i class="fa fa-gear"></i> Profile Settings</a></li>
+                <li><a class="dropdown-item" href="{{ url('admin/logs') }}"><i class="fas fa-tasks"></i> Activity Logs</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li><a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();">
-                     {{ __('Logout') }}
-                 </a>
-
-                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                     @csrf
-                 </form></li>
+                        onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                        <i class="fa fa-sign-out"></i>
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
             </ul>
         </li>
     </ul>
