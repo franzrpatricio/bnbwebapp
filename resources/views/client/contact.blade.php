@@ -39,7 +39,7 @@
                     <input type="tel" name="phone" class="input" placeholder="&#xf10b; Phone Number" style="font-family:Arial, FontAwesome" required/>
                 </div>
                 <div class="social-input-containers">
-                    <input type="text" name="address" class="input" placeholder="&#xf0e0; Personal Address" style="font-family:Arial, FontAwesome; " required/>
+                    <input type="text" name="address" class="input" placeholder="&#xf041; Personal Address" style="font-family:Arial, FontAwesome; " required/>
                 </div>
                 <div class="social-input-containers textarea">
                     <textarea name="message" class="input" placeholder="Message" required></textarea>

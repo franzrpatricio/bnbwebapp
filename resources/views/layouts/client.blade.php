@@ -70,19 +70,22 @@
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
 <script>
     var botmanWidget = { 
-        // frameEndpoint: '/botman/chat',
+        frameEndpoint: '/botman/chat',
         dateTimeFormat: 'm/d/yy HH:MM',
-        title:'BnBot 🤖',
+        title:'🤖 BnBot',
         introMessage: 'Hi, I am the official chat bot of Bana and Bana Architects!✋<br><br>Type MENU. So that I can give you the commands I know!',
         placeholderText:'Type something here...',
         aboutText: '©️ Bana and Bana Architects 2022',
         displayMessageTime:'true',
-        desktopHeight: '600',
+        // desktopHeight: '600',
+        desktopWidth: '380',
         mobileHeight: '100%',
         mobileWidth: '100%',
+        bubbleAvatarUrl: '{{asset('assets/images/avatar.png')}}',
+        mainColor: '#368BC1'
     };
 </script>
-<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+<script id="botmanWidget" src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 
 <script>
     function videoslider(links){

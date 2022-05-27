@@ -145,7 +145,8 @@
 <!-- Button trigger modal -->
 <div class="text-center p-3">
   <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Inquire about this Project
+    <i class="fa fa-pencil-square-o"></i>
+      Inquire about this Project<i class="fa fa-question"></i>
 </button>
 </div>
 
@@ -158,7 +159,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">project </h5>
+        <h5 class="modal-title" id="exampleModalLabel">Project Inquiry Form</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -167,29 +168,29 @@
       <form action="{{ route('send.projectInquiry') }}" method="POST" onclick=" false;" autocomplete="off">
         @csrf
         <div class="modal-body">
-          <div class="contact-info-form"> <span class="circle one"></span> <span class="circle two"></span>
+          <div class="contact-info-form"> 
             <h3 class="title">Inquiry Form</h3>
             <div class="col-md-12">
               <div class="social-input-containers">
                 <input type="hidden" name="proj_id" value="{{ $project->id }}" class="form-control">
               </div>
               <div class="social-input-containers">
-                <input type="@disabled(true)" name="proj_name" value="{{ $project->name }}" class="form-control">
+                <input type="@disabled(true)" name="proj_name" value="&#xf1c4; {{ $project->name }}" style="font-family:Arial, FontAwesome" class="input">
               </div>
               <div class="social-input-containers">
-                <input type="text" name="name" class="input" placeholder="Name" />
+                <input type="text" name="name" class="input" placeholder="&#xf2c0; Full Name" style="font-family:Arial, FontAwesome" required/>
               </div>
               <div class="social-input-containers">
-                <input type="email" name="email" class="input" placeholder="Email" />
+                <input type="email" name="email" class="input" placeholder="&#xf0e0; Gmail Account" style="font-family:Arial, FontAwesome" required/>
               </div>
               <div class="social-input-containers">
-                <input type="tel" name="phone" class="input" placeholder="Phone" />
+                <input type="tel" name="phone" class="input" placeholder="&#xf10b; Phone Number" style="font-family:Arial, FontAwesome" required/>
               </div>
               <div class="social-input-containers">
-                <input type="text" name="address" class="input" placeholder="Address" />
+                <input type="text" name="address" class="input" placeholder="&#xf041; Personal Address" style="font-family:Arial, FontAwesome" required/>
               </div>
               <div class="social-input-containers textarea">
-                <textarea name="message" class="input" placeholder="Message"></textarea>
+                <textarea name="message" class="input" placeholder="Message" required></textarea>
               </div> 
             </div>
           </div>
@@ -208,21 +209,18 @@
 <div class="container-fluid" style="background:whitesmoke;" data-aos="fade-right" data-aos-duration="3000">
   <div class="row">
     <div class="col-lg-6 p-3">
-      <div class="p-3"> Comment Panel </div>
+      <div class="p-1"><h4><i class="fa fa-commenting-o"></i>&nbsp;Comment Panel</h4></div>
       <form action="{{url('comments')}}" method="post">
         {{-- Returning false stops the page from reloading --}}
         @csrf
         <input type="hidden" name="project_slug" value="{{$project->slug}}">
         <input type="hidden" name="project_id" value="{{$project->id}}">
         <div class="p-3"> 
-          {{-- <input type="text" name="name" placeholder="Full Name" id="email" style="width: 100%;"> --}}
-          <label for="">Name</label>
           <input type="text" 
             name="name" 
-            class="form-control @error('name') is-invalid @enderror('name')" 
-            placeholder="Full Name" 
             id="email" 
-            style="width: 100%;"
+            class="form-control @error('name') is-invalid @enderror('name')" 
+            placeholder="&#xf2c0; Full Name" style="font-family:Arial, FontAwesome"
             required> 
           @error('name')
               <div class="invalid-feedback">
@@ -231,14 +229,11 @@
           @enderror
         </div>
         <div class="p-3"> 
-          {{-- <input type="email" name="email" placeholder="Email" id="email" style="width: 100%;"> --}}
-          <label>Email</label>
           <input type="email" 
-            name="email" 
-            class="form-control @error('name') is-invalid @enderror('email')" 
-            placeholder="Email" 
+            name="email"
             id="email" 
-            style="width: 100%;"
+            class="form-control @error('name') is-invalid @enderror('email')" 
+            placeholder="&#xf0e0; Gmail Account" style="font-family:Arial, FontAwesome"
             required>
           @error('email')
               <div class="invalid-feedback">
@@ -247,39 +242,39 @@
           @enderror
         </div>
         <div class="p-3"> 
-          <textarea class="form-control" name="comment" placeholder="leave a comment..." rows="3" required></textarea>
+          <textarea class="form-control" name="comment" placeholder="&#xf27a; Leave a comment..." style="font-family:Arial, FontAwesome" rows="3" required></textarea>
         </div>  
     
-        <button type="submit" class="btn btn-info pull-right" style="color:aqua;">Post</button>
+        <button type="submit" class="btn btn-outline-info pull-right"><i class="fa fa-upload"></i>Post</button>
       </form>
     </div>
 
     <div class="col-lg-6 p-3">
-      <div>Comment Review</div>
+      <div><h4><i class="fa fa-comments-o"></i>&nbsp;Comment Review</h4></div>
       @if (session('msgcom'))
         <h6 class="alert alert-warning mb-3">{{session('msgcom')}}</h6>
       @endif
 
-      @forelse ($project->comments->sortByDesc('created_at') as $comment)
         <div style="background:whitesmoke; overflow-y:scroll; height:380px">
-          <div class="card" style="width: 500px; height: 150px;">
-            <div class="row" >
-              <div class="col-3">
-                <img src="{{asset('assets/images/avatar.png')}}" class="img-fluid" style="height: 100px; width: 100px; border-radius: 200px;">
-              </div>
-              
-              <div class="col-9" >
-                <div>{{$comment->name}}</div>
-                <div>{{$comment->email}}</div>
-                <div>{{$comment->comment}}</div>
-                <div>{{$comment->created_at->format('d-m-Y')}}</div>
-              </div>
-            </div> 
-          </div>
+          @forelse ($project->comments->sortByDesc('created_at') as $comment)
+            <div class="card" style="width: 500px; height: 150px;">
+              <div class="row">
+                  <div class="col-3">
+                    <img src="{{asset('assets/images/avatar.png')}}" class="img-fluid" style="height: 100px; width: 100px; border-radius: 200px;">
+                  </div>
+                  
+                  <div class="col-9" >
+                    <div>{{$comment->name}}</div>
+                    <div>{{$comment->email}}</div>
+                    <div>{{$comment->comment}}</div>
+                    <div>{{$comment->created_at->format('d-m-Y')}}</div>
+                  </div>
+              </div> 
+            </div>
+          @empty
+            <h6>No Comments yet.</h6>
+          @endforelse
         </div>
-      @empty
-        <h6>No Comments yet.</h6>
-      @endforelse
     </div>
   </div>
 </div>

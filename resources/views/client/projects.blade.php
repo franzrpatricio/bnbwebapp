@@ -8,13 +8,26 @@
           <!-- Navbar Search-->
           <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('projects')}}">
           @csrf
-            <input class="form-control" name="query" type="search" placeholder="Search Project here..." aria-label="Search Project" aria-describedby="btnNavbarSearch"/>
-            <button class="btn btn-primary" id="btnNavbarSearch" type="submit">
+            <input class="form-control" name="query" type="search" placeholder="&#xf002; Search Project here..." style="font-family:Arial, FontAwesome" aria-label="Search Project" aria-describedby="btnNavbarSearch"/>
+            {{-- <button class="btn btn-primary" id="btnNavbarSearch" type="submit">
               <i class="fa fa-search"></i>
-            </button>
+            </button> --}}
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <div>  
+                <div class="text-center p-2">
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fa fa-filter"></i>
+                    Apply Filter
+                  </button>
+                  <a href="{{url('projects')}}" class="btn btn-danger btn-sm mt-auto">
+                    <i class="fa fa-undo"></i> 
+                    Reset
+                  </a>
+                </div>
+                {{-- <div class="d-grid gap-2 col-6 d-md-block"> --}}
+                {{-- </div> --}}
+
                 {{-- CATEGORIES --}}
                 <div class="container  border-bottom p-3" >
                   <div>
@@ -90,10 +103,6 @@
                     @endforeach
                 </div>
               </div>
-            </div>
-            <div class="text-center p-2">
-              <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
-            <a href="{{url('projects')}}" class="btn btn-danger btn-sm mt-auto">Reset</a>
             </div>
           </form>
         </div>
