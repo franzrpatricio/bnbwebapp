@@ -204,14 +204,12 @@ class UsersController extends Controller
         $users = User::where('id', 'LIKE', '%'.$find_this.'%')
             ->orWhere('name', 'LIKE', '%'.$find_this.'%')
             ->orWhere('email', 'LIKE', '%'.$find_this.'%')
-            // ->orWhere('role_as', 'LIKE', '%'.$find_this.'%')
-            // ->orWhere('status', 'LIKE', '%'.$find_this.'%')
             ->paginate(2);
         if (count ($users) > 0) {
             return view('users.admin.users.index', compact('users'));
         } else {
             # code...
-            return view ('users.admin.users.index', compact('users'))->with( 'No Users Found. 🥺' );
+            return view ('users.admin.users.index',['msg'=>'No '.$find_this.' User is Found.🥺'], compact('users'));
         }
     }
 }

@@ -3,13 +3,12 @@
 @section('content')
 
 <div class="container-fluid px-4">
-    <h1 class="mt-3">Manage House Plan</h1>
-
     <div class="card mt-4">
         <div class="card-header">
             <h4>
                 <div class="sb-nav-link-icon">
-                    <i class="fas fa-list"></i>List of House Plans
+                    <i class="fas fa-house-chimney"></i>
+                    List of House Plans
                     <!-- Navbar Search-->
                     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('admin/houseplan/find')}}">
                         @csrf
@@ -22,12 +21,20 @@
             </h4>
             <div class="float-end">
                 @if(request()->has('trashed'))
-                    <a href="{{ route('houseplan.index') }}" class="btn btn-info btn-sm m-1">View All House Plans</a>
-                    <a href="{{ route('houseplan.restore_all') }}" class="btn btn-success btn-sm m-1">Restore All</a>
+                    <a href="{{ route('houseplan.index') }}" class="btn btn-outline-info btn-sm m-1">
+                        <i class="fas fa-house-chimney"></i>
+                        View All House Plans</a>
+                    <a href="{{ route('houseplan.restore_all') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fa fa-plus-square"></i>
+                        Restore All</a>
                 @else
-                <a href="{{ url('admin/add-houseplan') }}" class="btn btn-primary btn-sm">
-                    <div class="sb-nav-link-icon"><i class="fas fa-plus-circle m-1"></i>Create New Category</div>
-                    <a href="{{ route('houseplan.index', ['trashed' => 'post']) }}" class="btn btn-primary btn-sm m-1">View Deleted House Plans</a>
+                <a href="{{ url('admin/add-houseplan') }}" class="btn btn-outline-primary btn-sm">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-plus-circle"></i>
+                        Create New Category</div>
+                    <a href="{{ route('houseplan.index', ['trashed' => 'post']) }}" class="btn btn-outline-danger btn-sm m-1">
+                        <i class="fa fa-trash"></i>
+                        View Deleted House Plans</a>
                 @endif
             </div>
         </div>
@@ -50,44 +57,54 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($houseplan as $item)
+                    @if (isset($msg))
                         <tr class="text-center">
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->type}}</td>
-                            <td>{{$item->cost}}</td>
-                            <td>{{$item->floor}}</td>
-                            <td>{{$item->wall}}</td>
-                            <td>{{$item->window}}</td>
-                            <td>{{$item->ceiling}}</td>
-
-                            {{-- if status is true, show if not visible || visible --}}
-                            {{-- to make the category visible just check the box for status --}}
-                            <td>{{$item->status == '1' ? 'Visible':'Not Visible'}}</td>
-                            <td>
-                                {{-- ACTIONS DELETE --}}
-                                @if(request()->has('trashed'))
-                                    <a href="{{ route('houseplan.restore', $item->id) }}" class="btn btn-success btn-sm">Restore</a>
-                                @else
-                                    {{-- pass the ID of specific faq --}}
-                                    <a href="{{ url('admin/edit-houseplan/'.$item->id) }}">
-                                        <i class="fa-solid fa-pen" style="color:#019ad2;"></i>
-                                    </a>
-                                    <form method="POST" action="{{ route('houseplan.destroy', $item->id) }}">
-                                        @csrf
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button type="submit" class="btn delete" title='Delete'>
-                                            <i class="fa-solid fa-trash" style="color:red;"></i>
-                                        </button>
-                                    </form>
-                                @endif
+                            <td colspan="10">
+                                <div class="alert alert-danger">{{ $msg }}</div>
                             </td>
                         </tr>
-                    @empty
-                    <tr class="text-center"><td colspan="10"><h5>No Houseplans</h5></td></tr>
-                    @endforelse
+                    @else
+                        @forelse ($houseplan as $item)
+                            <tr class="text-center">
+                                <td>{{$item->id}}</td>
+                                <td>{{$item->type}}</td>
+                                <td>{{$item->cost}}</td>
+                                <td>{{$item->floor}}</td>
+                                <td>{{$item->wall}}</td>
+                                <td>{{$item->window}}</td>
+                                <td>{{$item->ceiling}}</td>
+
+                                {{-- if status is true, show if not visible || visible --}}
+                                {{-- to make the category visible just check the box for status --}}
+                                <td>{{$item->status == '1' ? 'Visible':'Not Visible'}}</td>
+                                <td>
+                                    {{-- ACTIONS DELETE --}}
+                                    @if(request()->has('trashed'))
+                                        <a href="{{ route('houseplan.restore', $item->id) }}" class="btn btn-success btn-sm">Restore</a>
+                                    @else
+                                        {{-- pass the ID of specific faq --}}
+                                        <a href="{{ url('admin/edit-houseplan/'.$item->id) }}">
+                                            <i class="fa-solid fa-pen" style="color:#019ad2;"></i>
+                                        </a>
+                                        <form method="POST" action="{{ route('houseplan.destroy', $item->id) }}">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <button type="submit" class="btn delete" title='Delete'>
+                                                <i class="fa-solid fa-trash" style="color:red;"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                </td>
+                            </tr>
+                        @empty
+                        <tr class="text-center"><td colspan="10"><h5>No Houseplans</h5></td></tr>
+                        @endforelse
+                    @endif
                 </tbody>
             </table>
-            {{ $houseplan->links() }}
+            <div class="float-end">
+                {{ $houseplan->links() }}
+            </div>
         </div>
     </div>
 </div>

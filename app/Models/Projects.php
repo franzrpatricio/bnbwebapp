@@ -29,7 +29,7 @@ class Projects extends Model
         'amenities' => 'array',
         'meta_title',
         'meta_description',
-        'meta_keyword',
+        // 'meta_keyword',
         'status',
         'posted_by'
     ];

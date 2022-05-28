@@ -5,7 +5,9 @@
 <div class="container-fluid px-4">
     <div class="card mt-4">
         <div class="card-header">
-            <h4><div class="sb-nav-link-icon"><i class="fa fa-user-plus"></i> Create New Staff</div></h4>
+            <h4><div class="sb-nav-link-icon">
+                <i class="fa fa-user-plus"></i>
+                Create New Users</div></h4>
         </div>
 
         <div class="card-body">
@@ -24,8 +26,7 @@
                         {{-- <label for="">Name</label> --}}
                         {{-- input name refers to db field --}}
                         <input type="text" name="name" 
-                        placeholder="&#xf2c0; Full Name" required style="font-family:Arial, FontAwesome"
-                        class="form-control @error('name') is-invalid @enderror('name')"> 
+                        placeholder="&#xf2c0; Full Name" required style="font-family:Arial, FontAwesome" class="form-control @error('name') is-invalid @enderror('name')"> 
                         @error('name')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -64,10 +65,6 @@
                     </div>
 
                     <div class="col-6 mb-3">
-                        {{-- <label>
-                            <i class="fa fa-user-secret"></i>
-                            Role
-                        </label> --}}
                         <select name="role_as" class="form-control">
                             <option value="">--Select Role--</i></option>
                             <option value="1">Administrator</option>

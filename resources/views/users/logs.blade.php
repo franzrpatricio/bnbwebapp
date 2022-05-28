@@ -3,14 +3,10 @@
 @section('content')
 
 <div class="container light-style flex-grow-1 container-p-y">
-  <h4 class="font-weight-bold py-3 mb-4">
-    Activity Logs
-  </h4>
-    
+  <h4 class="font-weight-bold py-3 mb-2">Activity Logs</h4>
   <div class="card overflow-hidden">
     <div class="row no-gutters row-bordered row-border-light">
       <div class="card-body pb-2">
-
           <table class="table bg-white" >
             <thead class="bg-dark text-light">
                 <th>Role</th>
@@ -18,8 +14,8 @@
                 <th>Action</th>
                 <th>Date</th>
             </thead>
+            
             <tbody>
-              {{-- @foreach ($logs->sortByDesc('date_time') as $row)  --}}
               @foreach ($logs as $row) 
                   <tr>
                     <td data-title="Role">
@@ -36,7 +32,9 @@
               @endforeach
             </tbody>
           </table>
-        {{ $logs->onEachSide(1)->links() }}
+          <div class="float-end">
+            {{ $logs->onEachSide(1)->links() }}
+          </div>
       </div>
     </div>
   </div>

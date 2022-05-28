@@ -80,6 +80,17 @@
         });
     </script>
 
+    {{-- ASK ADMIN&STAFF IF SURE IN DELETE --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.delete').click(function(e) {
+                if(!confirm('Are you sure you want to delete this?')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+
     {{-- CAROUSEL SCRIPT ON BOTTOM OF MASTER --}}
     <script>
         // document.getElementById('gallery').classList.add("custom");

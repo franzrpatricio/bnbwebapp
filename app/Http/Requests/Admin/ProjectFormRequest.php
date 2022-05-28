@@ -87,10 +87,6 @@ class ProjectFormRequest extends FormRequest
                 'required',
                 'string'
             ],
-            'meta_keyword' => [
-                'required',
-                'string'
-            ],
             'filenames' => [
                 'nullable',
             ],

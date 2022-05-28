@@ -3,15 +3,17 @@
 @section('content')
 
 <div class="container light-style flex-grow-1 container-p-y">
-  <h4 class="font-weight-bold py-3 mb-4">
-    Account settings
-  </h4>
+  <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
   <div class="card overflow-hidden">
     <div class="row no-gutters row-bordered row-border-light">
       <div class="col-md-3 pt-0">
         <div class="list-group list-group-flush account-settings-links">
-          <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
-          <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
+          <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">
+            <i class="fas fa-cog fa-spin"></i>
+            General</a>
+          <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">
+            <i class="fa fa-key"></i>
+            Change password</a>
         </div>
       </div>
 
@@ -32,6 +34,7 @@
 
                   <div class="ml-4 sm-12">
                     <label class="btn btn-outline-primary">
+                      <i class="fa fa-upload"></i>
                       Upload new photo
                       <input type="file" 
                         class="account-settings-fileinput" 
@@ -50,20 +53,6 @@
                 <div class="card p-3">
                   <div>
                     <div class="row text-start">
-                      <!-- <div class="col-6">
-                      Username:
-                      </div>
-                      <div class="col-6">
-                      {{ Auth::user()->name }}
-
-                      </div>
-                      <div class="col-6">
-                      Email:
-                      </div>
-                      <div class="col-6">
-                      {{ Auth::user()->email }}
-
-                      </div> -->
                       <div class="form-group">
                         <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}" placeholder="Enter New Name">
                       </div>
@@ -71,24 +60,15 @@
                         <input type="text" name="email" class="form-control" value="{{ Auth::user()->email }}" placeholder="Enter New Email">
                       </div>
                     </div>
-
-                    <!-- <div id="Edit" class="collapse">
-                    <div class="card"> 
-                    <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Enter New Name">
-                    </div>
-                    <div class="form-group">
-                    <input type="text" name="email" class="form-control" placeholder="Enter New Email">
-                    </div>
-                    </div>
-                    </div> -->
                   </div>
                   <div>
                 </div>
               </div>
 
               <div class="text-right mt-3 p-3">
-                <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
+                <button type="submit" class="btn btn-outline-primary">
+                  <i class="fa fa-save"></i>
+                  Save changes</button>&nbsp;
               </div>
             </form>                         
           </div>
@@ -137,7 +117,9 @@
                   <i class="bi bi-eye-slash" id="togglerepeatPassword"></i>
                 </div>
                 <div class="text-right mt-3 p-3">
-                  <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
+                  <button type="submit" class="btn btn-outline-primary">
+                    <i class="fa fa-save"></i>
+                    Save changes</button>&nbsp;
                 </div>
               </form>
             </div>

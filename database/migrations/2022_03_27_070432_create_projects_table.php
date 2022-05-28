@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('amenities');
             $table->string('meta_title');
             $table->mediumText('meta_description')->nullable();
-            $table->mediumText('meta_keyword')->nullable();
+            // $table->mediumText('meta_keyword')->nullable();
 
             $table->tinyInteger('status')->default('0'); #visible or not
             $table->integer('posted_by')->default('0'); #user

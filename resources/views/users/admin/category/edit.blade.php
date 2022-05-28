@@ -3,14 +3,7 @@
 @section('content')
 
 <div class="container-fluid px-4">
-    <h1 class="mt-5">Update Category</h1>
-
     <div class="card mt-4">
-        <div class="card-header">
-            <h4 class="mt-4">Edit Category
-                <a href="{{url('admin/categories')}}" class="btn btn-danger float-end">Back</a>
-            </h4>
-        </div>
         <div class="card-body">
             {{-- show any errors in saving the forms --}}
             @if ($errors->any())
@@ -30,57 +23,93 @@
 
                 {{-- for updating the record --}}
                 @method('PUT')
-
-                    <div class="mb-3">
-                        <label>Category Name</label>
-                        <input type="text" name="name" value="{{$category->name}}" class="form-control">
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <label for=""><strong>Category Name</strong></label>
+                        <input type="text" required name="name"class="form-control" value="{{$category->name}}">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for=""><strong>Category Slug</strong></label>
+                        <input type="text" name="slug"class="form-control" required value="{{$category->slug}}">
                     </div>
                     <div class="mb-3">
-                        <label>Slug</label>
-                        <input type="text" name="slug" value="{{$category->slug}}" class="form-control">
+                        <label for=""><strong>Category Description</strong></label>
+                        <textarea name="description" rows="5" class="form-control">{!!$category->description!!}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label>Description</label>
-                        <textarea name="description" id="summernoteDesc" rows="5" class="form-control">{{$category->description}}</textarea>
+                        <label><i class="fa fa-upload"></i> <strong>Image</strong></label>
+                        <input type="file" name="image" class="form-control">
                     </div>
-                    {{-- no need to show the current image when updating
-                        you'll replace it anyway zzzz....  --}}
+    
+                    <h6 class="mb-3"><i class="fa fa-tags"></i> SEO Tags</h6>
                     <div class="mb-3">
-                        <label>Image</label>
-                        <input type="file" name="image"class="form-control">
+                        <input type="text" name="meta_title" class="form-control" value="{{$category->meta_title}}">
+                        <div class="card mt-1" style="background-color:antiquewhite">
+                            <small class="ml-3">
+                                <i class="fas fa-info-circle" style="color:gold"></i>
+                                <strong>
+                                    For Category Meta Title, keyword as close to the beginning of the Category Name as possible.
+                                </strong>
+                            </small>
+                        </div>
                     </div>
-
-                    <h6>SEO Tags</h6>
                     <div class="mb-3">
-                        <label>Meta Title</label>
-                        <input type="text" name="meta_title" value="{{$category->meta_title}}" class="form-control">
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Meta Description</label>
-                            <textarea type="text" name="meta_description" rows="3" class="form-control">{{$category->meta_description}}</textarea>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Meta Keywords</label>
-                            <textarea name="meta_keyword" rows="3" class="form-control">{{$category->meta_keyword}}</textarea>
+                        <textarea name="meta_description" rows="5" class="form-control">{!!$category->meta_description!!}</textarea>
+                        <div class="card mt-1" style="background-color:antiquewhite">
+                            <small class="ml-3">
+                                <i class="fas fa-info-circle" style="color:gold"></i>
+                                <strong>
+                                    For Category Meta Description, include a compelling summary of the page someone is about to click on.
+                                </strong>
+                            </small>
                         </div>
                     </div>
-
-                    <h6>Mode</h6>
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label>Visible</label>
-                            <input type="checkbox" name="status" {{$category->status == '1' ? 'checked':''}}/>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label>Featured</label>
-                            <input type="checkbox" name="feature" {{$category->feature == '1' ? 'checked':''}}/>
-                        </div>
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary">Update Category</button>
+    
+                    <div class="d-flex justify-content-end">
+                        @if ($category->status == 1)
+                            <label class="mr-2" style="font-family: FontAwesome; color:green"> &#xf111; <strong style="color: black">Category Status</strong></label>
+                            <div class="mb-3">
+                                <input type="checkbox" name="status" {{$category->status == '1' ? 'checked':''}}/>
+                                <small>Click to make the category inactive.</small>
+                            </div>
+                            @if ($category->feature == 1)
+                                <div class="mb-3">
+                                    <input type="checkbox" name="feature" {{$category->feature == '1' ? 'checked':''}}/>
+                                    <small>Click to remove this category as part of Specialization.</small>
+                                </div>
+                            @else
+                                <div class="col-md-3 mb-3">
+                                    <input type="checkbox" name="feature"/>
+                                    <small>Click to make this category as part of Specialization.</small>
+                                </div>
+                            @endif
+                        @else
+                            <label class="mr-2" style="font-family: FontAwesome; color:red"> &#xf111; <strong style="color: black">Category Status</strong></label>
+                            <div class="mb-3">
+                                <input type="checkbox" name="status"/>
+                                <small>Click to make the category active .</small>
+                            </div>
+                            @if ($category->feature == 1)
+                                <div class="mb-3">
+                                    <input type="checkbox" name="feature" {{$category->feature == '1' ? 'checked':''}}/>
+                                    <small>Click to remove this category as part of Specialization.</small>
+                                </div>
+                            @else
+                                <div class="col-md-3 mb-3">
+                                    <input type="checkbox" name="feature"/>
+                                    <small>Click to make this category as part of Specialization.</small>
+                                </div>
+                            @endif
+                        @endif    
+                        <div class="col-4 mb-3">
+                            <button type="submit" class="btn btn-outline-primary">
+                                <i class="fa fa-refresh fa-spin"></i>
+                                {{__('Update Category')}}
+                            </button>
+                            <a href="{{url('admin/categories')}}" class="btn btn-outline-danger"><i class="fa fa-times"></i> Cancel</a>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
     </div>

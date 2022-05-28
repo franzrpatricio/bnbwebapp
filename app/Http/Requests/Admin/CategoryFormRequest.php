@@ -52,10 +52,6 @@ class CategoryFormRequest extends FormRequest
                 'required',
                 'string'
             ],
-            'meta_keyword' => [
-                'required',
-                'string'
-            ],
             'status' => [
                 'nullable',
             ],

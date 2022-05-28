@@ -159,10 +159,6 @@
                             <label>Meta Description</label>
                             <textarea type="text" name="meta_description" rows="3" class="form-control">{{$project->meta_description}}</textarea>
                         </div>
-                        <div class="col-md-6">
-                            <label>Meta Keywords</label>
-                            <textarea name="meta_keyword" rows="3" class="form-control">{{$project->meta_keyword}}</textarea>
-                        </div>
                     </div>
 
                     <div class="form-group">

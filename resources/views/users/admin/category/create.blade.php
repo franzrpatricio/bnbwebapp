@@ -9,7 +9,6 @@
         </div>
         
         <div class="card-body">
-
             @if ($errors->any())
                 <div class="alert alert-danger">
                     @foreach ($errors->all() as $error)
@@ -24,55 +23,65 @@
                     This CSRF token is generated 
                     automatically for each user. --}}
                 @csrf
-                    <div class="mb-3">
-                        {{-- <label>Category Name</label> --}}
-                        <input type="text" name="name"class="form-control">
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <input type="text" placeholder="&#xf0ea; Category Name" required style="font-family:Arial, FontAwesome" name="name"class="form-control">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <input type="text" name="slug"class="form-control" placeholder="&#xf02b; Slug" required style="font-family:Arial, FontAwesome">
                     </div>
                     <div class="mb-3">
-                        <label>Slug</label>
-                        <input type="text" name="slug"class="form-control">
+                        <textarea name="description" rows="5" class="form-control" placeholder="&#xf039; Write a description here..." style="font-family:Arial, FontAwesome"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label>Description</label>
-                        <textarea name="description" id="summernoteDesc" rows="5" class="form-control"></textarea>
+                        <label><i class="fa fa-upload"></i>Image</label>
+                        <input type="file" name="image" class="form-control">
+                    </div>
+    
+                    <h6 class="mb-3"><i class="fa fa-tags"></i>SEO Tags</h6>
+                    <div class="mb-3">
+                        <input type="text" name="meta_title" class="form-control" placeholder="&#xf121; Meta Title" style="font-family:Arial, FontAwesome">
+                        <div class="card mt-1" style="background-color:antiquewhite">
+                            <small class="ml-3">
+                                <i class="fas fa-info-circle" style="color:gold"></i>
+                                <strong>
+                                    Keyword as close to the beginning of the Category Name as possible.
+                                </strong>
+                            </small>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label>Image</label>
-                        <input type="file" name="image"class="form-control">
+                        {{-- <input type="text" name="meta_description" class="form-control" placeholder="&#xf121; Meta Description" style="font-family:Arial, FontAwesome"> --}}
+                        <textarea name="meta_description" rows="5" class="form-control" placeholder="&#xf121; Meta Description" style="font-family:Arial, FontAwesome"></textarea>
+                        <div class="card mt-1" style="background-color:antiquewhite">
+                            <small class="ml-3">
+                                <i class="fas fa-info-circle" style="color:gold"></i>
+                                <strong>
+                                    Include a compelling summary of the page someone is about to click on.
+                                </strong>
+                            </small>
+                        </div>
                     </div>
-
-                    <h6>SEO Tags</h6>
-                    <div class="mb-3">
-                        <label>Meta Title</label>
-                        <input type="text" name="meta_title"class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label>Meta Description</label>
-                        <input type="text" name="meta_description"class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label>Meta Keywords</label>
-                        <textarea name="meta_keyword" rows="3" class="form-control"></textarea>
-                    </div>
-
-                    <h6>Mode</h6>
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label>Visible</label>
+    
+                    <div class="d-flex justify-content-end">
+                        <label class="mr-2" style="font-family: FontAwesome; color:green"> &#xf111; <strong style="color: black">Category Status</strong></label>
+                        <div class="mb-3">
                             <input type="checkbox" name="status"/>
+                            <small>Click to make the category visible .</small>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label>Feature</label>
                             <input type="checkbox" name="feature"/>
+                            <small>Click to make this category part of Specialization.</small>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-4 mb-3">
                             <button type="submit" class="btn btn-outline-primary">
-                            <i class="fa fa-plus"></i>
-                            {{__('Add Category')}}
+                                <i class="fa fa-plus"></i>
+                                {{__('Add Category')}}
                             </button>
-                            <a href="{{url('admin/categories')}}" class="btn btn-outline-danger"><i class="fa fa-times"></i>Cancel</a>
+                            <a href="{{url('admin/categories')}}" class="btn btn-outline-danger"><i class="fa fa-times"></i> Cancel</a>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
     </div>

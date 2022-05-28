@@ -18,10 +18,10 @@ class FaqsController extends Controller
         // $faqs = Faq::all();
         if ($request->has('trashed')) {
             # code...
-            $faqs = Faq::onlyTrashed()->paginate(3);
+            $faqs = Faq::onlyTrashed()->paginate(2);
         } else {
             # code...
-            $faqs = Faq::paginate(3);
+            $faqs = Faq::paginate(2);
         }
         return view('users.admin.faqs.index', compact('faqs'));
     }
@@ -185,7 +185,7 @@ class FaqsController extends Controller
             return view('users.admin.faqs.index', compact('faqs'));
         } else {
             # code...
-            return view ('users.admin.faqs.index', compact('faqs'))->with( 'No FAQ Found. 🥺' );
+            return view ('users.admin.faqs.index',['msg'=>'No FAQ '.$find_this.' Found.🥺'], compact('faqs'));
         }
     }
 }

@@ -145,7 +145,7 @@ class CommentController extends Controller
             return view('users.admin.comments.index', compact('comments'));
         } else {
             # code...
-            return view ('users.admin.comments.index', compact('comments'))->with('msg','No Projects Found.🥺' );
+            return view ('users.admin.comments.index',['msg'=>'No Comments Found.🥺'], compact('comments'));
         }
     }
 }

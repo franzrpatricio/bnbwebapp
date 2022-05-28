@@ -17,9 +17,9 @@ class HousePlanController extends Controller
         #get all categories
         // $houseplan = HousePlan::all();
         if ($request->has('trashed')) {
-            $houseplan = HousePlan::onlyTrashed()->paginate(3);
+            $houseplan = HousePlan::onlyTrashed()->paginate(2);
         } else {
-            $houseplan = HousePlan::paginate(3);
+            $houseplan = HousePlan::paginate(2);
         }
 
         #get all houseplans
@@ -208,7 +208,7 @@ class HousePlanController extends Controller
             return view('users.admin.houseplan.index', compact('houseplan'));
         } else {
             # code...
-            return view ('users.admin.houseplan.index', compact('houseplan'))->with( 'No Housep Plan Found. 🥺' );
+            return view ('users.admin.houseplan.index',['msg'=>'No House Plan '.$find_this.' Found.🥺'], compact('houseplan'));
         }
     }
 }

@@ -3,11 +3,9 @@
 @section('content')
 
 <div class="container-fluid px-4">
-    <h1 class="mt-5">Edit FAQs</h1>
     <div class="card mt-4">
-        
+        <div class="card-header"><h4 class="mt-2">Edit FAQ</h4></div>
         <div class="card-body">
-
             @if ($errors->any())
                 <div class="alert alert-danger">
                     @foreach ($errors->all() as $error)
@@ -24,19 +22,27 @@
                 @csrf
                 {{-- for updating the record --}}
                 @method('PUT')
-
-                    <div class="mb-3">
-                        <label>Question</label>
-                        <textarea name="question" rows="5" class="form-control">{{$faq->question}}</textarea>
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <textarea name="question" rows="8" class="form-control" style="font-family:Arial, FontAwesome">{{$faq->question}}</textarea>
                     </div>
-                    <div class="mb-3">
-                        <label>Answer</label>
-                        <textarea name="answewr" rows="5" class="form-control">{{$faq->answewr}}</textarea>
+                    <div class="col-6 mb-3">
+                        {{-- <label>Answer</label> --}}
+                        <textarea name="answewr" rows="8" class="form-control">{{$faq->answewr}}</textarea>
                     </div>
                     
                     <div class="d-flex justify-content-lg-end alig px-5 py-4">
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-outline-primary">
+                                <i class="fa fa-refresh fa-spin"></i>
+                                Update FAQ</button>
+                            <a href="{{url('admin/faqs')}}" class="btn btn-outline-danger">
+                                <i class="fa fa-times"></i>
+                                Cancel
+                            </a>
+                        </div>
                     </div>
+                </div>
             </form>
         </div>
     </div>

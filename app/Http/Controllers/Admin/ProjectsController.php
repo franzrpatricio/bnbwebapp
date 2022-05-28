@@ -86,7 +86,6 @@ class ProjectsController extends Controller
         
         $project->meta_title = $data['meta_title'];
         $project->meta_description = $data['meta_description'];
-        $project->meta_keyword = $data['meta_keyword'];
         
         $project->status = $request->status == true ? '1':'0';
         $project->posted_by = Auth::user()->id;
@@ -222,7 +221,6 @@ class ProjectsController extends Controller
 
         $project->meta_title = $data['meta_title'];
         $project->meta_description = $data['meta_description'];
-        $project->meta_keyword = $data['meta_keyword'];
         
         $project->status = $request->status ==true ? '1':'0';
         $project->posted_by = Auth::user()->id;
@@ -371,7 +369,7 @@ class ProjectsController extends Controller
             return view('users.admin.project.index', compact('projects'));
         } else {
             # code...
-            return view ('users.admin.project.index', compact('projects'))->with('msg','No Projects Found.🥺' );
+            return view ('users.admin.project.index',['msg'=>'No Project '.$find_this.' Found.🥺'], compact('projects'));
         }
     }
 }

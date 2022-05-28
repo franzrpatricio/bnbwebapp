@@ -17,10 +17,10 @@ class InquiriesController extends Controller
         // $inquiries = Inquiry::get();
         if ($request->has('trashed')) {
             # code...
-            $inquiries = Inquiry::onlyTrashed()->paginate(3);
+            $inquiries = Inquiry::onlyTrashed()->paginate(2);
         } else {
             # code...
-            $inquiries = Inquiry::paginate(3);
+            $inquiries = Inquiry::paginate(2);
         }
         // $inquiries = Inquiry::all();
         return view('users.admin.inquiry.index', compact('inquiries'));
@@ -116,6 +116,7 @@ class InquiriesController extends Controller
             ->orWhere('phone', 'LIKE', '%'.$find_this.'%')
             ->orWhere('address', 'LIKE', '%'.$find_this.'%')
             ->orWhere('message', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('created_at', 'LIKE', '%'.$find_this.'%')
             ->paginate(2);
         if (count ($inquiries) > 0) {
             return view('users.admin.inquiry.index', compact('inquiries'));

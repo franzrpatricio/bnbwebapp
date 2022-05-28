@@ -6,7 +6,7 @@
         {{-- SEARCH BAR --}}
         <div>
           <!-- Navbar Search-->
-          <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('projects')}}">
+          <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('projects/find')}}">
           @csrf
             <input class="form-control" name="query" type="search" placeholder="&#xf002; Search Project here..." style="font-family:Arial, FontAwesome" aria-label="Search Project" aria-describedby="btnNavbarSearch"/>
             {{-- <button class="btn btn-primary" id="btnNavbarSearch" type="submit">
@@ -25,8 +25,6 @@
                     Reset
                   </a>
                 </div>
-                {{-- <div class="d-grid gap-2 col-6 d-md-block"> --}}
-                {{-- </div> --}}
 
                 {{-- CATEGORIES --}}
                 <div class="container  border-bottom p-3" >
@@ -59,12 +57,6 @@
                 {{-- STORIES --}}
                 <div class="container border-bottom p-3">
                   <h3>No. Stories</h3>
-                  {{-- @foreach ($projects->sortBy('stories') as $project)
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="stories" value="{{$project->stories}}" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">{{$project->stories}}</label>
-                    </div>
-                  @endforeach --}}
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="stories" value="Bungalow" id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">Bungalow</label>
@@ -116,8 +108,9 @@
                   <div>{{$error}}</div>
               @endforeach
           </div>
-        @endif  
-  
+        @endif          
+      
+        <div class="row ">
         {{-- display msg after redirecting --}}
         @if (isset($msg))
           <div class="alert alert-danger">
@@ -125,34 +118,32 @@
             {{ $msg }}
             <a href="{{url('projects')}}" class="close float-end" data-dismiss="alert" aria-label="close">&times;</a>
           </div>
-        @endif
-        
-      
-        <div class="row ">
-          @forelse ($projects as $project)
-          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
-            <div>
-              <div class="card" style="height: 300px; width: 200px; ">
-                <div class="img-fluid border-bottom">
-                  <div class="card-img">
-                    <img src="{{asset('uploads/project/'.$project->image)}}" class="card-img-top" style="height: 200px;width:199px; object-fit: contain;" alt="...">
-                 </div>
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title text-center">{{$project->name}}</h6>
-                  {{-- <h6 class="card-title text-center">{{$project->cost}}</h6> --}}
-                  <div class="text-center">
-                    <a href="{{ url('project/'.$project->id.'/'.$project->slug) }}">
-                      <button class="btn btn-primary text">View</button>
-                    </a>
-                  </div>
-                </div>
-              </div>  
-            </div>               
-          </div>
-          @empty
-            <h3>No Projects Found</h3>
-          @endforelse
+          @else
+            @forelse ($projects as $project)
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3 d-flex justify-content-center"  >
+                <div>
+                  <div class="card" style="height: 300px; width: 200px; ">
+                    <div class="img-fluid border-bottom">
+                      <div class="card-img">
+                        <img src="{{asset('uploads/project/'.$project->image)}}" class="card-img-top" style="height: 200px;width:199px; object-fit: contain;" alt="...">
+                    </div>
+                    </div>
+                    <div class="card-body">
+                      <h6 class="card-title text-center">{{$project->name}}</h6>
+                      {{-- <h6 class="card-title text-center">{{$project->cost}}</h6> --}}
+                      <div class="text-center">
+                        <a href="{{ url('project/'.$project->id.'/'.$project->slug) }}">
+                          <button class="btn btn-primary text">View</button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>  
+                </div>               
+              </div>
+            @empty
+              <h3>No Projects Found</h3>
+            @endforelse
+          @endif
         </div>
       </div>
     </div>

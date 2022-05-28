@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Dashboard</h1>
+    <h3 class="mt-4">Dashboard Overview</h3>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">All Active Modules</li>
     </ol>

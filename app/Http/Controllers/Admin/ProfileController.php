@@ -28,12 +28,12 @@ class ProfileController extends Controller
         // return view('users.logs', compact('logs'));
         if ($user->role_as == '0')
         {
-            $logs = Logs::where('user_id',$user->id)->orderBy('created_at','DESC')->paginate(10);
+            $logs = Logs::where('user_id',$user->id)->orderBy('created_at','DESC')->paginate(6);
             return view('users.logs', compact('logs'));
         }
         else
         {
-            $logs = Logs::orderBy('created_at','DESC')->paginate(10);
+            $logs = Logs::orderBy('created_at','DESC')->paginate(6);
             return view('users.logs', compact('logs'));
         }
     }

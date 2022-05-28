@@ -26,20 +26,21 @@ use App\Http\Controllers\Admin\ProjectImagesController;
 |
 */
 #CLIENT-SIDE PAGES
-Route::post('/send-email', [App\Http\Controllers\Client\ClientController::class, 'sendEmail'])->name('send.email');
-Route::post('/send-projectInquiry', [App\Http\Controllers\Client\ClientController::class, 'sendProjInquiry'])->name('send.projectInquiry');
 Route::get('/', [App\Http\Controllers\Client\ClientController::class, 'index']);
-Route::get('/portfolio', [App\Http\Controllers\Client\ClientController::class, 'portfolio']);
-Route::get('/categories', [App\Http\Controllers\Client\ClientController::class, 'categories']);
-Route::get('/profile', [App\Http\Controllers\Client\ClientController::class, 'profile']);
+Route::get('portfolio', [App\Http\Controllers\Client\ClientController::class, 'portfolio']);
+Route::get('categories', [App\Http\Controllers\Client\ClientController::class, 'categories']);
+Route::get('profile', [App\Http\Controllers\Client\ClientController::class, 'profile']);
 Route::get('specialization/{category_id}/{category_slug}', [App\Http\Controllers\Client\ClientController::class, 'specProject']);
-Route::get('/projects', [App\Http\Controllers\Client\ClientController::class, 'projects']);
+Route::get('projects', [App\Http\Controllers\Client\ClientController::class, 'projects']);
+Route::get('projects/find', [App\Http\Controllers\Client\ClientController::class, 'projectsSearch']);
 Route::get('project/{project_id}/{project_slug}', [App\Http\Controllers\Client\ClientController::class, 'project']);
 Route::post('comments', [App\Http\Controllers\Client\CommentController::class, 'store']);
-Route::get('/contact', [App\Http\Controllers\Client\ClientController::class, 'contact']);
+Route::get('contact', [App\Http\Controllers\Client\ClientController::class, 'contact']);
 Route::post('subscribe', [App\Http\Controllers\Client\ClientController::class, 'subscribe'])->name('subscribe.subscribe');
+Route::post('send-email', [App\Http\Controllers\Client\ClientController::class, 'sendEmail'])->name('send.email');
+Route::post('send-projectInquiry', [App\Http\Controllers\Client\ClientController::class, 'sendProjInquiry'])->name('send.projectInquiry');
 #when request hits server, pull out botman instance; listen to any incoming commands
-Route::post('/botman',function(){
+Route::post('botman',function(){
     app('botman')->listen();
 });
 
@@ -199,5 +200,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin','verified'])->group(functio
 
     #NEWSLETTER
     Route::get('newsletter', [App\Http\Controllers\Client\ClientController::class, 'subscriber']);
+    #SEARCH
+    Route::get('newsletter/find', [App\Http\Controllers\Client\ClientController::class, 'search']);
     #The fundamental difference between the POST and PUT requests is reflected in the different meaning of the Request-URI. The URI in a POST request identifies the resource that will handle the enclosed entity... In contrast, the URI in a PUT request identifies the entity enclosed with the request.
 });

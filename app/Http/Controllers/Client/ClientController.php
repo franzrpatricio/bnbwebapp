@@ -60,7 +60,30 @@ class ClientController extends Controller
     public function profile(){
         return view('client.profile');
     }
-    public function projects(Request $request){
+    public function projects(){
+        $categories = Category::where('status','1')->get();
+        $projects = Projects::where('status','1')->get();
+        $amenities = Amenities::all();
+        $architectural = Designs::all();
+
+        // if ($categories) {
+        //     # code...
+        //     if ($projects) {
+        //         # code...
+        //         return view('client.projects', compact('categories','projects','amenities','architectural'));
+        //     } else {
+        //         # code...
+        //         return view('client.projects',['msgp'=> 'Sorry but no projects found.🥺👉👈'],compact('categories','projects','amenities','architectural'));
+        //         // return view('client.projects',['msgp'=> 'Sorry but no projects will be displayed if none of the categories are active.🥺👉👈'],compact('categories','projects','amenities','architectural'));
+        //     }
+        // } else {
+        //     # code...
+        //     return view('client.projects',['msgp'=> 'Sorry but no projects will be displayed if none of the categories are active.🥺👉👈'],compact('categories','projects','amenities','architectural'));
+        // }
+        
+        return view('client.projects', compact('categories','projects','amenities','architectural'));
+    }
+    public function projectsSearch(Request $request){
         $categories = Category::where('status','1')->get();
         $projects = Projects::where('status','1')->get();
         $amenities = Amenities::all();
@@ -72,9 +95,10 @@ class ClientController extends Controller
         $find_stories = $request->get('stories');
         $find_amenity = $request->get('stories');
 
+        # code...
         if ($find_this) {
             # code...
-            $projects = Projects::where('name', 'LIKE', '%'.$find_this.'%')->get();
+            $projects = Projects::where('name', 'LIKE', '%'.$find_this.'%')->where('status','1')->get();
             if (count ($projects) > 0) {
                 return view('client.projects', compact('categories','projects','amenities','architectural'));
             } else {
@@ -83,7 +107,7 @@ class ClientController extends Controller
             }
         } elseif ($find_category) {
             # code...
-            $projects = Projects::where('category_id', 'LIKE', '%'.$find_category.'%')->get();
+            $projects = Projects::where('category_id', 'LIKE', '%'.$find_category.'%')->where('status','1')->get();
             if (count ($projects) > 0) {
                 return view('client.projects', compact('categories','projects','amenities','architectural'));
             } else {
@@ -93,7 +117,7 @@ class ClientController extends Controller
         } elseif ($find_design) {
             # code...
             // $design = json_decode($find_design);
-            $projects = Projects::where('designs', 'LIKE', '%'.$find_design.'%')->get();
+            $projects = Projects::where('designs', 'LIKE', '%'.$find_design.'%')->where('status','1')->get();
             if (count ($projects) > 0) {
                 return view('client.projects', compact('categories','projects','amenities','architectural'));
             } else {
@@ -102,7 +126,7 @@ class ClientController extends Controller
             }
         } elseif ($find_stories) {
             # code...
-            $projects = Projects::where('stories', 'LIKE', '%'.$find_stories.'%')->get();
+            $projects = Projects::where('stories', 'LIKE', '%'.$find_stories.'%')->where('status','1')->get();
             if (count ($projects) > 0) {
                 return view('client.projects', compact('categories','projects','amenities','architectural'));
             } else {
@@ -111,7 +135,7 @@ class ClientController extends Controller
             }
         } elseif ($find_amenity) {
             # code...
-            $projects = Projects::where('amenities', 'LIKE', '%'.$find_amenity.'%')->get();
+            $projects = Projects::where('amenities', 'LIKE', '%'.$find_amenity.'%')->where('status','1')->get();
             if (count ($projects) > 0) {
                 return view('client.projects', compact('categories','projects','amenities','architectural'));
             } else {
@@ -119,11 +143,7 @@ class ClientController extends Controller
                 return view('client.projects',['msg'=> 'Sorry but '.$find_amenity.' not Found.🥺'],compact('categories','projects','amenities','architectural'));
             }
         } 
-        // else {
-        //     # code...
-        //     return view('client.projects',['msg'=> 'Sorry but we found nothing on applied filters.🥺'],compact('categories','projects','amenities','architectural'));
-        // }
-        return view('client.projects', compact('categories','projects','amenities','architectural'));
+        // return view('client.projects', compact('categories','projects','amenities','architectural'));
     }
     #specific project from projects
     public function project($project_id,$project_slug){
@@ -234,5 +254,19 @@ class ClientController extends Controller
     public function subscriber(){
         $subscribers = Newsletter::paginate(5);
         return view('users.admin.newsletter.subscriber',compact('subscribers'));
+    }
+
+    #SEARCH FUNCTION
+    public function search(Request $request){
+        $find_this = $request->get('query');
+        $subscribers = Newsletter::where('email', 'LIKE', '%'.$find_this.'%')
+            ->orWhere('created_at', 'LIKE', '%'.$find_this.'%')
+            ->paginate(4);
+        if (count ($subscribers) > 0) {
+            return view('users.admin.newsletter.subscriber', compact('subscribers'));
+        } else {
+            # code...
+            return view ('users.admin.newsletter.subscriber',['msg'=>'No subscribers Found.🥺'], compact('subscribers'));
+        }
     }
 }

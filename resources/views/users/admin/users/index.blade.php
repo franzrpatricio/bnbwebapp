@@ -56,48 +56,52 @@
                 </thead>
 
                 <tbody>
-                    @forelse ($users as $item)    
+                    @if (isset($msg))
                         <tr class="text-center">
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->name}}</td>
-                            {{-- <td>{{$item->email}}</td> --}}
-                            <td>{{$item->role_as == '1' ? 'Administrator':'Staff'}}</td>
-
-                            {{-- if status is true, show if not visible || visible --}}
-                            {{-- to make the user visible just check the box for status --}}
-                            {{-- if status = 1->active; else->inactive --}}
-                            <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td> 
-                            <td>
-                                @if(request()->has('trashed'))
-                                    <a href="{{ route('users.restore', $item->id) }}" class="btn btn-outline-success">Restore</a>
-                                @else
-                                    <a href="{{ url('admin/edit-user/'.$item->id) }}"><i class="fas fa-pen"></i></a>
-                                    <form method="POST" action="{{ route('users.destroy', $item->id) }}">
-                                        @csrf
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button type="submit" class="btn delete" title='Delete'>
-                                            <i class="fa-solid fa-trash" style="color:red;"></i>
-                                        </button>
-                                    </form>
-                                @endif
+                            <td colspan="5">
+                                <div class="alert alert-danger">{{ $msg }}</div>
                             </td>
                         </tr>
-                    @empty
-                        <tr class="text-center"><td colspan="6"><h5>No Users</h5></td></tr>
-                    @endforelse
+                    @else
+                        @forelse ($users as $item)    
+                            <tr class="text-center">
+                                <td>{{$item->id}}</td>
+                                <td>{{$item->name}}</td>
+                                {{-- <td>{{$item->email}}</td> --}}
+                                <td>{{$item->role_as == '1' ? 'Administrator':'Staff'}}</td>
+
+                                {{-- if status is true, show if not visible || visible --}}
+                                {{-- to make the user visible just check the box for status --}}
+                                {{-- if status = 1->active; else->inactive --}}
+                                <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td> 
+                                <td>
+                                    @if(request()->has('trashed'))
+                                        <a href="{{ route('users.restore', $item->id) }}" class="btn btn-outline-success">
+                                            <i class="fa fa-user-plus"></i>
+                                            Restore</a>
+                                    @else
+                                        <a href="{{ url('admin/edit-user/'.$item->id) }}"><i class="fas fa-pen"></i></a>
+                                        <form method="POST" action="{{ route('users.destroy', $item->id) }}">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <button type="submit" class="btn delete" title='Delete'>
+                                                <i class="fa-solid fa-trash" style="color:red;"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                </td>
+                            </tr>
+                        @empty
+                            <tr class="text-center"><td colspan="6"><h5>No Users</h5></td></tr>
+                        @endforelse
+                    @endif
                 </tbody>
             </table>
-            {{ $users->links() }}
+            <div class="float-end">
+                {{ $users->links() }}
+            </div>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.delete').click(function(e) {
-            if(!confirm('Are you sure you want to delete this post?')) {
-                e.preventDefault();
-            }
-        });
-    });
-</script>
+
 @endsection

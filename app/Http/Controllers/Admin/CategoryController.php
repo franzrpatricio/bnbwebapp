@@ -20,9 +20,9 @@ class CategoryController extends Controller
         #VIEW category page of index.blade.php in admin/category
         #get all categories
         if ($request->has('trashed')) {
-            $category = Category::onlyTrashed()->paginate(3);
+            $category = Category::onlyTrashed()->paginate(2);
         } else {
-            $category = Category::paginate(3);
+            $category = Category::paginate(2);
         }
         // $category = Category::all();
         return view('users.admin.category.index', compact('category'));
@@ -61,7 +61,6 @@ class CategoryController extends Controller
       
         $category->meta_title = $data['meta_title'];
         $category->meta_description = $data['meta_description'];
-        $category->meta_keyword = $data['meta_keyword'];
 
         $category->status = $request->status == true ? '1':'0';
         $category->feature = $request->feature == true ? '1':'0';
@@ -136,7 +135,6 @@ class CategoryController extends Controller
   
         $category->meta_title = $data['meta_title'];
         $category->meta_description = $data['meta_description'];
-        $category->meta_keyword = $data['meta_keyword'];
 
         $category->status = $request->status == true ? '1':'0';
         $category->feature = $request->feature == true ? '1':'0';
@@ -272,7 +270,7 @@ class CategoryController extends Controller
             return view('users.admin.category.index', compact('category'));
         } else {
             # code...
-            return view ('users.admin.category.index', compact('category'))->with( 'No Category Found. 🥺' );
+            return view ('users.admin.category.index',['msg'=>'No Category '.$find_this.' Found.🥺'], compact('category'));
         }
     }
 }

@@ -4,41 +4,41 @@
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
                 <a class="nav-link link-light" href="{{ url('/admin/dashboard') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt fa-spin"></i></div>
                     Dashboard
                 </a>
-                <div class="sb-sidenav-menu-heading">Interface</div>
-                
+                <hr class="dropdown-divider" />
+                <div class="sb-sidenav-menu-heading">Modules</div>
                 @if (Auth::user()->role_as == '1')
                     {{-- ADMIN --}}
-                    
-                {{-- USER --}}
-                <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUser" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
-                    Users
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="collapseUser" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link collapsed link-light" href="{{ url('admin/add-user') }}">
-                            <div class="sb-nav-link-icon"><i class="fa fa-user-plus"></i></div>
-                            Create New Users
-                        </a>
-                        <a class="nav-link link-light" href="{{ url('admin/users') }}">
-                            <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
-                            List of Users
-                        </a>
-                    </nav>
-                </div>
+                    {{-- USER --}}
+                    <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUser" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fa fa-users "></i></div>
+                        Users
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseUser" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link collapsed link-light" href="{{ url('admin/add-user') }}">
+                                <div class="sb-nav-link-icon"><i class="fa fa-user-plus"></i></div>
+                                Create New Users
+                            </a>
+                            <a class="nav-link link-light" href="{{ url('admin/users') }}">
+                                <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
+                                List of Users
+                            </a>
+                        </nav>
+                    </div>
                 @elseif(Auth::user()->role_as == '0')
                     {{-- STAFF --}}
                 @endif
 
-                
-
                 {{-- CATEGORIES --}}
                 <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="sb-nav-link-icon">
+                        {{-- <i class="fas fa-layer-group"></i> --}}
+                        <i class="fa fa-layer-group"></i>
+                    </div>
                     Categories
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -95,7 +95,9 @@
 
                  {{-- House Plan --}}
                  <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseHousePlan" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-house-chimney"></i></div>
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-house-chimney"></i>
+                    </div>
                     House Plan
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -112,21 +114,6 @@
                     </nav>
                 </div>
                 
-                
-                 {{-- Inquiry List --}}
-                 {{-- <a class="nav-link collapsed link-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInquiryList" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-message"></i></div>
-                    Inquiry List
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a> --}}
-                {{-- <div class="collapse" id="collapseInquiryList" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link link-light" href="{{ url('admin/inquiries') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
-                            List of Inquiry List
-                        </a>
-                    </nav>
-                </div> --}}
                 <a class="nav-link link-light" href="{{ url('admin/inquiries') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-message"></i></div>
                     Inquiry List

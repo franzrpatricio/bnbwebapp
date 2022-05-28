@@ -15,9 +15,15 @@
             @endif
 
             <div class="row">
-                <div class="col-6 mb-3"><label><strong>Name</strong></label><p class="form-control">{{$user->name}}</p></div>
-                <div class="col-6 mb-3"><label><strong>Email</strong></label><p class="form-control">{{$user->email}}</p></div>
-                <div class="col-6 mb-3"><label for=""><strong>Created At</strong></label><p class="form-control">{{ $user->created_at->format('d/m/Y') }}</p></div>
+                <div class="col-6 mb-3"><label>
+                    <i class="fa fa-address-card"></i>
+                    <strong>Full Name</strong></label><p class="form-control">{{$user->name}}</p></div>
+                <div class="col-6 mb-3"><label>
+                    <i class="fa fa-envelope"></i>
+                    <strong>Email Account</strong></label><p class="form-control">{{$user->email}}</p></div>
+                <div class="col-6 mb-3"><label for=""><strong>
+                    <i class="fa fa-clock"></i>
+                    Created At</strong></label><p class="form-control">{{ $user->created_at->format('d/m/Y') }}</p></div>
             </div>
 
             <form action="{{ url('admin/update-user/'.$user->id) }}" method="post" enctype="multipart/form-data">
@@ -32,36 +38,37 @@
 
                 {{-- FETCH ALL RECORDS --}}
                 {{-- REPLACE CATEGORY ID AND HOUSE PLAN ID WITH CAT && PLAN NAME --}}
-                <div class="row">
-                    <h4>Mode</h4>
+                <div class="row" style="font-family: FontAwesome;">
+                    <label class="mr-2" style="color:green"> &#xf111; <strong style="color: black">User Status</strong></label>
                     {{-- if role and status == 1, then display check on the box --}}
                     <div class="col-md-3 mb-3">
                         <label><strong>Role</strong></label>
                         {{-- <input type="checkbox" name="role_as" {{$user->role_as == '1' ? 'checked':''}}/> --}}
-                        <select name="role_as" class="form-control">
+                        <select name="role_as" class="form-control" >
                             <option value="">--Select Role--</option>
-                            <option value="0" {{$user->role_as=='1' ? 'selected':''}}>Administrator</option>
-                            <option value="1" {{$user->role_as=='0' ? 'selected':''}}>Staff</option>
+                            <option value="0" {{$user->role_as=='1' ? 'selected':''}} >&#xf21b; Administrator</option>
+                            <option value="1" {{$user->role_as=='0' ? 'selected':''}}>&#xf0f0; Staff</option>
                         </select>
                     </div>
 
                     <div class="col-6 mb-3">
                         @if ($user->status == '1')
-                            <label><strong>User Status</strong></label>
-                            <input type="checkbox" name="status" {{$user->status == '1' ? 'checked':''}}/>
+                            <div class="mb-3">
+                                <input type="checkbox" name="status" {{$user->status == '1' ? 'checked':''}}/>
+                                <small>Click to make this user Active.</small>
+                            </div>
                         @else
-                            <div><label><strong>User Status</strong></label></div>
                             <input type="checkbox" name="status" {{$user->status == '1' ? 'checked':''}}/>
                             <small>Click to activate the user.</small>
                         @endif
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-outline-primary">
-                            <i class="fa fa-refresh"></i>
+                            <i class="fa fa-refresh fa-spin"></i>
                             Update User
                         </button>
-                        <a href="{{url('admin/users')}}" class="btn btn-outline-danger">
+                        <a href="{{url('admin/users')}}" class="btn btn-outline-danger ml-1">
                             <i class="fa fa-times"></i>
                             Cancel
                         </a>

@@ -21,7 +21,7 @@ class Category extends Model
         'image',
         'meta_title',
         'meta_description',
-        'meta_keyword',
+        // 'meta_keyword',
         'status',
         'feature',
         'created_by'

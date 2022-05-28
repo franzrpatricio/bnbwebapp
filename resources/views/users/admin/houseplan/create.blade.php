@@ -6,7 +6,6 @@
     <div class="card mt-4">
         <div class="card-header">
             <h4><div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New House Plan</div></h4>
-            <a href="{{url('admin/houseplan')}}" class="btn btn-danger float-end">Back</a>
         </div>
         
         <div class="card-body">
@@ -25,42 +24,41 @@
                     This CSRF token is generated 
                     automatically for each user. --}}
                 @csrf
-                <div class="mb-3">
-                    <label>Type</label>
-                    <input type="text" name="type"class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label>Cost</label>
-                    <input type="number" required name="cost" min="0" value="0" step="0.01" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label>Floor</label>
-                    <input type="text" name="floor"class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label>Wall</label>
-                    <input type="text" name="wall"class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label>Window</label>
-                    <input type="text" name="window"class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label>Ceiling</label>
-                    <input type="text" name="ceiling"class="form-control">
-                </div>
-
-                <h6>Status</h6>
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <label for="">Visible</label>
-                            <input type="checkbox" name="status"/>
-                        </div>
+                    <div class="col-6 mb-3">
+                        <input type="text" name="type"class="form-control" placeholder="&#xf015; House Plan Design" style="font-family:Arial, FontAwesome">
                     </div>
-                    <div class="col-md-8">
+    
+                    <div class="col-6 mb-3">
+                        <input type="number" required name="cost" min="0" step="0.01" class="form-control" placeholder="&#8369; Construction Cost" style="font-family:Arial, FontAwesome">
+                    </div>
+                    <div>
+                        <hr class="dropdown-divider"/>
+                    </div>
+                    <div class="text-center mb-3"><label><strong>Materials to be used</strong></label></div>
+                    <div class="col-6 mb-3">
+                        <input type="text" name="floor" class="form-control" placeholder="&#8971; Floor" style="font-family:Arial, FontAwesome">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <input type="text" name="wall" class="form-control" placeholder="&#9619; Wall" style="font-family:Arial, FontAwesome">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <input type="text" name="window" class="form-control" placeholder="&#xf17a; Window" style="font-family:Arial, FontAwesome">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <input type="text" name="ceiling" class="form-control" placeholder="&#8969; Ceiling" style="font-family:Arial, FontAwesome">
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <label class="mr-2" style="font-family: FontAwesome; color:green"> &#xf111; <strong style="color: black">House Plan Status</strong></label>
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary float-end">Save House Plan</button>
+                            <input type="checkbox" name="status"/>
+                            <small>Click to make the House Plan visible.</small>
+                        </div>
+                        <div class="col-4 mb-3">
+                            <button type="submit" class="btn btn-outline-primary"><i class="fa fa-plus"></i>
+                                Add House Plan</button>
+                            <a href="{{url('admin/houseplan')}}" class="btn btn-outline-danger"><i class="fa fa-times"></i> Cancel</a>
                         </div>
                     </div>
                 </div>
