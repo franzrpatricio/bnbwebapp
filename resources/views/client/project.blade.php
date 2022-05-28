@@ -209,7 +209,8 @@
 <div class="container-fluid" style="background:whitesmoke;" data-aos="fade-right" data-aos-duration="3000">
   <div class="row">
     <div class="col-lg-6 p-3">
-      <div class="p-1"><h4><i class="fa fa-commenting-o"></i>&nbsp;Comment Panel</h4></div>
+      <div class="p-1"><h4><i class="fa fa-commenting-o"></i>&nbsp;Would you Help BNB? Voice your Testimonials Now!</h4></div>
+      <div class="text-center"><small>To our customers, <br> It would be great if you could tell the world why you like our Services. <br> Your Testimonials may be displayed on our website. <br> Thank you for your willingness to help!</small></div>
       <form action="{{url('comments')}}" method="post">
         {{-- Returning false stops the page from reloading --}}
         @csrf
@@ -247,10 +248,14 @@
     
         <button type="submit" class="btn btn-outline-info pull-right"><i class="fa fa-upload"></i>Post</button>
       </form>
+      <span><small><i class="fa fa-exclamation-circle"></i>
+        <strong>Important:</strong> We do not use your profile for anything other than providing a social proof for your Testimonials.
+      </small></span>
     </div>
 
-    <div class="col-lg-6 p-3">
-      <div><h4><i class="fa fa-comments-o"></i>&nbsp;Comment Review</h4></div>
+    <div class="col-lg-6 p-3 text-center">
+      <div><h4><i class="fa fa-comments-o"></i>&nbsp;Customer Reviews</h4></div>
+      <div class="text-center"><strong><small>What our customers are saying...</small></strong></div>
       @if (session('msgcom'))
         <h6 class="alert alert-warning mb-3">{{session('msgcom')}}</h6>
       @endif

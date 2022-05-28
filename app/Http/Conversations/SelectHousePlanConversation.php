@@ -84,7 +84,7 @@ class SelectHousePlanConversation extends Conversation
         $this->say('<small>Great. Your Estimated Price is done! Here is the details for the Estimated Price.</small><br><br>' . $message);
         // Redirect::route('generate-pdf.download');
         // $this->say('<a class="btn btn-primary" href="{{route("generate-pdf.download")}}">Here is your Receipt of Rough Estimation.</a>');
-        $this->askTown();
+        // $this->askTown();
     }
 
     public function askTown()
