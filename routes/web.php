@@ -52,9 +52,9 @@ Auth::routes([
     'register' => false,
     'verify' => true
 ]);
-Route::get('/gateway', function () {
+Route::get('/gateway', ['middleware' => 'guest',function () {
     return view('auth/login');
-});
+}]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 #middleware auth checks user authentication to prevent user to access admin panel w/o logging in
 Route::prefix('admin')->middleware(['auth','isAdmin','verified'])->group(function(){

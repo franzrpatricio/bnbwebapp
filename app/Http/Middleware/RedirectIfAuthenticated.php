@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 // if (Auth::user()->email_verified_at == 1) {
-                    # code...
+                //     # code...
                     return redirect(RouteServiceProvider::USER);
                 // }
             }
