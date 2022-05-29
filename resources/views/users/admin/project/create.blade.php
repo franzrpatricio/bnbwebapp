@@ -110,7 +110,7 @@
                     </div>
     
                     <div class="col-6 mb-3">
-                        <label for="">Architectural Designs</label>
+                        <label for=""><strong>Architectural Designs:</strong></label>
                         <select name="designs[]" id="desgins" multiple class="filter-multi-select">
                             @foreach ($architectural as $item)
                                 <option value="{{$item->design}}">{{$item->design}}</option>
@@ -119,7 +119,7 @@
                     </div>
                     
                     <div class="col-6 mb-3">
-                        <label for="">Amenities</label>
+                        <label for=""><strong>Amenities:</strong></label>
                         <select name="amenities[]" id="amenities" multiple class="filter-multi-select">
                             @foreach ($amenities as $item)
                                 <option value="{{$item->service}}">{{$item->service}}</option>
@@ -129,8 +129,6 @@
     
                     <h6 class="mt-4"><i class="fa fa-tags"></i>SEO Tags</h6>
                     <div class="col-6 mb-3">
-                        {{-- <label for="">Slug</label> --}}
-                        {{-- input name refers to db field --}}
                         <input type="text" name="slug" class="form-control" placeholder="&#xf02b; Slug" style="font-family:Arial, FontAwesome">
                         <div class="card mt-1" style="background-color:antiquewhite">
                             <small class="ml-3">
