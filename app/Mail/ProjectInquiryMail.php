@@ -29,7 +29,7 @@ class ProjectInquiryMail extends Mailable
     public function build()
     {
         return $this->view('client.project-inquiry-template')
-                    ->subject('A new Inquiry')
+                    ->subject('Project Inquiry - Bana and Bana Architects')
                     ->from('rbana989e@gmail.com','Bana and Bana Architects')
                     ->with('data',$this->data);
     }

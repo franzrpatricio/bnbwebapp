@@ -65,21 +65,6 @@ class ClientController extends Controller
         $projects = Projects::where('status','1')->get();
         $amenities = Amenities::all();
         $architectural = Designs::all();
-
-        // if ($categories) {
-        //     # code...
-        //     if ($projects) {
-        //         # code...
-        //         return view('client.projects', compact('categories','projects','amenities','architectural'));
-        //     } else {
-        //         # code...
-        //         return view('client.projects',['msgp'=> 'Sorry but no projects found.🥺👉👈'],compact('categories','projects','amenities','architectural'));
-        //         // return view('client.projects',['msgp'=> 'Sorry but no projects will be displayed if none of the categories are active.🥺👉👈'],compact('categories','projects','amenities','architectural'));
-        //     }
-        // } else {
-        //     # code...
-        //     return view('client.projects',['msgp'=> 'Sorry but no projects will be displayed if none of the categories are active.🥺👉👈'],compact('categories','projects','amenities','architectural'));
-        // }
         
         return view('client.projects', compact('categories','projects','amenities','architectural'));
     }

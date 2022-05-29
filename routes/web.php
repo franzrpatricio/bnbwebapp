@@ -157,6 +157,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin','verified'])->group(functio
     // Route::get('profilesettings/activityLog',[App\Http\Controllers\Admin\ProfileController::class, 'activityLog'])->name('profilesettings/activityLog');
     // Route::get('activityLoginLogout',[App\Http\Controllers\Admin\ProfileController::class, 'activityLoginLogout'])->name('activityLoginLogout');
     Route::get('logs', [App\Http\Controllers\Admin\ProfileController::class, 'logs']);
+    #SEARCH
+    Route::get('logs/find', [App\Http\Controllers\Admin\ProfileController::class,'search']);
+    Route::get('logs/download', [App\Http\Controllers\Admin\ProfileController::class,'generateAuditTrailPDF']);
     
     #FAQS CRUD 
     #READ

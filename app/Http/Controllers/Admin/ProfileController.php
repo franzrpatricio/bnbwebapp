@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Carbon\Carbon;
 use App\Models\Logs;
 use App\Models\User;
+// use Barryvdh\DomPDF\PDF;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -22,19 +24,70 @@ class ProfileController extends Controller
         return view('users.profilesettings', compact('user'));
     }
     public function logs(){
-        $user = Auth::user();
-        // $logs = Logs::orderBy('id','desc')->paginate(10);
-       
-        // return view('users.logs', compact('logs'));
-        if ($user->role_as == '0')
+        if (Auth::user()->role_as == '0')
         {
-            $logs = Logs::where('user_id',$user->id)->orderBy('created_at','DESC')->paginate(6);
+            $logs = Logs::where('user_id',Auth::user()->id)->orderBy('created_at','DESC')->paginate(5);
             return view('users.logs', compact('logs'));
         }
         else
         {
-            $logs = Logs::orderBy('created_at','DESC')->paginate(6);
+            $logs = Logs::orderBy('created_at','DESC')->paginate(5);
             return view('users.logs', compact('logs'));
+        }
+    }
+    #SEARCH
+    public function search(Request $request){
+        $find_this = $request->get('query');
+        $start_date = $request->get('start_date');
+        $end_date = $request->get('end_date');
+        $time = $request->get('time');
+        if ($find_this) {
+            # code...
+            $logs = Logs::where('name', 'LIKE', '%'.$find_this.'%')
+                ->orWhere('description', 'LIKE', '%'.$find_this.'%')
+                ->orWhere('created_at', 'LIKE', '%'.$find_this.'%')
+                ->paginate(5);
+            if (count ($logs) > 0) {
+                return view('users.logs',['msg'=>'Showing '.$logs->count().' log results in "'.$find_this.'".'],compact('logs'));
+            } else {
+                # code...
+                return view ('users.logs',['msg'=>'No '.$find_this.' User is Found.🥺'], compact('logs'));
+            }
+        } elseif ($time) {
+            # code...
+            $logs = Logs::where('created_at', 'LIKE', '%'.$time.'%')
+                ->paginate(5);
+            if (count ($logs) > 0) {
+                return view('users.logs',['msg'=>'Showing '.$logs->count().' log results during '.$time.'.'],compact('logs'));
+            } else {
+                # code...
+                return view ('users.logs',['msg'=>'No logs during this '.$time.'.🥺'], compact('logs'));
+            }
+        }
+        elseif ($start_date && $end_date) {
+            $logs = Logs::whereBetween('created_at', [$start_date, Carbon::parse($end_date)->endOfDay()])
+            ->paginate(100);
+            if (count ($logs) > 0) {
+                return view('users.logs', ['msg'=>'Showing '.$logs->count().' log results during '.$start_date.' and '.$end_date.'.'],compact('logs'));
+            } else {
+                # code...
+                return view ('users.logs',['msg'=>'No logs found during'.$start_date.' and '.$end_date.' .🥺'], compact('logs'));
+            }
+        }
+    }
+    public function generateAuditTrailPDF()
+    {
+        if (Auth::user()->role_as == '0')
+        {
+            $logs = Logs::where('user_id',Auth::user()->id)->get();
+            $pdf = PDF::loadView('users.logsTable', array('logs'=> $logs));
+            return $pdf->download('BanaAndBana-AuditTrail.pdf');
+        }
+        else
+        {
+            $logs = Logs::all();
+            $pdf = PDF::loadView('users.logsTable', array('logs'=> $logs));
+            return $pdf->download('BanaAndBana-AuditTrail.pdf');
         }
     }
 
