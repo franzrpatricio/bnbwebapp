@@ -6,12 +6,16 @@
         {{-- SEARCH BAR --}}
         <div>
           <!-- Navbar Search-->
-          <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" type="get" action="{{url('projects/find')}}">
+          <form class="d-flex" type="get" action="{{url('projects/find')}}">
           @csrf
             <input class="form-control" name="query" type="search" placeholder="&#xf002; Search Project here..." style="font-family:Arial, FontAwesome" aria-label="Search Project" aria-describedby="btnNavbarSearch"/>
             {{-- <button class="btn btn-primary" id="btnNavbarSearch" type="submit">
               <i class="fa fa-search"></i>
             </button> --}}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="fa-solid fa-filter"></span>
+            </button>
+          </form>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <div>  
@@ -96,7 +100,7 @@
                 </div>
               </div>
             </div>
-          </form>
+         
         </div>
       </div>
     

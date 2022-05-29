@@ -1,26 +1,34 @@
 @extends('layouts.client')
 @section('content')
+
   <!-- Banner -->
-  <div class="header" data-aos="fade-right" data-aos-duration="1000" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
-    <div  class="p-3 text-center bg-image"  style="filter: brightness(60%);"></div>
-    <div class="d-flex justify-content-center align-items-center">
+  {{-- <div style=" background-image: url({{asset('assets/client/building2.jpg')}});">
+  
+
       <div class="banner-title text-center">
-        <h1 class="mb-3 text-light py-4" data-aos="fade-right" data-aos-duration="1000"><span>Portfolio</span></h1>
-        <p class="mb-3 text-light text-center" data-aos="fade-right" data-aos-duration="1000" style="font-size: 22px;">Get to Know More About the Firm</p>
+        <h1 class="text-light py-4" data-aos="fade-right" data-aos-duration="1000"><span>Portfolio</span></h1>
+        <p class=" text-light text-center" data-aos="fade-right" data-aos-duration="1000" style="font-size: 22px;">
+          Get to Know More About the Firm
+        </p>
       </div>
     </div>
-  </div>
-<br>
+
+  </div> --}}
+
+
+
+ 
+ 
+
 
   <!-- Banner About Us -->
-  <section id="about-video" class="about-video" >
+  {{-- <section class="about section-padding" data-aos="fade-right" data-aos-duration="1000" id="about">
+    
     <div class="container">
       <div class="row" >
-        <div class="col-lg-6 video-box align-self-baseline">
-          <img src="{{asset('assets/client/about-us-hero.png')}}" data-aos="fade-right" data-aos-duration="1000" style="height: 80%; width: 100%;"  alt="">
-        </div>
+       
         
-        <div class="col-lg-6 pt-3 pt-lg-0 content"  >
+        <div class="col-lg-6"  >
           <h2 style="color:#0d6efd;" data-aos="fade-right" data-aos-duration="1000">ABOUT US</h2>
           <p data-aos="fade-right" data-aos-duration="1000" style="text-align: justify; text-indent: 50px; font-size: 17px; font-color: #213b52;">
             Bana & Bana Architects formerly known as MC Architects is an architectural firm founded in 200 by two brothers namely Arch. Christopher G. Bana and Arch. Michael G. Bana, who collaborated with other architects in the past. Bana & Bana Architectural Firm were able to operate their firm legally with clients. This experience enables their young office to work on technically challenging small to large scale projects. We are committed to low energy sustainable 
@@ -29,28 +37,59 @@
             professional standards, meeting with our clients requirements with clear communication throughout 
             the project
           </p>
+        </div> 
+        <div class="col-lg-6 align-self-baseline">
+          <img src="{{asset('assets/client/about-us-hero.png')}}" data-aos="fade-right" data-aos-duration="1000" style="height: 80%; width: 100%;"  alt="">
         </div>
       </div>
     </div>
-  </section>
-<br>
+  </section> --}}
 
 
-  <div class="header"  data-aos="fade-left" data-aos-duration="3000" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
-    <div class="p-5 text-center bg-image">
-    </div>
+ 
+
+
+
+  
+
+  <div class="p-5 text-center" data-aos="fade-left" data-aos-duration="3000" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
+   
     <div class="d-flex justify-content-center align-items-center" >
       <div class="banner-title text-center">
-        <h1 class="mb-3 text-light" data-aos="fade-left" data-aos-duration="3000"><span>Roadmaps</span></h1>
+        <h1 class="text-light py-4" data-aos="fade-right" data-aos-duration="1000"><span>Portfolio</span></h1>
+        <p class=" text-light text-center" data-aos="fade-right" data-aos-duration="1000" style="font-size: 22px;">
+          Get to Know More About the Firm
+        </p>
       </div>
     </div>
   </div>
 
   <div class="container-fluid mb-5"  >
-    <div class="row">
+
+      <div class="container mt-3">
+      <div class="row" >
+       
+        
+        <div class="col-lg-6"  >
+          <h2 style="color:#0d6efd;" data-aos="fade-right" data-aos-duration="1000">ABOUT US</h2>
+          <p data-aos="fade-right" data-aos-duration="1000" style="text-align: justify; text-indent: 50px; font-size: 17px; font-color: #213b52;">
+            Bana & Bana Architects formerly known as MC Architects is an architectural firm founded in 200 by two brothers namely Arch. Christopher G. Bana and Arch. Michael G. Bana, who collaborated with other architects in the past. Bana & Bana Architectural Firm were able to operate their firm legally with clients. This experience enables their young office to work on technically challenging small to large scale projects. We are committed to low energy sustainable 
+            design providing appropriate, imaginative, cost effective and technical solutions to meet our client’s 
+            individual requirements. We implement and manage our input into each project to the highest 
+            professional standards, meeting with our clients requirements with clear communication throughout 
+            the project
+          </p>
+        </div> 
+        <div class="col-lg-6 align-self-baseline">
+          <img src="{{asset('assets/client/about-us-hero.png')}}" data-aos="fade-right" data-aos-duration="1000" style="height: 80%; width: 100%;"  alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="row m-2">
       <div class="col-md-4" data-aos="zoom-in" data-aos-duration="3000">
-        <div class="box">
-          <div class="our-services settings">
+        <div class="box p-2">
+          <div class="our-services settings m-3">
             <div class="icon"> <img src="{{asset('assets/client/vision.png')}}" style="height: 80px;"> </div>
             <h4 style="color:#0d6efd;">Vision</h4>
             <p style="text-align:justify;">It's our mission at Bana & Bana Architects to provide client focused service through our responsible practice of Architecture.</p>
@@ -59,8 +98,8 @@
       </div>
 
       <div class="col-md-4" data-aos="zoom-in" data-aos-duration="3000">
-        <div class="box">
-          <div class="our-services privacy">
+        <div class="box p-2">
+          <div class="our-services privacy m-3">
             <div class="icon"> <img src="{{asset('assets/client/mission.png')}}" style="height: 80px;justify-content: center;"> </div>
             <h4 style="color:#0d6efd;">Mission</h4>
             <p style="text-align:justify;">To be viewed as a respected architectural firm, providing high quality design and service to our clients with honesty and integrity.</p>
@@ -69,8 +108,8 @@
       </div>
 
       <div class="col-md-4" data-aos="zoom-in" data-aos-duration="3000">
-        <div class="box">
-          <div class="our-services ssl">
+        <div class="box p-2">
+          <div class="our-services ssl m-3">
             <div class="icon"> <img src="{{asset('assets/client/goal.png')}}" style="height: 80px; align-items: center;"> </div>
             <h4 style="color:#0d6efd;">Goals</h4>
             <p style="text-align:justify;">Our goal at Bana & Bana Architects is to designing well, creating beautiful buildings.</p>
@@ -119,6 +158,7 @@
     <a href="{{url('categories')}}">
     View other Categories</a>
   </div>
+
 <script>
   AOS.init();
 </script>

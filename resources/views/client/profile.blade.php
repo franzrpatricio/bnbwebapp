@@ -4,7 +4,6 @@
     <div class="header" data-aos="fade-right" data-aos-duration="1000" style="background-image: url('{{asset('assets/client/building2.jpg')}}')">
 
       <div  class="p-4 text-center bg-image"  style="filter: brightness(60%);">
-        <img src="" alt="">
         </div>
       <div class="d-flex justify-content-center align-items-center" >
         <div class="banner-title text-center">
@@ -14,7 +13,7 @@
         </div>
       </div>
     </div>
-    <br>
+  
   
 
    <!-- ======= About Section ======= -->
@@ -61,9 +60,9 @@
 				</div>
 			</div>
 		</div>
+   </section>
 
-    
-<br><br>
+
     <section class="about section-padding" id="about">
 		<div class="container"data-aos="fade-up" data-aos-delay="750">
 			<div class="row" data-aos="fade-up" data-aos-delay="750">
@@ -111,7 +110,7 @@
     <br>
 	</section><!-- about section Ends -->
 
-  <br>
+  
 
   <script>
   AOS.init();
