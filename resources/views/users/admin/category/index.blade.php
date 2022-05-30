@@ -78,7 +78,18 @@
                                 </td>
                                 {{-- if status is true, show if not visible || visible --}}
                                 {{-- to make the category visible just check the box for status --}}
-                                <td >{{$item->status == '1' ? 'Active':'Inactive'}}</td>
+                                @if ($item->status == 1)
+                                       
+                                    <td style="font-family: FontAwesome; color:green">
+                                        &#xf111; Active
+                                    </td>
+                                        
+                                    @else
+                                    <td style="font-family: FontAwesome; color:red">
+                                        &#xf111; Inactive
+                                    </td>
+                                    @endif
+
                                 <td>{{$item->feature == '1' ? 'Yes':'No'}}</td>
                                 <td>
                                     {{-- pass the ID of specific category --}}

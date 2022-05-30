@@ -73,7 +73,18 @@
                                 {{-- if status is true, show if not visible || visible --}}
                                 {{-- to make the user visible just check the box for status --}}
                                 {{-- if status = 1->active; else->inactive --}}
-                                <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td> 
+                                @if ($item->status == 1)
+                                       
+                                    <td style="font-family: FontAwesome; color:green">
+                                        &#xf111; Active
+                                    </td>
+                                        
+                                    @else
+                                    <td style="font-family: FontAwesome; color:red">
+                                        &#xf111; Inactive
+                                    </td>
+                                    @endif
+
                                 <td>
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('users.restore', $item->id) }}" class="btn btn-outline-success">

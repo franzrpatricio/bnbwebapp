@@ -150,21 +150,25 @@
                             </small>
                         </div>
                     </div>
+
+                    
                     <div class="mb-3">
                         <textarea name="meta_description" rows="5" class="form-control" placeholder="&#xf121; Meta Description" style="font-family:Arial, FontAwesome"></textarea>
                         <div class="card mt-1" style="background-color:antiquewhite">
                             <small class="ml-3"><i class="fas fa-info-circle" style="color:gold"></i><strong>Include a compelling summary of the page someone is about to click on.</strong></small>
                         </div>
-                    </div>
-        
-                    <div class="d-flex justify-content-end">
-                        <div class="mb-3">
+                    </div> 
+                    
+                    <div class="mb-3">
                             <label class="mr-2" style="font-family: FontAwesome; color:green"> &#xf111; <strong style="color: black">Project Status</strong></label>
                             <div class="mb-3">
                                 <input type="checkbox" name="status"/>
                                 <small>Click to make the project visible .</small>
                             </div>
                         </div>
+        
+                    <div class="d-flex justify-content-end">
+                      
                         <div class="col-4 mb-3">
                             <button type="submit" class="btn btn-outline-primary">
                                 <i class="fa fa-plus"></i>

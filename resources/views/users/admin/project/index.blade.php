@@ -94,7 +94,20 @@
                                 
                                 {{-- if status is true, show if not visible || visible --}}
                                 {{-- to make the project visible just check the box for status --}}
-                                <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td>
+                                    @if ($item->status == 1)
+                                       
+                                    <td style="font-family: FontAwesome; color:green">
+                                        &#xf111; Active
+                                    </td>
+                                        
+                                    @else
+                                    <td style="font-family: FontAwesome; color:red">
+                                        &#xf111; Inactive
+                                    </td>
+                                    @endif
+
+
+                                    {{-- &#xf111;{{$item->status == '1' ? 'Active':'Inactive'}}</td> --}}
                                 <td>
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('projects.restore', $item->id) }}" class="btn btn-success">Restore</a>
