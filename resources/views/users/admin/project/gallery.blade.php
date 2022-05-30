@@ -8,7 +8,19 @@ To open carousel on correct image, this is added to each image element: {data-ta
 Replace '0' with corresponding slide number. -->
 
 <div class="container-fluid px-4">
-  <div class="card">
+  <div class="row mt-5">
+    <div class="col-6">
+      <h1>Manage Gallery</h1>
+    </div>
+    
+      <div class="col-6 d-flex justify-content-end">
+        <a href="{{url('admin/projects')}}" class="btn btn-outline-danger mt-3 float-end"><i class="fa fa-times"></i> Cancel</a>
+      </div>
+
+  </div>
+  
+
+ 
     {{-- show any errors in saving the forms --}} 
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -23,50 +35,68 @@ Replace '0' with corresponding slide number. -->
       <div class="alert alert-success">{{ session('msg') }}</div>
     @endif    
   </div>
-  <div class="card-body">
 
-    <div class="float-end">
-      <a href="{{url('admin/projects')}}" class="btn btn-secondary mt-auto">Back</a>
-    </div>
+
+
+
+   
+<div class>
+
+</div>
+    
+  <div class="row">   
 
     @foreach ($images as $item)
-      <div class="row" id="gallery" data-toggle="modal" data-target="#exampleModal">
-          <div class="col-12 col-sm-6 col-lg-3">
+
+    <div class="col-lg-3">
+      <div class="card p-3">
+ 
+      <div id="gallery" data-toggle="modal" data-target="#exampleModal">
+          
             <img src="{{ asset('uploads/project_images/'.$item->image) }}" 
               class="w-100" 
               data-slide-to="{{ $loop->index }}"
               data-target="#carouselExample"
             />
-          </div>
+          
       </div>
-      <div>
+
+
+
+      <div class="p-2">
         <form method="post" action="{{ route('gallery.update', $item->id) }}" enctype="multipart/form-data">
           @csrf
-          <div class="mb-3">
+       
             <input type="file" name="image" class="form-control">
+       
+      <div class="row text-center p-2">
+          <div class="col-6">
+            <button type="submit" class="btn btn-outline-primary" title='Update'>
+              <i class="fa fa-refresh fa-spin"></i>
+              Update
+            </button>
           </div>
+       
       
-          <div class="mb-3">
-            <button type="submit" class="btn btn-primary" title='Update'>Update</button>
-          </div>
-        </form>
-      
-        <div class="mb-3">
-          <a href="{{ route('gallery.destroy', $item->id) }}" class="btn btn-danger">Delete</a>
-        </div>
+        <div class="col-6">
+          <a href="{{ route('gallery.destroy', $item->id) }}" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i> Delete</a>
+        </div> 
       </div>
+      </form>
+      </div>
+
+    </div>
+     
+  </div>
     @endforeach
+ 
 
     <!-- Modal -->
     <!-- This part is straight out of Bootstrap docs. Just a carousel inside a modal. -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+          
           <div class="modal-body">
             <div id="carouselExample" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
@@ -101,7 +131,16 @@ Replace '0' with corresponding slide number. -->
         </div>
       </div>
     </div>
+
   </div>
-</div>
+
+ 
+
+
+  
+
+ 
+
+
 @endsection
 
