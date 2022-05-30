@@ -29,7 +29,7 @@ class ContactMail extends Mailable
     public function build()
     {
         return $this->view('client.email-template')
-                    ->subject('A new Inquiry')
+                    ->subject('Inquiry - Bana and Bana Architects')
                     ->from('rbana989e@gmail.com','Bana and Bana Architects')
                     ->with('data',$this->data);
     }
