@@ -111,9 +111,10 @@
                                 <td>
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('projects.restore', $item->id) }}" class="btn btn-success">Restore</a>
-                                    @else
+                                    @else 
+                                    <form method="POST" action="{{ route('projects.destroy', $item->id) }}">
                                         <a href="{{ url('admin/edit-project/'.$item->id) }}"><i class="fas fa-pen"></i></a>
-                                        <form method="POST" action="{{ route('projects.destroy', $item->id) }}">
+                                       
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button type="submit" class="btn delete" title='Delete'>
