@@ -63,24 +63,26 @@
                         </div>
                     </div>
     
-                    <div class="d-flex justify-content-end">
+                  
                         <label class="mr-2" style="font-family: FontAwesome; color:green"> &#xf111; <strong style="color: black">Category Status</strong></label>
                         <div class="mb-3">
                             <input type="checkbox" name="status"/>
                             <small>Click to make the category visible .</small>
                         </div>
-                        <div class="col-md-3 mb-3">
+                        <div class="mb-3">
                             <input type="checkbox" name="feature"/>
                             <small>Click to make this category part of Specialization.</small>
                         </div>
-                        <div class="col-4 mb-3">
-                            <button type="submit" class="btn btn-outline-primary">
+                      
+                 
+                </div>  
+                <div class="col-12 d-flex justify-content-end p-3">
+                            <button type="submit" class="btn btn-outline-primary m-2">
                                 <i class="fa fa-plus"></i>
                                 {{__('Add Category')}}
                             </button>
-                            <a href="{{url('admin/categories')}}" class="btn btn-outline-danger"><i class="fa fa-times"></i> Cancel</a>
-                        </div>
-                    </div>
+                            
+                            <a href="{{url('admin/categories')}}" class="btn btn-outline-danger m-2"><i class="fa fa-times"></i> Cancel</a>
                 </div>
             </form>
         </div>
