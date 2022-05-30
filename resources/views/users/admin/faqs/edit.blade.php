@@ -31,18 +31,19 @@
                         <textarea name="answewr" rows="8" class="form-control">{{$faq->answewr}}</textarea>
                     </div>
                     
-                    <div class="d-flex justify-content-lg-end alig px-5 py-4">
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-outline-primary">
+                   
+                </div> 
+                <div class="col-12 d-flex justify-content-end">
+                     
+                            <button type="submit" class="btn btn-outline-primary m-2">
                                 <i class="fa fa-refresh fa-spin"></i>
                                 Update FAQ</button>
-                            <a href="{{url('admin/faqs')}}" class="btn btn-outline-danger">
+                            <a href="{{url('admin/faqs')}}" class="btn btn-outline-danger m-2">
                                 <i class="fa fa-times"></i>
                                 Cancel
                             </a>
-                        </div>
+                       
                     </div>
-                </div>
             </form>
         </div>
     </div>

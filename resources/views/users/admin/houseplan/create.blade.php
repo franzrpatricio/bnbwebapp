@@ -57,16 +57,20 @@
                     </div>
                         
                 </div> 
-                 <div class="col-12 d-flex justify-content-end p-3">
-                              
-                                    <button type="submit" class="btn btn-outline-primary"><i class="fa fa-plus"></i>
-                                    Add House Plan
-                                    </button>
-                              
-                             
-                                    <a href="{{url('admin/houseplan')}}" class="btn btn-outline-danger"><i class="fa fa-times"></i> Cancel</a>
-                                
-                        </div>
+       
+
+                        <div class="col-12 d-flex justify-content-end">
+                     
+                            <button type="submit" class="btn btn-outline-primary m-2">
+                                <i class="fa fa-refresh fa-spin"></i>
+                                Update FAQ
+                            </button>
+                            <a href="{{url('admin/houseplan')}}" class="btn btn-outline-danger m-2">
+                                <i class="fa fa-times"></i>
+                                Cancel
+                            </a>
+                       
+                    </div>
             </form>
         </div>
     </div>

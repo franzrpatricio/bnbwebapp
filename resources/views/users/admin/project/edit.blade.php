@@ -199,7 +199,7 @@
                         </div>
                     </div> --}}
 
-                    <div class="d-flex justify-content-end">
+                
                         @if ($project->status == 1)
                             <div class="mb-3">
                                 <label class="mr-2" style="font-family: FontAwesome; color:green"> &#xf111; <strong style="color: black">Project Status</strong></label>
@@ -218,12 +218,13 @@
                             </div>
                         @endif
 
-                        <div class="col-4 mb-3">
-                            <button type="submit" class="btn btn-outline-primary"><i class="fa fa-refresh fa-spin"></i> Update Project</button>
-                            <a href="{{url('admin/projects')}}" class="btn btn-outline-danger"><i class="fa fa-times"></i> Cancel</a>
+                      
+                    
+                </div> 
+                 <div class="col-12 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-outline-primary m-2"><i class="fa fa-refresh fa-spin"></i> Update Project</button>
+                            <a href="{{url('admin/projects')}}" class="btn btn-outline-danger m-2"><i class="fa fa-times"></i> Cancel</a>
                         </div>
-                    </div>
-                </div>
             </form>
         </div>
     </div>
