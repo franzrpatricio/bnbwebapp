@@ -13,7 +13,8 @@
               <i class="fa fa-search"></i>
             </button> --}}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="fa-solid fa-filter"></span>
+             
+              <i class="fa fa-filter"></i>
             </button>
           </form>
 
