@@ -13,7 +13,8 @@ class VirtualTour extends Model
 
     protected $fillable = [
         'project_id',
-        'video'
+        'video',
+        'text'
     ];
 
     public function project(){

@@ -97,23 +97,34 @@ class ProjectsController extends Controller
         #vtour condition...
         #if data has file...
         if ($request->hasfile('videos')) {
-            #store image file from data in to $file
-            $videos = $request->file('videos');
-            foreach ($videos as $video) {
+            # code...
+            if ($request->has('texts')) {
                 # code...
-                $video_name = time().rand(1,50).'.'.$video->getClientOriginalExtension();
-                $video->move('uploads/virtual_tour/', $video_name);
+                #store image file from data in to $file
+                $videos = $request->file('videos');
+                $texts = $request->input('texts');
 
-                DB::table('virtual_tour')->insert(
-                    array(
-                        'posted_by' => Auth::user()->id,
-                        'project_id' => $projID,
-                        'video' => $video_name,
-                        'created_at' => Carbon::now(),
-                    )
-                );
+                foreach ($videos as $video) {
+                    # code...
+                    $video_name = time().rand(1,50).'.'.$video->getClientOriginalExtension();
+                    $video->move('uploads/virtual_tour/', $video_name);
+                }
+                # code...
+                foreach ($texts as $text) {
+                    # code...
+                    DB::table('virtual_tour')->insert(
+                        array(
+                            'posted_by' => Auth::user()->id,
+                            'project_id' => $projID,
+                            'video' => $video_name,
+                            'text' => $text,
+                            'created_at' => Carbon::now(),
+                        )
+                    );
+                }
             }
         }
+        
         #saving of multiple image files
         if ($request->hasfile('images')) {
             # code...
@@ -257,6 +268,7 @@ class ProjectsController extends Controller
                         'posted_by' => Auth::user()->id,
                         'project_id' => $project->id,
                         'video' => $video_name,
+                        // 'text' => $text,
                         'created_at' => Carbon::now(),
                     )
                 );
@@ -350,7 +362,7 @@ class ProjectsController extends Controller
             'user_id'       => $user_id,
             'name'          => $name,
             'description'   => $description,
-            'created_at'     => $date_time,
+            'created_at'    => $date_time,
             'role_as'       => $role_as
         ];
         DB::table('user_activity_logs')->insert($data);

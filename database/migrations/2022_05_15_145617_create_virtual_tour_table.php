@@ -18,6 +18,7 @@ class CreateVirtualTourTable extends Migration
             $table->integer('posted_by'); #user
             $table->integer('project_id');
             $table->string('video');
+            $table->string('text');
             $table->timestamps();
         });
     }

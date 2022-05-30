@@ -47,50 +47,110 @@
     
                     <div class="mb-3">
                         {{-- input name refers to db field --}}
-                        <input type="text" name="name" class="form-control" placeholder="&#xf015; Project Name" required style="font-family:Arial, FontAwesome" required> 
+                        <input type="text" name="name" class="form-control" placeholder="&#xf015; Project Name" required style="font-family:Arial, FontAwesome"> 
                     </div>
 
-                    <div class="col-md-4">
-                        <input type="file" name="image" class="form-control">
-                        <div class="card mt-1" style="background-color:antiquewhite">
-                            <small class="ml-3">
-                                <i class="fas fa-info-circle" style="color:gold"></i>
-                                <strong>
-                                    Upload Image for Project Thumbnail
-                                </strong>
-                            </small>
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <input type="file" name="image" class="form-control">
+                            <div class="card mt-1" style="background-color:antiquewhite">
+                                <small class="ml-3">
+                                    <i class="fas fa-info-circle" style="color:gold"></i>
+                                    <strong>
+                                        Upload Image for Project Thumbnail
+                                    </strong>
+                                </small>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <input type="file" 
-                            name="videos[]" 
-                            class="form-control"
-                            id="inputFiles"
-                            multiple
-                        >
-                        <div class="card mt-1" style="background-color:antiquewhite">
-                            <small class="ml-3">
-                                <i class="fas fa-info-circle" style="color:gold"></i>
-                                <strong>
-                                    Upload Videos for Project Virutal Tour
-                                </strong>
-                            </small>
+
+                        <div class="col-6 mb-3">
+                            <input type="file" 
+                                    name="images[]"
+                                    class="form-control"
+                                    id="inputFiles"
+                                    multiple
+                            >
+                            <div class="card mt-1 mb-3" style="background-color:antiquewhite">
+                                <small class="ml-3">
+                                    <i class="fas fa-info-circle" style="color:gold"></i>
+                                    <strong>
+                                        Upload Images for Project Gallery
+                                    </strong>
+                                </small>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <input type="file" 
-                                name="images[]"
-                                class="form-control"
-                                id="inputFiles"
-                                multiple
-                        >
-                        <div class="card mt-1 mb-3" style="background-color:antiquewhite">
-                            <small class="ml-3">
-                                <i class="fas fa-info-circle" style="color:gold"></i>
-                                <strong>
-                                    Upload Images for Project Gallery
-                                </strong>
-                            </small>
+
+                        <div class="row">
+                            {{-- <div class="mb-3">
+                                <input type="file" 
+                                    name="videos[]" 
+                                    class="form-control"
+                                    id="inputFiles"
+                                    multiple
+                                >
+                            </div> --}}
+
+                            <div class="row">
+                                <div class="col-6 mb-3 realprocode control-group lst increment" >
+                                    <input type="file" name="videos[]" class=" form-control">
+                                    <div class="card mt-1" style="background-color:antiquewhite">
+                                        <small class="ml-3">
+                                            <i class="fas fa-info-circle" style="color:gold"></i>
+                                            <strong>
+                                                Upload Video for Project Virutal Tour
+                                            </strong>
+                                        </small>
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <input type="text" name="texts[]" placeholder="&#xf015; Virtual Tour Name" required style="font-family:Arial, FontAwesome">
+                                        <div class="card mt-1" style="background-color:antiquewhite">
+                                            <small class="ml-3">
+                                                <i class="fas fa-info-circle" style="color:gold"></i>
+                                                <strong>
+                                                    Upload names for Project Virutal Tour
+                                                </strong>
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="input-group-btn"> 
+                                      <button class="btn btn-success" type="button"> <i class="fldemo glyphicon glyphicon-plus"></i>Add</button>
+                                    </div>
+                                </div>
+                                <div class="col-6 mb-3 clone hide">
+                                    <div class="realprocode control-group lst input-group">
+                                        <input type="file" name="videos[]" class=" form-control">
+                                        <div class="card mt-1" style="background-color:antiquewhite">
+                                            <small class="ml-3">
+                                                <i class="fas fa-info-circle" style="color:gold"></i>
+                                                <strong>
+                                                    Upload another videos for Project Virutal Tour
+                                                </strong>
+                                            </small>
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <input type="text" name="texts[]" placeholder="&#xf015; Virtual Tour Name" required style="font-family:Arial, FontAwesome">
+                                            <div class="card mt-1" style="background-color:antiquewhite">
+                                                <small class="ml-3">
+                                                    <i class="fas fa-info-circle" style="color:gold"></i>
+                                                    <strong>
+                                                        Upload names for Project Virutal Tour
+                                                    </strong>
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <div class="input-group-btn"> 
+                                            <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- <div class="col-2 mb-3">
+                                <button type="button" class="btn btn-outline-primary">
+                                    <i class="fa fa-plus"></i>
+                                    Add another Video
+                                </button>
+                            </div> --}}
                         </div>
                     </div>
 
