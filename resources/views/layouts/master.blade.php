@@ -160,7 +160,7 @@
     </script>
 
     {{-- MULTIPLE UPLOAD VIDEOS PROJECT --}}
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(document).ready(function() {
           $(".btn-success").click(function(){ 
               var lsthmtl = $(".clone").html();
@@ -179,7 +179,44 @@
                 $(modalId).modal('show');
             });
         });
-    </script>
+    </script> --}}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    ></script>
+
+
+<script>
+$(document).ready(function() {
+var max_fields      = 10; //maximum input boxes allowed
+var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+var add_button      = $(".add_field_button"); //Add button ID
+
+var x = 1; //initlal text box count
+
+
+$(add_button).click(function(e){ //on add input button click
+    e.preventDefault();
+    if(x < max_fields){ //max input box allowed
+
+     //text box increment
+        // $(wrapper).append('<div><input type="file" name="videos[]" class=" form-control" ><input type="text" name="texts[]" placeholder="&#xf015; Virtual Tour Name" required style="font-family:Arial, FontAwesome"><a href="#" class="remove_field">Remove</a></div>');
+
+        $(wrapper).append('<div class="card p-2"><input type="file" name="videos[]" class=" form-control m-2" ><input type="text" name="texts[]" class=" form-control m-2" placeholder="&#xf015; Virtual Tour Name" required style="font-family:Arial, FontAwesome"><a href="#" class="remove_field d-flex justify-content-end" style="color:red;">Remove</a></div>');
+         //add input box
+        x++; 
+}
+});
+
+$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+   
+e.preventDefault(); 
+$(this).parent('div').remove(); 
+x--;
+})
+});
+
+</script>
+
     {{-- BOOTSTRAP script link --}}
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

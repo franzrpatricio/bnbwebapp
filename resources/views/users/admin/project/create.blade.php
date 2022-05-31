@@ -80,7 +80,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        
                             {{-- <div class="mb-3">
                                 <input type="file" 
                                     name="videos[]" 
@@ -90,8 +90,8 @@
                                 >
                             </div> --}}
 
-                            <div class="row">
-                                <div class="col-6 mb-3 realprocode control-group lst increment" >
+                            {{-- <div class="row">
+                                <div class="realprocode control-group lst increment" >
                                     <input type="file" name="videos[]" class=" form-control">
                                     <div class="card mt-1" style="background-color:antiquewhite">
                                         <small class="ml-3">
@@ -100,9 +100,9 @@
                                                 Upload Video for Project Virutal Tour
                                             </strong>
                                         </small>
-                                    </div>
-                                    <div class="col-4 mb-3">
-                                        <input type="text" name="texts[]" placeholder="&#xf015; Virtual Tour Name" required style="font-family:Arial, FontAwesome">
+                                    </div> --}}
+                                    {{-- <div class="form-controp"> --}}
+                                        {{-- <input type="text" name="texts[]" placeholder="&#xf015; Virtual Tour Name" required style="font-family:Arial, FontAwesome">
                                         <div class="card mt-1" style="background-color:antiquewhite">
                                             <small class="ml-3">
                                                 <i class="fas fa-info-circle" style="color:gold"></i>
@@ -110,14 +110,16 @@
                                                     Upload names for Project Virutal Tour
                                                 </strong>
                                             </small>
-                                        </div>
-                                    </div>
-                                    <div class="input-group-btn"> 
-                                      <button class="btn btn-success" type="button"> <i class="fldemo glyphicon glyphicon-plus"></i>Add</button>
+                                        </div> --}}
+                                    {{-- </div> --}}
+                                    {{-- <div class="col-md-4"> 
+                                        <button class="btn btn-success" type="button"> <i class="fldemo glyphicon glyphicon-plus"></i>Add</button>
                                     </div>
                                 </div>
-                                <div class="col-6 mb-3 clone hide">
-                                    <div class="realprocode control-group lst input-group">
+                            </div>
+                            <div class="row">
+                                <div class="clone hide">
+                                    <div class="">
                                         <input type="file" name="videos[]" class=" form-control">
                                         <div class="card mt-1" style="background-color:antiquewhite">
                                             <small class="ml-3">
@@ -143,7 +145,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             {{-- <div class="col-2 mb-3">
                                 <button type="button" class="btn btn-outline-primary">
@@ -151,7 +153,34 @@
                                     Add another Video
                                 </button>
                             </div> --}}
-                        </div>
+                            <div class="card mt-1" style="background-color:antiquewhite">
+                                <small class="ml-3">
+                                    <i class="fas fa-info-circle" style="color:gold"></i>
+                                    <strong>
+                                        Upload Project Virutal Tour
+                                    </strong>
+                                </small>
+                            </div>
+                            <div class="input_fields_wrap m-2">
+
+                                <button class="add_field_button btn btn-success m-2"><i class="fa-solid fa-plus"></i></button>
+                              
+
+                                <div class="card p-2">
+                                
+                                     <input type="file" name="videos[]" class=" form-control m-2" > 
+
+                                    <input type="text" name="texts[]" class=" form-control m-2" placeholder="&#xf015; Virtual Tour Name" required style="font-family:Arial, FontAwesome">
+   
+                                </div>
+                         
+                                
+                                
+                                
+                            </div>
+
+
+
                     </div>
 
                     <div class="col-md-4">

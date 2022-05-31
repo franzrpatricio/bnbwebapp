@@ -85,7 +85,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         <input type="file" 
                             name="videos[]" 
                             class="form-control"
@@ -100,6 +100,31 @@
                                 </strong>
                             </small>
                         </div>
+                    </div> --}}
+                    <div class="card mt-1" style="background-color:antiquewhite">
+                        <small class="ml-3">
+                            <i class="fas fa-info-circle" style="color:gold"></i>
+                            <strong>
+                                Upload Project Virutal Tour
+                            </strong>
+                        </small>
+                    </div>
+                    <div class="input_fields_wrap m-2">
+
+                        <button class="add_field_button btn btn-success m-2"><i class="fa-solid fa-plus"></i></button>
+                      
+
+                        <div class="card p-2">
+                        
+                             <input type="file" name="videos[]" class=" form-control m-2" > 
+
+                            <input type="text" name="texts[]" class=" form-control m-2" placeholder="&#xf015; Virtual Tour Name" required style="font-family:Arial, FontAwesome">
+
+                        </div>
+                 
+                        
+                        
+                        
                     </div>
 
                     <div class="col-md-4 mt-3">
