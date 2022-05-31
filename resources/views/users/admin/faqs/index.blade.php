@@ -72,12 +72,13 @@
                                     {{-- pass the ID of specific faq --}}
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('faqs.restore', $item->id) }}" class="btn btn-success">Restore</a>
-                                    @else
+                                    @else 
+                                    <form method="POST" action="{{ route('faqs.destroy', $item->id) }}">
                                         {{-- pass the ID of specific faq --}}
                                         <a href="{{ url('admin/edit-faq/'.$item->id) }}">
                                             <i class="fa-solid fa-pen" style="color:#019ad2;"></i>
                                         </a>
-                                        <form method="POST" action="{{ route('faqs.destroy', $item->id) }}">
+                                       
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button type="submit" class="btn delete" title='Delete'>

@@ -32,7 +32,7 @@
                             <textarea name="answewr" rows="8" class="form-control"placeholder="&#xf27a; Answer" style="font-family:Arial, FontAwesome"></textarea>
                         </div>
                         
-                        <div class="d-flex justify-content-lg-end alig px-5 py-4">
+                        <div class="d-flex justify-content-end alig px-5 py-4">
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-outline-primary">
                                     <i class="fa fa-plus"></i>

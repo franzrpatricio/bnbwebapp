@@ -65,7 +65,7 @@
                         </div>
                     </div>
     
-                    <div class="d-flex justify-content-end">
+              
                         @if ($category->status == 1)
                             <label class="mr-2" style="font-family: FontAwesome; color:green"> &#xf111; <strong style="color: black">Category Status</strong></label>
                             <div class="mb-3">
@@ -101,15 +101,15 @@
                                 </div>
                             @endif
                         @endif    
-                        <div class="col-4 mb-3">
-                            <button type="submit" class="btn btn-outline-primary">
+                   
+                </div>
+                <div class="col-12 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-outline-primary m-2">
                                 <i class="fa fa-refresh fa-spin"></i>
                                 {{__('Update Category')}}
                             </button>
-                            <a href="{{url('admin/categories')}}" class="btn btn-outline-danger"><i class="fa fa-times"></i> Cancel</a>
+                            <a href="{{url('admin/categories')}}" class="btn btn-outline-danger m-2"><i class="fa fa-times"></i> Cancel</a>
                         </div>
-                    </div>
-                </div>
             </form>
         </div>
     </div>

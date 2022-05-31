@@ -8,7 +8,7 @@
             <h4><div class="sb-nav-link-icon"><i class="fas fa-plus-circle"></i>Create New House Plan</div></h4>
         </div>
         
-        <div class="card-body">
+        <div class="card-body p-3">
 
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -49,21 +49,30 @@
                         <input type="text" name="ceiling" class="form-control" placeholder="&#8969; Ceiling" style="font-family:Arial, FontAwesome">
                     </div>
 
-                    <div class="d-flex justify-content-end">
-                        <label class="mr-2" style="font-family: FontAwesome; color:green"> &#xf111; <strong style="color: black">House Plan Status</strong></label>
+                     <label class="mr-2" style="font-family: FontAwesome; color:green"> &#xf111; <strong style="color: black">House Plan Status</strong></label>
                         <div class="mb-3">
                             <input type="checkbox" name="status"/>
                             <small>Click to make the House Plan visible.</small>
                         </div>
-                        <div class="col-4 mb-3">
-                            <button type="submit" class="btn btn-outline-primary"><i class="fa fa-plus"></i>
-                                Add House Plan</button>
-                            <a href="{{url('admin/houseplan')}}" class="btn btn-outline-danger"><i class="fa fa-times"></i> Cancel</a>
-                        </div>
                     </div>
-                </div>
+                        
+                </div> 
+       
+
+                        <div class="col-12 d-flex justify-content-end">
+                     
+                            <button type="submit" class="btn btn-outline-primary m-2">
+                                <i class="fa fa-refresh fa-spin"></i>
+                                Update FAQ
+                            </button>
+                            <a href="{{url('admin/houseplan')}}" class="btn btn-outline-danger m-2">
+                                <i class="fa fa-times"></i>
+                                Cancel
+                            </a>
+                       
+                    </div>
             </form>
         </div>
     </div>
-</div>
+
 @endsection

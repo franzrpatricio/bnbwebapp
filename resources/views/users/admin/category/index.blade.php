@@ -78,18 +78,30 @@
                                 </td>
                                 {{-- if status is true, show if not visible || visible --}}
                                 {{-- to make the category visible just check the box for status --}}
-                                <td >{{$item->status == '1' ? 'Active':'Inactive'}}</td>
+                                @if ($item->status == 1)
+                                       
+                                    <td style="font-family: FontAwesome; color:green">
+                                        &#xf111; Active
+                                    </td>
+                                        
+                                    @else
+                                    <td style="font-family: FontAwesome; color:red">
+                                        &#xf111; Inactive
+                                    </td>
+                                    @endif
+
                                 <td>{{$item->feature == '1' ? 'Yes':'No'}}</td>
                                 <td>
                                     {{-- pass the ID of specific category --}}
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('categories.restore', $item->id) }}" class="btn btn-success">Restore</a>
-                                    @else
+                                    @else 
+                                    <form method="POST" action="{{ route('categories.destroy', $item->id) }}">
                                         {{-- pass the ID of specific faq --}}
                                         <a href="{{ url('admin/edit-category/'.$item->id) }}">
                                             <i class="fa-solid fa-pen" style="color:#019ad2;"></i>
                                         </a>
-                                        <form method="POST" action="{{ route('categories.destroy', $item->id) }}">
+                                       
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button type="submit" class="btn delete" title='Delete'>

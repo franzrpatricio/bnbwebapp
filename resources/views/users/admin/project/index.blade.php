@@ -94,13 +94,27 @@
                                 
                                 {{-- if status is true, show if not visible || visible --}}
                                 {{-- to make the project visible just check the box for status --}}
-                                <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td>
+                                    @if ($item->status == 1)
+                                       
+                                    <td style="font-family: FontAwesome; color:green">
+                                        &#xf111; Active
+                                    </td>
+                                        
+                                    @else
+                                    <td style="font-family: FontAwesome; color:red">
+                                        &#xf111; Inactive
+                                    </td>
+                                    @endif
+
+
+                                    {{-- &#xf111;{{$item->status == '1' ? 'Active':'Inactive'}}</td> --}}
                                 <td>
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('projects.restore', $item->id) }}" class="btn btn-success">Restore</a>
-                                    @else
+                                    @else 
+                                    <form method="POST" action="{{ route('projects.destroy', $item->id) }}">
                                         <a href="{{ url('admin/edit-project/'.$item->id) }}"><i class="fas fa-pen"></i></a>
-                                        <form method="POST" action="{{ route('projects.destroy', $item->id) }}">
+                                       
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button type="submit" class="btn delete" title='Delete'>
@@ -120,6 +134,7 @@
                 {{ $projects->links() }}
             </div>
         </div>
-    </div>
-</div>
+    </div> 
+    
+
 @endsection

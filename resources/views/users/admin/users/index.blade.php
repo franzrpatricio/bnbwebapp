@@ -73,15 +73,27 @@
                                 {{-- if status is true, show if not visible || visible --}}
                                 {{-- to make the user visible just check the box for status --}}
                                 {{-- if status = 1->active; else->inactive --}}
-                                <td>{{$item->status == '1' ? 'Active':'Inactive'}}</td> 
+                                @if ($item->status == 1)
+                                       
+                                    <td style="font-family: FontAwesome; color:green">
+                                        &#xf111; Active
+                                    </td>
+                                        
+                                    @else
+                                    <td style="font-family: FontAwesome; color:red">
+                                        &#xf111; Inactive
+                                    </td>
+                                    @endif
+
                                 <td>
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('users.restore', $item->id) }}" class="btn btn-outline-success">
                                             <i class="fa fa-user-plus"></i>
                                             Restore</a>
-                                    @else
+                                    @else 
+                                    <form method="POST" action="{{ route('users.destroy', $item->id) }}">
                                         <a href="{{ url('admin/edit-user/'.$item->id) }}"><i class="fas fa-pen"></i></a>
-                                        <form method="POST" action="{{ route('users.destroy', $item->id) }}">
+                                       
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button type="submit" class="btn delete" title='Delete'>

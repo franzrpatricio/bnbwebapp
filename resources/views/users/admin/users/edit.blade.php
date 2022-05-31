@@ -64,11 +64,11 @@
                     </div>
 
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-outline-primary">
+                        <button type="submit" class="btn btn-outline-primary m-2">
                             <i class="fa fa-refresh fa-spin"></i>
                             Update User
                         </button>
-                        <a href="{{url('admin/users')}}" class="btn btn-outline-danger ml-1">
+                        <a href="{{url('admin/users')}}" class="btn btn-outline-danger m-2">
                             <i class="fa fa-times"></i>
                             Cancel
                         </a>
