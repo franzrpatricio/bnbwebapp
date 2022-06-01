@@ -6,9 +6,9 @@
 
 <div>
   <div class="header" data-aos="fade-right" data-aos-duration="1000" style="background-image: url('{{asset('assets/client/building2.jpg')}}')">
-    <div class="d-flex justify-content-center align-items-center" >
-      <div class="banner-title text-center">
-        <h1 data-aos="fade-right" data-aos-duration="1000"><span>{{$project->name}}</span></h1>
+    <div class="d-flex justify-content-center" >
+      <div class="banner-title">
+        <h1 class="mt-5" data-aos="fade-right" data-aos-duration="1000"><span>{{$project->name}}</span></h1>
       </div>
     </div>
   </div>
@@ -117,8 +117,8 @@
 </div>
 
 <div class="container-fluid p-2">
-    <div class="row m-5">
-      <div class="col-lg-9 col-md-12">
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-6 col-md-12">
         @forelse ($videos->take(1) as $video)
           <video src="{{asset('uploads/virtual_tour/'.$video->video)}}" class="slider img-fluid" style="width:800px;" autoplay loop muted></video>
         @empty
@@ -127,14 +127,26 @@
           {{-- <video src="{{asset('uploads/virtual_tour/'.$project->video)}}" class="slider img-fluid" style="width:800px;" autoplay loop muted></video> --}}
       </div>
 
-      <div class="col-lg-3 col-md-12" style="background:whitesmoke; overflow-y:scroll; height:400px">
-        @forelse ($videos as $video)
+      <div class="col-lg-4 col-md-12 m-3" style="background:whitesmoke; overflow-y:scroll; height:400px">
+          @forelse ($videos as $video)
+          <div class="row">
+         
+          <div class="col-6">
+            
           <ul style="list-style: none;">
             <li class="img-fluid p-2" onclick="videoslider('{{asset('uploads/virtual_tour/'.$video->video)}}')">
               <video src="{{asset('uploads/virtual_tour/'.$video->video)}}" style="cursor: pointer;  width: 200px; transform: scale(1.1);"></video>
             </li>
-          </ul>
-        @empty
+          </ul> 
+          </div>
+          <div class="col-6 d-flex align-items-center">
+            <h3>Title of the VTour</h3>
+
+          </div>
+          
+        </div>
+       
+      @empty
             <h4>No Virtual Tour Yet</h4>
         @endforelse
       </div>
