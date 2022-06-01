@@ -55,7 +55,7 @@
                         @if ($user->status == '1')
                             <div class="mb-3">
                                 <input type="checkbox" name="status" {{$user->status == '1' ? 'checked':''}}/>
-                                <small>Click to make this user Active.</small>
+                                <small>Uncheck to make this user Inactive.</small>
                             </div>
                         @else
                             <input type="checkbox" name="status" {{$user->status == '1' ? 'checked':''}}/>

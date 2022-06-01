@@ -73,28 +73,33 @@
                                 {{-- if status is true, show if not visible || visible --}}
                                 {{-- to make the user visible just check the box for status --}}
                                 {{-- if status = 1->active; else->inactive --}}
-                                @if ($item->status == 1)
-                                       
-                                    <td style="font-family: FontAwesome; color:green">
-                                        &#xf111; Active
-                                    </td>
-                                        
+
+
+                                @if ($item->deleted_at == NULL)
+                                    @if ($item->status == 1)
+                                        <td style="font-family: FontAwesome; color:green">
+                                            &#xf111; Active
+                                        </td>
                                     @else
-                                    <td style="font-family: FontAwesome; color:red">
-                                        &#xf111; Inactive
-                                    </td>
+                                        <td style="font-family: FontAwesome; color:red">
+                                            &#xf111; Inactive
+                                        </td>
                                     @endif
+                                @else
+                                    <td style="font-family: FontAwesome; color:red">
+                                        &#xf111; Deleted
+                                    </td>
+                                @endif
 
                                 <td>
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('users.restore', $item->id) }}" class="btn btn-outline-success">
                                             <i class="fa fa-user-plus"></i>
-                                            Restore</a>
+                                        Restore</a>
                                     @else 
-                                    <form method="POST" action="{{ route('users.destroy', $item->id) }}">
-                                        <a href="{{ url('admin/edit-user/'.$item->id) }}"><i class="fas fa-pen"></i></a>
-                                       
+                                        <form method="POST" action="{{ route('users.destroy', $item->id) }}">
                                             @csrf
+                                            <a href="{{ url('admin/edit-user/'.$item->id) }}"><i class="fas fa-pen"></i></a>
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button type="submit" class="btn delete" title='Delete'>
                                                 <i class="fa-solid fa-trash" style="color:red;"></i>
