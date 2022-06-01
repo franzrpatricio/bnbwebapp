@@ -177,6 +177,7 @@ class ClientController extends Controller
 
         $inquiry = new Inquiry;
         $inquiry->name = $data['name'];
+        $inquiry->subject = "Inquiry - Bana and Bana Architects";
         $inquiry->email = $data['email'];
         $inquiry->phone = $data['phone'];
         $inquiry->address = $data['address'];
@@ -205,6 +206,7 @@ class ClientController extends Controller
         $inquiry = new Inquiry;
         $inquiry->proj_id = $data['proj_id'];
         $inquiry->proj_name = $data['proj_name']; 
+        $inquiry->subject = "Project Inquiry - Bana and Bana Architects";
         $inquiry->name = $data['name'];
         $inquiry->email = $data['email'];
         $inquiry->phone = $data['phone'];

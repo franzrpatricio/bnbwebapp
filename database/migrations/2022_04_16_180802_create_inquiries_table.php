@@ -17,6 +17,7 @@ class CreateInquiriesTable extends Migration
             $table->id();
             $table->string('proj_id')->nullable();
             $table->string('proj_name')->nullable();
+            $table->string('subject');
             $table->string('name');
             $table->string('email');
             $table->string('phone');
