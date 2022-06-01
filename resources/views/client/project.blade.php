@@ -65,15 +65,23 @@
 <div class="row">
     <div class="col-6">
         <h5>Architectural Designs: </h5>  
-          @foreach (json_decode($project->designs) as $item => $key)
-            <p>{{$key}}</p>
-          @endforeach
+          @if ($project->designs == NULL)
+            @forelse (json_decode($project->designs) as $item => $key)
+              <p>{{$key}}</p>q
+            @endforeach
+          @else
+            No Architectural Designs.
+          @endif
     </div>
     <div class="col-6">
         <h5>Amenities:   </h5>
+        @if ($project->amenities == NULL)
           @foreach (json_decode($project->amenities) as $item => $key)
             <p style="text-align: justify;">{{$key}}</p>
           @endforeach
+        @else
+            No Amenities.
+        @endif
     </div>
     <div class="col-6">
         <h5>House Plan:</h5>
@@ -117,7 +125,7 @@
 </div>
 
 <div class="container-fluid p-2">
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center m-4">
       <div class="col-lg-6 col-md-12">
         @forelse ($videos->take(1) as $video)
           <video src="{{asset('uploads/virtual_tour/'.$video->video)}}" class="slider img-fluid" style="width:800px;" autoplay loop muted></video>
@@ -127,30 +135,43 @@
           {{-- <video src="{{asset('uploads/virtual_tour/'.$project->video)}}" class="slider img-fluid" style="width:800px;" autoplay loop muted></video> --}}
       </div>
 
-      <div class="col-lg-4 col-md-12 m-3" style="background:whitesmoke; overflow-y:scroll; height:400px">
-          @forelse ($videos as $video)
-          <div class="row">
-         
-          <div class="col-6">
-            
-          <ul style="list-style: none;">
-            <li class="img-fluid p-2" onclick="videoslider('{{asset('uploads/virtual_tour/'.$video->video)}}')">
-              <video src="{{asset('uploads/virtual_tour/'.$video->video)}}" style="cursor: pointer;  width: 200px; transform: scale(1.1);"></video>
-            </li>
-          </ul> 
-          </div>
-          <div class="col-6 d-flex align-items-center">
-            <h3>Title of the VTour</h3>
+      <div class="col-lg-5 col-md-12" style="background:whitesmoke; overflow-y:scroll; height:400px">
 
-          </div>
-          
-        </div>
+        @forelse ($videos as $video)         
        
-      @empty
+            <div class="row">
+               
+                <div class="col-6">
+                    <ul style="list-style: none;">
+                        <li class="img-fluid p-2" onclick="videoslider('{{asset('uploads/virtual_tour/'.$video->video)}}')">
+                            <video src="{{asset('uploads/virtual_tour/'.$video->video)}}" style="cursor: pointer;  width: 200px; transform: scale(1.1);"></video>
+                        </li>
+                    </ul>
+                </div>
+                
+             
+                <div class="col-6 d-flex align-items-center">
+                
+                        
+                      
+               
+                    
+                           <h5>{{$video->text}}</h5>
+                        </div>
+                </div>
+                   
+                   
+                    
+            
+         
+        @empty
             <h4>No Virtual Tour Yet</h4>
+        </div>
+   
         @endforelse
+      
       </div>
-    </div>
+    
 </div>
 
 {{-- MODAL PROJECT INQUIRY FORM START --}}
