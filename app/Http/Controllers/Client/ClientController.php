@@ -262,4 +262,7 @@ class ClientController extends Controller
     public function conditions(){
         return view('client.conditions');
     }
+    public function creators(){
+        return view('client.creators');
+    }
 }
