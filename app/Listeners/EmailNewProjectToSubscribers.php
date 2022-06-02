@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
-class EmailOwnerSubscription
+class EmailNewProjectToSubscribers
 {
     /**
      * Create the event listener.
@@ -37,6 +37,6 @@ class EmailOwnerSubscription
             'email' => $event->email,
             // 'created_at' => Carbon::now(),
         ]);
-        Mail::to($event->email)->send(new MailSubscribers());
+        // Mail::to($event->email)->send(new MailSubscribers());
     }
 }
