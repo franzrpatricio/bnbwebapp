@@ -39,6 +39,10 @@ Route::get('contact', [App\Http\Controllers\Client\ClientController::class, 'con
 Route::post('subscribe', [App\Http\Controllers\Client\ClientController::class, 'subscribe'])->name('subscribe.subscribe');
 Route::post('send-email', [App\Http\Controllers\Client\ClientController::class, 'sendEmail'])->name('send.email');
 Route::post('send-projectInquiry', [App\Http\Controllers\Client\ClientController::class, 'sendProjInquiry'])->name('send.projectInquiry');
+
+Route::get('privacy-policy', [App\Http\Controllers\Client\ClientController::class, 'policy'])->name('policy');
+Route::get('terms-and-conditions', [App\Http\Controllers\Client\ClientController::class, 'conditions'])->name('conditions');
+
 #when request hits server, pull out botman instance; listen to any incoming commands
 Route::post('botman',function(){
     app('botman')->listen();

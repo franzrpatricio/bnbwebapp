@@ -256,4 +256,10 @@ class ClientController extends Controller
             return view ('users.admin.newsletter.subscriber',['msg'=>'No subscribers Found.🥺'], compact('subscribers'));
         }
     }
+    public function policy(){
+        return view('client.policy');
+    }
+    public function conditions(){
+        return view('client.conditions');
+    }
 }
