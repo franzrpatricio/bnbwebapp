@@ -11743,3 +11743,9 @@ body {
     }
     
 }
+/* Logo Responsive */
+@media only screen and (max-width: 560px){
+  .logo{
+    display: none;
+  }
+}
