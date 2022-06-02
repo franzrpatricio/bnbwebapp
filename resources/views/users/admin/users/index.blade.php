@@ -37,12 +37,13 @@
                 @endif
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body"  >
             {{-- display msg after redirecting --}}
             @if (session('msg'))
             <div class="alert alert-success">{{ session('msg') }}</div>
             @endif
 
+            <div class="table-responsive" id="no-more-tables">
             <table class="table table-bordered">
                 <thead>
                     <tr class="text-center">
@@ -65,10 +66,10 @@
                     @else
                         @forelse ($users as $item)    
                             <tr class="text-center">
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->name}}</td>
+                                <td data-title="ID">{{$item->id}}</td>
+                                <td data-title="Full name">{{$item->name}}</td>
                                 {{-- <td>{{$item->email}}</td> --}}
-                                <td>{{$item->role_as == '1' ? 'Administrator':'Staff'}}</td>
+                                <td data-title="Role">{{$item->role_as == '1' ? 'Administrator':'Staff'}}</td>
 
                                 {{-- if status is true, show if not visible || visible --}}
                                 {{-- to make the user visible just check the box for status --}}
@@ -77,21 +78,21 @@
 
                                 @if ($item->deleted_at == NULL)
                                     @if ($item->status == 1)
-                                        <td style="font-family: FontAwesome; color:green">
+                                        <td data-title="Status" style="font-family: FontAwesome; color:green">
                                             &#xf111; Active
                                         </td>
                                     @else
-                                        <td style="font-family: FontAwesome; color:red">
+                                        <td data-title="Status"s tyle="font-family: FontAwesome; color:red">
                                             &#xf111; Inactive
                                         </td>
                                     @endif
                                 @else
-                                    <td style="font-family: FontAwesome; color:red">
+                                    <td data-title="Status" style="font-family: FontAwesome; color:red">
                                         &#xf111; Deleted
                                     </td>
                                 @endif
 
-                                <td>
+                                <td data-title="Action">
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('users.restore', $item->id) }}" class="btn btn-outline-success">
                                             <i class="fa fa-user-plus"></i>
@@ -114,6 +115,7 @@
                     @endif
                 </tbody>
             </table>
+           </div>
             <div class="float-end">
                 {{ $users->links() }}
             </div>

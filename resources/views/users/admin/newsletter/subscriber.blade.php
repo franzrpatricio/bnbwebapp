@@ -22,6 +22,7 @@
     </div>
 
     <div class="card-body">
+        <div class="table-responsive" id="no-more-tables">
         <table class="table table-bordered">
             <thead>
                 <tr class="text-center">
@@ -41,9 +42,9 @@
                 @else
                     @forelse ($subscribers as $item)
                         <tr class="text-center">
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->email}}</td>
-                            <td>{{$item->created_at}}</td>
+                            <td data-title="ID">{{$item->id}}</td>
+                            <td data-title="Email">{{$item->email}}</td>
+                            <td data-title="Date">{{$item->created_at}}</td>
                         </tr>
                     @empty
                         <tr class="text-center">
@@ -53,6 +54,7 @@
                 @endif
             </tbody>
         </table>
+    </div>
         <div class="float-end">
             {{ $subscribers->links() }}
         </div>

@@ -44,7 +44,7 @@
             @if (session('msg'))
                 <div class="alert alert-success">{{ session('msg') }}</div>
             @endif
-
+            <div class="table-responsive" id="no-more-tables">
             <table class="table table-bordered">
                 <thead>
                     <tr class="text-center">
@@ -66,29 +66,29 @@
                     @else
                         @forelse ($houseplan as $item)
                             <tr class="text-center">
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->type}}</td>
-                                <td>{{$item->cost}}</td>
-                                <td>{{$item->floor}}</td>
-                                <td>{{$item->wall}}</td>
-                                <td>{{$item->window}}</td>
-                                <td>{{$item->ceiling}}</td>
+                                <td data-title="ID">{{$item->id}}</td>
+                                <td data-title="House Plan">{{$item->type}}</td>
+                                <td data-title="Rates">{{$item->cost}}</td>
+                                <td data-title="Materials">{{$item->floor}}</td>
+                                <td data-title="Wall">{{$item->wall}}</td>
+                                <td data-title="Windows">{{$item->window}}</td>
+                                <td data-title="Ceiling">{{$item->ceiling}}</td>
 
                                 {{-- if status is true, show if not visible || visible --}}
                                 {{-- to make the category visible just check the box for status --}}
                                 @if ($item->status == 1)
                                        
-                                <td style="font-family: FontAwesome; color:green">
+                                <td data-title="Status" style="font-family: FontAwesome; color:green">
                                     &#xf111; Active
                                 </td>
                                     
                                 @else
-                                <td style="font-family: FontAwesome; color:red">
+                                <td data-title="Status" style="font-family: FontAwesome; color:red">
                                     &#xf111; Inactive
                                 </td>
                                 @endif
 
-                                <td>
+                                <td data-title="Action">
                                     {{-- ACTIONS DELETE --}}
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('houseplan.restore', $item->id) }}" class="btn btn-success btn-sm">Restore</a>
@@ -114,6 +114,7 @@
                     @endif
                 </tbody>
             </table>
+            </div>
             <div class="float-end">
                 {{ $houseplan->links() }}
             </div>
