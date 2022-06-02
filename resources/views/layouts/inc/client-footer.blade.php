@@ -38,9 +38,19 @@
           
           </div>
         
-          <div class="col-lg-4  col-md-6">
+          <div class="col-lg-4 col-md-6">
             @include('layouts.newsletter')
           </div>
+
+          <div class="text-center">
+            <div class="text-muted">Copyright &copy; Bana and Bana Architects 2022</div>
+            <div>
+                <a href="{{route('policy')}}">Privacy Policy</a>
+                &middot;
+                <a href="{{route('conditions')}}">Terms &amp; Conditions</a>
+            </div>
+          </div>
+          
           <div></div>
           <div class="fixed-bottom d-flex justify-content-center">
               @include('cookie-consent::index')    
