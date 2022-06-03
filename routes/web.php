@@ -49,7 +49,9 @@ Route::post('botman',function(){
     app('botman')->listen();
 });
 
-Route::get('generate-pdf', [App\Http\Controllers\PDFController::class, 'generateInvoicePDF'])->name('generate-pdf.download');
+Route::get('generate-pdf/bare', [App\Http\Controllers\PDFBareController::class, 'generateInvoicePDF'])->name('generate-pdf.bare');
+Route::get('generate-pdf/standard', [App\Http\Controllers\PDFStandardController::class, 'generateInvoicePDF'])->name('generate-pdf.standard');
+Route::get('generate-pdf/luxury', [App\Http\Controllers\PDFLuxuryController::class, 'generateInvoicePDF'])->name('generate-pdf.luxury');
 
 #ADMINISTRATOR & STAFF PAGES
 #USERS GATEWAY

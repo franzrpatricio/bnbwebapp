@@ -77,7 +77,7 @@
         placeholderText:'Type something here...',
         aboutText: '©️ Bana and Bana Architects 2022',
         displayMessageTime:'true',
-        // desktopHeight: '600',
+        desktopHeight: '600',
         desktopWidth: '380',
         mobileHeight: '100%',
         mobileWidth: '100%',
@@ -92,7 +92,9 @@
         document.querySelector(".slider").src = links;
     }
 </script>
-<script>
+
+{{-- DOM MANIPULATION  --}}
+{{-- <script>
     var ready = true;
     
     // set interval
@@ -128,5 +130,4 @@
           }
       });
     }
-    
-    </script>
+</script> --}}

@@ -2,16 +2,23 @@
 
 use BotMan\BotMan\BotMan;
 use App\Http\Controllers\PDFController;
+use App\Http\Conversations\BarePDF;
+use App\Http\Conversations\EstimationConversation;
 use App\Http\Conversations\FallbackButtons;
 
 #DEFINE ALL BOTMAN COMMANDS
 
 $botman = app('botman');
 
+$botman->hears('pdf', function($bot){
+    $bot->startConversation(new BarePDF());
+});
+
+
 #in order for the bot to reply when the user says hi added with something else, we will add '(.*)'
 $botman->hears('hi|hello|yow|zup(.*)', function($bot){
     $bot->typesAndWaits(2);
-    $bot->reply('hello');
+    $bot->assertReplies('hello');
 });
 $botman->hears('ty|thanks|tnx|thank you(.*)', function($bot){
     $bot->typesAndWaits(2);

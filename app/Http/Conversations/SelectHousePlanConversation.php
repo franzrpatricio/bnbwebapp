@@ -60,6 +60,9 @@ class SelectHousePlanConversation extends Conversation
     public function Bare(){
         $user = $this->bot->userStorage()->find();
         $total = $user->get('sqm')*20000;
+
+
+        // return view('layouts.receiptBare',compact('user','total'));
         $message = '-------------------------------------- <br>';
         $message .= 'Name : ' . $user->get('name') . '<br>';
         $message .= 'Email : ' . $user->get('email') . '<br>';
@@ -82,38 +85,14 @@ class SelectHousePlanConversation extends Conversation
         $message .= '<small>-Landscape,pools, fences and other structures or components aside from the main building are EXCLUDED in the said approximate rate and should be computed saperately.</small><br>';
         $message .= '<small>-Lastly, Professional Fees, Transaction and Permit Fees, Taxes and the like are also NOT included in the approximate buiuilding contruction rate.</small><br>';
         $this->say('<small>Great. Your Estimated Price is done! Here is the details for the Estimated Price.</small><br><br>' . $message);
-        // Redirect::route('generate-pdf.download');
-        // $this->say('<a class="btn btn-primary" href="{{route("generate-pdf.download")}}">Here is your Receipt of Rough Estimation.</a>');
-        // $this->askTown();
+        $this->bot->startConversation(new BarePDF());
+        // $this->pdfBare();
     }
 
-    public function askTown()
-    {
-        $question = Question::create("Please visit their community page here:")
-            ->addButtons([
-                Button::create('Download the generated Rough Estimation')->value('download'),
-                Button::create('Make another estimation')->value('again'),
-            ]);
-
-        return $this->ask($question, function (Answer $answer) {
-            if ($answer->isInteractiveMessageReply()) {
-                if ($answer->getValue() === 'download') {
-                    $this->say('Glad I could help!');
-                } 
-                elseif ($answer->getValue() === 'again') {
-                    # code...
-                    $this->bot->startConversation(new OnboardingConversation());
-                } 
-                else {
-                    $this->say("Alright, let's talk about something else.");
-                    $this->bot->startConversation(new FallbackButtons());
-                }
-            }
-        });
-    }
     public function Standard(){
         $user = $this->bot->userStorage()->find();
         $total = $user->get('sqm')*30000;
+        
         $message = '-------------------------------------- <br>';
         $message .= 'Name : ' . $user->get('name') . '<br>';
         $message .= 'Email : ' . $user->get('email') . '<br>';
@@ -121,10 +100,10 @@ class SelectHousePlanConversation extends Conversation
         $message .= 'House Area : ' . $user->get('sqm').'sqm'. '<br>';
         $message .= 'House Plan Type : ' . $user->get('type') . '<br>';
         $message .= 'MATERIALS USED<br>';
-        $message .= 'Floor : Polished Concrete<br>';
-        $message .= 'Wall : Concrete<br>';
-        $message .= 'Window : Minimal To Standard<br>';
-        $message .= 'Ceiling : None/Soffit is optional<br>';
+        $message .= 'Floor : Tiles<br>';
+        $message .= 'Wall : Paint<br>';
+        $message .= 'Window : Standard<br>';
+        $message .= 'Ceiling : Gypsum<br>';
         $message .= '---------------------------------------<br>';
         $message .= 'Total Estimated Price : ' . $total . '<br>';
         $message .= '<br>';
@@ -135,8 +114,9 @@ class SelectHousePlanConversation extends Conversation
         $message .= '<small>-These data should be useful at the early stages of the design process to know certain limitations and manage expections</small><br>';
         $message .= '<small>-Landscape,pools, fences and other structures or components aside from the main building are EXCLUDED in the said approximate rate and should be computed saperately.</small><br>';
         $message .= '<small>-Lastly, Professional Fees, Transaction and Permit Fees, Taxes and the like are also NOT included in the approximate buiuilding contruction rate.</small><br>';
-
         $this->say('<small>Great. Your Estimated Price is done! Here is the details for the Estimated Price.</small><br><br>' . $message);
+        $this->bot->startConversation(new StandardPDF());
+        // $this->pdfStandard();
     }
     public function Luxury(){
         $user = $this->bot->userStorage()->find();
@@ -148,10 +128,10 @@ class SelectHousePlanConversation extends Conversation
         $message .= 'House Area : ' . $user->get('sqm').'sqm'. '<br>';
         $message .= 'House Plan Type : ' . $user->get('type') . '<br>';
         $message .= 'MATERIALS USED<br>';
-        $message .= 'Floor : Polished Concrete<br>';
-        $message .= 'Wall : Concrete<br>';
-        $message .= 'Window : Minimal To Standard<br>';
-        $message .= 'Ceiling : None/Soffit is optional<br>';
+        $message .= 'Floor : Tiles to Natural Stones<br>';
+        $message .= 'Wall : Imported Wall tiles to Cladding<br>';
+        $message .= 'Window : Bigger to Window<br>';
+        $message .= 'Ceiling : PVC<br>';
         $message .= '---------------------------------------<br>';
         $message .= 'Total Estimated Price : ' . $total . '<br>';
         $message .= '<br>';
@@ -162,7 +142,72 @@ class SelectHousePlanConversation extends Conversation
         $message .= '<small>-These data should be useful at the early stages of the design process to know certain limitations and manage expections</small><br>';
         $message .= '<small>-Landscape,pools, fences and other structures or components aside from the main building are EXCLUDED in the said approximate rate and should be computed saperately.</small><br>';
         $message .= '<small>-Lastly, Professional Fees, Transaction and Permit Fees, Taxes and the like are also NOT included in the approximate buiuilding contruction rate.</small><br>';
-
         $this->say('<small>Great. Your Estimated Price is done! Here is the details for the Estimated Price.</small><br><br>' . $message);
+        $this->bot->startConversation(new LuxuryPDF());
+        // $this->pdfLuxury();
     }
+
+    // public function pdfBare(){    
+    //     $url = self::PDF;
+    //     $question = Question::create("Rough Estimation is done! See the options below:")
+    //         ->fallback('Unable to ask question')
+    //         ->callbackId('ask_reason')
+    //         ->addButtons([
+    //             Button::create('Click Link: /download'.$url)->value('PDF'),
+    //             Button::create('Ask Something Else')->value('continue')
+    //         ]);
+
+    //     return $this->ask($question, function (Answer $answer) {
+    //         if ($answer->isInteractiveMessageReply()) {
+    //             if ($answer->getValue() === 'PDF') {
+    //                 $link = route('generate-pdf/bare');
+    //                 $this->say("<a href=".$link.">Download your details here.</a>");
+    //             } else {
+    //                 $this->say("Alright, let's talk about something else");
+    //             }
+    //         }
+    //     });
+    // }
+
+    // public function pdfStandard(){    
+    //     $question = Question::create("Rough Estimation is done! See the options below:")
+    //         ->fallback('Unable to ask question')
+    //         ->callbackId('ask_reason')
+    //         ->addButtons([
+    //             Button::create('Send a link of PDF')->value('PDF'),
+    //             Button::create('Ask Something Else')->value('continue')
+    //         ]);
+
+    //     return $this->ask($question, function (Answer $answer) {
+    //         if ($answer->isInteractiveMessageReply()) {
+    //             if ($answer->getValue() === 'PDF') {
+    //                 $link = route('generate-pdf/standard');
+    //                 $this->say("<a href=".$link.">Download your details here.</a>");
+    //             } else {
+    //                 $this->say("Alright, let's talk about something else");
+    //             }
+    //         }
+    //     });
+    // }
+
+    // public function pdfLuxury(){    
+    //     $question = Question::create("Rough Estimation is done! See the options below:")
+    //         ->fallback('Unable to ask question')
+    //         ->callbackId('ask_reason')
+    //         ->addButtons([
+    //             Button::create('Send a link of PDF')->value('PDF'),
+    //             Button::create('Ask Something Else')->value('continue')
+    //         ]);
+
+    //     return $this->ask($question, function (Answer $answer) {
+    //         if ($answer->isInteractiveMessageReply()) {
+    //             if ($answer->getValue() === 'PDF') {
+    //                 $link = route('generate-pdf/luxury');
+    //                 $this->say("<a href=".$link.">Download your details here.</a>");
+    //             } else {
+    //                 $this->say("Alright, let's talk about something else");
+    //             }
+    //         }
+    //     });
+    // }
 }

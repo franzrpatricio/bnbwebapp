@@ -118,11 +118,11 @@
             </td>
             <td>
                 <div class="box-text">
-                    <p>Name</p>
-                    <p>Email</p>
-                    <p>Mobile</p>
-                    <p>House Area</p>
-                    <p>House Plan Type</p>
+                    <p>{{$user->get('name')}}</p>
+                    <p>{{$user->get('email')}}</p>
+                    <p>{{$user->get('mobile')}}</p>
+                    <p>{{$user->get('sqm')}}</p>
+                    <p>{{$user->get('type')}}</p>
                 </div>
             </td>
         </tr>
@@ -165,9 +165,9 @@
                         <p>Total Payable</p>
                     </div>
                     <div class="total-right w-15 float-left text-bold" align="right">
-                        <p>90 sq/m</p>
+                        <p>{{$user->get('sqm')}}</p>
                         <p>P 20,000.00</p>
-                        <p>P 10,000,000.00</p>
+                        <p>P {{$cost}}</p>
                     </div>
                     <div style="clear: both;"></div>
                 </div> 
