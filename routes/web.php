@@ -42,6 +42,7 @@ Route::post('send-projectInquiry', [App\Http\Controllers\Client\ClientController
 
 Route::get('privacy-policy', [App\Http\Controllers\Client\ClientController::class, 'policy'])->name('policy');
 Route::get('terms-and-conditions', [App\Http\Controllers\Client\ClientController::class, 'conditions'])->name('conditions');
+Route::get('creators', [App\Http\Controllers\Client\ClientController::class, 'creators'])->name('creators');
 
 #when request hits server, pull out botman instance; listen to any incoming commands
 Route::post('botman',function(){

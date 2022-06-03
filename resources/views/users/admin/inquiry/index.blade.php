@@ -42,7 +42,7 @@
         @if (session('msg'))
             <div class="alert alert-success">{{ session('msg') }}</div>
         @endif
-
+        <div class="table-responsive" id="no-more-tables">
         <table class="table table-bordered">
             <thead>
                 <tr class="text-center">
@@ -62,22 +62,22 @@
             <tbody>
                 @forelse ($inquiries as $item)
                     <tr class="text-center">
-                        <td>{{$item->id}}</td>
+                        <td data-title="ID">{{$item->id}}</td>
                         {{-- <td>{{$item->proj_id}}</td> --}}
-                        <td>
+                        <td data-title="Project Name">
                             @if ($item->proj_name == NULL)
                                 <small>No Project Included</small>
                             @else
                                 {{$item->proj_name}}
                             @endif
                         </td>
-                        <td>{{$item->name}}</td>
-                        <td>{{$item->email}}</td>
-                        <td>{{$item->phone}}</td>
-                        <td>{{$item->address}}</td>
-                        <td>{{$item->message}}</td>
-                        <td>{{$item->created_at}}</td>
-                        <td>
+                        <td data-title="Name">{{$item->name}}</td>
+                        <td data-title="Email">{{$item->email}}</td>
+                        <td data-title="Contact Number">{{$item->phone}}</td>
+                        <td data-title="Address">{{$item->address}}</td>
+                        <td data-title="Message">{{$item->message}}</td>
+                        <td data-title="Date">{{$item->created_at}}</td>
+                        <td data-title="Actions">
                             {{-- pass the ID of specific category --}}
                             {{-- <a href="{{ url('admin/edit-houseplan/'.$item->id) }}" class="btn btn-success">Edit</a> --}}
 
@@ -99,6 +99,7 @@
                 @endforelse
             </tbody>
         </table>
+        </div>
         <div class="float-end">
             {{ $inquiries->links() }}
         </div>

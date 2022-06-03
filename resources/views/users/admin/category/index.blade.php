@@ -45,7 +45,7 @@
             @if (session('msg'))
                 <div class="alert alert-success">{{ session('msg') }}</div>
             @endif
-
+            <div class="table-responsive" id="no-more-tables">
             <table class="table table-bordered">
                 <thead>
                     <tr class="text-center">
@@ -66,9 +66,9 @@
                     @else
                         @forelse ($category as $item)
                             <tr class="text-center">
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->name}}</td>
-                                <td>
+                                <td data-title="ID">{{$item->id}}</td>
+                                <td data-title="Category Name">{{$item->name}}</td>
+                                <td data-title="Image">
                                     @if ($item->image == true)
                                         {{-- get the category image from folder --}}
                                         <img src="{{ asset('uploads/category/'.$item->image) }}" width="50px" height="50px" alt="cat_img">
@@ -80,18 +80,18 @@
                                 {{-- to make the category visible just check the box for status --}}
                                 @if ($item->status == 1)
                                        
-                                    <td style="font-family: FontAwesome; color:green">
+                                    <td data-title="Status" style="font-family: FontAwesome; color:green">
                                         &#xf111; Active
                                     </td>
                                         
                                     @else
-                                    <td style="font-family: FontAwesome; color:red">
+                                    <td data-title="Status" style="font-family: FontAwesome; color:red">
                                         &#xf111; Inactive
                                     </td>
                                     @endif
 
                                 <td>{{$item->feature == '1' ? 'Yes':'No'}}</td>
-                                <td>
+                                <td data-title="Action">
                                     {{-- pass the ID of specific category --}}
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('categories.restore', $item->id) }}" class="btn btn-success">Restore</a>
@@ -117,6 +117,7 @@
                     @endif
                 </tbody>
             </table>
+        </div>
             <div class="float-end">
                 {{ $category->links() }}
             </div>

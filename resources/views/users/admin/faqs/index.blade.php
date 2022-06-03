@@ -45,7 +45,7 @@
             @if (session('msg'))
                 <div class="alert alert-success">{{ session('msg') }}</div>
             @endif
-
+            <div class="table-responsive" id="no-more-tables">
             <table class="table table-bordered">
                 <thead>
                     <tr class="text-center">
@@ -65,10 +65,10 @@
                     @else
                         @forelse ($faqs as $item)
                             <tr class="text-center">
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->question}}</td>
-                                <td>{{$item->answewr}}</td>
-                                <td>
+                                <td data-title="ID">{{$item->id}}</td>
+                                <td data-title="Question">{{$item->question}}</td>
+                                <td data-title="Asnwer">{{$item->answewr}}</td>
+                                <td data-title="Action">
                                     {{-- pass the ID of specific faq --}}
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('faqs.restore', $item->id) }}" class="btn btn-success">Restore</a>
@@ -94,6 +94,7 @@
                     @endif
                 </tbody>
             </table>
+            </div>
             <div class="float-end">
                 {{ $faqs->links() }}
             </div>

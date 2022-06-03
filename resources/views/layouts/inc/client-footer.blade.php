@@ -48,6 +48,8 @@
                 <a href="{{route('policy')}}">Privacy Policy</a>
                 &middot;
                 <a href="{{route('conditions')}}">Terms &amp; Conditions</a>
+                <br>&middot;
+                <a href="{{route('creators')}}">Created by FRAT TECH</a>
             </div>
           </div>
           

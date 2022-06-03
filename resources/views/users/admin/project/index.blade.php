@@ -43,7 +43,7 @@
             @if (session('msg'))
                 <div class="alert alert-success">{{ session('msg') }}</div>
             @endif
-
+            <div class="table-responsive" id="no-more-tables">
             <table class="table table-bordered">
                 <thead>
                     <tr class="text-center">
@@ -66,11 +66,11 @@
                     @else
                         @forelse ($projects as $item)    
                             <tr class="text-center">
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->name}}</td>
+                                <td data-title="ID">{{$item->id}}</td>
+                                <td data-title="Project Name">{{$item->name}}</td>
 
                                 {{-- it should be multiple images and not visible sa index --}}
-                                <td>
+                                <td data-title="Thumbnail">
                                     @if ($item->image == true)
                                         {{-- get the category image from folder --}}
                                         <img src="{{ asset('uploads/project/'.$item->image) }}" width="50px" height="50px" alt="proj_img">
@@ -79,7 +79,7 @@
                                     @endif
                                 </td>
 
-                                <td>
+                                <td data-title="Gallery and Virtual Tour">
                                     <a href="{{route('projects.gallery',$item->id)}}" class="btn btn-outline-info btn-sm mr-2">
                                         <i class="fa-solid fa-image"></i>
                                         Gallery
@@ -96,19 +96,19 @@
                                 {{-- to make the project visible just check the box for status --}}
                                     @if ($item->status == 1)
                                        
-                                    <td style="font-family: FontAwesome; color:green">
+                                    <td data-title="Status" style="font-family: FontAwesome; color:green">
                                         &#xf111; Active
                                     </td>
                                         
                                     @else
-                                    <td style="font-family: FontAwesome; color:red">
+                                    <td data-title="Status" style="font-family: FontAwesome; color:red">
                                         &#xf111; Inactive
                                     </td>
                                     @endif
 
 
                                     {{-- &#xf111;{{$item->status == '1' ? 'Active':'Inactive'}}</td> --}}
-                                <td>
+                                <td data-title="Action">
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('projects.restore', $item->id) }}" class="btn btn-success">Restore</a>
                                     @else 
@@ -130,6 +130,7 @@
                     @endif
                 </tbody>
             </table>
+            </div>
             <div class="float-end">
                 {{ $projects->links() }}
             </div>

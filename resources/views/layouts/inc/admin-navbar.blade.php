@@ -1,6 +1,6 @@
 <nav class="sb-topnav navbar navbar-expand" style="background: #4CA5D7">
     <!-- Navbar Brand-->
-    <img src="{{ asset('assets/images/logo.png') }}" alt="" style="height: 5rem; width:15rem;">
+    <img class="logo" src="{{ asset('assets/images/logo.png') }}" alt="" style="height: 5rem; width:15rem;">
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 text-light" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
     <!-- Navbar Search-->

@@ -40,7 +40,7 @@
             @if (session('msg'))
                 <div class="alert alert-success">{{ session('msg') }}</div>
             @endif
-
+            <div class="table-responsive" id="no-more-tables">
             <table class="table table-bordered">
                 <thead>
                     <tr class="text-center">
@@ -64,13 +64,13 @@
                     @else
                         @forelse ($comments as $item)
                             <tr class="text-center">
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->project->name}}</td>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->email}}</td>
-                                <td>{{$item->comment}}</td>
-                                <td>{{$item->created_at}}</td>
-                                <td>
+                                <td data-title="ID">{{$item->id}}</td>
+                                <td data-title="Project">{{$item->project->name}}</td>
+                                <td data-title="Full Name">{{$item->name}}</td>
+                                <td data-title="Email">{{$item->email}}</td>
+                                <td data-title="Testimonial">{{$item->comment}}</td>
+                                <td data-title="Inquiry Date">{{$item->created_at}}</td>
+                                <td data-title="Action">
                                     {{-- ACTIONS DELETE --}}
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('comments.restore', $item->id) }}" class="btn btn-success btn-sm">Restore</a>
