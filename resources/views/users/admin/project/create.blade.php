@@ -48,7 +48,7 @@
                     <div class="mb-3">
                         {{-- input name refers to db field --}}
                         <input type="text" name="name" class="form-control" placeholder="&#xf015; Project Name" required style="font-family:Arial, FontAwesome"> 
-                    </div>
+                    </div>                
 
                     <div class="row">
                         <div class="col-6 mb-3">
@@ -64,12 +64,7 @@
                         </div>
 
                         <div class="col-6 mb-3">
-                            <input type="file" 
-                                    name="images[]"
-                                    class="form-control"
-                                    id="inputFiles"
-                                    multiple
-                            >
+                            <input type="file" name="images[]" class="form-control" id="inputFiles" multiple>
                             <div class="card mt-1 mb-3" style="background-color:antiquewhite">
                                 <small class="ml-3">
                                     <i class="fas fa-info-circle" style="color:gold"></i>
@@ -80,84 +75,10 @@
                             </div>
                         </div>
 
-                        
-                            {{-- <div class="mb-3">
-                                <input type="file" 
-                                    name="videos[]" 
-                                    class="form-control"
-                                    id="inputFiles"
-                                    multiple
-                                >
-                            </div> --}}
-
-                            {{-- <div class="row">
-                                <div class="realprocode control-group lst increment" >
-                                    <input type="file" name="videos[]" class=" form-control">
-                                    <div class="card mt-1" style="background-color:antiquewhite">
-                                        <small class="ml-3">
-                                            <i class="fas fa-info-circle" style="color:gold"></i>
-                                            <strong>
-                                                Upload Video for Project Virutal Tour
-                                            </strong>
-                                        </small>
-                                    </div> --}}
-                                    {{-- <div class="form-controp"> --}}
-                                        {{-- <input type="text" name="texts[]" placeholder="&#xf015; Virtual Tour Name" required style="font-family:Arial, FontAwesome">
-                                        <div class="card mt-1" style="background-color:antiquewhite">
-                                            <small class="ml-3">
-                                                <i class="fas fa-info-circle" style="color:gold"></i>
-                                                <strong>
-                                                    Upload names for Project Virutal Tour
-                                                </strong>
-                                            </small>
-                                        </div> --}}
-                                    {{-- </div> --}}
-                                    {{-- <div class="col-md-4"> 
-                                        <button class="btn btn-success" type="button"> <i class="fldemo glyphicon glyphicon-plus"></i>Add</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="clone hide">
-                                    <div class="">
-                                        <input type="file" name="videos[]" class=" form-control">
-                                        <div class="card mt-1" style="background-color:antiquewhite">
-                                            <small class="ml-3">
-                                                <i class="fas fa-info-circle" style="color:gold"></i>
-                                                <strong>
-                                                    Upload another videos for Project Virutal Tour
-                                                </strong>
-                                            </small>
-                                        </div>
-                                        <div class="col-4 mb-3">
-                                            <input type="text" name="texts[]" placeholder="&#xf015; Virtual Tour Name" required style="font-family:Arial, FontAwesome">
-                                            <div class="card mt-1" style="background-color:antiquewhite">
-                                                <small class="ml-3">
-                                                    <i class="fas fa-info-circle" style="color:gold"></i>
-                                                    <strong>
-                                                        Upload names for Project Virutal Tour
-                                                    </strong>
-                                                </small>
-                                            </div>
-                                        </div>
-                                        <div class="input-group-btn"> 
-                                            <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> Remove</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
-
-                            {{-- <div class="col-2 mb-3">
-                                <button type="button" class="btn btn-outline-primary">
-                                    <i class="fa fa-plus"></i>
-                                    Add another Video
-                                </button>
-                            </div> --}}
-
-                        <div class="input_fields_wrap m-2">
+                        <div class="input_fields_wrap m-2 mb-3">
                             <button class="add_field_button btn btn-success m-2"><i class="fa-solid fa-plus"></i></button>
                             <div class="card p-2">
-                                    <input type="file" name="videos[]" class=" form-control m-2" > 
+                                <input type="file" name="videos[]" class=" form-control m-2" multiple> 
                                 <input type="text" name="texts[]" class=" form-control m-2" placeholder="&#xf015; Virtual Tour Name" required style="font-family:Arial, FontAwesome">
                             </div>
                             <div class="card mt-1" style="background-color:antiquewhite">
@@ -169,6 +90,65 @@
                                 </small>
                             </div>
                         </div>
+
+                        {{-- DUPLICATE UPLOAD MULTI-VIDS --}}
+                        {{-- <div class="input-group realprocode control-group lst increment" >
+                            <div class="col-md-6">
+                                <input type="file" name="videos[]" class="myfrm form-control">
+                                <div class="card mt-1 mb-3" style="background-color:antiquewhite">
+                                    <small class="ml-3">
+                                        <i class="fas fa-info-circle" style="color:gold"></i>
+                                        <strong>
+                                            Upload Video for Project Virtual Tour
+                                        </strong>
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="texts[]" placeholder="&#xf015; Virtual Tour Name" required style="font-family:Arial, FontAwesome" class="form-control">
+                                <div class="card mt-1 mb-3" style="background-color:antiquewhite">
+                                    <small class="ml-3">
+                                        <i class="fas fa-info-circle" style="color:gold"></i>
+                                        <strong>
+                                            Write Virtual Tour's View
+                                        </strong>
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="input-group-btn"> 
+                            <button class="btn btn-success" type="button"> <i class="fldemo glyphicon glyphicon-plus"></i>Add</button>
+                            </div>
+                        </div> --}}
+                        {{-- CLONE INPUT FIELD --}}
+                        {{-- <div class="clone hide">
+                            <div class="realprocode control-group lst input-group" style="margin-top:10px">
+                                <div class="col-md-6">
+                                    <input type="file" name="videos[]" class="myfrm form-control">
+                                    <div class="card mt-1 mb-3" style="background-color:antiquewhite">
+                                        <small class="ml-3">
+                                            <i class="fas fa-info-circle" style="color:gold"></i>
+                                            <strong>
+                                                Upload Video for Project Virtual Tour
+                                            </strong>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" name="texts[]" placeholder="&#xf015; Virtual Tour Name" style="font-family:Arial, FontAwesome" class="form-control">
+                                    <div class="card mt-1 mb-3" style="background-color:antiquewhite">
+                                        <small class="ml-3">
+                                            <i class="fas fa-info-circle" style="color:gold"></i>
+                                            <strong>
+                                                Write Virtual Tour's View
+                                            </strong>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="input-group-btn"> 
+                                    <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> Remove</button>
+                                </div>
+                            </div>
+                        </div> --}}
                     </div>
 
                     <div class="col-md-4">
@@ -237,26 +217,24 @@
                     </div> 
                     
                     <div class="mb-3">
-                            <label class="mr-2" style="font-family: FontAwesome; color:green"> &#xf111; <strong style="color: black">Project Status</strong></label>
-                            <div class="mb-3">
-                                <input type="checkbox" name="status"/>
-                                <small>Click to make the project visible .</small>
-                            </div>
+                        <label class="mr-2" style="font-family: FontAwesome; color:green"> &#xf111; <strong style="color: black">Project Status</strong></label>
+                        <div class="mb-3">
+                            <input type="checkbox" name="status"/>
+                            <small>Click to make the project visible .</small>
                         </div>
-        
+                    </div>
                 </div>
                    
-                        <div class="col-12 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-outline-primary m-2">
-                                <i class="fa fa-plus"></i>
-                                Save Project
-                            </button>
-                            <a href="{{url('admin/projects')}}" class="btn btn-outline-danger m-2">
-                                <i class="fa fa-times"></i>    
-                                Cancel
-                            </a>
-                        </div>
-                   
+                <div class="col-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-outline-primary m-2">
+                        <i class="fa fa-plus"></i>
+                        Save Project
+                    </button>
+                    <a href="{{url('admin/projects')}}" class="btn btn-outline-danger m-2">
+                        <i class="fa fa-times"></i>    
+                        Cancel
+                    </a>
+                </div>
             </form>
         </div>
     </div>

@@ -18,7 +18,7 @@ class VirtualTourController extends Controller
         $project = Projects::find($project_id);
         if ($project) {
             # code...
-            $videos = VirtualTour::select('id','video')->where('project_id', $project_id)->get();
+            $videos = VirtualTour::select('id','video','text')->where('project_id', $project_id)->get();
             # CHECK IF THERE ARE NO IMAGES FOR THIS PROJECT ID
             if (VirtualTour::where('project_id', $project_id)->exists()) {
                 # code...

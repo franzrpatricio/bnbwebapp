@@ -65,13 +65,15 @@
 <div class="row">
     <div class="col-6">
         <h5>Architectural Designs: </h5>  
-          @if ($project->designs == NULL)
+          {{-- @if ($project->designs == NULL) --}}
             @forelse (json_decode($project->designs) as $item => $key)
-              <p>{{$key}}</p>q
-            @endforeach
-          @else
+              <p>{{$key}}</p>
+            @empty
+              <p>No Design</p>
+            @endforelse
+          {{-- @el se
             No Architectural Designs.
-          @endif
+          @endif --}}
     </div>
     <div class="col-6">
         <h5>Amenities:   </h5>
