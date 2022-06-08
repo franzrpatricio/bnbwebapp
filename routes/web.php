@@ -49,9 +49,9 @@ Route::post('botman',function(){
     app('botman')->listen();
 });
 
-Route::get('generate-pdf/bare', [App\Http\Controllers\PDFBareController::class, 'generateInvoicePDF'])->name('generate-pdf.bare');
-Route::get('generate-pdf/standard', [App\Http\Controllers\PDFStandardController::class, 'generateInvoicePDF'])->name('generate-pdf.standard');
-Route::get('generate-pdf/luxury', [App\Http\Controllers\PDFLuxuryController::class, 'generateInvoicePDF'])->name('generate-pdf.luxury');
+// Route::get('generate-pdf/bare', [App\Http\Controllers\PDFBareController::class, 'generateInvoicePDF'])->name('generate-pdf.bare');
+// Route::get('generate-pdf/standard', [App\Http\Controllers\PDFStandardController::class, 'generateInvoicePDF'])->name('generate-pdf.standard');
+// Route::get('generate-pdf/luxury', [App\Http\Controllers\PDFLuxuryController::class, 'generateInvoicePDF'])->name('generate-pdf.luxury');
 
 #ADMINISTRATOR & STAFF PAGES
 #USERS GATEWAY
@@ -103,6 +103,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin','verified'])->group(functio
     Route::get('projetcs/restore-projects',[App\Http\Controllers\Admin\ProjectsController::class, 'restore_all'])->name('projects.restore_all');
     #SEARCH
     Route::get('projects/find', [App\Http\Controllers\Admin\ProjectsController::class, 'search']);
+    #PRINT
+    Route::get('projects/download', [App\Http\Controllers\Admin\ProjectsController::class,'generateProjectsPDF']);
     
     #VIEW GALLERY
     Route::get('project/gallery/{project_id}', [App\Http\Controllers\Admin\ProjectImagesController::class, 'gallery'])->name('projects.gallery');

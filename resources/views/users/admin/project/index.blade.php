@@ -34,6 +34,10 @@
                     <a href="{{ route('projects.index', ['trashed' => 'post']) }}" class="btn btn-outline-danger btn-sm mr-2">
                         <i class="fa fa-trash"></i>
                         View Deleted Projects</a>
+                    {{-- GENERATE PDF --}}
+                    {{-- <div class="col-mb-3 ml-2 mt-4" style="font-family:Arial, FontAwesome"> --}}
+                        <a href="{{ url('admin/projects/download') }}" class="btn btn-outline-info btn-sm" style="font-family:Arial, FontAwesome">&#xf1c1; Print</a>
+                    {{-- </div> --}}
                 @endif
             </div>
         </div>
@@ -94,20 +98,23 @@
                                 
                                 {{-- if status is true, show if not visible || visible --}}
                                 {{-- to make the project visible just check the box for status --}}
+                                @if ($item->deleted_at == NULL)
                                     @if ($item->status == 1)
-                                       
-                                    <td data-title="Status" style="font-family: FontAwesome; color:green">
-                                        &#xf111; Active
-                                    </td>
-                                        
+                                        <td data-title="Status" style="font-family: FontAwesome; color:green">
+                                            &#xf111; Active
+                                        </td>
                                     @else
-                                    <td data-title="Status" style="font-family: FontAwesome; color:red">
-                                        &#xf111; Inactive
-                                    </td>
+                                        <td data-title="Status" style="font-family: FontAwesome; color:red">
+                                            &#xf111; Inactive
+                                        </td>
                                     @endif
+                                @else
+                                    <td data-title="Status" style="font-family: FontAwesome; color:red">
+                                        &#xf111; Deleted
+                                    </td>
+                                @endif
 
-
-                                    {{-- &#xf111;{{$item->status == '1' ? 'Active':'Inactive'}}</td> --}}
+                                {{-- &#xf111;{{$item->status == '1' ? 'Active':'Inactive'}}</td> --}}
                                 <td data-title="Action">
                                     @if(request()->has('trashed'))
                                         <a href="{{ route('projects.restore', $item->id) }}" class="btn btn-success">Restore</a>

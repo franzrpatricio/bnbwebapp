@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Events\NewProject as EventsNewProject;
 use App\Http\Requests\Admin\ProjectFormRequest;
 use App\Mail\MailSubscribers;
+use PDF;
 
 class ProjectsController extends Controller
 {
@@ -34,6 +35,14 @@ class ProjectsController extends Controller
             $projects = Projects::paginate(2);
         }
         return view('users.admin.project.index', compact('projects'));
+    }
+
+    #PRINT
+    public function generateProjectsPDF()
+    {
+        $projects = Projects::all();
+        $pdf = PDF::loadView('users.admin.project.projectsReport', array('projects'=> $projects));
+        return $pdf->stream('BanaAndBana-ProjectsReport.pdf');
     }
 
     #CREATE
@@ -95,33 +104,31 @@ class ProjectsController extends Controller
         #id of this project needed to save multi images and videos in Files DB Table
         $projID = $project->id;
         #vtour condition...
-        #if data has file...
-        if ($request->has('texts')) {
+        if ($request->hasfile('videos')) {
             # code...
-            $texts = $request->input('texts');
-            if ($request->hasfile('videos')) {
+            $videos = $request->file('videos');
+            foreach ($videos as $video) {
                 # code...
-                $videos = $request->file('videos');
-                foreach ($videos as $video) {
+                $video_name = time().rand(1,50).'.'.$video->getClientOriginalExtension();
+                $video->move('uploads/virtual_tour/', $video_name);
+                #store image file from data in to $file
+            
+                #if data has file...
+                if ($request->has('texts')) {
                     # code...
-                    $video_name = time().rand(1,50).'.'.$video->getClientOriginalExtension();
-                    $video->move('uploads/virtual_tour/', $video_name);
-                        #store image file from data in to $file
-                }
-
-                # code...
-                foreach ($texts as $text) {
-                    # code...
-                
-                    DB::table('virtual_tour')->insert(
-                        array(
-                            'posted_by' => Auth::user()->id,
-                            'project_id' => $project->id,
-                            'video' => $video_name,
-                            'text' => $text,
-                            'created_at' => Carbon::now(),
-                        )
-                    );
+                    $texts = $request->input('texts');
+                    foreach ($texts as $text) {                    
+                        # code...
+                        DB::table('virtual_tour')->insert(
+                            array(
+                                'posted_by' => Auth::user()->id,
+                                'project_id' => $project->id,
+                                'video' => $video_name,
+                                'text' => $text,
+                                'created_at' => Carbon::now(),
+                            )
+                        );
+                    }
                 }
             }
         }
@@ -279,32 +286,33 @@ class ProjectsController extends Controller
         if ($request->has('texts')) {
             # code...
             $texts = $request->input('texts');
-            if ($request->hasfile('videos')) {
+            foreach ($texts as $text) {
                 # code...
-                $videos = $request->file('videos');
-                foreach ($videos as $video) {
-                    # code...
-                    $video_name = time().rand(1,50).'.'.$video->getClientOriginalExtension();
-                    $video->move('uploads/virtual_tour/', $video_name);
-                        #store image file from data in to $file
-                }
-
-                # code...
-                foreach ($texts as $text) {
-                    # code...
-                
-                    DB::table('virtual_tour')->insert(
-                        array(
-                            'posted_by' => Auth::user()->id,
-                            'project_id' => $project->id,
-                            'video' => $video_name,
-                            'text' => $text,
-                            'created_at' => Carbon::now(),
-                        )
-                    );
-                }
+                $description = $text;
             }
         }
+        if ($request->hasfile('videos')) {
+            # code...
+            $videos = $request->file('videos');
+            foreach ($videos as $video) {
+                # code...
+                $video_name = time().rand(1,50).'.'.$video->getClientOriginalExtension();
+                $video->move('uploads/virtual_tour/', $video_name);
+                #store image file from data in to $file
+            }
+            
+            # code...
+            DB::table('virtual_tour')->insert(
+                array(
+                    'posted_by' => Auth::user()->id,
+                    'project_id' => $project->id,
+                    'video' => $video_name,
+                    'text' => $description,
+                    'created_at' => Carbon::now(),
+                )
+            );
+        }
+        
 
         #saving of multiple image files
         if ($request->hasfile('images')) {

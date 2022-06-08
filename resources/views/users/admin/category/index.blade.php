@@ -78,19 +78,23 @@
                                 </td>
                                 {{-- if status is true, show if not visible || visible --}}
                                 {{-- to make the category visible just check the box for status --}}
-                                @if ($item->status == 1)
-                                       
-                                    <td data-title="Status" style="font-family: FontAwesome; color:green">
-                                        &#xf111; Active
-                                    </td>
-                                        
+                                @if ($item->deleted_at == NULL)
+                                    @if ($item->status == 1)
+                                        <td data-title="Status" style="font-family: FontAwesome; color:green">
+                                            &#xf111; Active
+                                        </td>
                                     @else
-                                    <td data-title="Status" style="font-family: FontAwesome; color:red">
-                                        &#xf111; Inactive
-                                    </td>
+                                        <td data-title="Status" style="font-family: FontAwesome; color:red">
+                                            &#xf111; Inactive
+                                        </td>
                                     @endif
+                                    <td>{{$item->feature == '1' ? 'Yes':'No'}}</td>
+                                @else
+                                    <td colspan="2" data-title="Status" style="font-family: FontAwesome; color:red">
+                                        &#xf111; Deleted
+                                    </td>
+                                @endif
 
-                                <td>{{$item->feature == '1' ? 'Yes':'No'}}</td>
                                 <td data-title="Action">
                                     {{-- pass the ID of specific category --}}
                                     @if(request()->has('trashed'))

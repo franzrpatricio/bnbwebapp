@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use BotMan\BotMan\Facades\BotMan;
+use Illuminate\Http\Request;
 use PDF;
 
   
@@ -12,13 +13,19 @@ class PDFBareController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
-    public function generateInvoicePDF(BotMan $bot)
+    public function generateInvoicePDF()
     {
-        // $user = $bot->userStorage()->find();
-        // $cost = $user->get('sqm')*20000;
-        // $bot->reply($this->pdf->pdf());
-        $pdf = PDF::loadView('layouts.receiptBare')->setPaper('A4','portait');
+        $user = $this->userStorage()->find();
+
+        $pdf = PDF::loadView('layouts.receiptBare', array(
+            'name' => $user->get('name'),
+            'email' => $user->get('email'),
+            'mobile' => $user->get('mobile'),
+            'sqm' => $user->get('sqm'),
+            'type' => $user->get('type')
+        ))->setPaper('A4','portait');
         return $pdf->stream();
         // return $pdf->download('BanaAndBana-Receipt.pdf');
     }

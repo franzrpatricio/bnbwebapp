@@ -12,7 +12,6 @@ use App\Http\Conversations\SelectHousePlanConversation;
 
 class BarePDF extends Conversation
 {
-    protected $sqm;
     const PDF = "/generate-pdf";
 
     public function run()
@@ -33,7 +32,14 @@ class BarePDF extends Conversation
         return $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
                 if ($answer->getValue() === 'visit') {
-                    $link = route('generate-pdf.luxury');
+                    $user = $this->bot->userStorage()->find();
+                    $link = route('generate-pdf.bare',[
+                        'name' => $user->get('name'),
+                        'email' => $user->get('email'),
+                        'mobile' => $user->get('mobile'),
+                        'sqm' => $user->get('sqm'),
+                        'type' => $user->get('type')
+                    ]);
                     $this->say("<a href=".$link.">Download your details here.</a>");
                 } else {
                     $this->say("Alright, let's talk about something else");

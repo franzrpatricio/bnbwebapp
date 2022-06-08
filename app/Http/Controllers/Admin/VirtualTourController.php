@@ -36,8 +36,11 @@ class VirtualTourController extends Controller
     public function update(Request $request, $video_id){
         $video = VirtualTour::find($video_id);
         $this->validate($request, [
+            'text' => 'string',
             'vtour' => 'nullable|mimes:mp4',
         ]);
+
+        $video->text = $request->input('text');
         #image condition...
         #if data has image file...
         if ($request->hasfile('vtour')) {

@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use PDF;
 use Carbon\Carbon;
+use App\Models\Faq;
+// use Barryvdh\DomPDF\PDF;
 use App\Models\Logs;
 use App\Models\User;
-// use Barryvdh\DomPDF\PDF;
-use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\Admin\UserProfileFormRequest;
-
 class ProfileController extends Controller
 {
     
@@ -24,6 +23,7 @@ class ProfileController extends Controller
         return view('users.profilesettings', compact('user'));
     }
     public function logs(){
+        // GET ALL MODELS FOR EVERY MODULES
         if (Auth::user()->role_as == '0')
         {
             $logs = Logs::where('user_id',Auth::user()->id)->orderBy('created_at','DESC')->paginate(5);
@@ -41,6 +41,7 @@ class ProfileController extends Controller
         $start_date = $request->get('start_date');
         $end_date = $request->get('end_date');
         $time = $request->get('time');
+
         if ($find_this) {
             # code...
             $logs = Logs::where('name', 'LIKE', '%'.$find_this.'%')

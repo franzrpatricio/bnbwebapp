@@ -5,15 +5,20 @@ use App\Http\Controllers\PDFController;
 use App\Http\Conversations\BarePDF;
 use App\Http\Conversations\EstimationConversation;
 use App\Http\Conversations\FallbackButtons;
+use App\Http\Conversations\OnboardingConversation;
 
 #DEFINE ALL BOTMAN COMMANDS
 
 $botman = app('botman');
 
-$botman->hears('pdf', function($bot){
-    $bot->startConversation(new BarePDF());
+// $botman->hears('pdf', function($bot){
+//     $bot->startConversation(new BarePDF());
+// });
+$botman->hears('Open Calculator', function($bot){
+    $bot->typesAndWaits(2);
+    $bot->reply("Let's start your Rough Estimation!");
+    $bot->startConversation(new OnboardingConversation());
 });
-
 
 #in order for the bot to reply when the user says hi added with something else, we will add '(.*)'
 $botman->hears('hi|hello|yow|zup(.*)', function($bot){

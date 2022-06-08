@@ -25,7 +25,6 @@ class DashboardController extends Controller
         $projects = Projects::count();
         $houseplans = HousePlan::count();
         $faqs = Faq::count();
-        // $inquiries = Inquiry::count();
         $inquiries = DB::table('inquiries')->count();
         $comments = Comments::count();
         $subscribers = Newsletter::count();

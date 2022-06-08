@@ -9,9 +9,7 @@ use BotMan\BotMan\Messages\Conversations\Conversation;
 use Illuminate\Support\Facades\Redirect;
 
 class SelectHousePlanConversation extends Conversation
-{
-    protected $details;
-
+{    
     public function run()
     {
         $this->askHousePlanType();
@@ -45,9 +43,6 @@ class SelectHousePlanConversation extends Conversation
         if ($user->get('type')=='Bare') {
             # code...
             $this->Bare();
-            // return redirect(url('generate-pdf'));
-            // $ctrl = new PDFController();
-            // return $this->$ctrl;
         } elseif ($user->get('type')=='Standard') {
             # code...
             $this->Standard();
@@ -60,7 +55,6 @@ class SelectHousePlanConversation extends Conversation
     public function Bare(){
         $user = $this->bot->userStorage()->find();
         $total = $user->get('sqm')*20000;
-
 
         // return view('layouts.receiptBare',compact('user','total'));
         $message = '-------------------------------------- <br>';
@@ -146,68 +140,4 @@ class SelectHousePlanConversation extends Conversation
         $this->bot->startConversation(new LuxuryPDF());
         // $this->pdfLuxury();
     }
-
-    // public function pdfBare(){    
-    //     $url = self::PDF;
-    //     $question = Question::create("Rough Estimation is done! See the options below:")
-    //         ->fallback('Unable to ask question')
-    //         ->callbackId('ask_reason')
-    //         ->addButtons([
-    //             Button::create('Click Link: /download'.$url)->value('PDF'),
-    //             Button::create('Ask Something Else')->value('continue')
-    //         ]);
-
-    //     return $this->ask($question, function (Answer $answer) {
-    //         if ($answer->isInteractiveMessageReply()) {
-    //             if ($answer->getValue() === 'PDF') {
-    //                 $link = route('generate-pdf/bare');
-    //                 $this->say("<a href=".$link.">Download your details here.</a>");
-    //             } else {
-    //                 $this->say("Alright, let's talk about something else");
-    //             }
-    //         }
-    //     });
-    // }
-
-    // public function pdfStandard(){    
-    //     $question = Question::create("Rough Estimation is done! See the options below:")
-    //         ->fallback('Unable to ask question')
-    //         ->callbackId('ask_reason')
-    //         ->addButtons([
-    //             Button::create('Send a link of PDF')->value('PDF'),
-    //             Button::create('Ask Something Else')->value('continue')
-    //         ]);
-
-    //     return $this->ask($question, function (Answer $answer) {
-    //         if ($answer->isInteractiveMessageReply()) {
-    //             if ($answer->getValue() === 'PDF') {
-    //                 $link = route('generate-pdf/standard');
-    //                 $this->say("<a href=".$link.">Download your details here.</a>");
-    //             } else {
-    //                 $this->say("Alright, let's talk about something else");
-    //             }
-    //         }
-    //     });
-    // }
-
-    // public function pdfLuxury(){    
-    //     $question = Question::create("Rough Estimation is done! See the options below:")
-    //         ->fallback('Unable to ask question')
-    //         ->callbackId('ask_reason')
-    //         ->addButtons([
-    //             Button::create('Send a link of PDF')->value('PDF'),
-    //             Button::create('Ask Something Else')->value('continue')
-    //         ]);
-
-    //     return $this->ask($question, function (Answer $answer) {
-    //         if ($answer->isInteractiveMessageReply()) {
-    //             if ($answer->getValue() === 'PDF') {
-    //                 $link = route('generate-pdf/luxury');
-    //                 $this->say("<a href=".$link.">Download your details here.</a>");
-    //             } else {
-    //                 $this->say("Alright, let's talk about something else");
-    //             }
-    //         }
-    //     });
-    // }
 }

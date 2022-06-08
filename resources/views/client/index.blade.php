@@ -12,6 +12,7 @@
         <a href="{{url('/portfolio')}}">
           <button type="button" class="btn btn-outline-light btn-lg"  data-aos="fade-right" data-aos-duration="1000">Learn More</button>
         </a>
+        <button class="btn btn-outline-light btn-lg"  data-aos="fade-right" data-aos-duration="1000" onclick="botmanChatWidget.whisper('Open Calculator');">Start Estimating</button>
       </div>
   </section>
 </main>

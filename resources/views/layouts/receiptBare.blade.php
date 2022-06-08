@@ -118,11 +118,11 @@
             </td>
             <td>
                 <div class="box-text">
-                    <p>{{$user->get('name')}}</p>
-                    <p>{{$user->get('email')}}</p>
-                    <p>{{$user->get('mobile')}}</p>
-                    <p>{{$user->get('sqm')}}</p>
-                    <p>{{$user->get('type')}}</p>
+                    <p>{{$name}}</p>
+                    <p>{{$email}}</p>
+                    <p>{{$mobile}}</p>
+                    <p>{{$sqm}}</p>
+                    <p>{{$type}}</p>
                 </div>
             </td>
         </tr>

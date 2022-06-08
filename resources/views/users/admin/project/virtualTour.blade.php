@@ -43,8 +43,11 @@ Replace '0' with corresponding slide number. -->
               allowfullscreen></iframe>
             <form method="post" action="{{ route('virtualTour.update', $item->id) }}" enctype="multipart/form-data">
               @csrf
-              <div class="p-3">
-                <input type="file" name="vtour" class="form-control" required>
+              <div class="p-2">
+                <input class="form-control" type="text" value="{{$item->text}}" name="text">
+              </div>
+              <div class="p-1">
+                <input type="file" name="vtour" class="form-control">
               </div>
 
               <div class="row text-center m-3">
