@@ -34,6 +34,7 @@ Route::get('specialization/{category_id}/{category_slug}', [App\Http\Controllers
 Route::get('projects', [App\Http\Controllers\Client\ClientController::class, 'projects']);
 Route::get('projects/find', [App\Http\Controllers\Client\ClientController::class, 'projectsSearch']);
 Route::get('project/{project_id}/{project_slug}', [App\Http\Controllers\Client\ClientController::class, 'project']);
+Route::get('project/{project_id}/{project_slug}/gallery', [App\Http\Controllers\Client\ClientController::class, 'projectgalleryzoom']);
 Route::post('comments', [App\Http\Controllers\Client\CommentController::class, 'store']);
 Route::get('contact', [App\Http\Controllers\Client\ClientController::class, 'contact']);
 Route::post('subscribe', [App\Http\Controllers\Client\ClientController::class, 'subscribe'])->name('subscribe.subscribe');

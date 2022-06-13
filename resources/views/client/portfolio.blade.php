@@ -15,12 +15,6 @@
 
   </div> --}}
 
-
-
- 
- 
-
-
   <!-- Banner About Us -->
   {{-- <section class="about section-padding" data-aos="fade-right" data-aos-duration="1000" id="about">
     
@@ -44,13 +38,6 @@
       </div>
     </div>
   </section> --}}
-
-
- 
-
-
-
-  
 
   <div class="p-5 text-center" data-aos="fade-left" data-aos-duration="3000" style=" background-image: url({{asset('assets/client/building2.jpg')}});">
    
@@ -120,7 +107,7 @@
   </div>
 
 
-  <div class="header" data-aos="fade-right" data-aos-duration="3000"style=" background-image: url({{asset('assets/client/building2.jpg')}});">
+  <div class="header" data-aos="fade-right" data-aos-duration="3000" style=" background-image: url({{asset('assets/client/building2.jpg')}});" id="specialization">
     <div  class="p-5 text-center bg-image"  style="filter: brightness(60%);">
       <img src="" alt="">
     </div>

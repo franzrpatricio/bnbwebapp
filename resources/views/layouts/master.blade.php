@@ -59,7 +59,7 @@
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
-
+    
     {{-- MULTI-SELECT --}}
     <link rel="stylesheet" href="{{asset('assets/multi/filter_multi_select.css')}}"/>
     <script src="{{ asset('assets/multi/filter-multi-select-bundle.min.js') }}"></script>

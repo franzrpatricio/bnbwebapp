@@ -152,14 +152,31 @@ class ClientController extends Controller
                 return view('client.project',['msgc'=>'No Gallery for this Project'],compact('project','images','videos'));
             }
         } 
-        // else {
-        //     # code...
-        //     return view('client.project',['msgc'=>'Page not Found.']);
-        // }
     }
-    // public function projects(){
-    //     return view('client.projects');
-    // }
+    
+    public function projectgalleryzoom($project_id,$project_slug){
+        $project = Projects::find($project_id);
+        if ($project->status == '1') {
+            # code...
+            $images = ProjectImages::select('id','image')->where('project_id', $project_id)->get();
+            $videos = VirtualTour::select('id','video')->where('project_id',$project_id)->get();
+            # CHECK IF THERE ARE NO IMAGES FOR THIS PROJECT ID
+            if ($images) {
+                # code...
+                if ($videos) {
+                    # code...
+                    return view('client.projectGalleryZoom', compact('project','images','videos'));
+                } else {
+                    # code...
+                    return view('client.projectGalleryZoom',['msgc'=>'No Virtual Tour for this Project'],compact('project','images','videos'));
+                }
+            } else {
+                # code...
+                return view('client.projectGalleryZoom',['msgc'=>'No Gallery for this Project'],compact('project','images','videos'));
+            }
+        }
+    }
+
     public function contact(){
         return view('client.contact');
     }

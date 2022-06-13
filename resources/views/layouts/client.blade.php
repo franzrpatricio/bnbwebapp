@@ -24,6 +24,13 @@
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/client.css') }}" rel="stylesheet">
 
+    {{-- MAGNIFYING ZOOM EFFECT --}}
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/jquery.exzoom.css') }}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="{{asset('assets/js/jquery.exzoom.js')}}"></script>
+
     <!-- Animation -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="slidein.css">
@@ -38,7 +45,6 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    
 </head>
 <body>
     <div id="app">
@@ -59,75 +65,3 @@
     </div>
 </body>
 </html>
-<!-- Scripts -->
-<script src="{{ asset('assets/js/jquery-3.6.0.min') }}" defer></script>
-<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
-<script src="{{asset('assets/js/scrollbtn.js')}}" defer></script>
-
-<!-- Bootstrap -->
-{{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script> --}}
-{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
-<script>
-    var botmanWidget = { 
-        frameEndpoint: '/botman/chat',
-        dateTimeFormat: 'm/d/yy HH:MM',
-        title:'🤖 BnBot',
-        introMessage: 'Hi, I am the official chat bot of Bana and Bana Architects!✋<br><br>Type MENU. So that I can give you the commands I know!',
-        placeholderText:'Type something here...',
-        aboutText: '©️ Bana and Bana Architects 2022',
-        displayMessageTime:'true',
-        desktopHeight: '600',
-        desktopWidth: '380',
-        mobileHeight: '100%',
-        mobileWidth: '100%',
-        bubbleAvatarUrl: '{{asset('assets/images/avatar.png')}}',
-        mainColor: '#368BC1'
-    };
-</script>
-<script id="botmanWidget" src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
-
-<script>
-    function videoslider(links){
-        document.querySelector(".slider").src = links;
-    }
-</script>
-
-{{-- DOM MANIPULATION  --}}
-{{-- <script>
-    var ready = true;
-    
-    // set interval
-    setInterval(setready, 1000);
-    function setready() {
-      ready = true;
-    }
-    
-    $(document).on('DOMNodeInserted', "#messageArea", function() {
-      if(ready == true)
-      {
-      setTimeout(replacelink, 200);
-      ready = false;
-      }
-    });
-    
-    function replacelink() {
-      $('#messageArea .btn').each(function(){
-          text = $(this).html();
-          link = text.match(/(Link:)\s(\/[^<]*)/g);
-          if(link)
-          {
-            $(this).html(' ');
-            url = link.toString().substring(5);
-            text = text.match(/(.*)(Link:)/g).toString().substring(0,5);
-            $(this).empty();
-            $(this).html('<a href="' + url + '">' + text + '</a>');
-            $(this).addClass('linked');
-          }
-          else
-          {
-            $(this).addClass('linked');
-          }
-      });
-    }
-</script> --}}
